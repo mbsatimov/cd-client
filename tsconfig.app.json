@@ -21,10 +21,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmit": true,
+    "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "noUncheckedSideEffectImports": true,
-    "allowSyntheticDefaultImports": true
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src", "@types"]
 }

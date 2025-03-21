@@ -78,8 +78,8 @@ export const AudioPlayer = ({
   };
 
   return (
-    <Card className={cn('audio-player bg-muted rounded-md', className)} title={title} {...props}>
-      <CardHeader className='p-2 space-y-0 flex-row items-center gap-3'>
+    <Card className={cn('audio-player rounded-md bg-muted', className)} title={title} {...props}>
+      <CardHeader className='flex-row items-center gap-3 space-y-0 p-2'>
         <audio
           ref={audioRef}
           src={src}
@@ -105,7 +105,7 @@ export const AudioPlayer = ({
           <span className='text-sm text-muted-foreground'>{formatTime(duration)}</span>
         </div>
 
-        <div className='flex gap-1 w-20'>
+        <div className='flex w-20 gap-1'>
           {volume === 0 && <VolumeOffIcon />}
           {volume > 0 && volume < 0.5 && <Volume1Icon />}
           {volume >= 0.5 && <Volume2Icon />}
