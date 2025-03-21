@@ -19,8 +19,10 @@ jobs:
           node-version: "latest"
           cache: "pnpm"
 
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
 
       - name: Install Dependencies
         run: pnpm install
@@ -42,11 +44,11 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           scp -i private_key -r cd-client/dist $USER@$HOST:/home/$USER/frontend/cd-client/
 
-      - name: Restart Nginx
-        env:
-          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          HOST: ${{ secrets.VPS_HOST }}
-          USER: ${{ secrets.VPS_USER }}
-        run: |
-          ssh -i private_key $USER@$HOST << 'EOF'
-          EOF
+      # - name: Restart Nginx
+      #   env:
+      #     PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     HOST: ${{ secrets.VPS_HOST }}
+      #     USER: ${{ secrets.VPS_USER }}
+      #   run: |
+      #     ssh -i private_key $USER@$HOST << 'EOF'
+      #     EOF
