@@ -98,6 +98,7 @@ interface PaperResult {
     part4: number;
   };
   writingResult: {
+    overallScore: number;
     task1OverallScore: number;
     task2OverallScore: number;
     part1: number;

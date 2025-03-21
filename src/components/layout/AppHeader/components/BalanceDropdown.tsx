@@ -1,6 +1,6 @@
 import type { DialogProps } from '@radix-ui/react-dialog';
 
-import { Link, useRouter } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import { BadgeDollarSignIcon, HistoryIcon } from 'lucide-react';
 import React from 'react';
 
@@ -24,7 +24,6 @@ import { useAuth } from '@/utils/stores';
 export const BalanceDropdown = () => {
   const { user } = useAuth();
   const [openFillBalanceDialog, setOpenFillBalanceDialog] = React.useState(false);
-  const router = useRouter();
 
   if (!user) return null;
 
@@ -50,7 +49,7 @@ export const BalanceDropdown = () => {
               Fill balance
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to='/transactions'>
+              <Link to='/'>
                 <HistoryIcon />
                 Transactions
               </Link>
