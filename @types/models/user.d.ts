@@ -1,4 +1,5 @@
 interface User {
+  balance: number;
   email: string;
   firstName: string;
   id: number;

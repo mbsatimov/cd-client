@@ -13,6 +13,9 @@ export const cn = (...inputs: ClassValue[]) => {
 export const formatPhoneNumber = (phoneNumber: string) =>
   phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '$1 ($2) $3 $4 $5');
 
+export const formatPrice = (price: number) =>
+  price.toLocaleString('uz-UZ', { style: 'currency', currency: 'UZS' });
+
 export const calculateIELTSBand = (scores: number[]) => {
   if (scores.length === 0) {
     throw new Error('At least one score is required.');
