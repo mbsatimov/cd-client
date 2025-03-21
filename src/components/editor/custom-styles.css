@@ -1,0 +1,18 @@
+.ProseMirror * {
+  @apply border-border;
+}
+
+.ProseMirror button {
+  @apply !leading-[initial];
+}
+.ProseMirror img {
+  @apply !inline py-3;
+}
+.ProseMirror table {
+  @apply table w-full border-inherit;
+}
+
+.ProseMirror mark {
+  all: unset;
+  @apply bg-yellow-300;
+}
