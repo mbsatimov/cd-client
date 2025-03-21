@@ -25,6 +25,9 @@ jobs:
 
       - name: Build Frontend
         run: pnpm build
+      
+      - name: check folder
+        run: ls
 
       - name: Add Known Hosts
         run: |
@@ -38,7 +41,7 @@ jobs:
           USER: ${{ secrets.VPS_USER }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          scp -i private_key -r cd-client/dist $USER@$HOST:/home/$USER/frontend/cd-client/
+          scp -i private_key -r dist $USER@$HOST:/home/$USER/frontend/cd-client/
 
       # - name: Restart Nginx
       #   env:
