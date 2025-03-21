@@ -10,23 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: "latest"
-          cache: "yarn"  # Caches dependencies for faster builds
-
-      - name: Install Yarn
-        run: npm install -g yarn  # Installs Yarn globally
-
-      - name: Install Dependencies
-        run: yarn install
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build Frontend
-        run: yarn build
+        run: pnpm build
 
       - name: Add Known Hosts
         run: |
