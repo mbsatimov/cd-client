@@ -1,6 +1,5 @@
 import { Link, useRouter } from '@tanstack/react-router';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { CommandIcon } from 'lucide-react';
 import React from 'react';
 
 import { BalanceDropdown } from '@/components/layout/AppHeader/components/BalanceDropdown.tsx';
@@ -43,8 +42,8 @@ export const AppHeader = () => {
         transition={{ duration: 0.75 }}
       >
         <Link className='flex items-center justify-start gap-1' to='/'>
-          <CommandIcon className='size-5' />
-          <span className='text-lg font-medium leading-none'>IELTS ZONE</span>
+          <img alt='IELTS ZONE' className='h-8 dark:hidden' src='/logo.png' />
+          <img alt='IELTS ZONE' className='hidden h-8 dark:inline' src='/logo-dark.png' />
         </Link>
         <div className='hidden justify-center gap-3 px-6 text-sm md:flex'>
           <Link

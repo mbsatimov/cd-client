@@ -1,10 +1,10 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
-import { VerifyForm } from '@/routes/_auth/register/-components/VerifyForm/VerifyForm.tsx';
 
-import { RegisterForm } from './-components';
+import { RegisterForm, VerifyForm } from './-components';
 
 const LoginPage = () => {
   const [otpKey, setOtpKey] = React.useState<number | null>(null);
@@ -12,6 +12,9 @@ const LoginPage = () => {
   if (!otpKey) {
     return (
       <Card>
+        <Helmet>
+          <title>Sign Up | MOCK - IELTS ZONE</title>
+        </Helmet>
         <CardHeader className='flex flex-col space-y-2 text-left'>
           <CardTitle>Register</CardTitle>
           <CardDescription>

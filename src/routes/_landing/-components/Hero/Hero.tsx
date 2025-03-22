@@ -38,9 +38,9 @@ export const Hero = () => {
           initial={{ y: 30, opacity: 0, rotateX: 20 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         >
-          Our platform provides a comprehensive set of resources to help you prepare for the IELTS
-          exam. Whether you&apos;re a beginner or an advanced learner, we have everything you need
-          to succeed.
+          Mock IELTS ZONE is an online platform where you can take realistic IELTS mock exams on
+          computer or paper. Get detailed feedback after each test, track your progress, and prepare
+          confidently for your real IELTS exam.
         </motion.p>
         <motion.div
           animate={{ y: 0, opacity: 1, rotateX: 0 }}

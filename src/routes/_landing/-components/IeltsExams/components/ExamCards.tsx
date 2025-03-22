@@ -37,9 +37,11 @@ export const ExamCards = () => {
       >
         <Meteors />
         <div className='flex justify-between border-b'>
-          <CardHeader className='flex-1 justify-between p-8'>
+          <CardHeader className='flex-1 justify-between p-5 sm:p-8'>
             <CardDescription>ON COMPUTER</CardDescription>
-            <CardTitle className='leading-8'>Take your IELTS test digitally with ease</CardTitle>
+            <CardTitle className='text-xl leading-6 sm:text-2xl md:leading-8'>
+              Take your IELTS test digitally with ease
+            </CardTitle>
           </CardHeader>
           <div className='md:1/3 w-2/5 shrink-0 rounded-r-lg border-l'>
             <img
@@ -51,14 +53,14 @@ export const ExamCards = () => {
             />
           </div>
         </div>
-        <CardContent className='px-8 py-4'>
+        <CardContent className='px-5 py-4 sm:px-8'>
           <CardDescription>
             Experience the IELTS test on a computer with a user-friendly interface, fast results,
             and a seamless testing experience. Ideal for candidates comfortable with digital
             environments.
           </CardDescription>
         </CardContent>
-        <CardFooter className='gap-4 px-8 pb-4'>
+        <CardFooter className='gap-4 px-5 pb-4 sm:px-8'>
           <Button asChild>
             <Link search={{ type: 'CD' }} to='/exams'>
               Book now
@@ -86,9 +88,11 @@ export const ExamCards = () => {
       >
         <Meteors />
         <div className='flex justify-between border-b'>
-          <CardHeader className='flex-1 justify-between p-8'>
+          <CardHeader className='flex-1 justify-between p-5 sm:p-8'>
             <CardDescription>ON PAPER</CardDescription>
-            <CardTitle className='leading-8'>The traditional way to take your IELTS test</CardTitle>
+            <CardTitle className='text-xl leading-6 sm:text-2xl md:leading-8'>
+              The traditional way to take your IELTS test
+            </CardTitle>
           </CardHeader>
           <div className='md:1/3 w-2/5 shrink-0 rounded-r-lg border-l'>
             <img
@@ -100,13 +104,13 @@ export const ExamCards = () => {
             />
           </div>
         </div>
-        <CardContent className='px-8 py-4'>
+        <CardContent className='px-5 py-4 md:px-8'>
           <CardDescription>
             Prefer the classic approach? Take your test on paper, using a pen and answer sheets. A
             great option for those who are used to handwriting their answers.
           </CardDescription>
         </CardContent>
-        <CardFooter className='gap-4 px-8 pb-4'>
+        <CardFooter className='gap-4 px-5 pb-4 md:px-8'>
           <Button asChild>
             <Link search={{ type: 'PAPER' }} to='/exams'>
               Book now

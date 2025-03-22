@@ -1,4 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
+import { Helmet } from 'react-helmet';
 
 import { BaseLayout } from '@/components/layout';
 import {
@@ -15,6 +16,9 @@ import { ExamList, Toolbar } from './-components';
 const ExamsPage = () => {
   return (
     <BaseLayout>
+      <Helmet>
+        <title>Exams | MOCK - IELTS ZONE</title>
+      </Helmet>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

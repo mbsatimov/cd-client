@@ -22,7 +22,9 @@ export const BalanceDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost'>{formatPrice(user.balance)}</Button>
+        <Button size='sm' variant='ghost'>
+          {formatPrice(user.balance)}
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-56' forceMount>
         <DropdownMenuLabel className='font-normal'>

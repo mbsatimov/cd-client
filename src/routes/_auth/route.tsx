@@ -1,13 +1,12 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router';
-import { CommandIcon } from 'lucide-react';
 
 const AuthenticatedLayout = () => {
   return (
     <div className='bg-backgroud container grid h-svh flex-col items-center justify-center lg:max-w-none lg:px-0'>
       <div className='mx-auto flex w-full flex-col justify-center space-y-2 sm:w-[480px] lg:p-8'>
         <div className='mb-4 flex items-center justify-center'>
-          <CommandIcon />
-          <h1 className='text-xl font-medium'>CDE</h1>
+          <img alt='IELTS ZONE' className='h-10 dark:hidden' src='/logo.png' />
+          <img alt='IELTS ZONE' className='hidden h-10 dark:inline' src='/logo-dark.png' />
         </div>
         <Outlet />
       </div>
