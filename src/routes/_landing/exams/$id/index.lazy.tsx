@@ -52,7 +52,7 @@ const ExamIdPage = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className='grid flex-1 gap-3 md:grid-cols-2'>
+          <div className='grid flex-1 gap-3 sm:grid-cols-2'>
             {state.exam.type === 'PAPER' && (
               <div className='flex items-center gap-2'>
                 <MailOpenIcon className='size-5' />
@@ -82,7 +82,7 @@ const ExamIdPage = () => {
       </Card>
 
       <div>
-        <h2 className='text-2xl font-bold'>Your main test time</h2>
+        <h2 className='text-xl font-bold sm:text-2xl'>Your main test time</h2>
         <p className='mb-2 text-muted-foreground'></p>
         <Card className='flex items-center justify-between'>
           <CardHeader>
