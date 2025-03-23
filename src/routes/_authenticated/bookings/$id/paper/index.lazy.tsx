@@ -1,19 +1,27 @@
 import { createLazyFileRoute, useRouter } from '@tanstack/react-router';
 import { ArrowLeftIcon } from 'lucide-react';
+import React from 'react';
 
 import { Button, Spinner } from '@/components/ui';
 
-import { ListeningAnswersTable, OverallScores, ReadingAnswersTable } from './-components';
+import {
+  ListeningResultDetails,
+  OverallScoresTabs,
+  ReadingResultDetails,
+  SpeakingResultDetails,
+  WritingResultDetails
+} from './-components';
 import { useBookingIdPage } from './-hooks';
 
 const ResultsIdPaperPage = () => {
   const { state } = useBookingIdPage();
+  const [currentTab, setCurrentTab] = React.useState('listening');
   const router = useRouter();
 
   if (state.isLoading)
     return (
       <div className='mt-20 flex items-center justify-center'>
-        <Spinner className='size-10' />
+        <Spinner />
       </div>
     );
 
@@ -32,7 +40,9 @@ const ResultsIdPaperPage = () => {
           <span>Back</span>
         </Button>
       </div>
-      <OverallScores
+      <OverallScoresTabs
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
         scores={{
           listening: state.result.listeningResult.overallScore,
           reading: state.result.readingResult.overallScore,
@@ -40,8 +50,14 @@ const ResultsIdPaperPage = () => {
           writing: state.result.writingResult.overallScore
         }}
       />
-      <ListeningAnswersTable listening={state.result.listeningResult} />
-      <ReadingAnswersTable reading={state.result.readingResult} />
+      {currentTab === 'listening' && (
+        <ListeningResultDetails listening={state.result.listeningResult} />
+      )}
+      {currentTab === 'reading' && <ReadingResultDetails reading={state.result.readingResult} />}
+      {currentTab === 'writing' && <WritingResultDetails writing={state.result.writingResult} />}
+      {currentTab === 'speaking' && (
+        <SpeakingResultDetails speaking={state.result.speakingResult} />
+      )}
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { BackgroundLines } from '@/components/ui/background-lines.tsx';
 
 export const Hero = () => {
   return (
-    <BaseLayout className='h-screen !pt-0 pb-10 md:pb-20'>
+    <BaseLayout className='relative h-screen !pt-0 pb-10 md:pb-20'>
       <motion.div
         animate={{ opacity: 0.17 }}
         className='absolute left-[20px] top-1/3 -z-10 aspect-square w-[55%] rounded-full bg-[#FFD700] blur-[100px]'
@@ -21,7 +21,7 @@ export const Hero = () => {
         initial={{ opacity: 0 }}
         transition={{ duration: 1, delay: 1 }}
       />
-      <BackgroundLines className='relative flex h-full flex-col justify-center'>
+      <BackgroundLines className='flex h-full flex-col justify-center'>
         <motion.h1
           animate={{ y: 0, opacity: 1 }}
           className='relative mx-auto mt-6 max-w-4xl text-center text-2xl font-semibold md:text-4xl lg:text-8xl lg:leading-[1.2]'

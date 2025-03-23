@@ -4,7 +4,13 @@ import React from 'react';
 
 import { Button, Spinner } from '@/components/ui';
 
-import { ListeningResultDetails, OverallScoresTabs, ReadingResultDetails } from './-components';
+import {
+  ListeningResultDetails,
+  OverallScoresTabs,
+  ReadingResultDetails,
+  SpeakingResultDetails,
+  WritingResultDetails
+} from './-components';
 import { useBookingIdPage } from './-hooks';
 
 const ResultsIdCDPage = () => {
@@ -15,7 +21,7 @@ const ResultsIdCDPage = () => {
   if (state.isLoading)
     return (
       <div className='mt-20 flex items-center justify-center'>
-        <Spinner className='size-10' />
+        <Spinner />
       </div>
     );
 
@@ -27,7 +33,7 @@ const ResultsIdCDPage = () => {
     );
 
   return (
-    <div className='space-y-6'>
+    <div className='space-y-4 md:space-y-6'>
       <div className='flex items-center gap-3'>
         <Button variant='ghost' onClick={() => router.history.back()}>
           <ArrowLeftIcon />
@@ -48,6 +54,10 @@ const ResultsIdCDPage = () => {
         <ListeningResultDetails listening={state.result.listeningResult} />
       )}
       {currentTab === 'reading' && <ReadingResultDetails reading={state.result.readingResult} />}
+      {currentTab === 'writing' && <WritingResultDetails writing={state.result.writingResult} />}
+      {currentTab === 'speaking' && (
+        <SpeakingResultDetails speaking={state.result.speakingResult} />
+      )}
     </div>
   );
 };

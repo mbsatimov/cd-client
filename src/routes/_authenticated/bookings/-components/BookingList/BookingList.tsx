@@ -18,7 +18,7 @@ export const BookingList = () => {
     <div className='space-y-4'>
       {state.registrations?.length ? (
         state.registrations.map((registration) => (
-          <BookingItem key={registration.id} registration={registration} />
+          <BookingItem key={`${registration.id}${registration.type}`} registration={registration} />
         ))
       ) : (
         <div className='my-10 text-center text-muted-foreground'>No exams found</div>

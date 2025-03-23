@@ -21,7 +21,9 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
                 <img alt='IELTS ZONE' className='h-10 dark:hidden' src='/logo.png' />
                 <img alt='IELTS ZONE' className='hidden h-10 dark:inline' src='/logo-dark.png' />
               </Link>
-              <p className='mt-6 text-sm text-muted-foreground'>The best platform for learning.</p>
+              <p className='mt-6 text-sm text-muted-foreground'>
+                The best platform for mocking your english skills.
+              </p>
             </div>
             <div className='mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:col-span-2 md:mt-0'>
               <div>
@@ -34,7 +36,7 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
                       rel='noreferrer'
                       target='_blank'
                     >
-                      + 998 (55) 511-09-09
+                      +998 (55) 511-09-09
                     </a>
                   </li>
                   <li>

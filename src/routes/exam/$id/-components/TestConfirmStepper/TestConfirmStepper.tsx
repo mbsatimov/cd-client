@@ -11,69 +11,7 @@ import {
   StepperTitle
 } from '@/components/ui/stepper.tsx';
 
-const stepsMap: Record<IeltsTestType, any> = {
-  listening: {
-    title: 'IELTS Listening',
-    desc: 'Time: Approximately 30 minutes',
-    instructions: {
-      title: 'INSTRUCTIONS TO CANDIDATES',
-      list: [
-        'Answer <strong>all</strong> the questions.',
-        'You can change your answers at any time during the test.'
-      ]
-    },
-    information: {
-      title: 'INFORMATION FOR CANDIDATES',
-      list: [
-        'There are 40 questions in this test.',
-        'Each question carries one mark.',
-        'There are four parts to the test.',
-        'Please note you will only hear each part once in your actual test.',
-        'For each part of the test there will be time for you to look through the questions and time for you to check your answers.'
-      ]
-    }
-  },
-  reading: {
-    title: 'IELTS Listening',
-    desc: 'Time: 1 hour',
-    instructions: {
-      title: 'INSTRUCTIONS TO CANDIDATES',
-      list: [
-        'Answer <strong>all</strong> the questions.',
-        'You can change your answers at any time during the test.'
-      ]
-    },
-    information: {
-      title: 'INFORMATION FOR CANDIDATES',
-      list: [
-        'There are 40 questions in this test.',
-        'Each question carries one mark.',
-        'There are three parts to the test.',
-        'The test clock will show you when there are 10 minutes and 5 minutes remaining.'
-      ]
-    }
-  },
-  writing: {
-    title: 'IELTS Writing',
-    desc: 'Time: 1 hour',
-    instructions: {
-      title: 'INSTRUCTIONS TO CANDIDATES',
-      list: [
-        'Answer <strong>both</strong> parts.',
-        'You can change your answers at any time during the test.'
-      ]
-    },
-    information: {
-      title: 'INFORMATION FOR CANDIDATES',
-      list: [
-        'There are two parts in this test.',
-        'Part 2 contributes twice as much as Part 1 to the writing score.',
-        'The test clock will show you when there are 10 minutes and 5 minutes remaining.'
-      ]
-    }
-  },
-  speaking: ''
-};
+import { stepsMap } from './data.ts';
 
 interface Props {
   currentStep: IeltsTestType;
@@ -93,10 +31,12 @@ export const TestConfirmStepper = ({
   const currentStepIndex = steps.findIndex((item) => item === currentStep);
   const [isSoundCheckConfirmed, setIsSoundCheckConfirmed] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
+  const [isAudioPlaying, setIsAudioPlaying] = React.useState(false);
 
   const toggleAudio = () => {
     if (audioRef.current) {
       audioRef.current.paused ? audioRef.current.play() : audioRef.current.pause();
+      setIsAudioPlaying(!audioRef.current.paused);
     }
   };
 
@@ -108,8 +48,12 @@ export const TestConfirmStepper = ({
           <p>Put on your headphones and click on the Play sound button to play a sample sound.</p>
           <div className='flex items-center justify-center'></div>
           <div className='flex items-center justify-center gap-4'>
-            <Button onClick={toggleAudio}>Play sound</Button>
-            <audio src='/listening.mp3' />
+            <Button onClick={toggleAudio}>{isAudioPlaying ? 'Pause sound' : 'Play sound'}</Button>
+            <audio
+              ref={audioRef}
+              src='/volumeCheckAudio.mp3'
+              onEnded={() => setIsAudioPlaying(false)}
+            />
             <div className='flex items-center gap-2'>
               <VolumeXIcon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
               <Slider

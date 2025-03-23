@@ -35,7 +35,7 @@ export const SelectionPreview = ({ value, answerOrder, answers, setAnswer }: Pro
           const order = answerOrder + index;
           return (
             <Select value={answers[order]} onValueChange={(value) => setAnswer(order, value)}>
-              <SelectTrigger className='inline-flex h-5 w-fit min-w-[100px] gap-2 rounded-[3px] border-none bg-background px-1 py-0 text-center text-sm shadow-none focus:ring-transparent'>
+              <SelectTrigger className='inline-flex h-5 w-fit min-w-[100px] gap-2 rounded-[3px] border-none bg-background px-1 py-0 text-center align-text-top text-sm shadow-none focus:ring-transparent'>
                 <span />
                 <SelectValue placeholder='Select' />
               </SelectTrigger>

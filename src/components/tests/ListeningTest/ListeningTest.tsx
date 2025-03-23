@@ -1,9 +1,10 @@
+import { Volume2Icon, VolumeXIcon } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
 import { FormBuilder } from '@/components/FormBuilderPreview';
 import { BaseLayout } from '@/components/layout';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import { useTimer } from '@/hooks';
 import { cn } from '@/lib/utils.ts';
 import { useExamAnswersStore } from '@/utils/stores';
@@ -15,9 +16,10 @@ interface Props {
   test: ListeningTest;
   volume: number;
   onTestEnd: () => void;
+  onVolumeChange: (volume: number) => void;
 }
 
-export const ListeningTest = ({ test, nextStep, onTestEnd, volume = 1 }: Props) => {
+export const ListeningTest = ({ test, nextStep, onTestEnd, onVolumeChange, volume = 1 }: Props) => {
   const [currentTab, setCurrentTab] = React.useState('part-1');
   const audios = test.parts.map((part) => part.audio.url);
   const [currentAudioIndex, setCurrentAudioIndex] = React.useState(0);
@@ -74,7 +76,20 @@ export const ListeningTest = ({ test, nextStep, onTestEnd, volume = 1 }: Props) 
               </TabsTrigger>
             ))}
           </TabsList>
-          <div className='flex justify-end'>
+          <div className='flex justify-end gap-4'>
+            <div className='flex items-center gap-2'>
+              <VolumeXIcon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+              <Slider
+                aria-label='Volume slider'
+                className='w-20'
+                max={1}
+                min={0}
+                step={0.01}
+                value={[volume]}
+                onValueChange={([value]) => onVolumeChange(value)}
+              />
+              <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+            </div>
             {nextStep ? (
               <MoveToAction type={nextStep} onConfirm={onTestEnd} />
             ) : (

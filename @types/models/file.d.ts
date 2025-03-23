@@ -1,6 +1,6 @@
 interface ApiFile {
+  fileName: string;
   id: number;
-  name: string | null;
   url: string;
 }
 

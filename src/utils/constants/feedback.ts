@@ -758,677 +758,1213 @@ export const feedbacks = {
   },
   writing: {
     part1: {
-      part1: {
-        9: {
-          feedback:
-            'All the requirements of the task are fully and appropriately satisfied. There may be extremely rare lapses in content.'
-        },
-        8: {
-          feedback:
-            'The response covers all the requirements of the task appropriately, relevantly and sufficiently. (Academic) Key features are skilfully selected, and clearly presented, highlighted and illustrated. There may be occasional omissions or lapses in content.',
-          suggestion:
-            'Ensure absolute relevance and completeness in addressing the task, leaving no aspect of the prompt unexplored or insufficiently covered. Responses must be fully developed with a clear, direct answer to the prompt, showcasing depth in thought and understanding.'
-        },
-        7: {
-          feedback:
-            'The response covers the requirements of the task. The content is relevant and accurate – there may be a few omissions or lapses. The format is appropriate. (Academic) Key features which are selected are covered and clearly highlighted but could be more fully or more appropriately illustrated or extended. (Academic) It presents a clear overview, the data are appropriately categorised, and main trends or differences are identified.',
-          suggestion:
-            'Focus on fully extending and supporting your ideas. Ensure that your position throughout the response is clear and well justified with logical and detailed reasoning.'
-        },
-        6: {
-          feedback:
-            'The response focuses on the requirements of the task and an appropriate format is used. (Academic) Key features which are selected are covered and adequately highlighted. A relevant overview is attempted. Information is appropriately selected and supported using figures/data. Some irrelevant, inappropriate or inaccurate information may occur in areas of detail or when illustrating or extending the main points. Some details may be missing (or excessive) and further extension or illustration may be needed.',
-          suggestion:
-            'Aim for more detailed development of your ideas. Avoid over-generalizations and ensure that supporting ideas or evidence are relevant and precise.'
-        },
-        5: {
-          feedback:
-            'The response generally addresses the requirements of the task. The format may be inappropriate in places. (Academic) Key features which are selected are not adequately covered. The recounting of detail is mainly mechanical. There may be no data to support the description. There may be a tendency to focus on details (without referring to the bigger picture). The inclusion of irrelevant, inappropriate or inaccurate material in key areas detracts from the task achievement. There is limited detail when extending and illustrating the main points.',
-          suggestion:
-            'Work on presenting and developing your main ideas more clearly and coherently. Use a mix of general statements and specific details or evidence for support.'
-        },
-        4: {
-          feedback:
-            'The response is an attempt to address the task. (Academic) Few key features have been selected. The format may be inappropriate. Key features/bullet points which are presented may be irrelevant, repetitive, inaccurate or inappropriate.',
-          suggestion:
-            'Ensure that all parts of the prompt are addressed. Start developing your ideas more fully and use examples or data to support your points adequately.'
-        },
-        3: {
-          feedback:
-            'The response does not address the requirements of the task (possibly because of misunderstanding of the data/diagram/situation). Key features/bullet points which are presented may be largely irrelevant. Limited information is presented, and this may be used repetitively.',
-          suggestion:
-            'Focus on developing relevant ideas that correspond to the task. Avoid digressing into unrelated topics. Incorporate basic examples or data to support your points.'
-        },
-        2: {
-          feedback: 'The content barely relates to the task.',
-          suggestion:
-            'Begin by clearly understanding the task requirements. Practice identifying key features or main ideas from various prompts and planning a response that addresses these directly.'
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. The content is wholly unrelated to the task. Any copied rubric must be discounted.'
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part2: {
-        9: {
-          feedback:
-            'The message can be followed effortlessly. Cohesion is used in such a way that it very rarely attracts attention. Any lapses in coherence or cohesion are minimal. Paragraphing is skilfully managed.'
-        },
-        8: {
-          feedback:
-            'The message can be followed with ease. Information and ideas are logically sequenced, and cohesion is well managed. Occasional lapses in coherence or cohesion may occur. Paragraphing is used sufficiently and appropriately.',
-          suggestion:
-            'Achieve a flawless flow of ideas and information throughout your response. The organization should appear effortless to the reader, with paragraphing and cohesion that enhance clarity without drawing attention to themselves.'
-        },
-        7: {
-          feedback:
-            'Information and ideas are logically organised and there is a clear progression throughout the response. A few lapses may occur. A range of cohesive devices including reference and substitution is used flexibly but with some inaccuracies or some over/under use.',
-          suggestion:
-            'Enhance the effortless follow of your message. Work on using cohesion in such a way that it enhances the clarity and logical flow of your response without drawing unnecessary attention.'
-        },
-        6: {
-          feedback:
-            'Information and ideas are generally arranged coherently and there is a clear overall progression. Cohesive devices are used to some good effect but cohesion within and/or between sentences may be faulty or mechanical due to misuse, overuse or omission. The use of reference and substitution may lack flexibility or clarity and result in some repetition or error',
-          suggestion:
-            'Aim for a clear progression of ideas throughout your response. Use cohesive devices flexibly and accurately to manage paragraphing and coherence.'
-        },
-        5: {
-          feedback:
-            'Organisation is evident but is not wholly logical and there may be a lack of overall progression. Nevertheless, there is a sense of underlying coherence to the response. The relationship of ideas can be followed but the sentences are not fluently linked to each other. There may be limited/overuse of cohesive devices with some inaccuracy. The writing may be repetitive due to inadequate and/or inaccurate use of reference and substitution.',
-          suggestion:
-            'Focus on enhancing overall coherence by clearly organizing ideas and paragraphs. Use a range of cohesive devices effectively and accurately.'
-        },
-        4: {
-          feedback:
-            'Information and ideas are evident but not arranged coherently, and there is no clear progression within the response. Relationships between ideas can be unclear and/or inadequately marked. There is some use of basic cohesive devices, which may be inaccurate or repetitive. There is inaccurate use or a lack of substitution or referencing.',
-          suggestion:
-            'Ensure that your ideas are logically ordered within paragraphs. Work on using cohesive devices appropriately to avoid repetition.'
-        },
-        3: {
-          feedback:
-            'There is no apparent logical organisation. Ideas are discernible but difficult to relate to each other. Minimal use of sequencers or cohesive devices. Those used do not necessarily indicate a logical relationship between ideas. There is difficulty in identifying referencing.',
-          suggestion:
-            'Improve the logical flow of information by arranging your ideas more coherently. Use a variety of cohesive devices accurately.'
-        },
-        2: {
-          feedback:
-            'There is little relevant message, or the entire response may be off-topic. There is little evidence of control of organisational features.',
-          suggestion:
-            "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. The writing fails to communicate any message and appears to be by a virtual non-writer.'
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part3: {
-        9: {
-          feedback:
-            'Full flexibility and precise use are evident within the scope of the task. A wide range of vocabulary is used accurately and appropriately with very natural and sophisticated control of lexical features. Minor errors in spelling and word formation are extremely rare and have minimal impact on communication.'
-        },
-        8: {
-          feedback:
-            'A wide resource is fluently and flexibly used to convey precise meanings within the scope of the task. There is skilful use of uncommon and/or idiomatic items when appropriate, despite occasional inaccuracies in word choice and collocation. Occasional errors in spelling and/or word formation may occur, but have minimal impact on communication.',
-          suggestion:
-            'Display full flexibility in your vocabulary use, employing a wide range of language to convey precise meaning and subtle nuances in all situations, without errors.'
-        },
-        7: {
-          feedback:
-            'The resource is sufficient to allow some flexibility and precision. There is some ability to use less common and/or idiomatic items. An awareness of style and collocation is evident, though inappropriacies occur. There are only a few errors in spelling and/or word formation, and they do not detract from overall clarity.',
-          suggestion:
-            'Aim for flexibility and precision in your use of vocabulary. Practice using a wide range of vocabulary naturally and accurately, even in complex situations.'
-        },
-        6: {
-          feedback:
-            'The resource is generally adequate and appropriate for the task. The meaning is generally clear in spite of a rather restricted range or a lack of precision in word choice. If the writer is a risk-taker, there will be a wider range of vocabulary used but higher degrees of inaccuracy or inappropriacy. There are some errors in spelling and/or word formation, but these do not impede communication.',
-          suggestion:
-            'Enhance your ability to use less common and idiomatic vocabulary appropriately. Focus on accurate word choice and collocation.'
-        },
-        5: {
-          feedback:
-            'The resource is limited but minimally adequate for the task. Simple vocabulary may be used accurately but the range does not permit much variation in expression. There may be frequent lapses in the appropriacy of word choice, and a lack of flexibility is apparent in frequent simplifications and/or repetitions. Errors in spelling and/or word formation may be noticeable and may cause some difficulty for the reader.',
-          suggestion:
-            'Develop the ability to use a wider range of vocabulary for precision and style. Work on minimizing errors that can impede understanding.'
-        },
-        4: {
-          feedback:
-            'The resource is limited and inadequate for or unrelated to the task. Vocabulary is basic and may be used repetitively. There may be inappropriate use of lexical chunks (e.g. memorised phrases, formulaic language and/or language from the input material). Inappropriate word choice and/or errors in word formation and/or in spelling may impede meaning.',
-          suggestion:
-            'Work on accuracy and appropriateness in your use of vocabulary. Introduce a variety of words and phrases relevant to the task.'
-        },
-        3: {
-          feedback:
-            'The resource is inadequate (which may be due to the response being significantly underlength). Possible over-dependence on input material or memorised language. Control of word choice and/or spelling is very limited, and errors predominate. These errors may severely impede meaning.',
-          suggestion:
-            'Increase your range of vocabulary. Practice using words and phrases appropriate to the context.'
-        },
-        2: {
-          feedback:
-            'The resource is extremely limited with few recognisable strings, apart from memorised phrases. There is no apparent control of word formation and/or spelling.',
-          suggestion:
-            'Expand your basic vocabulary and practice using words accurately in context. Avoid repetition by learning synonyms.'
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. No resource is apparent, except for a few isolated words.'
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
-        }
-      } as Record<number, { feedback: string; suggestions?: string }>,
-      part4: {
-        9: {
-          feedback:
-            'A wide range of structures within the scope of the task is used with full flexibility and control. Punctuation and grammar are used appropriately throughout. Minor errors are extremely rare and have minimal impact on communication'
-        },
-        8: {
-          feedback:
-            'A wide range of structures within the scope of the task is flexibly and accurately used. The majority of sentences are error-free, and punctuation is well managed. Occasional, non-systematic errors and inappropriacies occur, but have minimal impact on communication.',
-          suggestion:
-            'Use a wide range of grammatical structures with full flexibility and accuracy, ensuring the appropriate and varied use of complex sentences and punctuation.'
-        },
-        7: {
-          feedback:
-            'A variety of complex structures is used with some flexibility and accuracy. Grammar and punctuation are generally well controlled, and error-free sentences are frequent. A few errors in grammar may persist, but these do not impede communication.',
-          suggestion:
-            'Enhance your range of grammatical structures and use them flexibly and accurately. Aim for the majority of sentences to be error-free.'
-        },
-        6: {
-          feedback:
-            'A mix of simple and complex sentence forms is used but flexibility is limited. Examples of more complex structures are not marked by the same level of accuracy as in simple structures. Errors in grammar and punctuation occur, but rarely impede communication',
-          suggestion:
-            'Focus on using a variety of complex grammatical structures with some flexibility and accuracy. Minimize errors to those that do not hinder communication.'
-        },
-        5: {
-          feedback:
-            'The range of structures is limited and rather repetitive. Although complex sentences are attempted, they tend to be faulty, and the greatest accuracy is achieved on simple sentences. Grammatical errors may be frequent and cause some difficulty for the reader. Punctuation may be faulty.',
-          suggestion:
-            'Aim for a balance between simple and complex sentences. Reduce errors that impede communication and work on more accurate punctuation.'
-        },
-        4: {
-          feedback:
-            'A very limited range of structures is used. Subordinate clauses are rare and simple sentences predominate. Some structures are produced accurately but grammatical errors are frequent and may impede meaning. Punctuation is often faulty or inadequate.',
-          suggestion:
-            'Increase the use of complex sentence forms. Work on achieving accuracy in both simple and complex structures.'
-        },
-        3: {
-          feedback:
-            'Sentence forms are attempted, but errors in grammar and punctuation predominate (except in memorised phrases or those taken from the input material). This prevents most meaning from coming through. Length may be insufficient to provide evidence of control of sentence forms..',
-          suggestion:
-            'Begin to experiment with complex sentences. Focus on improving accuracy in simple structures and reduce grammatical errors.'
-        },
-        2: {
-          feedback:
-            'There is little or no evidence of sentence forms (except in memorised phrases).',
-          suggestion:
-            'Start with mastering simple sentence forms. Practice basic grammar to reduce the frequency of errors.'
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. No rateable language is evident.'
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>
-    },
+      9: {
+        feedback:
+          'All the requirements of the task are fully and appropriately satisfied. There may be extremely rare lapses in content.'
+      },
+      8.5: {
+        feedback:
+          'All the requirements of the task are fully and appropriately satisfied. There may be extremely rare lapses in content.'
+      },
+      8: {
+        feedback:
+          'The response covers all the requirements of the task appropriately, relevantly and sufficiently. (Academic) Key features are skilfully selected, and clearly presented, highlighted and illustrated. There may be occasional omissions or lapses in content.',
+        suggestion:
+          'Ensure absolute relevance and completeness in addressing the task, leaving no aspect of the prompt unexplored or insufficiently covered. Responses must be fully developed with a clear, direct answer to the prompt, showcasing depth in thought and understanding.'
+      },
+      7.5: {
+        feedback:
+          'The response covers all the requirements of the task appropriately, relevantly and sufficiently. (Academic) Key features are skilfully selected, and clearly presented, highlighted and illustrated. There may be occasional omissions or lapses in content.',
+        suggestion:
+          'Ensure absolute relevance and completeness in addressing the task, leaving no aspect of the prompt unexplored or insufficiently covered. Responses must be fully developed with a clear, direct answer to the prompt, showcasing depth in thought and understanding.'
+      },
+      7: {
+        feedback:
+          'The response covers the requirements of the task. The content is relevant and accurate – there may be a few omissions or lapses. The format is appropriate. (Academic) Key features which are selected are covered and clearly highlighted but could be more fully or more appropriately illustrated or extended. (Academic) It presents a clear overview, the data are appropriately categorised, and main trends or differences are identified.',
+        suggestion:
+          'Focus on fully extending and supporting your ideas. Ensure that your position throughout the response is clear and well justified with logical and detailed reasoning.'
+      },
+      6.5: {
+        feedback:
+          'The response covers the requirements of the task. The content is relevant and accurate – there may be a few omissions or lapses. The format is appropriate. (Academic) Key features which are selected are covered and clearly highlighted but could be more fully or more appropriately illustrated or extended. (Academic) It presents a clear overview, the data are appropriately categorised, and main trends or differences are identified.',
+        suggestion:
+          'Focus on fully extending and supporting your ideas. Ensure that your position throughout the response is clear and well justified with logical and detailed reasoning.'
+      },
+      6: {
+        feedback:
+          'The response focuses on the requirements of the task and an appropriate format is used. (Academic) Key features which are selected are covered and adequately highlighted. A relevant overview is attempted. Information is appropriately selected and supported using figures/data. Some irrelevant, inappropriate or inaccurate information may occur in areas of detail or when illustrating or extending the main points. Some details may be missing (or excessive) and further extension or illustration may be needed.',
+        suggestion:
+          'Aim for more detailed development of your ideas. Avoid over-generalizations and ensure that supporting ideas or evidence are relevant and precise.'
+      },
+      5.5: {
+        feedback:
+          'The response focuses on the requirements of the task and an appropriate format is used. (Academic) Key features which are selected are covered and adequately highlighted. A relevant overview is attempted. Information is appropriately selected and supported using figures/data. Some irrelevant, inappropriate or inaccurate information may occur in areas of detail or when illustrating or extending the main points. Some details may be missing (or excessive) and further extension or illustration may be needed.',
+        suggestion:
+          'Aim for more detailed development of your ideas. Avoid over-generalizations and ensure that supporting ideas or evidence are relevant and precise.'
+      },
+      5: {
+        feedback:
+          'The response generally addresses the requirements of the task. The format may be inappropriate in places. (Academic) Key features which are selected are not adequately covered. The recounting of detail is mainly mechanical. There may be no data to support the description. There may be a tendency to focus on details (without referring to the bigger picture). The inclusion of irrelevant, inappropriate or inaccurate material in key areas detracts from the task achievement. There is limited detail when extending and illustrating the main points.',
+        suggestion:
+          'Work on presenting and developing your main ideas more clearly and coherently. Use a mix of general statements and specific details or evidence for support.'
+      },
+      4.5: {
+        feedback:
+          'The response generally addresses the requirements of the task. The format may be inappropriate in places. (Academic) Key features which are selected are not adequately covered. The recounting of detail is mainly mechanical. There may be no data to support the description. There may be a tendency to focus on details (without referring to the bigger picture). The inclusion of irrelevant, inappropriate or inaccurate material in key areas detracts from the task achievement. There is limited detail when extending and illustrating the main points.',
+        suggestion:
+          'Work on presenting and developing your main ideas more clearly and coherently. Use a mix of general statements and specific details or evidence for support.'
+      },
+      4: {
+        feedback:
+          'The response is an attempt to address the task. (Academic) Few key features have been selected. The format may be inappropriate. Key features/bullet points which are presented may be irrelevant, repetitive, inaccurate or inappropriate.',
+        suggestion:
+          'Ensure that all parts of the prompt are addressed. Start developing your ideas more fully and use examples or data to support your points adequately.'
+      },
+      3.5: {
+        feedback:
+          'The response is an attempt to address the task. (Academic) Few key features have been selected. The format may be inappropriate. Key features/bullet points which are presented may be irrelevant, repetitive, inaccurate or inappropriate.',
+        suggestion:
+          'Ensure that all parts of the prompt are addressed. Start developing your ideas more fully and use examples or data to support your points adequately.'
+      },
+      3: {
+        feedback:
+          'The response does not address the requirements of the task (possibly because of misunderstanding of the data/diagram/situation). Key features/bullet points which are presented may be largely irrelevant. Limited information is presented, and this may be used repetitively.',
+        suggestion:
+          'Focus on developing relevant ideas that correspond to the task. Avoid digressing into unrelated topics. Incorporate basic examples or data to support your points.'
+      },
+      2.5: {
+        feedback:
+          'The response does not address the requirements of the task (possibly because of misunderstanding of the data/diagram/situation). Key features/bullet points which are presented may be largely irrelevant. Limited information is presented, and this may be used repetitively.',
+        suggestion:
+          'Focus on developing relevant ideas that correspond to the task. Avoid digressing into unrelated topics. Incorporate basic examples or data to support your points.'
+      },
+      2: {
+        feedback: 'The content barely relates to the task.',
+        suggestion:
+          'Begin by clearly understanding the task requirements. Practice identifying key features or main ideas from various prompts and planning a response that addresses these directly.'
+      },
+      1.5: {
+        feedback: 'The content barely relates to the task.',
+        suggestion:
+          'Begin by clearly understanding the task requirements. Practice identifying key features or main ideas from various prompts and planning a response that addresses these directly.'
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. The content is wholly unrelated to the task. Any copied rubric must be discounted.'
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
     part2: {
-      part5: {
-        9: {
-          feedback:
-            'The prompt is appropriately addressed and explored in depth. A clear and fully developed position is presented which directly answers the question/s. Ideas are relevant, fully extended, and well supported. Any lapses in content or support are extremely rare.'
-        },
-        8: {
-          feedback:
-            'The prompt is appropriately and sufficiently addressed. A clear and well-developed position is presented in response to the question/s. Ideas are relevant, well extended, and supported. There may be occasional omissions or lapses in content.',
-          suggestion:
-            'Ensure absolute relevance and completeness in addressing the task, leaving no aspect of the prompt unexplored or insufficiently covered. Responses must be fully developed with a clear, direct answer to the prompt, showcasing depth in thought and understanding.'
-        },
-        7: {
-          feedback:
-            'The main parts of the prompt are appropriately addressed. A clear and developed position is presented. Main ideas are extended and supported, but there may be a tendency to over-generalize or there may be a lack of focus and precision in supporting ideas/material.',
-          suggestion:
-            'Focus on fully extending and supporting your ideas. Ensure that your position throughout the response is clear and well justified with logical and detailed reasoning.'
-        },
-        6: {
-          feedback:
-            'The main parts of the prompt are addressed (though some may be more fully covered than others). An appropriate format is used. A position is presented that is directly relevant to the prompt, although the conclusions drawn may be unclear, unjustified, or repetitive. Main ideas are relevant, but some may be insufficiently developed or may lack clarity, while some supporting arguments and evidence may be less relevant or inadequate.',
-          suggestion:
-            'Aim for more detailed development of your ideas. Avoid over-generalizations and ensure that supporting ideas or evidence are relevant and precise.'
-        },
-        5: {
-          feedback:
-            'The main parts of the prompt are incompletely addressed. The format may be inappropriate in places. The writer expresses a position, but the development is not always clear. Some main ideas are put forward, but they are limited and are not sufficiently developed and/or there may be irrelevant detail. There may be some repetition.',
-          suggestion:
-            'Work on presenting and developing your main ideas more clearly and coherently. Use a mix of general statements and specific details or evidence for support.'
-        },
-        4: {
-          feedback:
-            'The prompt is tackled in a minimal way, or the answer is tangential, possibly due to some misunderstanding of the prompt. The format may be inappropriate. A position is discernible, but the reader has to read carefully to find it.Main ideas are difficult to identify and such ideas that are identifiable may lack relevance, clarity and/or support.Large parts of the response may be repetitive.',
-          suggestion:
-            'Ensure that all parts of the prompt are addressed. Start developing your ideas more fully and use examples or data to support your points adequately.'
-        },
-        3: {
-          feedback:
-            'No part of the prompt is adequately addressed, or the prompt has been misunderstood. No relevant position can be identified, and/or there is little direct response to the question/s. There are few ideas, and these may be irrelevant or insufficiently developed.',
-          suggestion:
-            'Focus on developing relevant ideas that correspond to the task. Avoid digressing into unrelated topics. Incorporate basic examples or data to support your points.'
-        },
-        2: {
-          feedback:
-            'The content is barely related to the prompt. No position can be identified. There may be glimpses of one or two ideas without development.',
-          suggestion:
-            'Begin by clearly understanding the task requirements. Practice identifying key features or main ideas from various prompts and planning a response that addresses these directly.'
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. The content is wholly unrelated to the prompt.'
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part6: {
-        9: {
-          feedback:
-            'The message can be followed effortlessly. Cohesion is used in such a way that it very rarely attracts attention. Any lapses in coherence or cohesion are minimal. Paragraphing is skilfully managed.'
-        },
-        8: {
-          feedback:
-            'The message can be followed with ease. Information and ideas are logically sequenced, and cohesion is well managed. Occasional lapses in coherence and cohesion may occur. Paragraphing is used sufficiently and appropriately.',
-          suggestion:
-            'Achieve a flawless flow of ideas and information throughout your response. The organization should appear effortless to the reader, with paragraphing and cohesion that enhance clarity without drawing attention to themselves.'
-        },
-        7: {
-          feedback:
-            'Information and ideas are logically organized, and there is a clear progression throughout the response. A few lapses may occur, but these are minor. A range of cohesive devices including reference and substitution is used flexibly but with some inaccuracies or some over/under use. Paragraphing is generally used effectively to support overall coherence, and the sequencing of ideas within a paragraph is generally logical.',
-          suggestion:
-            'Enhance the effortless flow of your message. Work on using cohesion in such a way that it enhances the clarity and logical flow of your response without drawing unnecessary attention.'
-        },
-        6: {
-          feedback:
-            'Information and ideas are generally arranged coherently, and there is a clear overall progression. Cohesive devices are used to some good effect but cohesion within and/or between sentences may be faulty or mechanical due to misuse, overuse, or omission. The use of reference and substitution may lack flexibility or clarity and result in some repetition or error. Paragraphing may not always be logical and/or the central topic may not always be clear.',
-          suggestion:
-            'Aim for a clear progression of ideas throughout your response. Use cohesive devices flexibly and accurately to manage paragraphing and coherence.'
-        },
-        5: {
-          feedback:
-            'Organisation is evident but is not wholly logical and there may be a lack of overall progression. Nevertheless, there is a sense of underlying coherence to the response. The relationship of ideas can be followed but the sentences are not fluently linked to each other. There may be limited/overuse of cohesive devices with some inaccuracy. The writing may be repetitive due to inadequate and/or inaccurate use of reference and substitution.  Paragraphing may be inadequate or missing.',
-          suggestion:
-            'Focus on enhancing overall coherence by clearly organizing ideas and paragraphs. Use a range of cohesive devices effectively and accurately.'
-        },
-        4: {
-          feedback:
-            'Information and ideas are evident but not arranged coherently, and there is no clear progression within the response. Relationships between ideas can be unclear and/or inadequately marked. There is some use of basic cohesive devices, which may be inaccurate or repetitive. There is inaccurate use or a lack of substitution or referencing. There may be no paragraphing and/or no clear main topic within paragraphs.',
-          suggestion:
-            'Ensure that your ideas are logically ordered within paragraphs. Work on using cohesive devices appropriately to avoid repetition.'
-        },
-        3: {
-          feedback:
-            'There is no apparent logical organisation. Ideas are discernible but difficult to relate to each other. There is minimal use of sequencers or cohesive devices. Those used do not necessarily indicate a logical relationship between ideas. There is difficulty in identifying referencing. Any attempts at paragraphing are unhelpful.',
-          suggestion:
-            'Improve the logical flow of information by arranging your ideas more coherently. Use a variety of cohesive devices accurately.'
-        },
-        2: {
-          feedback:
-            'There is little relevant message, or the entire response may be off-topic. There is little evidence of control of organisational features.',
-          suggestion:
-            "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. The writing fails to communicate any message and appears to be by a virtual non-writer.',
-          suggestion:
-            "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.',
-          suggestion:
-            "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part7: {
-        9: {
-          feedback:
-            'Full flexibility and precise use are widely evident. A wide range of vocabulary is used accurately and appropriately with very natural and sophisticated control of lexical features. Minor errors in spelling and word formation are extremely rare and have minimal impact on communication.'
-        },
-        8: {
-          feedback:
-            'A wide resource is fluently and flexibly used to convey precise meanings. There is skillful use of uncommon and/or idiomatic items when appropriate, despite occasional inaccuracies in word choice and collocation. Occasional errors in spelling and/or word formation may occur, but have minimal impact on communication.',
-          suggestion:
-            'Display full flexibility in your vocabulary use, employing a wide range of language to convey precise meaning and subtle nuances in all situations, without errors.'
-        },
-        7: {
-          feedback:
-            'The resource is sufficient to allow some flexibility and precision. There is some ability to use less common and/or idiomatic items. An awareness of style and collocation is evident, though inappropriacies occur. There are only a few errors in spelling and/or word formation, and they do not detract from overall clarity.',
-          suggestion:
-            'Aim for flexibility and precision in your use of vocabulary. Practice using a wide range of vocabulary naturally and accurately, even in complex situations.'
-        },
-        6: {
-          feedback:
-            'The resource is generally adequate and appropriate for the task. The meaning is generally clear in spite of a rather restricted range or a lack of precision in word choice. If the writer is a risk-taker, there will be a wider range of vocabulary used but higher degrees of inaccuracy or inappropriacy.There are some errors in spelling and/or word formation, but these do not impede communication.',
-          suggestion:
-            'Enhance your ability to use less common and idiomatic vocabulary appropriately. Focus on accurate word choice and collocation.'
-        },
-        5: {
-          feedback:
-            'The resource is limited but minimally adequate for the task. Simple vocabulary may be used accurately, but the range does not permit much variation in expression. There may be frequent lapses in the appropriacy of word choice and a lack of flexibility is apparent in frequent simplifications and/or repetitions. Errors in spelling and/or word formation may be noticeable and may cause some difficulty for the reader.',
-          suggestion:
-            'Develop the ability to use a wider range of vocabulary for precision and style. Work on minimizing errors that can impede understanding.'
-        },
-        4: {
-          feedback:
-            'The resource is limited and inadequate for or unrelated to the task. Vocabulary is basic and may be used repetitively. There may be inappropriate use of lexical chunks (e.g., memorized phrases, formulaic language, and/or language from the input material).',
-          suggestion:
-            'Work on accuracy and appropriateness in your use of vocabulary. Introduce a variety of words and phrases relevant to the task.'
-        },
-        3: {
-          feedback:
-            'The resource is inadequate (which may be due to the response being significantly underlength). Possible over-dependence on input material or memorised language. Control of word choice and/or spelling is very limited, and errors predominate. These errors may severely impede meaning.',
-          suggestion:
-            'Increase your range of vocabulary. Practice using words and phrases appropriate to the context.'
-        },
-        2: {
-          feedback:
-            'The resource is extremely limited with few recognizable strings, apart from memorized phrases. There is no apparent control of word formation and/or spelling.',
-          suggestion:
-            'Expand your basic vocabulary and practice using words accurately in context. Avoid repetition by learning synonyms.'
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. No resource is apparent, except for a few isolated words.'
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part8: {
-        9: {
-          feedback:
-            'A wide range of structures is used with full flexibility and control. Punctuation and grammar are used appropriately throughout. Minor errors are extremely rare and have minimal impact on communication.'
-        },
-        8: {
-          feedback:
-            'A wide range of structures is flexibly and accurately used. The majority of sentences are error-free, and punctuation is well managed. Occasional, non-systematic errors and inappropriacies occur, but have minimal impact on communication.',
-          suggestion:
-            'Use a wide range of grammatical structures with full flexibility and accuracy, ensuring the appropriate and varied use of complex sentences and punctuation.'
-        },
-        7: {
-          feedback:
-            'A variety of complex structures is used with some flexibility and accuracy. Grammar and punctuation are generally well controlled, and error-free sentences are frequent. A few errors in grammar may persist, but these do not impede communication.',
-          suggestion:
-            'Enhance your range of grammatical structures and use them flexibly and accurately. Aim for the majority of sentences to be error-free.'
-        },
-        6: {
-          feedback:
-            'A mix of simple and complex sentence forms is used but flexibility is limited. Examples of more complex structures are not marked by the same level of accuracy as in simple structures. Errors in grammar and punctuation occur, but rarely impede communication.',
-          suggestion:
-            'Focus on using a variety of complex grammatical structures with some flexibility and accuracy. Minimize errors to those that do not hinder communication.'
-        },
-        5: {
-          feedback:
-            'The range of structures is limited and rather repetitive. Although complex sentences are attempted, they tend to be faulty, and the greatest accuracy is achieved on simple sentences. Grammatical errors may be frequent and cause some difficulty for the reader. Punctuation may be faulty.',
-          suggestion:
-            'Aim for a balance between simple and complex sentences. Reduce errors that impede communication and work on more accurate punctuation.'
-        },
-        4: {
-          feedback:
-            'A very limited range of structures is used. Subordinate clauses are rare and simple sentences predominate. Some structures are produced accurately but grammatical errors are frequent and may impede meaning. Punctuation is often faulty or inadequate.',
-          suggestion:
-            'Increase the use of complex sentence forms. Work on achieving accuracy in both simple and complex structures.'
-        },
-        3: {
-          feedback:
-            'Sentence forms are attempted, but errors in grammar and punctuation predominate (except in memorised phrases or those taken from the input material). This prevents most meaning from coming through. Length may be insufficient to provide evidence of control of sentence forms.',
-          suggestion:
-            'Begin to experiment with complex sentences. Focus on improving accuracy in simple structures and reduce grammatical errors.'
-        },
-        2: {
-          feedback:
-            'There is little or no evidence of sentence forms (except in memorised phrases).',
-          suggestion:
-            'Start with mastering simple sentence forms. Practice basic grammar to reduce the frequency of errors.'
-        },
-        1: {
-          feedback:
-            'Responses of 20 words or fewer are rated at Band 1. No rateable language is evident.'
-        },
-        0: {
-          feedback:
-            'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>
-    },
-    speaking: {
-      part1: {
-        9: {
-          feedback:
-            'Fluent with only very occasional repetition or self-correction. Any hesitation that occurs is used only to prepare the content of the next utterance and not to find words or grammar. Speech is situationally appropriate and cohesive features are fully acceptable.Topic development is fully coherent and appropriately extended.'
-        },
-        8: {
-          feedback:
-            'Fluent with only very occasional repetition or self-correction. Hesitation may occasionally be used to find words or grammar, but most will be content related. Topic development is coherent, appropriate and relevant.',
-          suggestion:
-            'Maintain fluency with minimal repetition or self-correction, ensuring that any hesitation is purely for thought organization rather than language retrieval. Speech should be entirely appropriate to the situation, with seamless use of cohesive features and fully coherent development of topics.'
-        },
-        7: {
-          feedback:
-            'Able to keep going and readily produce long turns without noticeable effort. Some hesitation, repetition and/or self- correction may occur, often mid-sentence and indicate problems with accessing appropriate language. However, these will not affect coherence. Flexible use of spoken discourse markers, connectives and cohesive features.',
-          suggestion:
-            'Ensure mostly fluent speech with minimal self-correction. Practice expanding on topics coherently and relevantly, using a variety of cohesive features and discourse markers.'
-        },
-        6: {
-          feedback:
-            'Able to keep going and demonstrates a willingness to produce long turns. Coherence may be lost at times as a result of hesitation, repetition and/or self-correction. Uses a range of spoken discourse markers, connectives and cohesive features though not always appropriately.',
-          suggestion:
-            'Minimize hesitation that affects coherence. Work on using spoken discourse markers and connectives more effectively to enhance the flexibility of your spoken language.'
-        },
-        5: {
-          feedback:
-            'Usually able to keep going, but relies on repetition and self-correction to do so and/or on slow speech. Hesitations are often associated with mid-sentence searches for fairly basic lexis and grammar. Overuse of certain discourse markers, connectives and other cohesive features. More complex speech usually causes disfluency but simpler language may be produced fluently.',
-          suggestion:
-            'Improve your ability to produce longer turns without noticeable effort, even when searching for language. Use a variety of discourse markers and cohesive features more appropriately.'
-        },
-        4: {
-          feedback:
-            'Unable to keep going without noticeable pauses. Speech may be slow with frequent repetition. Often self-corrects. Can link simple sentences but often with repetitious use of connectives. Some breakdowns in coherence.',
-          suggestion:
-            'Focus on reducing reliance on repetition and self-correction. Practice organizing your thoughts quickly to maintain fluency on a wider range of topics.'
-        },
-        3: {
-          feedback:
-            'Frequent, sometimes long, pauses occur while candidate searches for words. Limited ability to link simple sentences and go beyond simple responses to questions. Frequently unable to convey basic message.',
-          suggestion:
-            'Work on maintaining speech flow with fewer pauses. Practice linking sentences to build coherence and try to speak more on both familiar and some unfamiliar topics.'
-        },
-        2: {
-          feedback:
-            'Lengthy pauses before nearly every word. Isolated words may be recognisable but speech is of virtually no communicative significance',
-          suggestion:
-            'Aim to reduce lengthy pauses and try to connect simple sentences more effectively. Practice speaking on familiar topics and use simple connectives like and or but.'
-        },
-        1: {
-          feedback: 'Essentially none. Speech is totally incoherent.'
-        },
-        0: {
-          feedback: 'Does not attend'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part2: {
-        9: {
-          feedback:
-            'Total flexibility and precise use in all contexts. Sustained use of accurate and idiomatic language.'
-        },
-        8: {
-          feedback:
-            'Wide resource, readily and flexibly used to discuss all topics and convey precise meaning. Skilful use of less common and idiomatic items despite occasional inaccuracies in word choice and collocation. Effective use of paraphrase as required.',
-          suggestion:
-            'Aim for total flexibility in your use of language across all contexts, demonstrating sustained accuracy and idiomatic usage. Your vocabulary should allow for precise expression in any situation, with minor errors being the only exception.'
-        },
-        7: {
-          feedback:
-            'Resource flexibly used to discuss a variety of topics. Some ability to use less common and idiomatic items and an awareness of style and collocation is evident though inappropriacies occur. Effective use of paraphrase as required.',
-          suggestion:
-            'Use a wide lexical resource flexibly to convey precise meanings and make skillful use of idiomatic language, despite occasional inaccuracies.'
-        },
-        6: {
-          feedback:
-            'Resource sufficient to discuss topics at length. Vocabulary use may be inappropriate but meaning is clear. Generally able to paraphrase successfully.',
-          suggestion:
-            ' Aim for flexible use of language across various topics, demonstrating awareness of style and collocation. Reduce inaccuracies in word choice and collocation.'
-        },
-        5: {
-          feedback:
-            'Resource sufficient to discuss familiar and unfamiliar topics but there is limited flexibility. Attempts paraphrase but not always with success.',
-          suggestion:
-            'Enhance your ability to discuss topics at length by using a wider range of vocabulary. Work on successful paraphrasing and the use of idiomatic language.'
-        },
-        4: {
-          feedback:
-            'Resource sufficient for familiar topics but only basic meaning can be conveyed on unfamiliar topics. Frequent inappropriacies and errors in word choice. Rarely attempts paraphrase.',
-          suggestion:
-            'Increase your range of vocabulary for both familiar and unfamiliar topics. Practice paraphrasing and using vocabulary flexibly.'
-        },
-        3: {
-          feedback:
-            'Resource limited to simple vocabulary used primarily to convey personal information. Vocabulary inadequate for unfamiliar topics.',
-          suggestion:
-            'Broaden your lexical resource to discuss familiar topics more comfortably. Begin to express basic meanings on unfamiliar topics.'
-        },
-        2: {
-          feedback:
-            'Very limited resource. Utterances consist of isolated words or memorised utterances. Little communication possible without the support of mime or gesture.',
-          suggestion:
-            'Expand your vocabulary for personal information and basic conversational topics. Practice using simple vocabulary more confidently.'
-        },
-        1: {
-          feedback: 'No resource bar a few isolated words.'
-        },
-        0: {
-          feedback: 'Does not attend'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part3: {
-        9: {
-          feedback:
-            'Structures are precise and accurate at all times, apart from ‘mistakes’ characteristic of native speaker speech.'
-        },
-        8: {
-          feedback:
-            'Wide range of structures, flexibly used. The majority of sentences are error free. Occasional inappropriacies and non-systematic errors occur. A few basic errors may persist.',
-          suggestion:
-            "Your grammatical structures should be precise and accurate at all times, mirroring the 'mistakes' characteristic of native speaker speech. This entails a wide range of structures used confidently and correctly, with errors being not just rare but also non-disruptive to communication."
-        },
-        7: {
-          feedback:
-            'A range of structures flexibly used. Error-free sentences are frequent. Both simple and complex sentences are used effectively despite some errors. A few basic errors persist..',
-          suggestion:
-            'Aim for a wide range of structures used flexibly, with the majority of sentences being error-free and only occasional inappropriacies.'
-        },
-        6: {
-          feedback:
-            'Produces a mix of short and complex sentence forms and a variety of structures with limited flexibility. Though errors frequently occur in complex structures, these rarely impede communication.',
-          suggestion:
-            'Use a variety of structures flexibly and accurately for the most part, with error-free sentences becoming more frequent.'
-        },
-        5: {
-          feedback:
-            'Basic sentence forms are fairly well controlled for accuracy. Complex structures are attempted but these are limited in range, nearly always contain errors and may lead to the need for reformulation.',
-          suggestion:
-            'Improve the flexibility of your sentence structures, ensuring a mix of simple and complex forms with frequent accuracy.'
-        },
-        4: {
-          feedback:
-            'Can produce basic sentence forms and some short utterances are error-free. Subordinate clauses are rare and, overall, turns are short, structures are repetitive and errors are frequent.',
-          suggestion:
-            'Focus on accurately controlling basic sentence forms and experimenting with more complex structures, despite errors.'
-        },
-        3: {
-          feedback:
-            'Basic sentence forms are attempted but grammatical errors are numerous except in apparently memorised utterances.',
-          suggestion:
-            'Work on producing basic sentence forms more accurately and attempt to use subordinate clauses.'
-        },
-        2: {
-          feedback: 'No evidence of basic sentence forms.',
-          suggestion:
-            'Start with mastering basic sentence forms and reduce grammatical errors in simple structures.'
-        },
-        1: {
-          feedback: 'No rateable language unless memorised.'
-        },
-        0: {
-          feedback: 'Does not attend'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>,
-      part4: {
-        9: {
-          feedback:
-            'Uses a full range of phonological features to convey precise and/or subtle meaning. Flexible use of features of connected speech is sustained throughout. Can be effortlessly understood throughout. Accent has no effect on intelligibility.'
-        },
-        8: {
-          feedback:
-            'Uses a wide range of phonological features to convey precise and/or subtle meaning. Can sustain appropriate rhythm. Flexible use of stress and intonation across long utterances, despite occasional lapses. Can be easily understood throughout. Accent has minimal effect on intelligibility.',
-          suggestion:
-            'Utilize a full range of phonological features with flexibility to convey precise or subtle meaning. Ensure that your use of connected speech features is consistent and natural, allowing for effortless understanding throughout. Your accent should not affect intelligibility at any point.'
-        },
-        7: {
-          feedback:
-            'Displays all the positive features of band 6, and some, but not all, of the positive features of band 8.',
-          suggestion:
-            'Use a wide range of phonological features to convey precise and subtle meaning. Work on maintaining rhythm and using stress and intonation flexibly across longer utterances.'
-        },
-        6: {
-          feedback:
-            'Uses a range of phonological features, but control is variable. Chunking is generally appropriate, but rhythm may be affected by a lack of stress-timing and/or a rapid speech rate. Some effective use of intonation and stress, but this is not sustained. Individual words or phonemes may be mispronounced but this causes only occasional lack of clarity. Can generally be understood throughout without much effort.',
-          suggestion:
-            'Develop more consistent control over phonological features, including intonation and stress patterns, to improve clarity and expressiveness.'
-        },
-        5: {
-          feedback:
-            'Displays all the positive features of band 4, and some, but not all, of the positive features of band 6.',
-          suggestion:
-            'Increase the range of phonological features used, focusing on chunking and stress-timing to enhance rhythm and intonation.'
-        },
-        4: {
-          feedback:
-            'Uses some acceptable phonological features, but the range is limited. Produces some acceptable chunking, but there are frequent lapses in overall rhythm. Attempts to use intonation and stress, but control is limited. Individual words or phonemes are frequently mispronounced, causing lack of clarity. Understanding requires some effort and there may be patches of speech that cannot be understood.',
-          suggestion:
-            'Practice using a limited range of phonological features more consistently and strive for greater clarity in pronunciation.'
-        },
-        3: {
-          feedback:
-            'Displays some features of band 2, and some, but not all, of the positive features of band 4.',
-          suggestion:
-            'Work on using some phonological features acceptably and aim for patches of clear pronunciation to improve intelligibility.'
-        },
-        2: {
-          feedback:
-            'Uses few acceptable phonological features (possibly because sample is insufficient). Overall problems with delivery impair attempts at connected speech. Individual words and phonemes are mainly mispronounced and little meaning is conveyed. Often unintelligible.',
-          suggestion:
-            'Focus on producing individual words more clearly, even if overall intelligibility is limited.'
-        },
-        1: {
-          feedback:
-            'Can produce occasional individual words and phonemes that are recognisable, but no overall meaning is conveyed. Unintelligible.'
-        },
-        0: {
-          feedback: 'Does not attend'
-        }
-      } as Record<number, { feedback: string; suggestion?: string }>
-    }
+      9: {
+        feedback:
+          'The message can be followed effortlessly. Cohesion is used in such a way that it very rarely attracts attention. Any lapses in coherence or cohesion are minimal. Paragraphing is skilfully managed.'
+      },
+      8.5: {
+        feedback:
+          'The message can be followed effortlessly. Cohesion is used in such a way that it very rarely attracts attention. Any lapses in coherence or cohesion are minimal. Paragraphing is skilfully managed.'
+      },
+      8: {
+        feedback:
+          'The message can be followed with ease. Information and ideas are logically sequenced, and cohesion is well managed. Occasional lapses in coherence or cohesion may occur. Paragraphing is used sufficiently and appropriately.',
+        suggestion:
+          'Achieve a flawless flow of ideas and information throughout your response. The organization should appear effortless to the reader, with paragraphing and cohesion that enhance clarity without drawing attention to themselves.'
+      },
+      7.5: {
+        feedback:
+          'The message can be followed with ease. Information and ideas are logically sequenced, and cohesion is well managed. Occasional lapses in coherence or cohesion may occur. Paragraphing is used sufficiently and appropriately.',
+        suggestion:
+          'Achieve a flawless flow of ideas and information throughout your response. The organization should appear effortless to the reader, with paragraphing and cohesion that enhance clarity without drawing attention to themselves.'
+      },
+      7: {
+        feedback:
+          'Information and ideas are logically organised and there is a clear progression throughout the response. A few lapses may occur. A range of cohesive devices including reference and substitution is used flexibly but with some inaccuracies or some over/under use.',
+        suggestion:
+          'Enhance the effortless follow of your message. Work on using cohesion in such a way that it enhances the clarity and logical flow of your response without drawing unnecessary attention.'
+      },
+      6.5: {
+        feedback:
+          'Information and ideas are logically organised and there is a clear progression throughout the response. A few lapses may occur. A range of cohesive devices including reference and substitution is used flexibly but with some inaccuracies or some over/under use.',
+        suggestion:
+          'Enhance the effortless follow of your message. Work on using cohesion in such a way that it enhances the clarity and logical flow of your response without drawing unnecessary attention.'
+      },
+      6: {
+        feedback:
+          'Information and ideas are generally arranged coherently and there is a clear overall progression. Cohesive devices are used to some good effect but cohesion within and/or between sentences may be faulty or mechanical due to misuse, overuse or omission. The use of reference and substitution may lack flexibility or clarity and result in some repetition or error',
+        suggestion:
+          'Aim for a clear progression of ideas throughout your response. Use cohesive devices flexibly and accurately to manage paragraphing and coherence.'
+      },
+      5.5: {
+        feedback:
+          'Information and ideas are generally arranged coherently and there is a clear overall progression. Cohesive devices are used to some good effect but cohesion within and/or between sentences may be faulty or mechanical due to misuse, overuse or omission. The use of reference and substitution may lack flexibility or clarity and result in some repetition or error',
+        suggestion:
+          'Aim for a clear progression of ideas throughout your response. Use cohesive devices flexibly and accurately to manage paragraphing and coherence.'
+      },
+      5: {
+        feedback:
+          'Organisation is evident but is not wholly logical and there may be a lack of overall progression. Nevertheless, there is a sense of underlying coherence to the response. The relationship of ideas can be followed but the sentences are not fluently linked to each other. There may be limited/overuse of cohesive devices with some inaccuracy. The writing may be repetitive due to inadequate and/or inaccurate use of reference and substitution.',
+        suggestion:
+          'Focus on enhancing overall coherence by clearly organizing ideas and paragraphs. Use a range of cohesive devices effectively and accurately.'
+      },
+      4.5: {
+        feedback:
+          'Organisation is evident but is not wholly logical and there may be a lack of overall progression. Nevertheless, there is a sense of underlying coherence to the response. The relationship of ideas can be followed but the sentences are not fluently linked to each other. There may be limited/overuse of cohesive devices with some inaccuracy. The writing may be repetitive due to inadequate and/or inaccurate use of reference and substitution.',
+        suggestion:
+          'Focus on enhancing overall coherence by clearly organizing ideas and paragraphs. Use a range of cohesive devices effectively and accurately.'
+      },
+      4: {
+        feedback:
+          'Information and ideas are evident but not arranged coherently, and there is no clear progression within the response. Relationships between ideas can be unclear and/or inadequately marked. There is some use of basic cohesive devices, which may be inaccurate or repetitive. There is inaccurate use or a lack of substitution or referencing.',
+        suggestion:
+          'Ensure that your ideas are logically ordered within paragraphs. Work on using cohesive devices appropriately to avoid repetition.'
+      },
+      3.5: {
+        feedback:
+          'Information and ideas are evident but not arranged coherently, and there is no clear progression within the response. Relationships between ideas can be unclear and/or inadequately marked. There is some use of basic cohesive devices, which may be inaccurate or repetitive. There is inaccurate use or a lack of substitution or referencing.',
+        suggestion:
+          'Ensure that your ideas are logically ordered within paragraphs. Work on using cohesive devices appropriately to avoid repetition.'
+      },
+      3: {
+        feedback:
+          'There is no apparent logical organisation. Ideas are discernible but difficult to relate to each other. Minimal use of sequencers or cohesive devices. Those used do not necessarily indicate a logical relationship between ideas. There is difficulty in identifying referencing.',
+        suggestion:
+          'Improve the logical flow of information by arranging your ideas more coherently. Use a variety of cohesive devices accurately.'
+      },
+      2.5: {
+        feedback:
+          'There is no apparent logical organisation. Ideas are discernible but difficult to relate to each other. Minimal use of sequencers or cohesive devices. Those used do not necessarily indicate a logical relationship between ideas. There is difficulty in identifying referencing.',
+        suggestion:
+          'Improve the logical flow of information by arranging your ideas more coherently. Use a variety of cohesive devices accurately.'
+      },
+      2: {
+        feedback:
+          'There is little relevant message, or the entire response may be off-topic. There is little evidence of control of organisational features.',
+        suggestion:
+          "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
+      },
+      1.5: {
+        feedback:
+          'There is little relevant message, or the entire response may be off-topic. There is little evidence of control of organisational features.',
+        suggestion:
+          "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. The writing fails to communicate any message and appears to be by a virtual non-writer.'
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part3: {
+      9: {
+        feedback:
+          'Full flexibility and precise use are evident within the scope of the task. A wide range of vocabulary is used accurately and appropriately with very natural and sophisticated control of lexical features. Minor errors in spelling and word formation are extremely rare and have minimal impact on communication.'
+      },
+      8.5: {
+        feedback:
+          'Full flexibility and precise use are evident within the scope of the task. A wide range of vocabulary is used accurately and appropriately with very natural and sophisticated control of lexical features. Minor errors in spelling and word formation are extremely rare and have minimal impact on communication.'
+      },
+      8: {
+        feedback:
+          'A wide resource is fluently and flexibly used to convey precise meanings within the scope of the task. There is skilful use of uncommon and/or idiomatic items when appropriate, despite occasional inaccuracies in word choice and collocation. Occasional errors in spelling and/or word formation may occur, but have minimal impact on communication.',
+        suggestion:
+          'Display full flexibility in your vocabulary use, employing a wide range of language to convey precise meaning and subtle nuances in all situations, without errors.'
+      },
+      7.5: {
+        feedback:
+          'A wide resource is fluently and flexibly used to convey precise meanings within the scope of the task. There is skilful use of uncommon and/or idiomatic items when appropriate, despite occasional inaccuracies in word choice and collocation. Occasional errors in spelling and/or word formation may occur, but have minimal impact on communication.',
+        suggestion:
+          'Display full flexibility in your vocabulary use, employing a wide range of language to convey precise meaning and subtle nuances in all situations, without errors.'
+      },
+      7: {
+        feedback:
+          'The resource is sufficient to allow some flexibility and precision. There is some ability to use less common and/or idiomatic items. An awareness of style and collocation is evident, though inappropriacies occur. There are only a few errors in spelling and/or word formation, and they do not detract from overall clarity.',
+        suggestion:
+          'Aim for flexibility and precision in your use of vocabulary. Practice using a wide range of vocabulary naturally and accurately, even in complex situations.'
+      },
+      6.5: {
+        feedback:
+          'The resource is sufficient to allow some flexibility and precision. There is some ability to use less common and/or idiomatic items. An awareness of style and collocation is evident, though inappropriacies occur. There are only a few errors in spelling and/or word formation, and they do not detract from overall clarity.',
+        suggestion:
+          'Aim for flexibility and precision in your use of vocabulary. Practice using a wide range of vocabulary naturally and accurately, even in complex situations.'
+      },
+      6: {
+        feedback:
+          'The resource is generally adequate and appropriate for the task. The meaning is generally clear in spite of a rather restricted range or a lack of precision in word choice. If the writer is a risk-taker, there will be a wider range of vocabulary used but higher degrees of inaccuracy or inappropriacy. There are some errors in spelling and/or word formation, but these do not impede communication.',
+        suggestion:
+          'Enhance your ability to use less common and idiomatic vocabulary appropriately. Focus on accurate word choice and collocation.'
+      },
+      5.5: {
+        feedback:
+          'The resource is generally adequate and appropriate for the task. The meaning is generally clear in spite of a rather restricted range or a lack of precision in word choice. If the writer is a risk-taker, there will be a wider range of vocabulary used but higher degrees of inaccuracy or inappropriacy. There are some errors in spelling and/or word formation, but these do not impede communication.',
+        suggestion:
+          'Enhance your ability to use less common and idiomatic vocabulary appropriately. Focus on accurate word choice and collocation.'
+      },
+      5: {
+        feedback:
+          'The resource is limited but minimally adequate for the task. Simple vocabulary may be used accurately but the range does not permit much variation in expression. There may be frequent lapses in the appropriacy of word choice, and a lack of flexibility is apparent in frequent simplifications and/or repetitions. Errors in spelling and/or word formation may be noticeable and may cause some difficulty for the reader.',
+        suggestion:
+          'Develop the ability to use a wider range of vocabulary for precision and style. Work on minimizing errors that can impede understanding.'
+      },
+      4.5: {
+        feedback:
+          'The resource is limited but minimally adequate for the task. Simple vocabulary may be used accurately but the range does not permit much variation in expression. There may be frequent lapses in the appropriacy of word choice, and a lack of flexibility is apparent in frequent simplifications and/or repetitions. Errors in spelling and/or word formation may be noticeable and may cause some difficulty for the reader.',
+        suggestion:
+          'Develop the ability to use a wider range of vocabulary for precision and style. Work on minimizing errors that can impede understanding.'
+      },
+      4: {
+        feedback:
+          'The resource is limited and inadequate for or unrelated to the task. Vocabulary is basic and may be used repetitively. There may be inappropriate use of lexical chunks (e.g. memorised phrases, formulaic language and/or language from the input material). Inappropriate word choice and/or errors in word formation and/or in spelling may impede meaning.',
+        suggestion:
+          'Work on accuracy and appropriateness in your use of vocabulary. Introduce a variety of words and phrases relevant to the task.'
+      },
+      3.5: {
+        feedback:
+          'The resource is limited and inadequate for or unrelated to the task. Vocabulary is basic and may be used repetitively. There may be inappropriate use of lexical chunks (e.g. memorised phrases, formulaic language and/or language from the input material). Inappropriate word choice and/or errors in word formation and/or in spelling may impede meaning.',
+        suggestion:
+          'Work on accuracy and appropriateness in your use of vocabulary. Introduce a variety of words and phrases relevant to the task.'
+      },
+      3: {
+        feedback:
+          'The resource is inadequate (which may be due to the response being significantly underlength). Possible over-dependence on input material or memorised language. Control of word choice and/or spelling is very limited, and errors predominate. These errors may severely impede meaning.',
+        suggestion:
+          'Increase your range of vocabulary. Practice using words and phrases appropriate to the context.'
+      },
+      2.5: {
+        feedback:
+          'The resource is inadequate (which may be due to the response being significantly underlength). Possible over-dependence on input material or memorised language. Control of word choice and/or spelling is very limited, and errors predominate. These errors may severely impede meaning.',
+        suggestion:
+          'Increase your range of vocabulary. Practice using words and phrases appropriate to the context.'
+      },
+      2: {
+        feedback:
+          'The resource is extremely limited with few recognisable strings, apart from memorised phrases. There is no apparent control of word formation and/or spelling.',
+        suggestion:
+          'Expand your basic vocabulary and practice using words accurately in context. Avoid repetition by learning synonyms.'
+      },
+      1.5: {
+        feedback:
+          'The resource is extremely limited with few recognisable strings, apart from memorised phrases. There is no apparent control of word formation and/or spelling.',
+        suggestion:
+          'Expand your basic vocabulary and practice using words accurately in context. Avoid repetition by learning synonyms.'
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. No resource is apparent, except for a few isolated words.'
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part4: {
+      9: {
+        feedback:
+          'A wide range of structures within the scope of the task is used with full flexibility and control. Punctuation and grammar are used appropriately throughout. Minor errors are extremely rare and have minimal impact on communication'
+      },
+      8.5: {
+        feedback:
+          'A wide range of structures within the scope of the task is used with full flexibility and control. Punctuation and grammar are used appropriately throughout. Minor errors are extremely rare and have minimal impact on communication'
+      },
+      8: {
+        feedback:
+          'A wide range of structures within the scope of the task is flexibly and accurately used. The majority of sentences are error-free, and punctuation is well managed. Occasional, non-systematic errors and inappropriacies occur, but have minimal impact on communication.',
+        suggestion:
+          'Use a wide range of grammatical structures with full flexibility and accuracy, ensuring the appropriate and varied use of complex sentences and punctuation.'
+      },
+      7.5: {
+        feedback:
+          'A wide range of structures within the scope of the task is flexibly and accurately used. The majority of sentences are error-free, and punctuation is well managed. Occasional, non-systematic errors and inappropriacies occur, but have minimal impact on communication.',
+        suggestion:
+          'Use a wide range of grammatical structures with full flexibility and accuracy, ensuring the appropriate and varied use of complex sentences and punctuation.'
+      },
+      7: {
+        feedback:
+          'A variety of complex structures is used with some flexibility and accuracy. Grammar and punctuation are generally well controlled, and error-free sentences are frequent. A few errors in grammar may persist, but these do not impede communication.',
+        suggestion:
+          'Enhance your range of grammatical structures and use them flexibly and accurately. Aim for the majority of sentences to be error-free.'
+      },
+      6.5: {
+        feedback:
+          'A variety of complex structures is used with some flexibility and accuracy. Grammar and punctuation are generally well controlled, and error-free sentences are frequent. A few errors in grammar may persist, but these do not impede communication.',
+        suggestion:
+          'Enhance your range of grammatical structures and use them flexibly and accurately. Aim for the majority of sentences to be error-free.'
+      },
+      6: {
+        feedback:
+          'A mix of simple and complex sentence forms is used but flexibility is limited. Examples of more complex structures are not marked by the same level of accuracy as in simple structures. Errors in grammar and punctuation occur, but rarely impede communication',
+        suggestion:
+          'Focus on using a variety of complex grammatical structures with some flexibility and accuracy. Minimize errors to those that do not hinder communication.'
+      },
+      5.5: {
+        feedback:
+          'A mix of simple and complex sentence forms is used but flexibility is limited. Examples of more complex structures are not marked by the same level of accuracy as in simple structures. Errors in grammar and punctuation occur, but rarely impede communication',
+        suggestion:
+          'Focus on using a variety of complex grammatical structures with some flexibility and accuracy. Minimize errors to those that do not hinder communication.'
+      },
+      5: {
+        feedback:
+          'The range of structures is limited and rather repetitive. Although complex sentences are attempted, they tend to be faulty, and the greatest accuracy is achieved on simple sentences. Grammatical errors may be frequent and cause some difficulty for the reader. Punctuation may be faulty.',
+        suggestion:
+          'Aim for a balance between simple and complex sentences. Reduce errors that impede communication and work on more accurate punctuation.'
+      },
+      4.5: {
+        feedback:
+          'The range of structures is limited and rather repetitive. Although complex sentences are attempted, they tend to be faulty, and the greatest accuracy is achieved on simple sentences. Grammatical errors may be frequent and cause some difficulty for the reader. Punctuation may be faulty.',
+        suggestion:
+          'Aim for a balance between simple and complex sentences. Reduce errors that impede communication and work on more accurate punctuation.'
+      },
+      4: {
+        feedback:
+          'A very limited range of structures is used. Subordinate clauses are rare and simple sentences predominate. Some structures are produced accurately but grammatical errors are frequent and may impede meaning. Punctuation is often faulty or inadequate.',
+        suggestion:
+          'Increase the use of complex sentence forms. Work on achieving accuracy in both simple and complex structures.'
+      },
+      3.5: {
+        feedback:
+          'A very limited range of structures is used. Subordinate clauses are rare and simple sentences predominate. Some structures are produced accurately but grammatical errors are frequent and may impede meaning. Punctuation is often faulty or inadequate.',
+        suggestion:
+          'Increase the use of complex sentence forms. Work on achieving accuracy in both simple and complex structures.'
+      },
+      3: {
+        feedback:
+          'Sentence forms are attempted, but errors in grammar and punctuation predominate (except in memorised phrases or those taken from the input material). This prevents most meaning from coming through. Length may be insufficient to provide evidence of control of sentence forms..',
+        suggestion:
+          'Begin to experiment with complex sentences. Focus on improving accuracy in simple structures and reduce grammatical errors.'
+      },
+      2.5: {
+        feedback:
+          'Sentence forms are attempted, but errors in grammar and punctuation predominate (except in memorised phrases or those taken from the input material). This prevents most meaning from coming through. Length may be insufficient to provide evidence of control of sentence forms..',
+        suggestion:
+          'Begin to experiment with complex sentences. Focus on improving accuracy in simple structures and reduce grammatical errors.'
+      },
+      2: {
+        feedback: 'There is little or no evidence of sentence forms (except in memorised phrases).',
+        suggestion:
+          'Start with mastering simple sentence forms. Practice basic grammar to reduce the frequency of errors.'
+      },
+      1.5: {
+        feedback: 'There is little or no evidence of sentence forms (except in memorised phrases).',
+        suggestion:
+          'Start with mastering simple sentence forms. Practice basic grammar to reduce the frequency of errors.'
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. No rateable language is evident.'
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part5: {
+      9: {
+        feedback:
+          'The prompt is appropriately addressed and explored in depth. A clear and fully developed position is presented which directly answers the question/s. Ideas are relevant, fully extended, and well supported. Any lapses in content or support are extremely rare.'
+      },
+      8.5: {
+        feedback:
+          'The prompt is appropriately addressed and explored in depth. A clear and fully developed position is presented which directly answers the question/s. Ideas are relevant, fully extended, and well supported. Any lapses in content or support are extremely rare.'
+      },
+      8: {
+        feedback:
+          'The prompt is appropriately and sufficiently addressed. A clear and well-developed position is presented in response to the question/s. Ideas are relevant, well extended, and supported. There may be occasional omissions or lapses in content.',
+        suggestion:
+          'Ensure absolute relevance and completeness in addressing the task, leaving no aspect of the prompt unexplored or insufficiently covered. Responses must be fully developed with a clear, direct answer to the prompt, showcasing depth in thought and understanding.'
+      },
+      7.5: {
+        feedback:
+          'The prompt is appropriately and sufficiently addressed. A clear and well-developed position is presented in response to the question/s. Ideas are relevant, well extended, and supported. There may be occasional omissions or lapses in content.',
+        suggestion:
+          'Ensure absolute relevance and completeness in addressing the task, leaving no aspect of the prompt unexplored or insufficiently covered. Responses must be fully developed with a clear, direct answer to the prompt, showcasing depth in thought and understanding.'
+      },
+      7: {
+        feedback:
+          'The main parts of the prompt are appropriately addressed. A clear and developed position is presented. Main ideas are extended and supported, but there may be a tendency to over-generalize or there may be a lack of focus and precision in supporting ideas/material.',
+        suggestion:
+          'Focus on fully extending and supporting your ideas. Ensure that your position throughout the response is clear and well justified with logical and detailed reasoning.'
+      },
+      6.5: {
+        feedback:
+          'The main parts of the prompt are appropriately addressed. A clear and developed position is presented. Main ideas are extended and supported, but there may be a tendency to over-generalize or there may be a lack of focus and precision in supporting ideas/material.',
+        suggestion:
+          'Focus on fully extending and supporting your ideas. Ensure that your position throughout the response is clear and well justified with logical and detailed reasoning.'
+      },
+      6: {
+        feedback:
+          'The main parts of the prompt are addressed (though some may be more fully covered than others). An appropriate format is used. A position is presented that is directly relevant to the prompt, although the conclusions drawn may be unclear, unjustified, or repetitive. Main ideas are relevant, but some may be insufficiently developed or may lack clarity, while some supporting arguments and evidence may be less relevant or inadequate.',
+        suggestion:
+          'Aim for more detailed development of your ideas. Avoid over-generalizations and ensure that supporting ideas or evidence are relevant and precise.'
+      },
+      5.5: {
+        feedback:
+          'The main parts of the prompt are addressed (though some may be more fully covered than others). An appropriate format is used. A position is presented that is directly relevant to the prompt, although the conclusions drawn may be unclear, unjustified, or repetitive. Main ideas are relevant, but some may be insufficiently developed or may lack clarity, while some supporting arguments and evidence may be less relevant or inadequate.',
+        suggestion:
+          'Aim for more detailed development of your ideas. Avoid over-generalizations and ensure that supporting ideas or evidence are relevant and precise.'
+      },
+      5: {
+        feedback:
+          'The main parts of the prompt are incompletely addressed. The format may be inappropriate in places. The writer expresses a position, but the development is not always clear. Some main ideas are put forward, but they are limited and are not sufficiently developed and/or there may be irrelevant detail. There may be some repetition.',
+        suggestion:
+          'Work on presenting and developing your main ideas more clearly and coherently. Use a mix of general statements and specific details or evidence for support.'
+      },
+      4.5: {
+        feedback:
+          'The main parts of the prompt are incompletely addressed. The format may be inappropriate in places. The writer expresses a position, but the development is not always clear. Some main ideas are put forward, but they are limited and are not sufficiently developed and/or there may be irrelevant detail. There may be some repetition.',
+        suggestion:
+          'Work on presenting and developing your main ideas more clearly and coherently. Use a mix of general statements and specific details or evidence for support.'
+      },
+      4: {
+        feedback:
+          'The prompt is tackled in a minimal way, or the answer is tangential, possibly due to some misunderstanding of the prompt. The format may be inappropriate. A position is discernible, but the reader has to read carefully to find it.Main ideas are difficult to identify and such ideas that are identifiable may lack relevance, clarity and/or support.Large parts of the response may be repetitive.',
+        suggestion:
+          'Ensure that all parts of the prompt are addressed. Start developing your ideas more fully and use examples or data to support your points adequately.'
+      },
+      3.5: {
+        feedback:
+          'The prompt is tackled in a minimal way, or the answer is tangential, possibly due to some misunderstanding of the prompt. The format may be inappropriate. A position is discernible, but the reader has to read carefully to find it.Main ideas are difficult to identify and such ideas that are identifiable may lack relevance, clarity and/or support.Large parts of the response may be repetitive.',
+        suggestion:
+          'Ensure that all parts of the prompt are addressed. Start developing your ideas more fully and use examples or data to support your points adequately.'
+      },
+      3: {
+        feedback:
+          'No part of the prompt is adequately addressed, or the prompt has been misunderstood. No relevant position can be identified, and/or there is little direct response to the question/s. There are few ideas, and these may be irrelevant or insufficiently developed.',
+        suggestion:
+          'Focus on developing relevant ideas that correspond to the task. Avoid digressing into unrelated topics. Incorporate basic examples or data to support your points.'
+      },
+      2.5: {
+        feedback:
+          'No part of the prompt is adequately addressed, or the prompt has been misunderstood. No relevant position can be identified, and/or there is little direct response to the question/s. There are few ideas, and these may be irrelevant or insufficiently developed.',
+        suggestion:
+          'Focus on developing relevant ideas that correspond to the task. Avoid digressing into unrelated topics. Incorporate basic examples or data to support your points.'
+      },
+      2: {
+        feedback:
+          'The content is barely related to the prompt. No position can be identified. There may be glimpses of one or two ideas without development.',
+        suggestion:
+          'Begin by clearly understanding the task requirements. Practice identifying key features or main ideas from various prompts and planning a response that addresses these directly.'
+      },
+      1.5: {
+        feedback:
+          'The content is barely related to the prompt. No position can be identified. There may be glimpses of one or two ideas without development.',
+        suggestion:
+          'Begin by clearly understanding the task requirements. Practice identifying key features or main ideas from various prompts and planning a response that addresses these directly.'
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. The content is wholly unrelated to the prompt.'
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part6: {
+      9: {
+        feedback:
+          'The message can be followed effortlessly. Cohesion is used in such a way that it very rarely attracts attention. Any lapses in coherence or cohesion are minimal. Paragraphing is skilfully managed.'
+      },
+      8.5: {
+        feedback:
+          'The message can be followed effortlessly. Cohesion is used in such a way that it very rarely attracts attention. Any lapses in coherence or cohesion are minimal. Paragraphing is skilfully managed.'
+      },
+      8: {
+        feedback:
+          'The message can be followed with ease. Information and ideas are logically sequenced, and cohesion is well managed. Occasional lapses in coherence and cohesion may occur. Paragraphing is used sufficiently and appropriately.',
+        suggestion:
+          'Achieve a flawless flow of ideas and information throughout your response. The organization should appear effortless to the reader, with paragraphing and cohesion that enhance clarity without drawing attention to themselves.'
+      },
+      7.5: {
+        feedback:
+          'The message can be followed with ease. Information and ideas are logically sequenced, and cohesion is well managed. Occasional lapses in coherence and cohesion may occur. Paragraphing is used sufficiently and appropriately.',
+        suggestion:
+          'Achieve a flawless flow of ideas and information throughout your response. The organization should appear effortless to the reader, with paragraphing and cohesion that enhance clarity without drawing attention to themselves.'
+      },
+      7: {
+        feedback:
+          'Information and ideas are logically organized, and there is a clear progression throughout the response. A few lapses may occur, but these are minor. A range of cohesive devices including reference and substitution is used flexibly but with some inaccuracies or some over/under use. Paragraphing is generally used effectively to support overall coherence, and the sequencing of ideas within a paragraph is generally logical.',
+        suggestion:
+          'Enhance the effortless flow of your message. Work on using cohesion in such a way that it enhances the clarity and logical flow of your response without drawing unnecessary attention.'
+      },
+      6.5: {
+        feedback:
+          'Information and ideas are logically organized, and there is a clear progression throughout the response. A few lapses may occur, but these are minor. A range of cohesive devices including reference and substitution is used flexibly but with some inaccuracies or some over/under use. Paragraphing is generally used effectively to support overall coherence, and the sequencing of ideas within a paragraph is generally logical.',
+        suggestion:
+          'Enhance the effortless flow of your message. Work on using cohesion in such a way that it enhances the clarity and logical flow of your response without drawing unnecessary attention.'
+      },
+      6: {
+        feedback:
+          'Information and ideas are generally arranged coherently, and there is a clear overall progression. Cohesive devices are used to some good effect but cohesion within and/or between sentences may be faulty or mechanical due to misuse, overuse, or omission. The use of reference and substitution may lack flexibility or clarity and result in some repetition or error. Paragraphing may not always be logical and/or the central topic may not always be clear.',
+        suggestion:
+          'Aim for a clear progression of ideas throughout your response. Use cohesive devices flexibly and accurately to manage paragraphing and coherence.'
+      },
+      5.5: {
+        feedback:
+          'Information and ideas are generally arranged coherently, and there is a clear overall progression. Cohesive devices are used to some good effect but cohesion within and/or between sentences may be faulty or mechanical due to misuse, overuse, or omission. The use of reference and substitution may lack flexibility or clarity and result in some repetition or error. Paragraphing may not always be logical and/or the central topic may not always be clear.',
+        suggestion:
+          'Aim for a clear progression of ideas throughout your response. Use cohesive devices flexibly and accurately to manage paragraphing and coherence.'
+      },
+      5: {
+        feedback:
+          'Organisation is evident but is not wholly logical and there may be a lack of overall progression. Nevertheless, there is a sense of underlying coherence to the response. The relationship of ideas can be followed but the sentences are not fluently linked to each other. There may be limited/overuse of cohesive devices with some inaccuracy. The writing may be repetitive due to inadequate and/or inaccurate use of reference and substitution.  Paragraphing may be inadequate or missing.',
+        suggestion:
+          'Focus on enhancing overall coherence by clearly organizing ideas and paragraphs. Use a range of cohesive devices effectively and accurately.'
+      },
+      4.5: {
+        feedback:
+          'Organisation is evident but is not wholly logical and there may be a lack of overall progression. Nevertheless, there is a sense of underlying coherence to the response. The relationship of ideas can be followed but the sentences are not fluently linked to each other. There may be limited/overuse of cohesive devices with some inaccuracy. The writing may be repetitive due to inadequate and/or inaccurate use of reference and substitution.  Paragraphing may be inadequate or missing.',
+        suggestion:
+          'Focus on enhancing overall coherence by clearly organizing ideas and paragraphs. Use a range of cohesive devices effectively and accurately.'
+      },
+      4: {
+        feedback:
+          'Information and ideas are evident but not arranged coherently, and there is no clear progression within the response. Relationships between ideas can be unclear and/or inadequately marked. There is some use of basic cohesive devices, which may be inaccurate or repetitive. There is inaccurate use or a lack of substitution or referencing. There may be no paragraphing and/or no clear main topic within paragraphs.',
+        suggestion:
+          'Ensure that your ideas are logically ordered within paragraphs. Work on using cohesive devices appropriately to avoid repetition.'
+      },
+      3.5: {
+        feedback:
+          'Information and ideas are evident but not arranged coherently, and there is no clear progression within the response. Relationships between ideas can be unclear and/or inadequately marked. There is some use of basic cohesive devices, which may be inaccurate or repetitive. There is inaccurate use or a lack of substitution or referencing. There may be no paragraphing and/or no clear main topic within paragraphs.',
+        suggestion:
+          'Ensure that your ideas are logically ordered within paragraphs. Work on using cohesive devices appropriately to avoid repetition.'
+      },
+      3: {
+        feedback:
+          'There is no apparent logical organisation. Ideas are discernible but difficult to relate to each other. There is minimal use of sequencers or cohesive devices. Those used do not necessarily indicate a logical relationship between ideas. There is difficulty in identifying referencing. Any attempts at paragraphing are unhelpful.',
+        suggestion:
+          'Improve the logical flow of information by arranging your ideas more coherently. Use a variety of cohesive devices accurately.'
+      },
+      2.5: {
+        feedback:
+          'There is no apparent logical organisation. Ideas are discernible but difficult to relate to each other. There is minimal use of sequencers or cohesive devices. Those used do not necessarily indicate a logical relationship between ideas. There is difficulty in identifying referencing. Any attempts at paragraphing are unhelpful.',
+        suggestion:
+          'Improve the logical flow of information by arranging your ideas more coherently. Use a variety of cohesive devices accurately.'
+      },
+      2: {
+        feedback:
+          'There is little relevant message, or the entire response may be off-topic. There is little evidence of control of organisational features.',
+        suggestion:
+          "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
+      },
+      1.5: {
+        feedback:
+          'There is little relevant message, or the entire response may be off-topic. There is little evidence of control of organisational features.',
+        suggestion:
+          "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. The writing fails to communicate any message and appears to be by a virtual non-writer.',
+        suggestion:
+          "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.',
+        suggestion:
+          "Start using basic cohesive devices (like 'and', 'but', 'because') to link your ideas. Attempt to organize your response into paragraphs."
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part7: {
+      9: {
+        feedback:
+          'Full flexibility and precise use are widely evident. A wide range of vocabulary is used accurately and appropriately with very natural and sophisticated control of lexical features. Minor errors in spelling and word formation are extremely rare and have minimal impact on communication.'
+      },
+      8.5: {
+        feedback:
+          'Full flexibility and precise use are widely evident. A wide range of vocabulary is used accurately and appropriately with very natural and sophisticated control of lexical features. Minor errors in spelling and word formation are extremely rare and have minimal impact on communication.'
+      },
+      8: {
+        feedback:
+          'A wide resource is fluently and flexibly used to convey precise meanings. There is skillful use of uncommon and/or idiomatic items when appropriate, despite occasional inaccuracies in word choice and collocation. Occasional errors in spelling and/or word formation may occur, but have minimal impact on communication.',
+        suggestion:
+          'Display full flexibility in your vocabulary use, employing a wide range of language to convey precise meaning and subtle nuances in all situations, without errors.'
+      },
+      7.5: {
+        feedback:
+          'A wide resource is fluently and flexibly used to convey precise meanings. There is skillful use of uncommon and/or idiomatic items when appropriate, despite occasional inaccuracies in word choice and collocation. Occasional errors in spelling and/or word formation may occur, but have minimal impact on communication.',
+        suggestion:
+          'Display full flexibility in your vocabulary use, employing a wide range of language to convey precise meaning and subtle nuances in all situations, without errors.'
+      },
+      7: {
+        feedback:
+          'The resource is sufficient to allow some flexibility and precision. There is some ability to use less common and/or idiomatic items. An awareness of style and collocation is evident, though inappropriacies occur. There are only a few errors in spelling and/or word formation, and they do not detract from overall clarity.',
+        suggestion:
+          'Aim for flexibility and precision in your use of vocabulary. Practice using a wide range of vocabulary naturally and accurately, even in complex situations.'
+      },
+      6.5: {
+        feedback:
+          'The resource is sufficient to allow some flexibility and precision. There is some ability to use less common and/or idiomatic items. An awareness of style and collocation is evident, though inappropriacies occur. There are only a few errors in spelling and/or word formation, and they do not detract from overall clarity.',
+        suggestion:
+          'Aim for flexibility and precision in your use of vocabulary. Practice using a wide range of vocabulary naturally and accurately, even in complex situations.'
+      },
+      6: {
+        feedback:
+          'The resource is generally adequate and appropriate for the task. The meaning is generally clear in spite of a rather restricted range or a lack of precision in word choice. If the writer is a risk-taker, there will be a wider range of vocabulary used but higher degrees of inaccuracy or inappropriacy.There are some errors in spelling and/or word formation, but these do not impede communication.',
+        suggestion:
+          'Enhance your ability to use less common and idiomatic vocabulary appropriately. Focus on accurate word choice and collocation.'
+      },
+      5.5: {
+        feedback:
+          'The resource is generally adequate and appropriate for the task. The meaning is generally clear in spite of a rather restricted range or a lack of precision in word choice. If the writer is a risk-taker, there will be a wider range of vocabulary used but higher degrees of inaccuracy or inappropriacy.There are some errors in spelling and/or word formation, but these do not impede communication.',
+        suggestion:
+          'Enhance your ability to use less common and idiomatic vocabulary appropriately. Focus on accurate word choice and collocation.'
+      },
+      5: {
+        feedback:
+          'The resource is limited but minimally adequate for the task. Simple vocabulary may be used accurately, but the range does not permit much variation in expression. There may be frequent lapses in the appropriacy of word choice and a lack of flexibility is apparent in frequent simplifications and/or repetitions. Errors in spelling and/or word formation may be noticeable and may cause some difficulty for the reader.',
+        suggestion:
+          'Develop the ability to use a wider range of vocabulary for precision and style. Work on minimizing errors that can impede understanding.'
+      },
+      4.5: {
+        feedback:
+          'The resource is limited but minimally adequate for the task. Simple vocabulary may be used accurately, but the range does not permit much variation in expression. There may be frequent lapses in the appropriacy of word choice and a lack of flexibility is apparent in frequent simplifications and/or repetitions. Errors in spelling and/or word formation may be noticeable and may cause some difficulty for the reader.',
+        suggestion:
+          'Develop the ability to use a wider range of vocabulary for precision and style. Work on minimizing errors that can impede understanding.'
+      },
+      4: {
+        feedback:
+          'The resource is limited and inadequate for or unrelated to the task. Vocabulary is basic and may be used repetitively. There may be inappropriate use of lexical chunks (e.g., memorized phrases, formulaic language, and/or language from the input material).',
+        suggestion:
+          'Work on accuracy and appropriateness in your use of vocabulary. Introduce a variety of words and phrases relevant to the task.'
+      },
+      3.5: {
+        feedback:
+          'The resource is limited and inadequate for or unrelated to the task. Vocabulary is basic and may be used repetitively. There may be inappropriate use of lexical chunks (e.g., memorized phrases, formulaic language, and/or language from the input material).',
+        suggestion:
+          'Work on accuracy and appropriateness in your use of vocabulary. Introduce a variety of words and phrases relevant to the task.'
+      },
+      3: {
+        feedback:
+          'The resource is inadequate (which may be due to the response being significantly underlength). Possible over-dependence on input material or memorised language. Control of word choice and/or spelling is very limited, and errors predominate. These errors may severely impede meaning.',
+        suggestion:
+          'Increase your range of vocabulary. Practice using words and phrases appropriate to the context.'
+      },
+      2.5: {
+        feedback:
+          'The resource is inadequate (which may be due to the response being significantly underlength). Possible over-dependence on input material or memorised language. Control of word choice and/or spelling is very limited, and errors predominate. These errors may severely impede meaning.',
+        suggestion:
+          'Increase your range of vocabulary. Practice using words and phrases appropriate to the context.'
+      },
+      2: {
+        feedback:
+          'The resource is extremely limited with few recognizable strings, apart from memorized phrases. There is no apparent control of word formation and/or spelling.',
+        suggestion:
+          'Expand your basic vocabulary and practice using words accurately in context. Avoid repetition by learning synonyms.'
+      },
+      1.5: {
+        feedback:
+          'The resource is extremely limited with few recognizable strings, apart from memorized phrases. There is no apparent control of word formation and/or spelling.',
+        suggestion:
+          'Expand your basic vocabulary and practice using words accurately in context. Avoid repetition by learning synonyms.'
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. No resource is apparent, except for a few isolated words.'
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part8: {
+      9: {
+        feedback:
+          'A wide range of structures is used with full flexibility and control. Punctuation and grammar are used appropriately throughout. Minor errors are extremely rare and have minimal impact on communication.'
+      },
+      8.5: {
+        feedback:
+          'A wide range of structures is used with full flexibility and control. Punctuation and grammar are used appropriately throughout. Minor errors are extremely rare and have minimal impact on communication.'
+      },
+      8: {
+        feedback:
+          'A wide range of structures is flexibly and accurately used. The majority of sentences are error-free, and punctuation is well managed. Occasional, non-systematic errors and inappropriacies occur, but have minimal impact on communication.',
+        suggestion:
+          'Use a wide range of grammatical structures with full flexibility and accuracy, ensuring the appropriate and varied use of complex sentences and punctuation.'
+      },
+      7.5: {
+        feedback:
+          'A wide range of structures is flexibly and accurately used. The majority of sentences are error-free, and punctuation is well managed. Occasional, non-systematic errors and inappropriacies occur, but have minimal impact on communication.',
+        suggestion:
+          'Use a wide range of grammatical structures with full flexibility and accuracy, ensuring the appropriate and varied use of complex sentences and punctuation.'
+      },
+      7: {
+        feedback:
+          'A variety of complex structures is used with some flexibility and accuracy. Grammar and punctuation are generally well controlled, and error-free sentences are frequent. A few errors in grammar may persist, but these do not impede communication.',
+        suggestion:
+          'Enhance your range of grammatical structures and use them flexibly and accurately. Aim for the majority of sentences to be error-free.'
+      },
+      6.5: {
+        feedback:
+          'A variety of complex structures is used with some flexibility and accuracy. Grammar and punctuation are generally well controlled, and error-free sentences are frequent. A few errors in grammar may persist, but these do not impede communication.',
+        suggestion:
+          'Enhance your range of grammatical structures and use them flexibly and accurately. Aim for the majority of sentences to be error-free.'
+      },
+      6: {
+        feedback:
+          'A mix of simple and complex sentence forms is used but flexibility is limited. Examples of more complex structures are not marked by the same level of accuracy as in simple structures. Errors in grammar and punctuation occur, but rarely impede communication.',
+        suggestion:
+          'Focus on using a variety of complex grammatical structures with some flexibility and accuracy. Minimize errors to those that do not hinder communication.'
+      },
+      5.5: {
+        feedback:
+          'A mix of simple and complex sentence forms is used but flexibility is limited. Examples of more complex structures are not marked by the same level of accuracy as in simple structures. Errors in grammar and punctuation occur, but rarely impede communication.',
+        suggestion:
+          'Focus on using a variety of complex grammatical structures with some flexibility and accuracy. Minimize errors to those that do not hinder communication.'
+      },
+      5: {
+        feedback:
+          'The range of structures is limited and rather repetitive. Although complex sentences are attempted, they tend to be faulty, and the greatest accuracy is achieved on simple sentences. Grammatical errors may be frequent and cause some difficulty for the reader. Punctuation may be faulty.',
+        suggestion:
+          'Aim for a balance between simple and complex sentences. Reduce errors that impede communication and work on more accurate punctuation.'
+      },
+      4.5: {
+        feedback:
+          'The range of structures is limited and rather repetitive. Although complex sentences are attempted, they tend to be faulty, and the greatest accuracy is achieved on simple sentences. Grammatical errors may be frequent and cause some difficulty for the reader. Punctuation may be faulty.',
+        suggestion:
+          'Aim for a balance between simple and complex sentences. Reduce errors that impede communication and work on more accurate punctuation.'
+      },
+      4: {
+        feedback:
+          'A very limited range of structures is used. Subordinate clauses are rare and simple sentences predominate. Some structures are produced accurately but grammatical errors are frequent and may impede meaning. Punctuation is often faulty or inadequate.',
+        suggestion:
+          'Increase the use of complex sentence forms. Work on achieving accuracy in both simple and complex structures.'
+      },
+      3.5: {
+        feedback:
+          'A very limited range of structures is used. Subordinate clauses are rare and simple sentences predominate. Some structures are produced accurately but grammatical errors are frequent and may impede meaning. Punctuation is often faulty or inadequate.',
+        suggestion:
+          'Increase the use of complex sentence forms. Work on achieving accuracy in both simple and complex structures.'
+      },
+      3: {
+        feedback:
+          'Sentence forms are attempted, but errors in grammar and punctuation predominate (except in memorised phrases or those taken from the input material). This prevents most meaning from coming through. Length may be insufficient to provide evidence of control of sentence forms.',
+        suggestion:
+          'Begin to experiment with complex sentences. Focus on improving accuracy in simple structures and reduce grammatical errors.'
+      },
+      2.5: {
+        feedback:
+          'Sentence forms are attempted, but errors in grammar and punctuation predominate (except in memorised phrases or those taken from the input material). This prevents most meaning from coming through. Length may be insufficient to provide evidence of control of sentence forms.',
+        suggestion:
+          'Begin to experiment with complex sentences. Focus on improving accuracy in simple structures and reduce grammatical errors.'
+      },
+      2: {
+        feedback: 'There is little or no evidence of sentence forms (except in memorised phrases).',
+        suggestion:
+          'Start with mastering simple sentence forms. Practice basic grammar to reduce the frequency of errors.'
+      },
+      1.5: {
+        feedback: 'There is little or no evidence of sentence forms (except in memorised phrases).',
+        suggestion:
+          'Start with mastering simple sentence forms. Practice basic grammar to reduce the frequency of errors.'
+      },
+      1: {
+        feedback:
+          'Responses of 20 words or fewer are rated at Band 1. No rateable language is evident.'
+      },
+      0: {
+        feedback:
+          'Should only be used where a candidate did not attend or attempt the question in any way, used a language other than English throughout, or where there is proof that a candidate’s answer has been totally memorised.'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>
+  },
+  speaking: {
+    part1: {
+      9: {
+        feedback:
+          'Fluent with only very occasional repetition or self-correction. Any hesitation that occurs is used only to prepare the content of the next utterance and not to find words or grammar. Speech is situationally appropriate and cohesive features are fully acceptable.Topic development is fully coherent and appropriately extended.'
+      },
+      8.5: {
+        feedback:
+          'Fluent with only very occasional repetition or self-correction. Any hesitation that occurs is used only to prepare the content of the next utterance and not to find words or grammar. Speech is situationally appropriate and cohesive features are fully acceptable.Topic development is fully coherent and appropriately extended.'
+      },
+      8: {
+        feedback:
+          'Fluent with only very occasional repetition or self-correction. Hesitation may occasionally be used to find words or grammar, but most will be content related. Topic development is coherent, appropriate and relevant.',
+        suggestion:
+          'Maintain fluency with minimal repetition or self-correction, ensuring that any hesitation is purely for thought organization rather than language retrieval. Speech should be entirely appropriate to the situation, with seamless use of cohesive features and fully coherent development of topics.'
+      },
+      7.5: {
+        feedback:
+          'Fluent with only very occasional repetition or self-correction. Hesitation may occasionally be used to find words or grammar, but most will be content related. Topic development is coherent, appropriate and relevant.',
+        suggestion:
+          'Maintain fluency with minimal repetition or self-correction, ensuring that any hesitation is purely for thought organization rather than language retrieval. Speech should be entirely appropriate to the situation, with seamless use of cohesive features and fully coherent development of topics.'
+      },
+      7: {
+        feedback:
+          'Able to keep going and readily produce long turns without noticeable effort. Some hesitation, repetition and/or self- correction may occur, often mid-sentence and indicate problems with accessing appropriate language. However, these will not affect coherence. Flexible use of spoken discourse markers, connectives and cohesive features.',
+        suggestion:
+          'Ensure mostly fluent speech with minimal self-correction. Practice expanding on topics coherently and relevantly, using a variety of cohesive features and discourse markers.'
+      },
+      6.5: {
+        feedback:
+          'Able to keep going and readily produce long turns without noticeable effort. Some hesitation, repetition and/or self- correction may occur, often mid-sentence and indicate problems with accessing appropriate language. However, these will not affect coherence. Flexible use of spoken discourse markers, connectives and cohesive features.',
+        suggestion:
+          'Ensure mostly fluent speech with minimal self-correction. Practice expanding on topics coherently and relevantly, using a variety of cohesive features and discourse markers.'
+      },
+      6: {
+        feedback:
+          'Able to keep going and demonstrates a willingness to produce long turns. Coherence may be lost at times as a result of hesitation, repetition and/or self-correction. Uses a range of spoken discourse markers, connectives and cohesive features though not always appropriately.',
+        suggestion:
+          'Minimize hesitation that affects coherence. Work on using spoken discourse markers and connectives more effectively to enhance the flexibility of your spoken language.'
+      },
+      5.5: {
+        feedback:
+          'Able to keep going and demonstrates a willingness to produce long turns. Coherence may be lost at times as a result of hesitation, repetition and/or self-correction. Uses a range of spoken discourse markers, connectives and cohesive features though not always appropriately.',
+        suggestion:
+          'Minimize hesitation that affects coherence. Work on using spoken discourse markers and connectives more effectively to enhance the flexibility of your spoken language.'
+      },
+      5: {
+        feedback:
+          'Usually able to keep going, but relies on repetition and self-correction to do so and/or on slow speech. Hesitations are often associated with mid-sentence searches for fairly basic lexis and grammar. Overuse of certain discourse markers, connectives and other cohesive features. More complex speech usually causes disfluency but simpler language may be produced fluently.',
+        suggestion:
+          'Improve your ability to produce longer turns without noticeable effort, even when searching for language. Use a variety of discourse markers and cohesive features more appropriately.'
+      },
+      4: {
+        feedback:
+          'Unable to keep going without noticeable pauses. Speech may be slow with frequent repetition. Often self-corrects. Can link simple sentences but often with repetitious use of connectives. Some breakdowns in coherence.',
+        suggestion:
+          'Focus on reducing reliance on repetition and self-correction. Practice organizing your thoughts quickly to maintain fluency on a wider range of topics.'
+      },
+      3.5: {
+        feedback:
+          'Unable to keep going without noticeable pauses. Speech may be slow with frequent repetition. Often self-corrects. Can link simple sentences but often with repetitious use of connectives. Some breakdowns in coherence.',
+        suggestion:
+          'Focus on reducing reliance on repetition and self-correction. Practice organizing your thoughts quickly to maintain fluency on a wider range of topics.'
+      },
+      3: {
+        feedback:
+          'Frequent, sometimes long, pauses occur while candidate searches for words. Limited ability to link simple sentences and go beyond simple responses to questions. Frequently unable to convey basic message.',
+        suggestion:
+          'Work on maintaining speech flow with fewer pauses. Practice linking sentences to build coherence and try to speak more on both familiar and some unfamiliar topics.'
+      },
+      2.5: {
+        feedback:
+          'Frequent, sometimes long, pauses occur while candidate searches for words. Limited ability to link simple sentences and go beyond simple responses to questions. Frequently unable to convey basic message.',
+        suggestion:
+          'Work on maintaining speech flow with fewer pauses. Practice linking sentences to build coherence and try to speak more on both familiar and some unfamiliar topics.'
+      },
+      2: {
+        feedback:
+          'Lengthy pauses before nearly every word. Isolated words may be recognisable but speech is of virtually no communicative significance',
+        suggestion:
+          'Aim to reduce lengthy pauses and try to connect simple sentences more effectively. Practice speaking on familiar topics and use simple connectives like and or but.'
+      },
+      1.5: {
+        feedback:
+          'Lengthy pauses before nearly every word. Isolated words may be recognisable but speech is of virtually no communicative significance',
+        suggestion:
+          'Aim to reduce lengthy pauses and try to connect simple sentences more effectively. Practice speaking on familiar topics and use simple connectives like and or but.'
+      },
+      1: {
+        feedback: 'Essentially none. Speech is totally incoherent.'
+      },
+      0: {
+        feedback: 'Does not attend'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part2: {
+      9: {
+        feedback:
+          'Total flexibility and precise use in all contexts. Sustained use of accurate and idiomatic language.'
+      },
+      8.5: {
+        feedback:
+          'Total flexibility and precise use in all contexts. Sustained use of accurate and idiomatic language.'
+      },
+      8: {
+        feedback:
+          'Wide resource, readily and flexibly used to discuss all topics and convey precise meaning. Skilful use of less common and idiomatic items despite occasional inaccuracies in word choice and collocation. Effective use of paraphrase as required.',
+        suggestion:
+          'Aim for total flexibility in your use of language across all contexts, demonstrating sustained accuracy and idiomatic usage. Your vocabulary should allow for precise expression in any situation, with minor errors being the only exception.'
+      },
+      7.5: {
+        feedback:
+          'Wide resource, readily and flexibly used to discuss all topics and convey precise meaning. Skilful use of less common and idiomatic items despite occasional inaccuracies in word choice and collocation. Effective use of paraphrase as required.',
+        suggestion:
+          'Aim for total flexibility in your use of language across all contexts, demonstrating sustained accuracy and idiomatic usage. Your vocabulary should allow for precise expression in any situation, with minor errors being the only exception.'
+      },
+      7: {
+        feedback:
+          'Resource flexibly used to discuss a variety of topics. Some ability to use less common and idiomatic items and an awareness of style and collocation is evident though inappropriacies occur. Effective use of paraphrase as required.',
+        suggestion:
+          'Use a wide lexical resource flexibly to convey precise meanings and make skillful use of idiomatic language, despite occasional inaccuracies.'
+      },
+      6.5: {
+        feedback:
+          'Resource flexibly used to discuss a variety of topics. Some ability to use less common and idiomatic items and an awareness of style and collocation is evident though inappropriacies occur. Effective use of paraphrase as required.',
+        suggestion:
+          'Use a wide lexical resource flexibly to convey precise meanings and make skillful use of idiomatic language, despite occasional inaccuracies.'
+      },
+      6: {
+        feedback:
+          'Resource sufficient to discuss topics at length. Vocabulary use may be inappropriate but meaning is clear. Generally able to paraphrase successfully.',
+        suggestion:
+          ' Aim for flexible use of language across various topics, demonstrating awareness of style and collocation. Reduce inaccuracies in word choice and collocation.'
+      },
+      5.5: {
+        feedback:
+          'Resource sufficient to discuss topics at length. Vocabulary use may be inappropriate but meaning is clear. Generally able to paraphrase successfully.',
+        suggestion:
+          ' Aim for flexible use of language across various topics, demonstrating awareness of style and collocation. Reduce inaccuracies in word choice and collocation.'
+      },
+      5: {
+        feedback:
+          'Resource sufficient to discuss familiar and unfamiliar topics but there is limited flexibility. Attempts paraphrase but not always with success.',
+        suggestion:
+          'Enhance your ability to discuss topics at length by using a wider range of vocabulary. Work on successful paraphrasing and the use of idiomatic language.'
+      },
+      4.5: {
+        feedback:
+          'Resource sufficient to discuss familiar and unfamiliar topics but there is limited flexibility. Attempts paraphrase but not always with success.',
+        suggestion:
+          'Enhance your ability to discuss topics at length by using a wider range of vocabulary. Work on successful paraphrasing and the use of idiomatic language.'
+      },
+      4: {
+        feedback:
+          'Resource sufficient for familiar topics but only basic meaning can be conveyed on unfamiliar topics. Frequent inappropriacies and errors in word choice. Rarely attempts paraphrase.',
+        suggestion:
+          'Increase your range of vocabulary for both familiar and unfamiliar topics. Practice paraphrasing and using vocabulary flexibly.'
+      },
+      3.5: {
+        feedback:
+          'Resource sufficient for familiar topics but only basic meaning can be conveyed on unfamiliar topics. Frequent inappropriacies and errors in word choice. Rarely attempts paraphrase.',
+        suggestion:
+          'Increase your range of vocabulary for both familiar and unfamiliar topics. Practice paraphrasing and using vocabulary flexibly.'
+      },
+      3: {
+        feedback:
+          'Resource limited to simple vocabulary used primarily to convey personal information. Vocabulary inadequate for unfamiliar topics.',
+        suggestion:
+          'Broaden your lexical resource to discuss familiar topics more comfortably. Begin to express basic meanings on unfamiliar topics.'
+      },
+      2.5: {
+        feedback:
+          'Resource limited to simple vocabulary used primarily to convey personal information. Vocabulary inadequate for unfamiliar topics.',
+        suggestion:
+          'Broaden your lexical resource to discuss familiar topics more comfortably. Begin to express basic meanings on unfamiliar topics.'
+      },
+      2: {
+        feedback:
+          'Very limited resource. Utterances consist of isolated words or memorised utterances. Little communication possible without the support of mime or gesture.',
+        suggestion:
+          'Expand your vocabulary for personal information and basic conversational topics. Practice using simple vocabulary more confidently.'
+      },
+      1.5: {
+        feedback:
+          'Very limited resource. Utterances consist of isolated words or memorised utterances. Little communication possible without the support of mime or gesture.',
+        suggestion:
+          'Expand your vocabulary for personal information and basic conversational topics. Practice using simple vocabulary more confidently.'
+      },
+      1: {
+        feedback: 'No resource bar a few isolated words.'
+      },
+      0: {
+        feedback: 'Does not attend'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part3: {
+      9: {
+        feedback:
+          'Structures are precise and accurate at all times, apart from ‘mistakes’ characteristic of native speaker speech.'
+      },
+      8.5: {
+        feedback:
+          'Structures are precise and accurate at all times, apart from ‘mistakes’ characteristic of native speaker speech.'
+      },
+      8: {
+        feedback:
+          'Wide range of structures, flexibly used. The majority of sentences are error free. Occasional inappropriacies and non-systematic errors occur. A few basic errors may persist.',
+        suggestion:
+          "Your grammatical structures should be precise and accurate at all times, mirroring the 'mistakes' characteristic of native speaker speech. This entails a wide range of structures used confidently and correctly, with errors being not just rare but also non-disruptive to communication."
+      },
+      7.5: {
+        feedback:
+          'Wide range of structures, flexibly used. The majority of sentences are error free. Occasional inappropriacies and non-systematic errors occur. A few basic errors may persist.',
+        suggestion:
+          "Your grammatical structures should be precise and accurate at all times, mirroring the 'mistakes' characteristic of native speaker speech. This entails a wide range of structures used confidently and correctly, with errors being not just rare but also non-disruptive to communication."
+      },
+      7: {
+        feedback:
+          'A range of structures flexibly used. Error-free sentences are frequent. Both simple and complex sentences are used effectively despite some errors. A few basic errors persist..',
+        suggestion:
+          'Aim for a wide range of structures used flexibly, with the majority of sentences being error-free and only occasional inappropriacies.'
+      },
+      6.5: {
+        feedback:
+          'A range of structures flexibly used. Error-free sentences are frequent. Both simple and complex sentences are used effectively despite some errors. A few basic errors persist..',
+        suggestion:
+          'Aim for a wide range of structures used flexibly, with the majority of sentences being error-free and only occasional inappropriacies.'
+      },
+      6: {
+        feedback:
+          'Produces a mix of short and complex sentence forms and a variety of structures with limited flexibility. Though errors frequently occur in complex structures, these rarely impede communication.',
+        suggestion:
+          'Use a variety of structures flexibly and accurately for the most part, with error-free sentences becoming more frequent.'
+      },
+      5.5: {
+        feedback:
+          'Produces a mix of short and complex sentence forms and a variety of structures with limited flexibility. Though errors frequently occur in complex structures, these rarely impede communication.',
+        suggestion:
+          'Use a variety of structures flexibly and accurately for the most part, with error-free sentences becoming more frequent.'
+      },
+      5: {
+        feedback:
+          'Basic sentence forms are fairly well controlled for accuracy. Complex structures are attempted but these are limited in range, nearly always contain errors and may lead to the need for reformulation.',
+        suggestion:
+          'Improve the flexibility of your sentence structures, ensuring a mix of simple and complex forms with frequent accuracy.'
+      },
+      4.5: {
+        feedback:
+          'Basic sentence forms are fairly well controlled for accuracy. Complex structures are attempted but these are limited in range, nearly always contain errors and may lead to the need for reformulation.',
+        suggestion:
+          'Improve the flexibility of your sentence structures, ensuring a mix of simple and complex forms with frequent accuracy.'
+      },
+      4: {
+        feedback:
+          'Can produce basic sentence forms and some short utterances are error-free. Subordinate clauses are rare and, overall, turns are short, structures are repetitive and errors are frequent.',
+        suggestion:
+          'Focus on accurately controlling basic sentence forms and experimenting with more complex structures, despite errors.'
+      },
+      3.5: {
+        feedback:
+          'Can produce basic sentence forms and some short utterances are error-free. Subordinate clauses are rare and, overall, turns are short, structures are repetitive and errors are frequent.',
+        suggestion:
+          'Focus on accurately controlling basic sentence forms and experimenting with more complex structures, despite errors.'
+      },
+      3: {
+        feedback:
+          'Basic sentence forms are attempted but grammatical errors are numerous except in apparently memorised utterances.',
+        suggestion:
+          'Work on producing basic sentence forms more accurately and attempt to use subordinate clauses.'
+      },
+      2.5: {
+        feedback:
+          'Basic sentence forms are attempted but grammatical errors are numerous except in apparently memorised utterances.',
+        suggestion:
+          'Work on producing basic sentence forms more accurately and attempt to use subordinate clauses.'
+      },
+      2: {
+        feedback: 'No evidence of basic sentence forms.',
+        suggestion:
+          'Start with mastering basic sentence forms and reduce grammatical errors in simple structures.'
+      },
+      1.5: {
+        feedback: 'No evidence of basic sentence forms.',
+        suggestion:
+          'Start with mastering basic sentence forms and reduce grammatical errors in simple structures.'
+      },
+      1: {
+        feedback: 'No rateable language unless memorised.'
+      },
+      0: {
+        feedback: 'Does not attend'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>,
+    part4: {
+      9: {
+        feedback:
+          'Uses a full range of phonological features to convey precise and/or subtle meaning. Flexible use of features of connected speech is sustained throughout. Can be effortlessly understood throughout. Accent has no effect on intelligibility.'
+      },
+      8.5: {
+        feedback:
+          'Uses a full range of phonological features to convey precise and/or subtle meaning. Flexible use of features of connected speech is sustained throughout. Can be effortlessly understood throughout. Accent has no effect on intelligibility.'
+      },
+      8: {
+        feedback:
+          'Uses a wide range of phonological features to convey precise and/or subtle meaning. Can sustain appropriate rhythm. Flexible use of stress and intonation across long utterances, despite occasional lapses. Can be easily understood throughout. Accent has minimal effect on intelligibility.',
+        suggestion:
+          'Utilize a full range of phonological features with flexibility to convey precise or subtle meaning. Ensure that your use of connected speech features is consistent and natural, allowing for effortless understanding throughout. Your accent should not affect intelligibility at any point.'
+      },
+      7.5: {
+        feedback:
+          'Uses a wide range of phonological features to convey precise and/or subtle meaning. Can sustain appropriate rhythm. Flexible use of stress and intonation across long utterances, despite occasional lapses. Can be easily understood throughout. Accent has minimal effect on intelligibility.',
+        suggestion:
+          'Utilize a full range of phonological features with flexibility to convey precise or subtle meaning. Ensure that your use of connected speech features is consistent and natural, allowing for effortless understanding throughout. Your accent should not affect intelligibility at any point.'
+      },
+      7: {
+        feedback:
+          'Displays all the positive features of band 6, and some, but not all, of the positive features of band 8.',
+        suggestion:
+          'Use a wide range of phonological features to convey precise and subtle meaning. Work on maintaining rhythm and using stress and intonation flexibly across longer utterances.'
+      },
+      6.5: {
+        feedback:
+          'Displays all the positive features of band 6, and some, but not all, of the positive features of band 8.',
+        suggestion:
+          'Use a wide range of phonological features to convey precise and subtle meaning. Work on maintaining rhythm and using stress and intonation flexibly across longer utterances.'
+      },
+      6: {
+        feedback:
+          'Uses a range of phonological features, but control is variable. Chunking is generally appropriate, but rhythm may be affected by a lack of stress-timing and/or a rapid speech rate. Some effective use of intonation and stress, but this is not sustained. Individual words or phonemes may be mispronounced but this causes only occasional lack of clarity. Can generally be understood throughout without much effort.',
+        suggestion:
+          'Develop more consistent control over phonological features, including intonation and stress patterns, to improve clarity and expressiveness.'
+      },
+      5.5: {
+        feedback:
+          'Uses a range of phonological features, but control is variable. Chunking is generally appropriate, but rhythm may be affected by a lack of stress-timing and/or a rapid speech rate. Some effective use of intonation and stress, but this is not sustained. Individual words or phonemes may be mispronounced but this causes only occasional lack of clarity. Can generally be understood throughout without much effort.',
+        suggestion:
+          'Develop more consistent control over phonological features, including intonation and stress patterns, to improve clarity and expressiveness.'
+      },
+      5: {
+        feedback:
+          'Displays all the positive features of band 4, and some, but not all, of the positive features of band 6.',
+        suggestion:
+          'Increase the range of phonological features used, focusing on chunking and stress-timing to enhance rhythm and intonation.'
+      },
+      4.5: {
+        feedback:
+          'Displays all the positive features of band 4, and some, but not all, of the positive features of band 6.',
+        suggestion:
+          'Increase the range of phonological features used, focusing on chunking and stress-timing to enhance rhythm and intonation.'
+      },
+      4: {
+        feedback:
+          'Uses some acceptable phonological features, but the range is limited. Produces some acceptable chunking, but there are frequent lapses in overall rhythm. Attempts to use intonation and stress, but control is limited. Individual words or phonemes are frequently mispronounced, causing lack of clarity. Understanding requires some effort and there may be patches of speech that cannot be understood.',
+        suggestion:
+          'Practice using a limited range of phonological features more consistently and strive for greater clarity in pronunciation.'
+      },
+      3.5: {
+        feedback:
+          'Uses some acceptable phonological features, but the range is limited. Produces some acceptable chunking, but there are frequent lapses in overall rhythm. Attempts to use intonation and stress, but control is limited. Individual words or phonemes are frequently mispronounced, causing lack of clarity. Understanding requires some effort and there may be patches of speech that cannot be understood.',
+        suggestion:
+          'Practice using a limited range of phonological features more consistently and strive for greater clarity in pronunciation.'
+      },
+      3: {
+        feedback:
+          'Displays some features of band 2, and some, but not all, of the positive features of band 4.',
+        suggestion:
+          'Work on using some phonological features acceptably and aim for patches of clear pronunciation to improve intelligibility.'
+      },
+      2.5: {
+        feedback:
+          'Displays some features of band 2, and some, but not all, of the positive features of band 4.',
+        suggestion:
+          'Work on using some phonological features acceptably and aim for patches of clear pronunciation to improve intelligibility.'
+      },
+      2: {
+        feedback:
+          'Uses few acceptable phonological features (possibly because sample is insufficient). Overall problems with delivery impair attempts at connected speech. Individual words and phonemes are mainly mispronounced and little meaning is conveyed. Often unintelligible.',
+        suggestion:
+          'Focus on producing individual words more clearly, even if overall intelligibility is limited.'
+      },
+      1.5: {
+        feedback:
+          'Uses few acceptable phonological features (possibly because sample is insufficient). Overall problems with delivery impair attempts at connected speech. Individual words and phonemes are mainly mispronounced and little meaning is conveyed. Often unintelligible.',
+        suggestion:
+          'Focus on producing individual words more clearly, even if overall intelligibility is limited.'
+      },
+      1: {
+        feedback:
+          'Can produce occasional individual words and phonemes that are recognisable, but no overall meaning is conveyed. Unintelligible.'
+      },
+      0: {
+        feedback: 'Does not attend'
+      }
+    } as Record<number, { feedback: string; suggestion?: string }>
   }
-};
+} as const;

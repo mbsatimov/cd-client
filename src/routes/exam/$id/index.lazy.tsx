@@ -55,6 +55,7 @@ const WritingTestPage = () => {
         nextStep={functions.getNextStep('listening')}
         test={state.exam.listening}
         onTestEnd={functions.moveToNextStep}
+        onVolumeChange={setVolume}
         volume={volume}
       />
     ),

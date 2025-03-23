@@ -1,3 +1,5 @@
-export { ListeningAnswersTable } from './ListeningAnswersTable.tsx';
-export { OverallScores } from './OverallScores.tsx';
-export { ReadingAnswersTable } from './ReadingAnswersTable.tsx';
+export { ListeningResultDetails } from './ListeningResultDetails.tsx';
+export { OverallScoresTabs } from './OverallScoresTabs.tsx';
+export { ReadingResultDetails } from './ReadingResultDetails.tsx';
+export { SpeakingResultDetails } from './SpeakingResultDetails.tsx';
+export { WritingResultDetails } from './WritingResultDetails.tsx';

@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { toast } from 'sonner';
 
 import { ThemeProvider } from '@/utils/context';
@@ -69,13 +70,15 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
-          <NuqsAdapter>
-            <RouterProvider router={router} />
-          </NuqsAdapter>
-        </ThemeProvider>
-      </QueryClientProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
+            <NuqsAdapter>
+              <RouterProvider router={router} />
+            </NuqsAdapter>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </HelmetProvider>
     </StrictMode>
   );
 }

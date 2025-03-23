@@ -1,6 +1,5 @@
-import { CheckIcon, XIcon } from 'lucide-react';
-
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -11,14 +10,15 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui';
-import { cn } from '@/lib/utils.ts';
 import { feedbacks } from '@/utils/constants';
 
 interface Props {
-  reading: CDResultResponse['readingResult'];
+  reading: PaperResultResponse['readingResult'];
 }
 
 export const ReadingResultDetails = ({ reading }: Props) => {
+  const correctAnswers = reading.part1 + reading.part2 + reading.part3;
+
   return (
     <>
       <Card>
@@ -30,49 +30,51 @@ export const ReadingResultDetails = ({ reading }: Props) => {
           <div className='flex items-center gap-2'>
             <span className='size-4 rounded-[5px] bg-green-500' />
             <span className='text-muted-foreground'>Correct answers: </span>
-            {reading.correctAnswers}
+            {correctAnswers}
           </div>
           <div className='flex items-center gap-2'>
             <span className='size-4 rounded-[5px] bg-red-500' />
             <span className='text-muted-foreground'>Incorrect answers: </span>
-            {reading.answers.length - reading.correctAnswers}
+            {40 - correctAnswers}
           </div>
         </CardHeader>
         <CardContent>
-          <div className='grid grid-cols-[repeat(auto-fill,minmax(70px,1fr))] gap-2'>
-            {reading.answers.map(({ userAnswer, correctAnswer, number, isCorrect }) => (
-              <Dialog key={number}>
-                <DialogTrigger className='relative flex items-center justify-center rounded-sm bg-secondary p-3'>
-                  <div
-                    className={cn(
-                      'absolute right-0 top-0 grid size-5 place-content-center rounded-bl-sm rounded-tr-sm',
-                      isCorrect ? 'bg-green-500' : 'bg-red-500'
-                    )}
-                  >
-                    {isCorrect ? (
-                      <CheckIcon className='size-4 text-white' />
-                    ) : (
-                      <XIcon className='size-4 text-white' />
-                    )}
-                  </div>
-                  {number}
-                </DialogTrigger>
-                <DialogContent className='max-w-[400px]'>
-                  <DialogHeader>
-                    <DialogTitle>Question {number}</DialogTitle>
-                  </DialogHeader>
-                  <div className='flex items-center gap-2'>
-                    <span className='text-muted-foreground'>Your answer: </span>
-                    {userAnswer}
-                  </div>
-                  <div className='flex items-center gap-2'>
-                    <span className='text-muted-foreground'>Correct answer: </span>
-                    {correctAnswer.join(' | ')}
-                  </div>
-                </DialogContent>
-              </Dialog>
-            ))}
-          </div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size='sm'>See exam files</Button>
+            </DialogTrigger>
+            <DialogContent className='w-[400px]'>
+              <DialogHeader>
+                <DialogTitle>Exam files</DialogTitle>
+              </DialogHeader>
+              <ul className='space-y-4'>
+                {reading.files.map((file) => (
+                  <li key={file.id}>
+                    <a
+                      href={file.url}
+                      className='flex items-center gap-2 rounded-md border p-1 transition-colors hover:bg-secondary/50'
+                      rel='noopener noreferrer'
+                      target='_blank'
+                    >
+                      <div className='shrink-0 rounded-sm p-1'>
+                        <img
+                          alt={file.fileName}
+                          className='size-10 rounded-sm bg-muted object-contain'
+                          src='/logo.png'
+                        />
+                      </div>
+                      <div className='flex-1'>
+                        <p className='text-sm font-medium'>{file.fileName}</p>
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              {reading.files.length === 0 && (
+                <p className='my-10 text-center text-muted-foreground'>No files found</p>
+              )}
+            </DialogContent>
+          </Dialog>
         </CardContent>
       </Card>
       <Card>

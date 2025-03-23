@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 

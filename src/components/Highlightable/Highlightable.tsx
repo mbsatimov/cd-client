@@ -19,8 +19,6 @@ interface HighlightableProps {
 export const Highlightable: React.FC<HighlightableProps> = ({ children }) => {
   const { state, functions } = useHighlightable();
 
-  console.log(state.popoverPosition);
-
   return (
     <>
       <ContextMenu>
