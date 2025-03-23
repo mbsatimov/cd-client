@@ -45,7 +45,8 @@ export const Hero = () => {
           initial={{ opacity: 0 }}
           transition={{ duration: 1, delay: 1 }}
         />
-        <div className='rounded-[24px] border border-neutral-200 bg-background/50 p-2 dark:border-neutral-700 dark:bg-black'>
+        <img alt='cd' className='rounded-[28px] md:hidden' src='/landing/features/reading.png' />
+        <div className='hidden rounded-[24px] border border-neutral-200 bg-background/50 p-2 dark:border-neutral-700 dark:bg-black md:block'>
           <ReadingScreen />
         </div>
       </motion.div>

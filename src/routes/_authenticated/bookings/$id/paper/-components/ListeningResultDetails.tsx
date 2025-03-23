@@ -60,7 +60,7 @@ export const ListeningResultDetails = ({ listening }: Props) => {
                         <img
                           alt={file.fileName}
                           className='size-10 rounded-sm bg-muted object-contain'
-                          src='/logo.png'
+                          src='/favicon.png'
                         />
                       </div>
                       <div className='flex-1'>
