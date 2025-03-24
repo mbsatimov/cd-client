@@ -17,10 +17,12 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
         <BaseLayout>
           <div className='gap-10 md:grid md:grid-cols-3'>
             <div>
-              <Link className='flex items-center gap-2' to='/'>
-                <img alt='IELTS ZONE' className='h-10 dark:hidden' src='/logo.png' />
-                <img alt='IELTS ZONE' className='hidden h-10 dark:inline' src='/logo-dark.png' />
-              </Link>
+              <div>
+                <Link className='flex w-fit items-center gap-2' to='/'>
+                  <img alt='IELTS ZONE' className='h-10 dark:hidden' src='/logo.png' />
+                  <img alt='IELTS ZONE' className='hidden h-10 dark:inline' src='/logo-dark.png' />
+                </Link>
+              </div>
               <p className='mt-6 text-sm text-muted-foreground'>
                 The best platform for mocking your english skills.
               </p>

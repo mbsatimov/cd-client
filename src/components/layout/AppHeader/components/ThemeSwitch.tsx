@@ -15,7 +15,7 @@ export const ThemeSwitch = () => {
 
   return (
     <Button
-      className='scale-95 rounded-full'
+      className='shrink-0 scale-95 rounded-full'
       size='icon'
       variant='ghost'
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}

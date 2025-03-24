@@ -6,8 +6,9 @@ import { WhyChooseUsCards } from './components';
 export const WhyChooseUs = () => {
   return (
     <BaseLayout className='py-10 md:py-20'>
-      <h2 className='mb-10 text-center text-lg font-semibold md:mb-20 md:text-3xl'>
-        <TextAnimate by='character' animation='blurInUp' once>
+      <h2 className='mb-10 text-center text-xl font-semibold md:mb-20 md:text-3xl'>
+        <span className='md:hidden'>Why Choose IELTS ZONE for Mock IELTS?</span>
+        <TextAnimate by='character' className='hidden md:block' animation='blurInUp' once>
           Why Choose IELTS ZONE for Mock IELTS?
         </TextAnimate>
       </h2>

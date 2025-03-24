@@ -31,7 +31,7 @@ export const NavUser = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className='relative h-8 w-8 rounded-full' variant='ghost'>
+        <Button className='relative h-8 w-8 shrink-0 rounded-full' variant='ghost'>
           <Avatar className='h-8 w-8'>
             <AvatarImage alt='@shadcn' src='/avatars/01.png' />
             <AvatarFallback>{user.firstName[0] + user.lastName[0]}</AvatarFallback>

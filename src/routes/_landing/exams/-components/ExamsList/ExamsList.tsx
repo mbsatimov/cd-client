@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { format } from 'date-fns';
-import { ArrowUpRight, BanknoteIcon, FileTextIcon, MailOpenIcon, MonitorIcon } from 'lucide-react';
+import { ArrowUpRight, FileTextIcon, MailOpenIcon, MonitorIcon } from 'lucide-react';
 
 import { Pagination } from '@/components/Pagination.tsx';
 import {
@@ -15,6 +15,7 @@ import {
   Separator,
   Spinner
 } from '@/components/ui';
+import { formatPrice } from '@/lib/utils.ts';
 
 import { useExamsList } from './hooks';
 
@@ -95,12 +96,9 @@ export const ExamList = () => {
                 </CardContent>
                 <CardFooter className='flex items-end justify-between gap-6 p-4 pt-0'>
                   <div className='flex flex-wrap items-center gap-2'>
-                    <div className='flex items-center gap-2 text-sm'>
-                      <BanknoteIcon className='size-5' />
-                      {exam.price} UZS{' '}
-                    </div>
+                    <div className='flex items-center gap-2 text-sm'>{formatPrice(exam.price)}</div>
                     <Badge className='bg-yellow-500 hover:bg-yellow-500/80'>
-                      For our students {exam.priceForOurStudents} UZS
+                      For our students {formatPrice(exam.priceForOurStudents)}
                     </Badge>
                   </div>
                   <div className='flex items-end'>

@@ -5,18 +5,18 @@ export const feedbacks = {
         feedback:
           'You’re missing essential information like dates, names, and simple facts. This suggests that you are not familiar with common conversational language or struggle to pick out details.',
         suggestions: [
-          'Begin by listening to <b>basic English conversations</b> (e.g., recordings from language learning platforms or simple podcasts) with <b>transcripts</b>. Follow along while reading, pausing after every sentence, and replaying until you catch the details.',
-          '<b>Write down</b> important numbers, names, or locations as you listen. This will help you get used to how people give such details in conversation.',
-          'Practice <b>repeating key information</b> aloud after listening to improve your active listening skills.'
+          'Begin by listening to basic English conversations (e.g., recordings from language learning platforms or simple podcasts) with transcripts. Follow along while reading, pausing after every sentence, and replaying until you catch the details.',
+          'Write down important numbers, names, or locations as you listen. This will help you get used to how people give such details in conversation.',
+          'Practice repeating key information aloud after listening to improve your active listening skills.'
         ]
       },
       1: {
         feedback:
           'You’re missing essential information like dates, names, and simple facts. This suggests that you are not familiar with common conversational language or struggle to pick out details.',
         suggestions: [
-          'Begin by listening to <b>basic English conversations</b> (e.g., recordings from language learning platforms or simple podcasts) with <b>transcripts</b>. Follow along while reading, pausing after every sentence, and replaying until you catch the details.',
-          '<b>Write down</b> important numbers, names, or locations as you listen. This will help you get used to how people give such details in conversation.',
-          'Practice <b>repeating key information</b> aloud after listening to improve your active listening skills.'
+          'Begin by listening to basic English conversations (e.g., recordings from language learning platforms or simple podcasts) with transcripts. Follow along while reading, pausing after every sentence, and replaying until you catch the details.',
+          'Write down important numbers, names, or locations as you listen. This will help you get used to how people give such details in conversation.',
+          'Practice repeating key information aloud after listening to improve your active listening skills.'
         ]
       },
       2: {

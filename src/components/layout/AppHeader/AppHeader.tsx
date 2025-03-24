@@ -2,12 +2,10 @@ import { Link, useRouter } from '@tanstack/react-router';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import React from 'react';
 
-import { BalanceDropdown } from '@/components/layout/AppHeader/components/BalanceDropdown.tsx';
 import { Button } from '@/components/ui';
 import { useAuth } from '@/utils/stores';
 
-import { NavUser } from './components/NavUser.tsx';
-import { ThemeSwitch } from './components/ThemeSwitch.tsx';
+import { BalanceDropdown, NavUser, ThemeSwitch } from './components';
 
 export const AppHeader = () => {
   const { user } = useAuth();

@@ -10,7 +10,8 @@ export const Faq = () => {
   return (
     <BaseLayout className='py-10 md:py-20'>
       <h2 className='mb-10 text-center text-xl font-semibold md:mb-20 md:text-3xl'>
-        <TextAnimate by='character' animation='blurInUp' once>
+        <span className='md:hidden'>Frequently Asked Questions</span>
+        <TextAnimate by='character' className='hidden md:block' animation='blurInUp' once>
           Frequently Asked Questions
         </TextAnimate>
       </h2>

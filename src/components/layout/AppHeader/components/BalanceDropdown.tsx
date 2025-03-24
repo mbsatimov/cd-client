@@ -22,7 +22,7 @@ export const BalanceDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size='sm' variant='ghost'>
+        <Button className='shrink-0' size='sm' variant='ghost'>
           {formatPrice(user.balance)}
         </Button>
       </DropdownMenuTrigger>
