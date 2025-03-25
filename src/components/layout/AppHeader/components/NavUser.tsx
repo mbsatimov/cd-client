@@ -1,5 +1,5 @@
 import { Link, useRouter } from '@tanstack/react-router';
-import { BadgeCheckIcon, CalendarCheckIcon, LogOutIcon } from 'lucide-react';
+import { CalendarCheckIcon, HistoryIcon, LogOutIcon, UserCircleIcon } from 'lucide-react';
 
 import {
   Avatar,
@@ -51,7 +51,7 @@ export const NavUser = () => {
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
             <Link to='/profile'>
-              <BadgeCheckIcon />
+              <UserCircleIcon />
               Profile
             </Link>
           </DropdownMenuItem>
@@ -59,6 +59,12 @@ export const NavUser = () => {
             <Link to='/bookings'>
               <CalendarCheckIcon />
               Bookings
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link to='/transactions'>
+              <HistoryIcon />
+              Transactions
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>

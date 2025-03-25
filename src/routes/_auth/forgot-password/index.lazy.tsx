@@ -4,37 +4,30 @@ import { Helmet } from 'react-helmet-async';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 
-import { RegisterForm, VerifyForm } from './-components';
+import { ForgotPasswordForm, VerifyForm } from './-components';
 
-const RegisterPage = () => {
+const ForgotPasswordPage = () => {
   const [otpKey, setOtpKey] = React.useState<number | null>(null);
 
-  if (!otpKey) {
+  if (!otpKey)
     return (
       <Card>
         <Helmet>
-          <title>Sign Up | MOCK - IELTS ZONE</title>
+          <title>Forgot Password | MOCK - IELTS ZONE</title>
+          <meta name='robots' content='noindex, nofollow' />
         </Helmet>
         <CardHeader className='flex flex-col space-y-2 text-left'>
-          <CardTitle>Register</CardTitle>
-          <CardDescription>
-            Enter your credentials below
-            <br />
-            to register an account
-          </CardDescription>
+          <CardTitle>Forgot password</CardTitle>
+          <CardDescription>Enter your phone number below and new password</CardDescription>
         </CardHeader>
         <CardContent>
-          <RegisterForm onSuccess={setOtpKey} />
+          <ForgotPasswordForm onSuccess={setOtpKey} />
         </CardContent>
       </Card>
     );
-  }
 
   return (
     <Card>
-      <Helmet>
-        <title>Verify | MOCK - IELTS ZONE</title>
-      </Helmet>
       <CardHeader className='flex flex-col space-y-2 text-left'>
         <CardTitle>Verify</CardTitle>
         <CardDescription>
@@ -50,6 +43,6 @@ const RegisterPage = () => {
   );
 };
 
-export const Route = createLazyFileRoute('/_auth/register/')({
-  component: RegisterPage
+export const Route = createLazyFileRoute('/_auth/forgot-password/')({
+  component: ForgotPasswordPage
 });

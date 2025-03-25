@@ -14,12 +14,16 @@ import {
 import { PhoneInput } from '@/components/ui/phone-input.tsx';
 import { cn } from '@/lib/utils';
 
-import { useLoginForm } from './hooks';
+import { useForgotPasswordForm } from './hooks';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
-export const LoginForm = ({ className, ...props }: Props) => {
-  const { form, state, functions } = useLoginForm();
+interface Props {
+  onSuccess: (otpKey: number) => void;
+}
+
+export const ForgotPasswordForm = ({ className, onSuccess, ...props }: Props) => {
+  const { form, state, functions } = useForgotPasswordForm({ onSuccess });
   return (
     <div className={cn('grid gap-6', className)} {...props}>
       <Form {...form}>
@@ -41,15 +45,7 @@ export const LoginForm = ({ className, ...props }: Props) => {
             <FormField
               render={({ field }) => (
                 <FormItem className='space-y-1'>
-                  <div className='flex items-center justify-between'>
-                    <FormLabel>Password</FormLabel>
-                    <Link
-                      className='text-sm text-muted-foreground hover:underline'
-                      to='/forgot-password'
-                    >
-                      Forgot password
-                    </Link>
-                  </div>
+                  <FormLabel>New password</FormLabel>
                   <FormControl>
                     <PasswordInput placeholder='********' {...field} />
                   </FormControl>
@@ -59,9 +55,16 @@ export const LoginForm = ({ className, ...props }: Props) => {
               name='password'
               control={form.control}
             />
-            <Button className='mt-2' type='submit' loading={state.isPending}>
-              Login
-            </Button>
+            <div className='mt-2 grid gap-2 sm:grid-cols-2'>
+              <Button asChild variant='outline'>
+                <Link replace to='/login'>
+                  Back
+                </Link>
+              </Button>
+              <Button type='submit' loading={state.isPending}>
+                Next
+              </Button>
+            </div>
           </div>
           <div className='mt-4 text-center text-sm'>
             Don&apos;t have an account?{' '}

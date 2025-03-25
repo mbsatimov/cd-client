@@ -1,8 +1,9 @@
 import { Link } from '@tanstack/react-router';
+import { InstagramIcon, SendIcon, YoutubeIcon } from 'lucide-react';
 import React from 'react';
 
 import { BaseLayout } from '@/components/layout';
-import { Separator } from '@/components/ui';
+import { Button, Separator } from '@/components/ui';
 import { cn } from '@/lib/utils.ts';
 import { useAuth } from '@/utils/stores';
 
@@ -13,7 +14,7 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
     const { user } = useAuth();
 
     return (
-      <footer ref={ref} className={cn('', className)} {...props}>
+      <footer ref={ref} className={cn('pt-10', className)} {...props}>
         <BaseLayout>
           <div className='gap-10 md:grid md:grid-cols-3'>
             <div>
@@ -26,6 +27,27 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
               <p className='mt-6 text-sm text-muted-foreground'>
                 The best platform for mocking your english skills.
               </p>
+              <div className='my-8 flex gap-3'>
+                <Button asChild size='icon' variant='secondary'>
+                  <a href='https://www.youtube.com/@ieltszone/' rel='noreferrer' target='_blank'>
+                    <YoutubeIcon className='size-6' />
+                  </a>
+                </Button>
+                <Button asChild size='icon' variant='secondary'>
+                  <a
+                    href='https://www.instagram.com/ieltszone.uz/'
+                    rel='noreferrer'
+                    target='_blank'
+                  >
+                    <InstagramIcon className='size-6' />
+                  </a>
+                </Button>
+                <Button asChild size='icon' variant='secondary'>
+                  <a href='https://t.me/ieltszone_uz' rel='noreferrer' target='_blank'>
+                    <SendIcon className='size-6' />
+                  </a>
+                </Button>
+              </div>
             </div>
             <div className='mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:col-span-2 md:mt-0'>
               <div>
@@ -110,6 +132,14 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
                         to='/bookings'
                       >
                         Bookings
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className='text-sm leading-6 text-muted-foreground hover:text-foreground'
+                        to='/transactions'
+                      >
+                        Transactions
                       </Link>
                     </li>
                   </ul>

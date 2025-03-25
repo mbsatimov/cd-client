@@ -1,7 +1,8 @@
+export * from './auth/forgot-password';
 export * from './auth/login';
-export * from './auth/me';
 export * from './auth/register';
 export * from './auth/resend-code';
+export * from './auth/reset-password';
 export * from './auth/verify';
 export * from './exams';
 export * from './exams/{id}';
@@ -9,3 +10,5 @@ export * from './mocks';
 export * from './mocks/{id}';
 export * from './registrations';
 export * from './results';
+export * from './users/me';
+export * from './users/transactions';

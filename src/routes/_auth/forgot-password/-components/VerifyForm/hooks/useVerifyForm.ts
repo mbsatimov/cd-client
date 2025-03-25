@@ -8,8 +8,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import { useTimer } from '@/hooks';
-import { postResendCode, putVerify } from '@/utils/api/requests';
-import { useAuth } from '@/utils/stores';
+import { postResendCode, putResetPassword } from '@/utils/api/requests';
 
 import { verifyFormSchema, type VerifyFormSchema } from '../constants';
 
@@ -24,7 +23,6 @@ export const useVerifyForm = ({ otpKey }: Props) => {
       code: ''
     }
   });
-  const authStore = useAuth();
   const router = useRouter();
   const canGoBack = useCanGoBack();
   const [showResetButton, setShowResetButton] = React.useState(false);
@@ -35,17 +33,16 @@ export const useVerifyForm = ({ otpKey }: Props) => {
     secondsLeft: secondsLeftToNewReset
   } = useTimer({
     autoStart: true,
-    initialTime: 10,
+    initialTime: 180,
     onTimerEnd: () => setShowResetButton(true)
   });
 
   const putVerifyMutation = useMutation({
-    mutationFn: putVerify,
-    onSuccess: ({ data }) => {
-      toast.success('Registered successfully');
-      authStore.setAccessToken(data.token);
+    mutationFn: putResetPassword,
+    onSuccess: () => {
+      toast.success('Password reset successfully');
       if (canGoBack) router.history.back();
-      else router.navigate({ to: '/' });
+      else router.navigate({ to: '/login' });
     },
     onError(error: AxiosError<{ message: string }>) {
       form.setError('code', {

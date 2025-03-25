@@ -17,6 +17,12 @@ interface RegisterRequestData {
 type RegisterResponse = number;
 
 interface VerifyResponse {
-  message: string;
   token: string;
 }
+
+interface ForgotPasswordRequestData {
+  password: string;
+  phoneNumber: string;
+}
+
+type ForgotPasswordResponse = number;

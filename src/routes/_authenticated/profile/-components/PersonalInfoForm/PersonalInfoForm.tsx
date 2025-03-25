@@ -5,8 +5,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  Input,
-  PhoneInput
+  Input
 } from '@/components/ui';
 import {
   Form,
@@ -57,19 +56,6 @@ export const PersonalInfoForm = ({ defaultValues }: Props) => {
                 </FormItem>
               )}
               name='lastName'
-              control={form.control}
-            />
-            <FormField
-              render={({ field }) => (
-                <FormItem className='space-y-1'>
-                  <FormLabel>Phone number</FormLabel>
-                  <FormControl>
-                    <PhoneInput placeholder='+998 XX XXX XX XX' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-              name='phoneNumber'
               control={form.control}
             />
           </CardContent>

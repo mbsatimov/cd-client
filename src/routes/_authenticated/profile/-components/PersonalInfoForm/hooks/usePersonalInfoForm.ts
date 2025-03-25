@@ -13,8 +13,7 @@ export const usePersonalInfoForm = (defaultValues?: User) => {
     resolver: zodResolver(personalInfoFormSchema),
     defaultValues: {
       firstName: defaultValues?.firstName || '',
-      lastName: defaultValues?.lastName || '',
-      phoneNumber: defaultValues?.phoneNumber || ''
+      lastName: defaultValues?.lastName || ''
     }
   });
 

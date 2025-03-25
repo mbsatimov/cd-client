@@ -1,4 +1,5 @@
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router';
+import { CalendarCheckIcon, HistoryIcon, UserCircleIcon } from 'lucide-react';
 
 import { AppFooter, AppHeader, BaseLayout } from '@/components/layout';
 import {
@@ -27,21 +28,31 @@ const AuthenticatedLayout = () => {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <div className='flex w-full gap-6'>
+        <div className='w-full gap-6 lg:flex'>
           <aside className='-ml-3 hidden w-[220px] flex-col gap-1 lg:flex'>
             <Link
-              className='rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent'
+              className='flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent'
               activeProps={{ className: 'bg-accent' }}
               to='/profile'
             >
+              <UserCircleIcon className='size-4' />
               Profile
             </Link>
             <Link
-              className='rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent'
+              className='flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent'
               activeProps={{ className: 'bg-accent' }}
               to='/bookings'
             >
+              <CalendarCheckIcon className='size-4' />
               Bookings
+            </Link>
+            <Link
+              className='flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent'
+              activeProps={{ className: 'bg-accent' }}
+              to='/transactions'
+            >
+              <HistoryIcon className='size-4' />
+              Transactions
             </Link>
           </aside>
           <main className='flex-1'>

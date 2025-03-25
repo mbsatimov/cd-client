@@ -44,7 +44,7 @@ export const BalanceDropdown = () => {
             </a>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link to='/'>
+            <Link to='/transactions'>
               <HistoryIcon />
               Transactions
             </Link>
