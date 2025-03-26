@@ -16,6 +16,10 @@ interface RegisterRequestData {
 
 type RegisterResponse = number;
 
+interface RefreshResponse {
+  token: string;
+}
+
 interface VerifyResponse {
   token: string;
 }

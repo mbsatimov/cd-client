@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { toast } from 'sonner';
 
+import { postRefresh } from '@/utils/api/requests';
 import { ThemeProvider } from '@/utils/context';
 import { useAuthStore } from '@/utils/stores';
 
@@ -25,17 +26,24 @@ const mutationCache = new MutationCache({
 
 const queryCache = new QueryCache({
   onError: (error) => {
-    if (error instanceof AxiosError) {
-      if (error.response?.status === 401) {
-        useAuthStore.getState().auth.reset();
-        const redirect = `${router.history.location.href}`;
-        router.navigate({ to: '/login', search: { redirect } });
-      }
-      if (error.response?.status === 500) {
-        router.navigate({ to: '/500' });
-      } else if (error.response?.status === 403) {
-        router.navigate({ to: '/403', replace: true });
-      }
+    if (!(error instanceof AxiosError)) return;
+
+    if (error.response?.status === 401) {
+      postRefresh()
+        .then(({ data }) => {
+          useAuthStore.getState().auth.setAccessToken(data.token);
+        })
+        .catch((err) => {
+          if (err.response?.status === 401) {
+            useAuthStore.getState().auth.reset();
+            const redirect = `${router.history.location.href}`;
+            router.navigate({ to: '/login', search: { redirect } });
+          }
+        });
+    } else if (error.response?.status === 500) {
+      router.navigate({ to: '/500' });
+    } else if (error.response?.status === 403) {
+      router.navigate({ to: '/403', replace: true });
     }
   }
 });

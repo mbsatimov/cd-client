@@ -21,16 +21,8 @@ export const VerifyForm = ({ otpKey, setOtpKey, className, ...props }: Props) =>
     <div className={cn('grid gap-6', className)} {...props}>
       <Form {...form}>
         <form className='grid gap-3' onSubmit={form.handleSubmit(functions.onSubmit)}>
-          <Button asChild className='justify-between' size='sm' type='button' variant='secondary'>
-            <a
-              href='https://t.me/ieltszone_cd_bot'
-              rel='noreferrer'
-              target='_blank'
-              onClick={(e) => {
-                e.preventDefault();
-                functions.onResendCode();
-              }}
-            >
+          <Button asChild className='justify-between' size='sm' variant='secondary'>
+            <a href='https://t.me/ieltszone_cd_bot' rel='noreferrer' target='_blank'>
               Open bot to get code
               <MoveRightIcon />
             </a>

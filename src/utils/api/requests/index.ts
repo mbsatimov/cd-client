@@ -1,5 +1,6 @@
 export * from './auth/forgot-password';
 export * from './auth/login';
+export * from './auth/refresh';
 export * from './auth/register';
 export * from './auth/resend-code';
 export * from './auth/reset-password';

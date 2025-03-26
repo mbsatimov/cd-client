@@ -58,7 +58,7 @@ export const useVerifyForm = ({ otpKey }: Props) => {
   const postResendCodeMutation = useMutation({
     mutationFn: postResendCode,
     onSuccess: () => {
-      toast.success('Verification code updated, check your phone');
+      toast.success('Verification code updated, ask new code from bot.');
       reset();
       start();
       setShowResetButton(false);
