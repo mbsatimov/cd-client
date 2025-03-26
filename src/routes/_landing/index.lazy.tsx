@@ -1,7 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Helmet } from 'react-helmet-async';
 
-import { Faq, FeedbackCards, Hero, IeltsExams, WhyChooseUs } from './-components';
+import { Faq, Feedback, Hero, IeltsExams, WhyChooseUs } from './-components';
 
 const HomePage = () => {
   return (
@@ -13,7 +13,7 @@ const HomePage = () => {
       <IeltsExams />
       <WhyChooseUs />
       <Faq />
-      <FeedbackCards />
+      <Feedback />
     </>
   );
 };
