@@ -8,22 +8,34 @@ import { useIsMobile } from '@/hooks';
 
 const reviews = [
   {
-    name: 'Jack',
-    username: '@jack',
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: 'https://avatar.vercel.sh/jack'
+    name: "Laziz G'ayratov",
+    body: "Exam was almost real. At the same time, I will recommend my friends. It is first time I have attended to the mock exam. Zo'r I can say a word 👍👍👍",
+    img: 'https://avatar.vercel.sh/42'
   },
   {
-    name: 'Jill',
-    username: '@jill',
-    body: "I don't know what to say. I'm speechless. This is amazing.",
+    name: 'Candidate',
+    body: 'The exam was so amazing and I felt the real exam atmosphere, and I did not expect so much. it was 100% out of 100. The speaking was my favourite and all the sections were cool. I think the reading was quite difficult because I usually got 7 but I got 5. But it is okay.',
     img: 'https://avatar.vercel.sh/jill'
   },
   {
-    name: 'John',
-    username: '@john',
-    body: "I'm at a loss for words. This is amazing. I love it.",
+    name: 'Shaxzod',
+    body: 'I am really satisfied with the mock exam took place in IELTS ZONE. It is really similar to real exam. What I like most about mock exam is materials which is authentic and as well as invigilators.',
     img: 'https://avatar.vercel.sh/john'
+  },
+  {
+    name: 'Nigina',
+    body: 'I liked it. I give 70% out of 100%. I liked the speaking most. I recommend others to take exam at IELTS ZONE. I like all the thing about mock exam, materials, invigilators and service.',
+    img: 'https://avatar.vercel.sh/next.js'
+  },
+  {
+    name: 'Imomali',
+    body: 'The mock exam condition was really good. It was 99.9% similar to real exam. All the things were well orginized. I really recommend anyone to take a mock exam at IELTSZONE if they wanna feel real exam condition.',
+    img: 'https://avatar.vercel.sh/jane'
+  },
+  {
+    name: 'Tommy',
+    body: 'I liked the mock exam. I have felt exam atmosphere because I took IELTS before. I know how its atmosphere. Everything was satisfactory👌(Especially feedback folder).',
+    img: 'https://avatar.vercel.sh/satori'
   }
 ];
 
@@ -31,28 +43,15 @@ const firstRow = reviews;
 const secondRow = reviews;
 const thirdRow = reviews;
 
-const ReviewCard = ({
-  img,
-  name,
-  username,
-  body
-}: {
-  img: string;
-  name: string;
-  username: string;
-  body: string;
-}) => {
+const ReviewCard = ({ img, name, body }: { img: string; name: string; body: string }) => {
   return (
-    <Card className='rounded-3xl'>
-      <CardHeader className='flex flex-row items-center gap-2 pb-4'>
+    <Card className='h-full w-[300px] rounded-3xl md:w-full'>
+      <CardHeader className='flex flex-row items-center gap-2 space-y-0 pb-4'>
         <img alt='' className='size-8 rounded-full' height='32' src={img} width='32' />
-        <div className='flex flex-col'>
-          <figcaption className='text-sm font-medium dark:text-white'>{name}</figcaption>
-          <p className='text-xs font-medium dark:text-white/40'>{username}</p>
-        </div>
+        <figcaption className='text-sm font-medium dark:text-white'>{name}</figcaption>
       </CardHeader>
       <CardContent className='mt-2 text-sm'>
-        <CardDescription>{body}</CardDescription>
+        <CardDescription className='line-clamp-5'>{body}</CardDescription>
       </CardContent>
     </Card>
   );
@@ -60,6 +59,8 @@ const ReviewCard = ({
 
 export const FeedbackCards = () => {
   const isMobile = useIsMobile();
+
+  console.log(isMobile);
 
   return (
     <BaseLayout className='py-10 md:py-20'>
@@ -69,7 +70,7 @@ export const FeedbackCards = () => {
           Loved by people all over the universe
         </TextAnimate>
       </h2>
-      <div className='relative grid w-full grid-cols-1 flex-row items-center justify-center overflow-hidden sm:grid-cols-2 md:h-[80vh] lg:grid-cols-3'>
+      <div className='relative grid w-full grid-cols-1 flex-row items-center justify-center overflow-hidden md:h-[80vh] md:grid-cols-2 lg:grid-cols-3'>
         <Marquee
           className='[--duration:25s] md:[--duration:10s]'
           reverse={isMobile}
@@ -77,39 +78,39 @@ export const FeedbackCards = () => {
         >
           {firstRow.map((review) => (
             <motion.div
-              key={review.username}
-              initial={{ opacity: isMobile ? 1 : 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: Math.random() }}
-              viewport={{ once: true }}
+              key={review.body}
+              initial={isMobile ? undefined : { opacity: 0 }}
+              whileInView={isMobile ? undefined : { opacity: 1 }}
+              transition={isMobile ? undefined : { duration: 0.5, delay: Math.random() }}
+              viewport={isMobile ? undefined : { once: true }}
             >
-              <ReviewCard key={review.username} {...review} />
+              <ReviewCard key={review.body} {...review} />
             </motion.div>
           ))}
         </Marquee>
         <Marquee className='[--duration:25s] md:[--duration:15s]' vertical={!isMobile}>
           {secondRow.map((review) => (
             <motion.div
-              key={review.username}
-              initial={{ opacity: isMobile ? 1 : 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: Math.random() }}
-              viewport={{ once: true }}
+              key={review.body}
+              initial={isMobile ? undefined : { opacity: 0 }}
+              whileInView={isMobile ? undefined : { opacity: 1 }}
+              transition={isMobile ? undefined : { duration: 0.5, delay: Math.random() }}
+              viewport={isMobile ? undefined : { once: true }}
             >
-              <ReviewCard key={review.username} {...review} />
+              <ReviewCard key={review.body} {...review} />
             </motion.div>
           ))}
         </Marquee>
         <Marquee vertical className='hidden [--duration:10s] lg:flex'>
           {thirdRow.map((review) => (
             <motion.div
-              key={review.username}
+              key={review.body}
               initial={{ opacity: isMobile ? 1 : 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: Math.random() }}
               viewport={{ once: true }}
             >
-              <ReviewCard key={review.username} {...review} />
+              <ReviewCard key={review.body} {...review} />
             </motion.div>
           ))}
         </Marquee>
