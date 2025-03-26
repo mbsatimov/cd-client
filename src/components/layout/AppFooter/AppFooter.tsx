@@ -25,7 +25,9 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
                 </Link>
               </div>
               <p className='mt-6 text-sm text-muted-foreground'>
-                The best platform for mocking your english skills.
+                Home to Uzbekistan&#39;s top IELTS instructors, with the highest number of 9.0
+                scorers and CELTA-certified teachers. We offer cutting-edge, student-centered IELTS
+                preparation for all levels.
               </p>
               <div className='my-8 flex gap-3'>
                 <Button asChild size='icon' variant='secondary'>
