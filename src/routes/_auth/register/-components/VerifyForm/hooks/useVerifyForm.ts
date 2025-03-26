@@ -35,7 +35,7 @@ export const useVerifyForm = ({ otpKey }: Props) => {
     secondsLeft: secondsLeftToNewReset
   } = useTimer({
     autoStart: true,
-    initialTime: 10,
+    initialTime: 180,
     onTimerEnd: () => setShowResetButton(true)
   });
 
