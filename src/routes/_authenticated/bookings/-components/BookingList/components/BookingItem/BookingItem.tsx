@@ -24,18 +24,18 @@ export const BookingItem = ({ registration }: Props) => {
   const [showCode, setShowCode] = React.useState(false);
 
   const onShowCode = () => {
-    setShowCode(true);
-    toast.warning("Don't share your code with others");
+    setShowCode(!showCode);
+    if (!showCode) toast.warning("Don't share your code with others");
   };
   return (
     <Card>
       <CardHeader className='space-y-0 border-b p-0'>
         <div className='flex justify-between border-b p-4 pb-2'>
           <div className='space-y-2'>
-            <CardTitle className='text-xl md:text-2xl'>{registration.exam.location}</CardTitle>
+            <CardTitle className='text-xl md:text-2xl'>{registration.location}</CardTitle>
             <CardDescription>
               <a
-                href={registration.exam.locationUrl}
+                href={registration.locationUrl}
                 className='inline-flex items-center gap-1 hover:underline'
               >
                 Open location in Google Maps
@@ -54,7 +54,7 @@ export const BookingItem = ({ registration }: Props) => {
           <CardTitle className='text-lg'>Speaking Time</CardTitle>
           <div className='text-right text-sm'>
             <div className='font-semibold'>
-              {format(registration.exam.examDateTime, 'dd MMMM, EEE p')}
+              {format(registration.examDateTime, 'dd MMMM, EEE p')}
             </div>
           </div>
         </div>

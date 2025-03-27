@@ -2,9 +2,11 @@ type RegistrationStatus = 'BOOKED' | 'CANCELED' | 'MARKED' | 'P_MARKED';
 interface Registration {
   code: string;
   createdAt: string;
-  exam: Exam;
+  examDateTime: string;
   id: number;
   isStudent: boolean;
+  location: string;
+  locationUrl: string;
   registeredAt: string;
   speakingTime: string;
   status: RegistrationStatus;

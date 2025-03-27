@@ -8,6 +8,7 @@ interface Exam {
   locationUrl: string;
   price: number;
   priceForOurStudents: number;
+  registeredAt: string;
   type: ExamType;
   speakingTimes: {
     id: number;
