@@ -21,9 +21,7 @@ const RootLayout = () => {
     enabled: !!accessToken,
     queryFn: async () => {
       const res = await getMe();
-      if (res.data) {
-        setUser(res.data);
-      }
+      if (res.data) setUser(res.data);
       return res;
     }
   });

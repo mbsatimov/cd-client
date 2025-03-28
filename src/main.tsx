@@ -29,13 +29,13 @@ const queryCache = new QueryCache({
     if (!(error instanceof AxiosError)) return;
 
     if (error.response?.status === 401) {
-      postRefresh()
+      useAuthStore.getState().auth.reset();
+      postRefresh({ config: { headers: { Authorization: undefined } } })
         .then(({ data }) => {
           useAuthStore.getState().auth.setAccessToken(data.token);
         })
         .catch((err) => {
           if (err.response?.status === 401) {
-            useAuthStore.getState().auth.reset();
             const redirect = `${router.history.location.href}`;
             router.navigate({ to: '/login', search: { redirect } });
           }

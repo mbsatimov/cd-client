@@ -67,7 +67,7 @@ const AuthenticatedLayout = () => {
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: async ({ location }) => {
-    if (!useAuthStore.getState().auth.accessToken) {
+    if (!useAuthStore.getState().auth.user) {
       throw redirect({
         to: '/login',
         search: {

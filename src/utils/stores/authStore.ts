@@ -5,7 +5,7 @@ const ACCESS_TOKEN = 'thisisjustarandomstring';
 
 interface AuthState {
   auth: {
-    user: User | null;
+    user?: User | null;
     setUser: (user: User | null) => void;
     accessToken: string | null;
     setAccessToken: (accessToken: string) => void;
@@ -18,7 +18,7 @@ export const useAuthStore = create<AuthState>()((set) => {
   const accessToken = Cookies.get(ACCESS_TOKEN) || null;
   return {
     auth: {
-      user: null,
+      user: undefined,
       setUser: (user) => set((state) => ({ ...state, auth: { ...state.auth, user } })),
       accessToken,
       setAccessToken: (accessToken) =>
