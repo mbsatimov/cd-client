@@ -71,7 +71,7 @@ export const ExamCards = () => {
             className='group transition-opacity group-hover/card:opacity-100 lg:opacity-0'
             variant='ghost'
           >
-            <Link to='/features'>
+            <Link search={{ type: 'offline-cd' }} to='/features'>
               <span>Learn more</span>
               <MoveRightIcon className='transition group-hover:translate-x-1' />
             </Link>
@@ -121,7 +121,7 @@ export const ExamCards = () => {
             className='group transition-opacity group-hover/card:opacity-100 lg:opacity-0'
             variant='ghost'
           >
-            <Link to='/features'>
+            <Link search={{ type: 'paper' }} to='/features'>
               <span>Learn more</span>
               <MoveRightIcon className='transition group-hover:translate-x-1' />
             </Link>

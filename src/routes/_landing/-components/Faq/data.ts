@@ -1,8 +1,8 @@
 export const faqData = [
   {
-    question: 'Who checks our Speaking and Writing tests?',
+    question: 'Who checks our Speaking and OnlineCDTab tests?',
     answer:
-      'Your Speaking and Writing tests are evaluated by IELTS ZONE’s professional teachers. They have extensive experience in teaching and hold CELTA certifications, along with IELTS band scores of 8.5 or 9. Our marking is highly accurate, closely matching real IELTS exam standards. Many students who have taken both our mock exams and the official IELTS test have confirmed this.'
+      'Your Speaking and OnlineCDTab tests are evaluated by IELTS ZONE’s professional teachers. They have extensive experience in teaching and hold CELTA certifications, along with IELTS band scores of 8.5 or 9. Our marking is highly accurate, closely matching real IELTS exam standards. Many students who have taken both our mock exams and the official IELTS test have confirmed this.'
   },
   {
     question: 'How often do mock exams take place?',
@@ -37,6 +37,6 @@ export const faqData = [
   {
     question: 'Do you provide feedback on our results?',
     answer:
-      'Yes! We provide detailed feedback on each section of your test. Our experienced teachers analyze your performance and offer valuable insights to help you improve. You’ll also be able to review your Writing, Listening, and Speaking answers alongside personalized feedback. This allows you to clearly see your mistakes and understand how to improve.'
+      'Yes! We provide detailed feedback on each section of your test. Our experienced teachers analyze your performance and offer valuable insights to help you improve. You’ll also be able to review your OnlineCDTab, PaperBasedTab, and Speaking answers alongside personalized feedback. This allows you to clearly see your mistakes and understand how to improve.'
   }
 ];

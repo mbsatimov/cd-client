@@ -1,6 +1,6 @@
 export const stepsMap: Record<IeltsTestType, any> = {
   listening: {
-    title: 'IELTS Listening',
+    title: 'IELTS PaperBasedTab',
     desc: 'Time: Approximately 30 minutes',
     instructions: {
       title: 'INSTRUCTIONS TO CANDIDATES',
@@ -21,7 +21,7 @@ export const stepsMap: Record<IeltsTestType, any> = {
     }
   },
   reading: {
-    title: 'IELTS Academic Reading',
+    title: 'IELTS Academic OfflineCDTab',
     desc: 'Time: 1 hour',
     instructions: {
       title: 'INSTRUCTIONS TO CANDIDATES',
@@ -41,7 +41,7 @@ export const stepsMap: Record<IeltsTestType, any> = {
     }
   },
   writing: {
-    title: 'IELTS Academic Writing',
+    title: 'IELTS Academic OnlineCDTab',
     desc: 'Time: 1 hour',
     instructions: {
       title: 'INSTRUCTIONS TO CANDIDATES',

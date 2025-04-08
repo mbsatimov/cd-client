@@ -84,6 +84,16 @@
     scrollbar-color: hsl(var(--border)) transparent;
   }
 
+  .no-visible-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .no-visible-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   mark {
     @apply bg-yellow-200;
   }
