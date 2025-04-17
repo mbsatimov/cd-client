@@ -27,7 +27,6 @@ const errors403LazyImport = createFileRoute('/(errors)/403')();
 const errors401LazyImport = createFileRoute('/(errors)/401')();
 const ExamEndIndexLazyImport = createFileRoute('/exam/end/')();
 const ExamIdIndexLazyImport = createFileRoute('/exam/$id/')();
-const LandingFeaturesIndexLazyImport = createFileRoute('/_landing/features/')();
 const LandingExamsIndexLazyImport = createFileRoute('/_landing/exams/')();
 const AuthenticatedTransactionsIndexLazyImport = createFileRoute('/_authenticated/transactions/')();
 const AuthenticatedProfileIndexLazyImport = createFileRoute('/_authenticated/profile/')();
@@ -115,12 +114,6 @@ const ExamIdIndexLazyRoute = ExamIdIndexLazyImport.update({
   path: '/exam/$id/',
   getParentRoute: () => rootRoute
 } as any).lazy(() => import('./routes/exam/$id/index.lazy').then((d) => d.Route));
-
-const LandingFeaturesIndexLazyRoute = LandingFeaturesIndexLazyImport.update({
-  id: '/features/',
-  path: '/features/',
-  getParentRoute: () => LandingRouteRoute
-} as any).lazy(() => import('./routes/_landing/features/index.lazy').then((d) => d.Route));
 
 const LandingExamsIndexLazyRoute = LandingExamsIndexLazyImport.update({
   id: '/exams/',
@@ -305,13 +298,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingExamsIndexLazyImport;
       parentRoute: typeof LandingRouteImport;
     };
-    '/_landing/features/': {
-      id: '/_landing/features/';
-      path: '/features';
-      fullPath: '/features';
-      preLoaderRoute: typeof LandingFeaturesIndexLazyImport;
-      parentRoute: typeof LandingRouteImport;
-    };
     '/exam/$id/': {
       id: '/exam/$id/';
       path: '/exam/$id';
@@ -389,14 +375,12 @@ const AuthenticatedRouteRouteWithChildren = AuthenticatedRouteRoute._addFileChil
 interface LandingRouteRouteChildren {
   LandingIndexLazyRoute: typeof LandingIndexLazyRoute;
   LandingExamsIndexLazyRoute: typeof LandingExamsIndexLazyRoute;
-  LandingFeaturesIndexLazyRoute: typeof LandingFeaturesIndexLazyRoute;
   LandingExamsIdIndexLazyRoute: typeof LandingExamsIdIndexLazyRoute;
 }
 
 const LandingRouteRouteChildren: LandingRouteRouteChildren = {
   LandingIndexLazyRoute: LandingIndexLazyRoute,
   LandingExamsIndexLazyRoute: LandingExamsIndexLazyRoute,
-  LandingFeaturesIndexLazyRoute: LandingFeaturesIndexLazyRoute,
   LandingExamsIdIndexLazyRoute: LandingExamsIdIndexLazyRoute
 };
 
@@ -417,7 +401,6 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileIndexLazyRoute;
   '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute;
   '/exams': typeof LandingExamsIndexLazyRoute;
-  '/features': typeof LandingFeaturesIndexLazyRoute;
   '/exam/$id': typeof ExamIdIndexLazyRoute;
   '/exam/end': typeof ExamEndIndexLazyRoute;
   '/exams/$id': typeof LandingExamsIdIndexLazyRoute;
@@ -440,7 +423,6 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileIndexLazyRoute;
   '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute;
   '/exams': typeof LandingExamsIndexLazyRoute;
-  '/features': typeof LandingFeaturesIndexLazyRoute;
   '/exam/$id': typeof ExamIdIndexLazyRoute;
   '/exam/end': typeof ExamEndIndexLazyRoute;
   '/exams/$id': typeof LandingExamsIdIndexLazyRoute;
@@ -466,7 +448,6 @@ export interface FileRoutesById {
   '/_authenticated/profile/': typeof AuthenticatedProfileIndexLazyRoute;
   '/_authenticated/transactions/': typeof AuthenticatedTransactionsIndexLazyRoute;
   '/_landing/exams/': typeof LandingExamsIndexLazyRoute;
-  '/_landing/features/': typeof LandingFeaturesIndexLazyRoute;
   '/exam/$id/': typeof ExamIdIndexLazyRoute;
   '/exam/end/': typeof ExamEndIndexLazyRoute;
   '/_landing/exams/$id/': typeof LandingExamsIdIndexLazyRoute;
@@ -491,7 +472,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transactions'
     | '/exams'
-    | '/features'
     | '/exam/$id'
     | '/exam/end'
     | '/exams/$id'
@@ -513,7 +493,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transactions'
     | '/exams'
-    | '/features'
     | '/exam/$id'
     | '/exam/end'
     | '/exams/$id'
@@ -537,7 +516,6 @@ export interface FileRouteTypes {
     | '/_authenticated/profile/'
     | '/_authenticated/transactions/'
     | '/_landing/exams/'
-    | '/_landing/features/'
     | '/exam/$id/'
     | '/exam/end/'
     | '/_landing/exams/$id/'
@@ -617,7 +595,6 @@ export const routeTree = rootRoute
       "children": [
         "/_landing/",
         "/_landing/exams/",
-        "/_landing/features/",
         "/_landing/exams/$id/"
       ]
     },
@@ -666,10 +643,6 @@ export const routeTree = rootRoute
     },
     "/_landing/exams/": {
       "filePath": "_landing/exams/index.lazy.tsx",
-      "parent": "/_landing"
-    },
-    "/_landing/features/": {
-      "filePath": "_landing/features/index.lazy.tsx",
       "parent": "/_landing"
     },
     "/exam/$id/": {

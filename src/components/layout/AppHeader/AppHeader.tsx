@@ -36,29 +36,13 @@ export const AppHeader = () => {
             ? 'rgba(34, 42, 53, 0.06) 0px 0px 24px, rgba(0, 0, 0, 0.05) 0px 1px 1px, rgba(34, 42, 53, 0.04) 0px 0px 0px 1px, rgba(34, 42, 53, 0.08) 0px 0px 4px, rgba(47, 48, 55, 0.05) 0px 16px 68px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset'
             : 'none'
         }}
-        className='mx-auto grid h-full w-full max-w-6xl grid-cols-2 items-center rounded-full bg-background/70 px-4 backdrop-blur-md md:grid-cols-[1fr,auto,1fr]'
+        className='mx-auto flex h-full w-full max-w-6xl grid-cols-2 items-center justify-between rounded-full bg-background/70 px-4 backdrop-blur-md'
         transition={{ duration: 0.75 }}
       >
         <Link className='flex items-center justify-start gap-1' to='/'>
-          <img alt='IELTS ZONE' className='h-8 dark:hidden' src='/logo.png' />
-          <img alt='IELTS ZONE' className='hidden h-8 dark:inline' src='/logo-dark.png' />
+          <img alt='IELTS ZONE' className='h-6 dark:hidden sm:h-8' src='/logo.png' />
+          <img alt='IELTS ZONE' className='hidden h-6 dark:inline sm:h-8' src='/logo-dark.png' />
         </Link>
-        <div className='hidden justify-center gap-3 px-6 text-sm md:flex'>
-          <Link
-            className='px-2 font-medium text-muted-foreground transition-colors hover:text-foreground'
-            activeProps={{ className: 'text-primary' }}
-            to='/exams'
-          >
-            Exams
-          </Link>
-          <Link
-            className='px-2 font-medium text-muted-foreground transition-colors hover:text-foreground'
-            activeProps={{ className: 'text-primary' }}
-            to='/features'
-          >
-            Features
-          </Link>
-        </div>
         <div className='flex items-center justify-end gap-2'>
           {user && <BalanceDropdown />}
           <ThemeSwitch />

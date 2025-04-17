@@ -25,9 +25,10 @@ export const Feedback = () => {
       </h2>
       <div className='relative grid w-full grid-cols-1 flex-row items-center justify-center overflow-hidden md:h-[80vh] md:grid-cols-2 lg:grid-cols-3'>
         <Marquee
-          className='[--duration:25s] md:[--duration:10s]'
+          className='[--duration:25s] md:[--duration:15s]'
           reverse={isMobile}
           vertical={!isMobile}
+          pauseOnHover
         >
           {firstRow.map((review) => (
             <motion.div
@@ -41,7 +42,7 @@ export const Feedback = () => {
             </motion.div>
           ))}
         </Marquee>
-        <Marquee className='[--duration:25s] md:[--duration:15s]' vertical={!isMobile}>
+        <Marquee className='[--duration:25s] md:[--duration:20s]' vertical={!isMobile} pauseOnHover>
           {secondRow.map((review) => (
             <motion.div
               key={review.body}
@@ -54,7 +55,7 @@ export const Feedback = () => {
             </motion.div>
           ))}
         </Marquee>
-        <Marquee vertical className='hidden [--duration:10s] lg:flex'>
+        <Marquee vertical className='hidden [--duration:15s] lg:flex' pauseOnHover>
           {thirdRow.map((review) => (
             <motion.div
               key={review.body}

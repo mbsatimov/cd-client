@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { MoveRightIcon } from 'lucide-react';
+import { useQueryState } from 'nuqs';
 import React from 'react';
 
 import {
@@ -13,10 +14,13 @@ import {
   CardTitle
 } from '@/components/ui';
 import { Meteors } from '@/components/ui/meteors.tsx';
+import { useScrollTo } from '@/hooks/useScrollTo.ts';
 import { cn } from '@/lib/utils.ts';
 
 export const ExamCards = () => {
   const [hovered, setHovered] = React.useState<number | null>(null);
+  const [_, setExamType] = useQueryState('type', { defaultValue: 'paper' });
+  const scrollTo = useScrollTo();
 
   return (
     <motion.div
@@ -67,14 +71,15 @@ export const ExamCards = () => {
             </Link>
           </Button>
           <Button
-            asChild
             className='group transition-opacity group-hover/card:opacity-100 lg:opacity-0'
             variant='ghost'
+            onClick={() => {
+              scrollTo('features');
+              setExamType('offline-cd');
+            }}
           >
-            <Link search={{ type: 'offline-cd' }} to='/features'>
-              <span>Learn more</span>
-              <MoveRightIcon className='transition group-hover:translate-x-1' />
-            </Link>
+            <span>Learn more</span>
+            <MoveRightIcon className='transition group-hover:translate-x-1' />
           </Button>
         </CardFooter>
       </Card>
@@ -117,14 +122,15 @@ export const ExamCards = () => {
             </Link>
           </Button>
           <Button
-            asChild
             className='group transition-opacity group-hover/card:opacity-100 lg:opacity-0'
             variant='ghost'
+            onClick={() => {
+              scrollTo('features');
+              setExamType('paper');
+            }}
           >
-            <Link search={{ type: 'paper' }} to='/features'>
-              <span>Learn more</span>
-              <MoveRightIcon className='transition group-hover:translate-x-1' />
-            </Link>
+            <span>Learn more</span>
+            <MoveRightIcon className='transition group-hover:translate-x-1' />
           </Button>
         </CardFooter>
       </Card>
