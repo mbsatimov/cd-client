@@ -1,11 +1,18 @@
+type UserRole =
+  | 'ADMIN'
+  | 'PLACEMENT_TAKER'
+  | 'PLACEMENT_TESTER'
+  | 'SUPER_ADMIN'
+  | 'TEACHER'
+  | 'USER';
+
 interface User {
   balance: number;
-  email: string;
   firstName: string;
   id: number;
   lastName: string;
   phoneNumber: string;
-  telegramUsername: string;
+  role: UserRole;
 }
 
 type UserResponse = User;

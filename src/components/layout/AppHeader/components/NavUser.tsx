@@ -1,6 +1,13 @@
 import { Link, useRouter } from '@tanstack/react-router';
-import { CalendarCheckIcon, HistoryIcon, LogOutIcon, UserCircleIcon } from 'lucide-react';
+import {
+  CalendarCheckIcon,
+  HistoryIcon,
+  LogOutIcon,
+  UserCircleIcon,
+  UserCogIcon
+} from 'lucide-react';
 
+import { PermissionWrapper } from '@/components/PermissionWrapper.tsx';
 import {
   Avatar,
   AvatarFallback,
@@ -67,6 +74,14 @@ export const NavUser = () => {
               Transactions
             </Link>
           </DropdownMenuItem>
+          <PermissionWrapper allowedRoles={['ADMIN', 'PLACEMENT_TESTER']}>
+            <DropdownMenuItem asChild>
+              <Link to='/placements'>
+                <UserCogIcon />
+                Placements
+              </Link>
+            </DropdownMenuItem>
+          </PermissionWrapper>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem className='text-red-500' onClick={onLogout}>

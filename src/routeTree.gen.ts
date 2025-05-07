@@ -8,461 +8,561 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router'
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root';
-import { Route as LandingRouteImport } from './routes/_landing/route';
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route';
-import { Route as AuthRouteImport } from './routes/_auth/route';
+import { Route as rootRoute } from './routes/__root'
+import { Route as LandingRouteImport } from './routes/_landing/route'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/_auth/route'
+import { Route as PlacementsIndexImport } from './routes/placements/index'
+import { Route as PlacementsIdTestTakerTakerIdIndexImport } from './routes/placements/$id/test-taker.$takerId/index'
 
 // Create Virtual Routes
 
-const ExamIndexLazyImport = createFileRoute('/exam/')();
-const LandingIndexLazyImport = createFileRoute('/_landing/')();
-const errors500LazyImport = createFileRoute('/(errors)/500')();
-const errors404LazyImport = createFileRoute('/(errors)/404')();
-const errors403LazyImport = createFileRoute('/(errors)/403')();
-const errors401LazyImport = createFileRoute('/(errors)/401')();
-const ExamEndIndexLazyImport = createFileRoute('/exam/end/')();
-const ExamIdIndexLazyImport = createFileRoute('/exam/$id/')();
-const LandingExamsIndexLazyImport = createFileRoute('/_landing/exams/')();
-const AuthenticatedTransactionsIndexLazyImport = createFileRoute('/_authenticated/transactions/')();
-const AuthenticatedProfileIndexLazyImport = createFileRoute('/_authenticated/profile/')();
-const AuthenticatedBookingsIndexLazyImport = createFileRoute('/_authenticated/bookings/')();
-const AuthRegisterIndexLazyImport = createFileRoute('/_auth/register/')();
-const AuthLoginIndexLazyImport = createFileRoute('/_auth/login/')();
-const AuthForgotPasswordIndexLazyImport = createFileRoute('/_auth/forgot-password/')();
-const LandingExamsIdIndexLazyImport = createFileRoute('/_landing/exams/$id/')();
+const ExamIndexLazyImport = createFileRoute('/exam/')()
+const LandingIndexLazyImport = createFileRoute('/_landing/')()
+const errors500LazyImport = createFileRoute('/(errors)/500')()
+const errors404LazyImport = createFileRoute('/(errors)/404')()
+const errors403LazyImport = createFileRoute('/(errors)/403')()
+const errors401LazyImport = createFileRoute('/(errors)/401')()
+const PlacementsIdIndexLazyImport = createFileRoute('/placements/$id/')()
+const ExamEndIndexLazyImport = createFileRoute('/exam/end/')()
+const ExamIdIndexLazyImport = createFileRoute('/exam/$id/')()
+const LandingExamsIndexLazyImport = createFileRoute('/_landing/exams/')()
+const AuthenticatedTransactionsIndexLazyImport = createFileRoute(
+  '/_authenticated/transactions/',
+)()
+const AuthenticatedProfileIndexLazyImport = createFileRoute(
+  '/_authenticated/profile/',
+)()
+const AuthenticatedBookingsIndexLazyImport = createFileRoute(
+  '/_authenticated/bookings/',
+)()
+const AuthRegisterIndexLazyImport = createFileRoute('/_auth/register/')()
+const AuthLoginIndexLazyImport = createFileRoute('/_auth/login/')()
+const AuthForgotPasswordIndexLazyImport = createFileRoute(
+  '/_auth/forgot-password/',
+)()
+const LandingExamsIdIndexLazyImport = createFileRoute('/_landing/exams/$id/')()
 const AuthenticatedBookingsIdPaperIndexLazyImport = createFileRoute(
-  '/_authenticated/bookings/$id/paper/'
-)();
+  '/_authenticated/bookings/$id/paper/',
+)()
 const AuthenticatedBookingsIdCdIndexLazyImport = createFileRoute(
-  '/_authenticated/bookings/$id/cd/'
-)();
+  '/_authenticated/bookings/$id/cd/',
+)()
 
 // Create/Update Routes
 
 const LandingRouteRoute = LandingRouteImport.update({
   id: '/_landing',
-  getParentRoute: () => rootRoute
-} as any);
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
-  getParentRoute: () => rootRoute
-} as any);
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthRouteRoute = AuthRouteImport.update({
   id: '/_auth',
-  getParentRoute: () => rootRoute
-} as any);
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ExamIndexLazyRoute = ExamIndexLazyImport.update({
   id: '/exam/',
   path: '/exam/',
-  getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/exam/index.lazy').then((d) => d.Route));
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/exam/index.lazy').then((d) => d.Route))
 
 const LandingIndexLazyRoute = LandingIndexLazyImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LandingRouteRoute
-} as any).lazy(() => import('./routes/_landing/index.lazy').then((d) => d.Route));
+  getParentRoute: () => LandingRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_landing/index.lazy').then((d) => d.Route),
+)
+
+const PlacementsIndexRoute = PlacementsIndexImport.update({
+  id: '/placements/',
+  path: '/placements/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const errors500LazyRoute = errors500LazyImport
   .update({
     id: '/(errors)/500',
     path: '/500',
-    getParentRoute: () => rootRoute
+    getParentRoute: () => rootRoute,
   } as any)
-  .lazy(() => import('./routes/(errors)/500.lazy').then((d) => d.Route));
+  .lazy(() => import('./routes/(errors)/500.lazy').then((d) => d.Route))
 
 const errors404LazyRoute = errors404LazyImport
   .update({
     id: '/(errors)/404',
     path: '/404',
-    getParentRoute: () => rootRoute
+    getParentRoute: () => rootRoute,
   } as any)
-  .lazy(() => import('./routes/(errors)/404.lazy').then((d) => d.Route));
+  .lazy(() => import('./routes/(errors)/404.lazy').then((d) => d.Route))
 
 const errors403LazyRoute = errors403LazyImport
   .update({
     id: '/(errors)/403',
     path: '/403',
-    getParentRoute: () => rootRoute
+    getParentRoute: () => rootRoute,
   } as any)
-  .lazy(() => import('./routes/(errors)/403.lazy').then((d) => d.Route));
+  .lazy(() => import('./routes/(errors)/403.lazy').then((d) => d.Route))
 
 const errors401LazyRoute = errors401LazyImport
   .update({
     id: '/(errors)/401',
     path: '/401',
-    getParentRoute: () => rootRoute
+    getParentRoute: () => rootRoute,
   } as any)
-  .lazy(() => import('./routes/(errors)/401.lazy').then((d) => d.Route));
+  .lazy(() => import('./routes/(errors)/401.lazy').then((d) => d.Route))
+
+const PlacementsIdIndexLazyRoute = PlacementsIdIndexLazyImport.update({
+  id: '/placements/$id/',
+  path: '/placements/$id/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/placements/$id/index.lazy').then((d) => d.Route),
+)
 
 const ExamEndIndexLazyRoute = ExamEndIndexLazyImport.update({
   id: '/exam/end/',
   path: '/exam/end/',
-  getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/exam/end/index.lazy').then((d) => d.Route));
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/exam/end/index.lazy').then((d) => d.Route),
+)
 
 const ExamIdIndexLazyRoute = ExamIdIndexLazyImport.update({
   id: '/exam/$id/',
   path: '/exam/$id/',
-  getParentRoute: () => rootRoute
-} as any).lazy(() => import('./routes/exam/$id/index.lazy').then((d) => d.Route));
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/exam/$id/index.lazy').then((d) => d.Route),
+)
 
 const LandingExamsIndexLazyRoute = LandingExamsIndexLazyImport.update({
   id: '/exams/',
   path: '/exams/',
-  getParentRoute: () => LandingRouteRoute
-} as any).lazy(() => import('./routes/_landing/exams/index.lazy').then((d) => d.Route));
-
-const AuthenticatedTransactionsIndexLazyRoute = AuthenticatedTransactionsIndexLazyImport.update({
-  id: '/transactions/',
-  path: '/transactions/',
-  getParentRoute: () => AuthenticatedRouteRoute
+  getParentRoute: () => LandingRouteRoute,
 } as any).lazy(() =>
-  import('./routes/_authenticated/transactions/index.lazy').then((d) => d.Route)
-);
+  import('./routes/_landing/exams/index.lazy').then((d) => d.Route),
+)
 
-const AuthenticatedProfileIndexLazyRoute = AuthenticatedProfileIndexLazyImport.update({
-  id: '/profile/',
-  path: '/profile/',
-  getParentRoute: () => AuthenticatedRouteRoute
-} as any).lazy(() => import('./routes/_authenticated/profile/index.lazy').then((d) => d.Route));
+const AuthenticatedTransactionsIndexLazyRoute =
+  AuthenticatedTransactionsIndexLazyImport.update({
+    id: '/transactions/',
+    path: '/transactions/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/transactions/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
-const AuthenticatedBookingsIndexLazyRoute = AuthenticatedBookingsIndexLazyImport.update({
-  id: '/bookings/',
-  path: '/bookings/',
-  getParentRoute: () => AuthenticatedRouteRoute
-} as any).lazy(() => import('./routes/_authenticated/bookings/index.lazy').then((d) => d.Route));
+const AuthenticatedProfileIndexLazyRoute =
+  AuthenticatedProfileIndexLazyImport.update({
+    id: '/profile/',
+    path: '/profile/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/profile/index.lazy').then((d) => d.Route),
+  )
+
+const AuthenticatedBookingsIndexLazyRoute =
+  AuthenticatedBookingsIndexLazyImport.update({
+    id: '/bookings/',
+    path: '/bookings/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/bookings/index.lazy').then((d) => d.Route),
+  )
 
 const AuthRegisterIndexLazyRoute = AuthRegisterIndexLazyImport.update({
   id: '/register/',
   path: '/register/',
-  getParentRoute: () => AuthRouteRoute
-} as any).lazy(() => import('./routes/_auth/register/index.lazy').then((d) => d.Route));
+  getParentRoute: () => AuthRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_auth/register/index.lazy').then((d) => d.Route),
+)
 
 const AuthLoginIndexLazyRoute = AuthLoginIndexLazyImport.update({
   id: '/login/',
   path: '/login/',
-  getParentRoute: () => AuthRouteRoute
-} as any).lazy(() => import('./routes/_auth/login/index.lazy').then((d) => d.Route));
+  getParentRoute: () => AuthRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_auth/login/index.lazy').then((d) => d.Route),
+)
 
-const AuthForgotPasswordIndexLazyRoute = AuthForgotPasswordIndexLazyImport.update({
-  id: '/forgot-password/',
-  path: '/forgot-password/',
-  getParentRoute: () => AuthRouteRoute
-} as any).lazy(() => import('./routes/_auth/forgot-password/index.lazy').then((d) => d.Route));
+const AuthForgotPasswordIndexLazyRoute =
+  AuthForgotPasswordIndexLazyImport.update({
+    id: '/forgot-password/',
+    path: '/forgot-password/',
+    getParentRoute: () => AuthRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_auth/forgot-password/index.lazy').then((d) => d.Route),
+  )
 
 const LandingExamsIdIndexLazyRoute = LandingExamsIdIndexLazyImport.update({
   id: '/exams/$id/',
   path: '/exams/$id/',
-  getParentRoute: () => LandingRouteRoute
-} as any).lazy(() => import('./routes/_landing/exams/$id/index.lazy').then((d) => d.Route));
+  getParentRoute: () => LandingRouteRoute,
+} as any).lazy(() =>
+  import('./routes/_landing/exams/$id/index.lazy').then((d) => d.Route),
+)
 
 const AuthenticatedBookingsIdPaperIndexLazyRoute =
   AuthenticatedBookingsIdPaperIndexLazyImport.update({
     id: '/bookings/$id/paper/',
     path: '/bookings/$id/paper/',
-    getParentRoute: () => AuthenticatedRouteRoute
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any).lazy(() =>
-    import('./routes/_authenticated/bookings/$id/paper/index.lazy').then((d) => d.Route)
-  );
+    import('./routes/_authenticated/bookings/$id/paper/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
-const AuthenticatedBookingsIdCdIndexLazyRoute = AuthenticatedBookingsIdCdIndexLazyImport.update({
-  id: '/bookings/$id/cd/',
-  path: '/bookings/$id/cd/',
-  getParentRoute: () => AuthenticatedRouteRoute
-} as any).lazy(() =>
-  import('./routes/_authenticated/bookings/$id/cd/index.lazy').then((d) => d.Route)
-);
+const AuthenticatedBookingsIdCdIndexLazyRoute =
+  AuthenticatedBookingsIdCdIndexLazyImport.update({
+    id: '/bookings/$id/cd/',
+    path: '/bookings/$id/cd/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/bookings/$id/cd/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const PlacementsIdTestTakerTakerIdIndexRoute =
+  PlacementsIdTestTakerTakerIdIndexImport.update({
+    id: '/placements/$id/test-taker/$takerId/',
+    path: '/placements/$id/test-taker/$takerId/',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/_auth': {
-      id: '/_auth';
-      path: '';
-      fullPath: '';
-      preLoaderRoute: typeof AuthRouteImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/_authenticated': {
-      id: '/_authenticated';
-      path: '';
-      fullPath: '';
-      preLoaderRoute: typeof AuthenticatedRouteImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/_landing': {
-      id: '/_landing';
-      path: '';
-      fullPath: '';
-      preLoaderRoute: typeof LandingRouteImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/_landing'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LandingRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/(errors)/401': {
-      id: '/(errors)/401';
-      path: '/401';
-      fullPath: '/401';
-      preLoaderRoute: typeof errors401LazyImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/(errors)/401'
+      path: '/401'
+      fullPath: '/401'
+      preLoaderRoute: typeof errors401LazyImport
+      parentRoute: typeof rootRoute
+    }
     '/(errors)/403': {
-      id: '/(errors)/403';
-      path: '/403';
-      fullPath: '/403';
-      preLoaderRoute: typeof errors403LazyImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/(errors)/403'
+      path: '/403'
+      fullPath: '/403'
+      preLoaderRoute: typeof errors403LazyImport
+      parentRoute: typeof rootRoute
+    }
     '/(errors)/404': {
-      id: '/(errors)/404';
-      path: '/404';
-      fullPath: '/404';
-      preLoaderRoute: typeof errors404LazyImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/(errors)/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof errors404LazyImport
+      parentRoute: typeof rootRoute
+    }
     '/(errors)/500': {
-      id: '/(errors)/500';
-      path: '/500';
-      fullPath: '/500';
-      preLoaderRoute: typeof errors500LazyImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/(errors)/500'
+      path: '/500'
+      fullPath: '/500'
+      preLoaderRoute: typeof errors500LazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/placements/': {
+      id: '/placements/'
+      path: '/placements'
+      fullPath: '/placements'
+      preLoaderRoute: typeof PlacementsIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/_landing/': {
-      id: '/_landing/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof LandingIndexLazyImport;
-      parentRoute: typeof LandingRouteImport;
-    };
+      id: '/_landing/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof LandingIndexLazyImport
+      parentRoute: typeof LandingRouteImport
+    }
     '/exam/': {
-      id: '/exam/';
-      path: '/exam';
-      fullPath: '/exam';
-      preLoaderRoute: typeof ExamIndexLazyImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/exam/'
+      path: '/exam'
+      fullPath: '/exam'
+      preLoaderRoute: typeof ExamIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth/forgot-password/': {
-      id: '/_auth/forgot-password/';
-      path: '/forgot-password';
-      fullPath: '/forgot-password';
-      preLoaderRoute: typeof AuthForgotPasswordIndexLazyImport;
-      parentRoute: typeof AuthRouteImport;
-    };
+      id: '/_auth/forgot-password/'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordIndexLazyImport
+      parentRoute: typeof AuthRouteImport
+    }
     '/_auth/login/': {
-      id: '/_auth/login/';
-      path: '/login';
-      fullPath: '/login';
-      preLoaderRoute: typeof AuthLoginIndexLazyImport;
-      parentRoute: typeof AuthRouteImport;
-    };
+      id: '/_auth/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginIndexLazyImport
+      parentRoute: typeof AuthRouteImport
+    }
     '/_auth/register/': {
-      id: '/_auth/register/';
-      path: '/register';
-      fullPath: '/register';
-      preLoaderRoute: typeof AuthRegisterIndexLazyImport;
-      parentRoute: typeof AuthRouteImport;
-    };
+      id: '/_auth/register/'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterIndexLazyImport
+      parentRoute: typeof AuthRouteImport
+    }
     '/_authenticated/bookings/': {
-      id: '/_authenticated/bookings/';
-      path: '/bookings';
-      fullPath: '/bookings';
-      preLoaderRoute: typeof AuthenticatedBookingsIndexLazyImport;
-      parentRoute: typeof AuthenticatedRouteImport;
-    };
+      id: '/_authenticated/bookings/'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof AuthenticatedBookingsIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_authenticated/profile/': {
-      id: '/_authenticated/profile/';
-      path: '/profile';
-      fullPath: '/profile';
-      preLoaderRoute: typeof AuthenticatedProfileIndexLazyImport;
-      parentRoute: typeof AuthenticatedRouteImport;
-    };
+      id: '/_authenticated/profile/'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_authenticated/transactions/': {
-      id: '/_authenticated/transactions/';
-      path: '/transactions';
-      fullPath: '/transactions';
-      preLoaderRoute: typeof AuthenticatedTransactionsIndexLazyImport;
-      parentRoute: typeof AuthenticatedRouteImport;
-    };
+      id: '/_authenticated/transactions/'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof AuthenticatedTransactionsIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_landing/exams/': {
-      id: '/_landing/exams/';
-      path: '/exams';
-      fullPath: '/exams';
-      preLoaderRoute: typeof LandingExamsIndexLazyImport;
-      parentRoute: typeof LandingRouteImport;
-    };
+      id: '/_landing/exams/'
+      path: '/exams'
+      fullPath: '/exams'
+      preLoaderRoute: typeof LandingExamsIndexLazyImport
+      parentRoute: typeof LandingRouteImport
+    }
     '/exam/$id/': {
-      id: '/exam/$id/';
-      path: '/exam/$id';
-      fullPath: '/exam/$id';
-      preLoaderRoute: typeof ExamIdIndexLazyImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/exam/$id/'
+      path: '/exam/$id'
+      fullPath: '/exam/$id'
+      preLoaderRoute: typeof ExamIdIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/exam/end/': {
-      id: '/exam/end/';
-      path: '/exam/end';
-      fullPath: '/exam/end';
-      preLoaderRoute: typeof ExamEndIndexLazyImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/exam/end/'
+      path: '/exam/end'
+      fullPath: '/exam/end'
+      preLoaderRoute: typeof ExamEndIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/placements/$id/': {
+      id: '/placements/$id/'
+      path: '/placements/$id'
+      fullPath: '/placements/$id'
+      preLoaderRoute: typeof PlacementsIdIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/_landing/exams/$id/': {
-      id: '/_landing/exams/$id/';
-      path: '/exams/$id';
-      fullPath: '/exams/$id';
-      preLoaderRoute: typeof LandingExamsIdIndexLazyImport;
-      parentRoute: typeof LandingRouteImport;
-    };
+      id: '/_landing/exams/$id/'
+      path: '/exams/$id'
+      fullPath: '/exams/$id'
+      preLoaderRoute: typeof LandingExamsIdIndexLazyImport
+      parentRoute: typeof LandingRouteImport
+    }
+    '/placements/$id/test-taker/$takerId/': {
+      id: '/placements/$id/test-taker/$takerId/'
+      path: '/placements/$id/test-taker/$takerId'
+      fullPath: '/placements/$id/test-taker/$takerId'
+      preLoaderRoute: typeof PlacementsIdTestTakerTakerIdIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/_authenticated/bookings/$id/cd/': {
-      id: '/_authenticated/bookings/$id/cd/';
-      path: '/bookings/$id/cd';
-      fullPath: '/bookings/$id/cd';
-      preLoaderRoute: typeof AuthenticatedBookingsIdCdIndexLazyImport;
-      parentRoute: typeof AuthenticatedRouteImport;
-    };
+      id: '/_authenticated/bookings/$id/cd/'
+      path: '/bookings/$id/cd'
+      fullPath: '/bookings/$id/cd'
+      preLoaderRoute: typeof AuthenticatedBookingsIdCdIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_authenticated/bookings/$id/paper/': {
-      id: '/_authenticated/bookings/$id/paper/';
-      path: '/bookings/$id/paper';
-      fullPath: '/bookings/$id/paper';
-      preLoaderRoute: typeof AuthenticatedBookingsIdPaperIndexLazyImport;
-      parentRoute: typeof AuthenticatedRouteImport;
-    };
+      id: '/_authenticated/bookings/$id/paper/'
+      path: '/bookings/$id/paper'
+      fullPath: '/bookings/$id/paper'
+      preLoaderRoute: typeof AuthenticatedBookingsIdPaperIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
   }
 }
 
 // Create and export the route tree
 
 interface AuthRouteRouteChildren {
-  AuthForgotPasswordIndexLazyRoute: typeof AuthForgotPasswordIndexLazyRoute;
-  AuthLoginIndexLazyRoute: typeof AuthLoginIndexLazyRoute;
-  AuthRegisterIndexLazyRoute: typeof AuthRegisterIndexLazyRoute;
+  AuthForgotPasswordIndexLazyRoute: typeof AuthForgotPasswordIndexLazyRoute
+  AuthLoginIndexLazyRoute: typeof AuthLoginIndexLazyRoute
+  AuthRegisterIndexLazyRoute: typeof AuthRegisterIndexLazyRoute
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthForgotPasswordIndexLazyRoute: AuthForgotPasswordIndexLazyRoute,
   AuthLoginIndexLazyRoute: AuthLoginIndexLazyRoute,
-  AuthRegisterIndexLazyRoute: AuthRegisterIndexLazyRoute
-};
+  AuthRegisterIndexLazyRoute: AuthRegisterIndexLazyRoute,
+}
 
-const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(AuthRouteRouteChildren);
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedBookingsIndexLazyRoute: typeof AuthenticatedBookingsIndexLazyRoute;
-  AuthenticatedProfileIndexLazyRoute: typeof AuthenticatedProfileIndexLazyRoute;
-  AuthenticatedTransactionsIndexLazyRoute: typeof AuthenticatedTransactionsIndexLazyRoute;
-  AuthenticatedBookingsIdCdIndexLazyRoute: typeof AuthenticatedBookingsIdCdIndexLazyRoute;
-  AuthenticatedBookingsIdPaperIndexLazyRoute: typeof AuthenticatedBookingsIdPaperIndexLazyRoute;
+  AuthenticatedBookingsIndexLazyRoute: typeof AuthenticatedBookingsIndexLazyRoute
+  AuthenticatedProfileIndexLazyRoute: typeof AuthenticatedProfileIndexLazyRoute
+  AuthenticatedTransactionsIndexLazyRoute: typeof AuthenticatedTransactionsIndexLazyRoute
+  AuthenticatedBookingsIdCdIndexLazyRoute: typeof AuthenticatedBookingsIdCdIndexLazyRoute
+  AuthenticatedBookingsIdPaperIndexLazyRoute: typeof AuthenticatedBookingsIdPaperIndexLazyRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBookingsIndexLazyRoute: AuthenticatedBookingsIndexLazyRoute,
   AuthenticatedProfileIndexLazyRoute: AuthenticatedProfileIndexLazyRoute,
-  AuthenticatedTransactionsIndexLazyRoute: AuthenticatedTransactionsIndexLazyRoute,
-  AuthenticatedBookingsIdCdIndexLazyRoute: AuthenticatedBookingsIdCdIndexLazyRoute,
-  AuthenticatedBookingsIdPaperIndexLazyRoute: AuthenticatedBookingsIdPaperIndexLazyRoute
-};
+  AuthenticatedTransactionsIndexLazyRoute:
+    AuthenticatedTransactionsIndexLazyRoute,
+  AuthenticatedBookingsIdCdIndexLazyRoute:
+    AuthenticatedBookingsIdCdIndexLazyRoute,
+  AuthenticatedBookingsIdPaperIndexLazyRoute:
+    AuthenticatedBookingsIdPaperIndexLazyRoute,
+}
 
-const AuthenticatedRouteRouteWithChildren = AuthenticatedRouteRoute._addFileChildren(
-  AuthenticatedRouteRouteChildren
-);
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface LandingRouteRouteChildren {
-  LandingIndexLazyRoute: typeof LandingIndexLazyRoute;
-  LandingExamsIndexLazyRoute: typeof LandingExamsIndexLazyRoute;
-  LandingExamsIdIndexLazyRoute: typeof LandingExamsIdIndexLazyRoute;
+  LandingIndexLazyRoute: typeof LandingIndexLazyRoute
+  LandingExamsIndexLazyRoute: typeof LandingExamsIndexLazyRoute
+  LandingExamsIdIndexLazyRoute: typeof LandingExamsIdIndexLazyRoute
 }
 
 const LandingRouteRouteChildren: LandingRouteRouteChildren = {
   LandingIndexLazyRoute: LandingIndexLazyRoute,
   LandingExamsIndexLazyRoute: LandingExamsIndexLazyRoute,
-  LandingExamsIdIndexLazyRoute: LandingExamsIdIndexLazyRoute
-};
+  LandingExamsIdIndexLazyRoute: LandingExamsIdIndexLazyRoute,
+}
 
-const LandingRouteRouteWithChildren = LandingRouteRoute._addFileChildren(LandingRouteRouteChildren);
+const LandingRouteRouteWithChildren = LandingRouteRoute._addFileChildren(
+  LandingRouteRouteChildren,
+)
 
 export interface FileRoutesByFullPath {
-  '': typeof LandingRouteRouteWithChildren;
-  '/401': typeof errors401LazyRoute;
-  '/403': typeof errors403LazyRoute;
-  '/404': typeof errors404LazyRoute;
-  '/500': typeof errors500LazyRoute;
-  '/': typeof LandingIndexLazyRoute;
-  '/exam': typeof ExamIndexLazyRoute;
-  '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute;
-  '/login': typeof AuthLoginIndexLazyRoute;
-  '/register': typeof AuthRegisterIndexLazyRoute;
-  '/bookings': typeof AuthenticatedBookingsIndexLazyRoute;
-  '/profile': typeof AuthenticatedProfileIndexLazyRoute;
-  '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute;
-  '/exams': typeof LandingExamsIndexLazyRoute;
-  '/exam/$id': typeof ExamIdIndexLazyRoute;
-  '/exam/end': typeof ExamEndIndexLazyRoute;
-  '/exams/$id': typeof LandingExamsIdIndexLazyRoute;
-  '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute;
-  '/bookings/$id/paper': typeof AuthenticatedBookingsIdPaperIndexLazyRoute;
+  '': typeof LandingRouteRouteWithChildren
+  '/401': typeof errors401LazyRoute
+  '/403': typeof errors403LazyRoute
+  '/404': typeof errors404LazyRoute
+  '/500': typeof errors500LazyRoute
+  '/placements': typeof PlacementsIndexRoute
+  '/': typeof LandingIndexLazyRoute
+  '/exam': typeof ExamIndexLazyRoute
+  '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
+  '/login': typeof AuthLoginIndexLazyRoute
+  '/register': typeof AuthRegisterIndexLazyRoute
+  '/bookings': typeof AuthenticatedBookingsIndexLazyRoute
+  '/profile': typeof AuthenticatedProfileIndexLazyRoute
+  '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute
+  '/exams': typeof LandingExamsIndexLazyRoute
+  '/exam/$id': typeof ExamIdIndexLazyRoute
+  '/exam/end': typeof ExamEndIndexLazyRoute
+  '/placements/$id': typeof PlacementsIdIndexLazyRoute
+  '/exams/$id': typeof LandingExamsIdIndexLazyRoute
+  '/placements/$id/test-taker/$takerId': typeof PlacementsIdTestTakerTakerIdIndexRoute
+  '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute
+  '/bookings/$id/paper': typeof AuthenticatedBookingsIdPaperIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
-  '': typeof AuthenticatedRouteRouteWithChildren;
-  '/401': typeof errors401LazyRoute;
-  '/403': typeof errors403LazyRoute;
-  '/404': typeof errors404LazyRoute;
-  '/500': typeof errors500LazyRoute;
-  '/': typeof LandingIndexLazyRoute;
-  '/exam': typeof ExamIndexLazyRoute;
-  '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute;
-  '/login': typeof AuthLoginIndexLazyRoute;
-  '/register': typeof AuthRegisterIndexLazyRoute;
-  '/bookings': typeof AuthenticatedBookingsIndexLazyRoute;
-  '/profile': typeof AuthenticatedProfileIndexLazyRoute;
-  '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute;
-  '/exams': typeof LandingExamsIndexLazyRoute;
-  '/exam/$id': typeof ExamIdIndexLazyRoute;
-  '/exam/end': typeof ExamEndIndexLazyRoute;
-  '/exams/$id': typeof LandingExamsIdIndexLazyRoute;
-  '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute;
-  '/bookings/$id/paper': typeof AuthenticatedBookingsIdPaperIndexLazyRoute;
+  '': typeof AuthenticatedRouteRouteWithChildren
+  '/401': typeof errors401LazyRoute
+  '/403': typeof errors403LazyRoute
+  '/404': typeof errors404LazyRoute
+  '/500': typeof errors500LazyRoute
+  '/placements': typeof PlacementsIndexRoute
+  '/': typeof LandingIndexLazyRoute
+  '/exam': typeof ExamIndexLazyRoute
+  '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
+  '/login': typeof AuthLoginIndexLazyRoute
+  '/register': typeof AuthRegisterIndexLazyRoute
+  '/bookings': typeof AuthenticatedBookingsIndexLazyRoute
+  '/profile': typeof AuthenticatedProfileIndexLazyRoute
+  '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute
+  '/exams': typeof LandingExamsIndexLazyRoute
+  '/exam/$id': typeof ExamIdIndexLazyRoute
+  '/exam/end': typeof ExamEndIndexLazyRoute
+  '/placements/$id': typeof PlacementsIdIndexLazyRoute
+  '/exams/$id': typeof LandingExamsIdIndexLazyRoute
+  '/placements/$id/test-taker/$takerId': typeof PlacementsIdTestTakerTakerIdIndexRoute
+  '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute
+  '/bookings/$id/paper': typeof AuthenticatedBookingsIdPaperIndexLazyRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  '/_auth': typeof AuthRouteRouteWithChildren;
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren;
-  '/_landing': typeof LandingRouteRouteWithChildren;
-  '/(errors)/401': typeof errors401LazyRoute;
-  '/(errors)/403': typeof errors403LazyRoute;
-  '/(errors)/404': typeof errors404LazyRoute;
-  '/(errors)/500': typeof errors500LazyRoute;
-  '/_landing/': typeof LandingIndexLazyRoute;
-  '/exam/': typeof ExamIndexLazyRoute;
-  '/_auth/forgot-password/': typeof AuthForgotPasswordIndexLazyRoute;
-  '/_auth/login/': typeof AuthLoginIndexLazyRoute;
-  '/_auth/register/': typeof AuthRegisterIndexLazyRoute;
-  '/_authenticated/bookings/': typeof AuthenticatedBookingsIndexLazyRoute;
-  '/_authenticated/profile/': typeof AuthenticatedProfileIndexLazyRoute;
-  '/_authenticated/transactions/': typeof AuthenticatedTransactionsIndexLazyRoute;
-  '/_landing/exams/': typeof LandingExamsIndexLazyRoute;
-  '/exam/$id/': typeof ExamIdIndexLazyRoute;
-  '/exam/end/': typeof ExamEndIndexLazyRoute;
-  '/_landing/exams/$id/': typeof LandingExamsIdIndexLazyRoute;
-  '/_authenticated/bookings/$id/cd/': typeof AuthenticatedBookingsIdCdIndexLazyRoute;
-  '/_authenticated/bookings/$id/paper/': typeof AuthenticatedBookingsIdPaperIndexLazyRoute;
+  __root__: typeof rootRoute
+  '/_auth': typeof AuthRouteRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_landing': typeof LandingRouteRouteWithChildren
+  '/(errors)/401': typeof errors401LazyRoute
+  '/(errors)/403': typeof errors403LazyRoute
+  '/(errors)/404': typeof errors404LazyRoute
+  '/(errors)/500': typeof errors500LazyRoute
+  '/placements/': typeof PlacementsIndexRoute
+  '/_landing/': typeof LandingIndexLazyRoute
+  '/exam/': typeof ExamIndexLazyRoute
+  '/_auth/forgot-password/': typeof AuthForgotPasswordIndexLazyRoute
+  '/_auth/login/': typeof AuthLoginIndexLazyRoute
+  '/_auth/register/': typeof AuthRegisterIndexLazyRoute
+  '/_authenticated/bookings/': typeof AuthenticatedBookingsIndexLazyRoute
+  '/_authenticated/profile/': typeof AuthenticatedProfileIndexLazyRoute
+  '/_authenticated/transactions/': typeof AuthenticatedTransactionsIndexLazyRoute
+  '/_landing/exams/': typeof LandingExamsIndexLazyRoute
+  '/exam/$id/': typeof ExamIdIndexLazyRoute
+  '/exam/end/': typeof ExamEndIndexLazyRoute
+  '/placements/$id/': typeof PlacementsIdIndexLazyRoute
+  '/_landing/exams/$id/': typeof LandingExamsIdIndexLazyRoute
+  '/placements/$id/test-taker/$takerId/': typeof PlacementsIdTestTakerTakerIdIndexRoute
+  '/_authenticated/bookings/$id/cd/': typeof AuthenticatedBookingsIdCdIndexLazyRoute
+  '/_authenticated/bookings/$id/paper/': typeof AuthenticatedBookingsIdPaperIndexLazyRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | ''
     | '/401'
     | '/403'
     | '/404'
     | '/500'
+    | '/placements'
     | '/'
     | '/exam'
     | '/forgot-password'
@@ -474,16 +574,19 @@ export interface FileRouteTypes {
     | '/exams'
     | '/exam/$id'
     | '/exam/end'
+    | '/placements/$id'
     | '/exams/$id'
+    | '/placements/$id/test-taker/$takerId'
     | '/bookings/$id/cd'
-    | '/bookings/$id/paper';
-  fileRoutesByTo: FileRoutesByTo;
+    | '/bookings/$id/paper'
+  fileRoutesByTo: FileRoutesByTo
   to:
     | ''
     | '/401'
     | '/403'
     | '/404'
     | '/500'
+    | '/placements'
     | '/'
     | '/exam'
     | '/forgot-password'
@@ -495,9 +598,11 @@ export interface FileRouteTypes {
     | '/exams'
     | '/exam/$id'
     | '/exam/end'
+    | '/placements/$id'
     | '/exams/$id'
+    | '/placements/$id/test-taker/$takerId'
     | '/bookings/$id/cd'
-    | '/bookings/$id/paper';
+    | '/bookings/$id/paper'
   id:
     | '__root__'
     | '/_auth'
@@ -507,6 +612,7 @@ export interface FileRouteTypes {
     | '/(errors)/403'
     | '/(errors)/404'
     | '/(errors)/500'
+    | '/placements/'
     | '/_landing/'
     | '/exam/'
     | '/_auth/forgot-password/'
@@ -518,23 +624,28 @@ export interface FileRouteTypes {
     | '/_landing/exams/'
     | '/exam/$id/'
     | '/exam/end/'
+    | '/placements/$id/'
     | '/_landing/exams/$id/'
+    | '/placements/$id/test-taker/$takerId/'
     | '/_authenticated/bookings/$id/cd/'
-    | '/_authenticated/bookings/$id/paper/';
-  fileRoutesById: FileRoutesById;
+    | '/_authenticated/bookings/$id/paper/'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  AuthRouteRoute: typeof AuthRouteRouteWithChildren;
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren;
-  LandingRouteRoute: typeof LandingRouteRouteWithChildren;
-  errors401LazyRoute: typeof errors401LazyRoute;
-  errors403LazyRoute: typeof errors403LazyRoute;
-  errors404LazyRoute: typeof errors404LazyRoute;
-  errors500LazyRoute: typeof errors500LazyRoute;
-  ExamIndexLazyRoute: typeof ExamIndexLazyRoute;
-  ExamIdIndexLazyRoute: typeof ExamIdIndexLazyRoute;
-  ExamEndIndexLazyRoute: typeof ExamEndIndexLazyRoute;
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LandingRouteRoute: typeof LandingRouteRouteWithChildren
+  errors401LazyRoute: typeof errors401LazyRoute
+  errors403LazyRoute: typeof errors403LazyRoute
+  errors404LazyRoute: typeof errors404LazyRoute
+  errors500LazyRoute: typeof errors500LazyRoute
+  PlacementsIndexRoute: typeof PlacementsIndexRoute
+  ExamIndexLazyRoute: typeof ExamIndexLazyRoute
+  ExamIdIndexLazyRoute: typeof ExamIdIndexLazyRoute
+  ExamEndIndexLazyRoute: typeof ExamEndIndexLazyRoute
+  PlacementsIdIndexLazyRoute: typeof PlacementsIdIndexLazyRoute
+  PlacementsIdTestTakerTakerIdIndexRoute: typeof PlacementsIdTestTakerTakerIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -545,14 +656,18 @@ const rootRouteChildren: RootRouteChildren = {
   errors403LazyRoute: errors403LazyRoute,
   errors404LazyRoute: errors404LazyRoute,
   errors500LazyRoute: errors500LazyRoute,
+  PlacementsIndexRoute: PlacementsIndexRoute,
   ExamIndexLazyRoute: ExamIndexLazyRoute,
   ExamIdIndexLazyRoute: ExamIdIndexLazyRoute,
-  ExamEndIndexLazyRoute: ExamEndIndexLazyRoute
-};
+  ExamEndIndexLazyRoute: ExamEndIndexLazyRoute,
+  PlacementsIdIndexLazyRoute: PlacementsIdIndexLazyRoute,
+  PlacementsIdTestTakerTakerIdIndexRoute:
+    PlacementsIdTestTakerTakerIdIndexRoute,
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -567,9 +682,12 @@ export const routeTree = rootRoute
         "/(errors)/403",
         "/(errors)/404",
         "/(errors)/500",
+        "/placements/",
         "/exam/",
         "/exam/$id/",
-        "/exam/end/"
+        "/exam/end/",
+        "/placements/$id/",
+        "/placements/$id/test-taker/$takerId/"
       ]
     },
     "/_auth": {
@@ -609,6 +727,9 @@ export const routeTree = rootRoute
     },
     "/(errors)/500": {
       "filePath": "(errors)/500.lazy.tsx"
+    },
+    "/placements/": {
+      "filePath": "placements/index.tsx"
     },
     "/_landing/": {
       "filePath": "_landing/index.lazy.tsx",
@@ -651,9 +772,15 @@ export const routeTree = rootRoute
     "/exam/end/": {
       "filePath": "exam/end/index.lazy.tsx"
     },
+    "/placements/$id/": {
+      "filePath": "placements/$id/index.lazy.tsx"
+    },
     "/_landing/exams/$id/": {
       "filePath": "_landing/exams/$id/index.lazy.tsx",
       "parent": "/_landing"
+    },
+    "/placements/$id/test-taker/$takerId/": {
+      "filePath": "placements/$id/test-taker.$takerId/index.tsx"
     },
     "/_authenticated/bookings/$id/cd/": {
       "filePath": "_authenticated/bookings/$id/cd/index.lazy.tsx",

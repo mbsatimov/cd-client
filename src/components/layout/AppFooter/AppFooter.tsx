@@ -3,6 +3,7 @@ import { InstagramIcon, SendIcon, YoutubeIcon } from 'lucide-react';
 import React from 'react';
 
 import { BaseLayout } from '@/components/layout';
+import { PermissionWrapper } from '@/components/PermissionWrapper.tsx';
 import { Button, Separator } from '@/components/ui';
 import { cn } from '@/lib/utils.ts';
 import { useAuth } from '@/utils/stores';
@@ -144,6 +145,16 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
                         Transactions
                       </Link>
                     </li>
+                    <PermissionWrapper allowedRoles={['ADMIN', 'PLACEMENT_TESTER']}>
+                      <li>
+                        <Link
+                          className='text-sm leading-6 text-muted-foreground hover:text-foreground'
+                          to='/placements'
+                        >
+                          Placements
+                        </Link>
+                      </li>
+                    </PermissionWrapper>
                   </ul>
                 ) : (
                   <ul className='mt-6 space-y-4'>

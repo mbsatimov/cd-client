@@ -9,6 +9,8 @@ export * from './exams';
 export * from './exams/{id}';
 export * from './mocks';
 export * from './mocks/{id}';
+export * from './placements';
+export * from './placements/{id}';
 export * from './registrations';
 export * from './results';
 export * from './users/me';
