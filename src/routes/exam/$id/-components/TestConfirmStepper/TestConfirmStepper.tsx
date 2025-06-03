@@ -65,11 +65,11 @@ export const TestConfirmStepper = ({
               <Slider
                 aria-label='Volume slider'
                 className='w-20'
+                defaultValue={[volume]}
                 max={1}
                 min={0}
                 step={0.01}
-                value={[volume]}
-                onValueCommit={([value]) => onVolumeChange(value)}
+                onValueChange={([value]) => onVolumeChange(value)}
               />
               <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
             </div>
