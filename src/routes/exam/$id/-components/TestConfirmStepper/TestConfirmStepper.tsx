@@ -33,6 +33,12 @@ export const TestConfirmStepper = ({
   const audioRef = React.useRef<HTMLAudioElement>(null);
   const [isAudioPlaying, setIsAudioPlaying] = React.useState(false);
 
+  React.useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
   const toggleAudio = () => {
     if (audioRef.current) {
       audioRef.current.paused ? audioRef.current.play() : audioRef.current.pause();
