@@ -10,14 +10,14 @@ export const cardsData: { title: string; description: string }[] = [
       'Students practice with materials that have appeared in real IELTS exams or have a high chance of being included in future tests.'
   },
   {
-    title: 'OnlineCDTab Evaluated by 8.0-8.5 Band Examiners',
+    title: 'Writing Evaluated by 8.0-8.5 Band Examiners',
     description:
-      'Your writing tasks are assessed by experienced examiners who have achieved an IELTS OnlineCDTab score of 8.0–8.5.'
+      'Your writing tasks are assessed by experienced examiners who have achieved an IELTS Writing score of 8.0–8.5.'
   },
   {
-    title: 'Professional Headsets for PaperBasedTab',
+    title: 'Professional Headsets for Listening',
     description:
-      'Every student is provided with high-quality headsets to simulate the real IELTS PaperBasedTab test experience.'
+      'Every student is provided with high-quality headsets to simulate the real IELTS Listening test experience.'
   },
   {
     title: 'Speaking Test with 8.0-9.0 Band Examiners',
