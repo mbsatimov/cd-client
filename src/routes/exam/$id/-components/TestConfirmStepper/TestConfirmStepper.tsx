@@ -69,7 +69,7 @@ export const TestConfirmStepper = ({
                 min={0}
                 step={0.01}
                 value={[volume]}
-                onValueChange={([value]) => onVolumeChange(value)}
+                onValueCommit={([value]) => onVolumeChange(value)}
               />
               <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
             </div>
