@@ -17,11 +17,13 @@ import { Route as LandingRouteImport } from './routes/_landing/route'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/_auth/route'
 import { Route as PlacementsIndexImport } from './routes/placements/index'
+import { Route as ExamIndexImport } from './routes/exam/index'
+import { Route as ExamIdIndexImport } from './routes/exam/$id/index'
+import { Route as ExamAdminIdIndexImport } from './routes/exam/admin/$id/index'
 import { Route as PlacementsIdTestTakerTakerIdIndexImport } from './routes/placements/$id/test-taker.$takerId/index'
 
 // Create Virtual Routes
 
-const ExamIndexLazyImport = createFileRoute('/exam/')()
 const LandingIndexLazyImport = createFileRoute('/_landing/')()
 const errors500LazyImport = createFileRoute('/(errors)/500')()
 const errors404LazyImport = createFileRoute('/(errors)/404')()
@@ -29,7 +31,6 @@ const errors403LazyImport = createFileRoute('/(errors)/403')()
 const errors401LazyImport = createFileRoute('/(errors)/401')()
 const PlacementsIdIndexLazyImport = createFileRoute('/placements/$id/')()
 const ExamEndIndexLazyImport = createFileRoute('/exam/end/')()
-const ExamIdIndexLazyImport = createFileRoute('/exam/$id/')()
 const LandingExamsIndexLazyImport = createFileRoute('/_landing/exams/')()
 const AuthenticatedTransactionsIndexLazyImport = createFileRoute(
   '/_authenticated/transactions/',
@@ -70,12 +71,6 @@ const AuthRouteRoute = AuthRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ExamIndexLazyRoute = ExamIndexLazyImport.update({
-  id: '/exam/',
-  path: '/exam/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/exam/index.lazy').then((d) => d.Route))
-
 const LandingIndexLazyRoute = LandingIndexLazyImport.update({
   id: '/',
   path: '/',
@@ -87,6 +82,12 @@ const LandingIndexLazyRoute = LandingIndexLazyImport.update({
 const PlacementsIndexRoute = PlacementsIndexImport.update({
   id: '/placements/',
   path: '/placements/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExamIndexRoute = ExamIndexImport.update({
+  id: '/exam/',
+  path: '/exam/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -136,14 +137,6 @@ const ExamEndIndexLazyRoute = ExamEndIndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
   import('./routes/exam/end/index.lazy').then((d) => d.Route),
-)
-
-const ExamIdIndexLazyRoute = ExamIdIndexLazyImport.update({
-  id: '/exam/$id/',
-  path: '/exam/$id/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/exam/$id/index.lazy').then((d) => d.Route),
 )
 
 const LandingExamsIndexLazyRoute = LandingExamsIndexLazyImport.update({
@@ -208,6 +201,12 @@ const AuthForgotPasswordIndexLazyRoute =
     import('./routes/_auth/forgot-password/index.lazy').then((d) => d.Route),
   )
 
+const ExamIdIndexRoute = ExamIdIndexImport.update({
+  id: '/exam/$id/',
+  path: '/exam/$id/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const LandingExamsIdIndexLazyRoute = LandingExamsIdIndexLazyImport.update({
   id: '/exams/$id/',
   path: '/exams/$id/',
@@ -215,6 +214,12 @@ const LandingExamsIdIndexLazyRoute = LandingExamsIdIndexLazyImport.update({
 } as any).lazy(() =>
   import('./routes/_landing/exams/$id/index.lazy').then((d) => d.Route),
 )
+
+const ExamAdminIdIndexRoute = ExamAdminIdIndexImport.update({
+  id: '/exam/admin/$id/',
+  path: '/exam/admin/$id/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthenticatedBookingsIdPaperIndexLazyRoute =
   AuthenticatedBookingsIdPaperIndexLazyImport.update({
@@ -298,6 +303,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof errors500LazyImport
       parentRoute: typeof rootRoute
     }
+    '/exam/': {
+      id: '/exam/'
+      path: '/exam'
+      fullPath: '/exam'
+      preLoaderRoute: typeof ExamIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/placements/': {
       id: '/placements/'
       path: '/placements'
@@ -312,11 +324,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingIndexLazyImport
       parentRoute: typeof LandingRouteImport
     }
-    '/exam/': {
-      id: '/exam/'
-      path: '/exam'
-      fullPath: '/exam'
-      preLoaderRoute: typeof ExamIndexLazyImport
+    '/exam/$id/': {
+      id: '/exam/$id/'
+      path: '/exam/$id'
+      fullPath: '/exam/$id'
+      preLoaderRoute: typeof ExamIdIndexImport
       parentRoute: typeof rootRoute
     }
     '/_auth/forgot-password/': {
@@ -368,13 +380,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingExamsIndexLazyImport
       parentRoute: typeof LandingRouteImport
     }
-    '/exam/$id/': {
-      id: '/exam/$id/'
-      path: '/exam/$id'
-      fullPath: '/exam/$id'
-      preLoaderRoute: typeof ExamIdIndexLazyImport
-      parentRoute: typeof rootRoute
-    }
     '/exam/end/': {
       id: '/exam/end/'
       path: '/exam/end'
@@ -387,6 +392,13 @@ declare module '@tanstack/react-router' {
       path: '/placements/$id'
       fullPath: '/placements/$id'
       preLoaderRoute: typeof PlacementsIdIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/exam/admin/$id/': {
+      id: '/exam/admin/$id/'
+      path: '/exam/admin/$id'
+      fullPath: '/exam/admin/$id'
+      preLoaderRoute: typeof ExamAdminIdIndexImport
       parentRoute: typeof rootRoute
     }
     '/_landing/exams/$id/': {
@@ -482,9 +494,10 @@ export interface FileRoutesByFullPath {
   '/403': typeof errors403LazyRoute
   '/404': typeof errors404LazyRoute
   '/500': typeof errors500LazyRoute
+  '/exam': typeof ExamIndexRoute
   '/placements': typeof PlacementsIndexRoute
   '/': typeof LandingIndexLazyRoute
-  '/exam': typeof ExamIndexLazyRoute
+  '/exam/$id': typeof ExamIdIndexRoute
   '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
   '/login': typeof AuthLoginIndexLazyRoute
   '/register': typeof AuthRegisterIndexLazyRoute
@@ -492,9 +505,9 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileIndexLazyRoute
   '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute
   '/exams': typeof LandingExamsIndexLazyRoute
-  '/exam/$id': typeof ExamIdIndexLazyRoute
   '/exam/end': typeof ExamEndIndexLazyRoute
   '/placements/$id': typeof PlacementsIdIndexLazyRoute
+  '/exam/admin/$id': typeof ExamAdminIdIndexRoute
   '/exams/$id': typeof LandingExamsIdIndexLazyRoute
   '/placements/$id/test-taker/$takerId': typeof PlacementsIdTestTakerTakerIdIndexRoute
   '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute
@@ -507,9 +520,10 @@ export interface FileRoutesByTo {
   '/403': typeof errors403LazyRoute
   '/404': typeof errors404LazyRoute
   '/500': typeof errors500LazyRoute
+  '/exam': typeof ExamIndexRoute
   '/placements': typeof PlacementsIndexRoute
   '/': typeof LandingIndexLazyRoute
-  '/exam': typeof ExamIndexLazyRoute
+  '/exam/$id': typeof ExamIdIndexRoute
   '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
   '/login': typeof AuthLoginIndexLazyRoute
   '/register': typeof AuthRegisterIndexLazyRoute
@@ -517,9 +531,9 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileIndexLazyRoute
   '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute
   '/exams': typeof LandingExamsIndexLazyRoute
-  '/exam/$id': typeof ExamIdIndexLazyRoute
   '/exam/end': typeof ExamEndIndexLazyRoute
   '/placements/$id': typeof PlacementsIdIndexLazyRoute
+  '/exam/admin/$id': typeof ExamAdminIdIndexRoute
   '/exams/$id': typeof LandingExamsIdIndexLazyRoute
   '/placements/$id/test-taker/$takerId': typeof PlacementsIdTestTakerTakerIdIndexRoute
   '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute
@@ -535,9 +549,10 @@ export interface FileRoutesById {
   '/(errors)/403': typeof errors403LazyRoute
   '/(errors)/404': typeof errors404LazyRoute
   '/(errors)/500': typeof errors500LazyRoute
+  '/exam/': typeof ExamIndexRoute
   '/placements/': typeof PlacementsIndexRoute
   '/_landing/': typeof LandingIndexLazyRoute
-  '/exam/': typeof ExamIndexLazyRoute
+  '/exam/$id/': typeof ExamIdIndexRoute
   '/_auth/forgot-password/': typeof AuthForgotPasswordIndexLazyRoute
   '/_auth/login/': typeof AuthLoginIndexLazyRoute
   '/_auth/register/': typeof AuthRegisterIndexLazyRoute
@@ -545,9 +560,9 @@ export interface FileRoutesById {
   '/_authenticated/profile/': typeof AuthenticatedProfileIndexLazyRoute
   '/_authenticated/transactions/': typeof AuthenticatedTransactionsIndexLazyRoute
   '/_landing/exams/': typeof LandingExamsIndexLazyRoute
-  '/exam/$id/': typeof ExamIdIndexLazyRoute
   '/exam/end/': typeof ExamEndIndexLazyRoute
   '/placements/$id/': typeof PlacementsIdIndexLazyRoute
+  '/exam/admin/$id/': typeof ExamAdminIdIndexRoute
   '/_landing/exams/$id/': typeof LandingExamsIdIndexLazyRoute
   '/placements/$id/test-taker/$takerId/': typeof PlacementsIdTestTakerTakerIdIndexRoute
   '/_authenticated/bookings/$id/cd/': typeof AuthenticatedBookingsIdCdIndexLazyRoute
@@ -562,9 +577,10 @@ export interface FileRouteTypes {
     | '/403'
     | '/404'
     | '/500'
+    | '/exam'
     | '/placements'
     | '/'
-    | '/exam'
+    | '/exam/$id'
     | '/forgot-password'
     | '/login'
     | '/register'
@@ -572,9 +588,9 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transactions'
     | '/exams'
-    | '/exam/$id'
     | '/exam/end'
     | '/placements/$id'
+    | '/exam/admin/$id'
     | '/exams/$id'
     | '/placements/$id/test-taker/$takerId'
     | '/bookings/$id/cd'
@@ -586,9 +602,10 @@ export interface FileRouteTypes {
     | '/403'
     | '/404'
     | '/500'
+    | '/exam'
     | '/placements'
     | '/'
-    | '/exam'
+    | '/exam/$id'
     | '/forgot-password'
     | '/login'
     | '/register'
@@ -596,9 +613,9 @@ export interface FileRouteTypes {
     | '/profile'
     | '/transactions'
     | '/exams'
-    | '/exam/$id'
     | '/exam/end'
     | '/placements/$id'
+    | '/exam/admin/$id'
     | '/exams/$id'
     | '/placements/$id/test-taker/$takerId'
     | '/bookings/$id/cd'
@@ -612,9 +629,10 @@ export interface FileRouteTypes {
     | '/(errors)/403'
     | '/(errors)/404'
     | '/(errors)/500'
+    | '/exam/'
     | '/placements/'
     | '/_landing/'
-    | '/exam/'
+    | '/exam/$id/'
     | '/_auth/forgot-password/'
     | '/_auth/login/'
     | '/_auth/register/'
@@ -622,9 +640,9 @@ export interface FileRouteTypes {
     | '/_authenticated/profile/'
     | '/_authenticated/transactions/'
     | '/_landing/exams/'
-    | '/exam/$id/'
     | '/exam/end/'
     | '/placements/$id/'
+    | '/exam/admin/$id/'
     | '/_landing/exams/$id/'
     | '/placements/$id/test-taker/$takerId/'
     | '/_authenticated/bookings/$id/cd/'
@@ -640,11 +658,12 @@ export interface RootRouteChildren {
   errors403LazyRoute: typeof errors403LazyRoute
   errors404LazyRoute: typeof errors404LazyRoute
   errors500LazyRoute: typeof errors500LazyRoute
+  ExamIndexRoute: typeof ExamIndexRoute
   PlacementsIndexRoute: typeof PlacementsIndexRoute
-  ExamIndexLazyRoute: typeof ExamIndexLazyRoute
-  ExamIdIndexLazyRoute: typeof ExamIdIndexLazyRoute
+  ExamIdIndexRoute: typeof ExamIdIndexRoute
   ExamEndIndexLazyRoute: typeof ExamEndIndexLazyRoute
   PlacementsIdIndexLazyRoute: typeof PlacementsIdIndexLazyRoute
+  ExamAdminIdIndexRoute: typeof ExamAdminIdIndexRoute
   PlacementsIdTestTakerTakerIdIndexRoute: typeof PlacementsIdTestTakerTakerIdIndexRoute
 }
 
@@ -656,11 +675,12 @@ const rootRouteChildren: RootRouteChildren = {
   errors403LazyRoute: errors403LazyRoute,
   errors404LazyRoute: errors404LazyRoute,
   errors500LazyRoute: errors500LazyRoute,
+  ExamIndexRoute: ExamIndexRoute,
   PlacementsIndexRoute: PlacementsIndexRoute,
-  ExamIndexLazyRoute: ExamIndexLazyRoute,
-  ExamIdIndexLazyRoute: ExamIdIndexLazyRoute,
+  ExamIdIndexRoute: ExamIdIndexRoute,
   ExamEndIndexLazyRoute: ExamEndIndexLazyRoute,
   PlacementsIdIndexLazyRoute: PlacementsIdIndexLazyRoute,
+  ExamAdminIdIndexRoute: ExamAdminIdIndexRoute,
   PlacementsIdTestTakerTakerIdIndexRoute:
     PlacementsIdTestTakerTakerIdIndexRoute,
 }
@@ -682,11 +702,12 @@ export const routeTree = rootRoute
         "/(errors)/403",
         "/(errors)/404",
         "/(errors)/500",
-        "/placements/",
         "/exam/",
+        "/placements/",
         "/exam/$id/",
         "/exam/end/",
         "/placements/$id/",
+        "/exam/admin/$id/",
         "/placements/$id/test-taker/$takerId/"
       ]
     },
@@ -728,6 +749,9 @@ export const routeTree = rootRoute
     "/(errors)/500": {
       "filePath": "(errors)/500.lazy.tsx"
     },
+    "/exam/": {
+      "filePath": "exam/index.tsx"
+    },
     "/placements/": {
       "filePath": "placements/index.tsx"
     },
@@ -735,8 +759,8 @@ export const routeTree = rootRoute
       "filePath": "_landing/index.lazy.tsx",
       "parent": "/_landing"
     },
-    "/exam/": {
-      "filePath": "exam/index.lazy.tsx"
+    "/exam/$id/": {
+      "filePath": "exam/$id/index.tsx"
     },
     "/_auth/forgot-password/": {
       "filePath": "_auth/forgot-password/index.lazy.tsx",
@@ -766,14 +790,14 @@ export const routeTree = rootRoute
       "filePath": "_landing/exams/index.lazy.tsx",
       "parent": "/_landing"
     },
-    "/exam/$id/": {
-      "filePath": "exam/$id/index.lazy.tsx"
-    },
     "/exam/end/": {
       "filePath": "exam/end/index.lazy.tsx"
     },
     "/placements/$id/": {
       "filePath": "placements/$id/index.lazy.tsx"
+    },
+    "/exam/admin/$id/": {
+      "filePath": "exam/admin/$id/index.tsx"
     },
     "/_landing/exams/$id/": {
       "filePath": "_landing/exams/$id/index.lazy.tsx",

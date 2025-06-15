@@ -1,9 +1,8 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
-import { useRouter } from '@tanstack/react-router';
 import React from 'react';
 
 import { useFullscreen } from '@/hooks';
-import { getMockByCode, postMockResults } from '@/utils/api/requests';
+import { getMockSolveId, postMockSolveId } from '@/utils/api/requests';
 import { useExamAnswersStore } from '@/utils/stores';
 
 import { Route } from '../index.tsx';
@@ -12,22 +11,25 @@ export const useExamIdPage = () => {
   const { id } = Route.useParams();
   const examAnswersStore = useExamAnswersStore();
   const { toggleFullscreen } = useFullscreen();
-  const router = useRouter();
   const [testStartConfirmed, setTestStartConfirmed] = React.useState(false);
+  const [openResults, setOpenResults] = React.useState(false);
+  const [results, setResults] = React.useState<CDResult>();
 
   const getMockByCodeQuery = useSuspenseQuery({
-    queryKey: ['mocks', id],
-    queryFn: () => getMockByCode({ config: { params: { code: id } } })
+    queryKey: ['mocksSolve', id],
+    queryFn: () => getMockSolveId({ id })
   });
 
+  const exam = getMockByCodeQuery.data.data;
+
   const steps = (['listening', 'reading', 'writing'] as IeltsTestType[]).filter(
-    (step) => getMockByCodeQuery.data.data[step]
+    (step) => exam[step]
   );
 
   const [currentStep, setCurrentStep] = React.useState<IeltsTestType>(steps[0]);
 
   React.useEffect(() => {
-    examAnswersStore.onExamStart(getMockByCodeQuery.data.data);
+    examAnswersStore.onExamStart(exam);
     toggleFullscreen(true);
   }, []);
 
@@ -36,11 +38,12 @@ export const useExamIdPage = () => {
     return currentIndex !== -1 && currentIndex < steps.length - 1 ? steps[currentIndex + 1] : null;
   };
 
-  const postResultMutation = useMutation({
-    mutationFn: postMockResults,
-    onSuccess: () => {
+  const postMockSolveIdMutation = useMutation({
+    mutationFn: postMockSolveId,
+    onSuccess: (res) => {
       toggleFullscreen(false);
-      router.navigate({ to: '/exam/end', replace: true });
+      setResults(res.data);
+      setOpenResults(true);
     }
   });
 
@@ -50,28 +53,32 @@ export const useExamIdPage = () => {
       setTestStartConfirmed(false);
       setCurrentStep(nextStep);
     } else {
-      postResultMutation.mutate({
+      postMockSolveIdMutation.mutate({
+        id,
         data: {
           listening: examAnswersStore.listening,
           reading: examAnswersStore.reading,
           writing: examAnswersStore.writing
-        },
-        config: { params: { code: id } }
+        }
       });
     }
   };
 
   return {
     state: {
-      exam: getMockByCodeQuery.data?.data,
-      isPending: postResultMutation.isPending,
+      exam,
+      isPending: postMockSolveIdMutation.isPending,
       steps,
       currentStep,
-      testStartConfirmed
+      testStartConfirmed,
+      results,
+      openResults
     },
     functions: {
       getNextStep,
       moveToNextStep,
+      setCurrentStep,
+      setOpenResults,
       setTestStartConfirmed
     }
   };

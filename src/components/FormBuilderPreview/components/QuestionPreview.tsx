@@ -3,6 +3,7 @@ import * as React from 'react';
 import type { FormBuilderQuestionTypes, FormBuilderValue } from '../types.ts';
 
 import { CompletionPreview } from '../modules/Completion';
+import { DraggableSelectionPreview } from '../modules/DraggableSelection';
 import { MultipleChoicePreview } from '../modules/MultipleChoice';
 import { MultiSelectPreview } from '../modules/MultiSelect';
 import { SelectionPreview } from '../modules/Selection';
@@ -11,14 +12,17 @@ const questionMap: Record<FormBuilderQuestionTypes, React.ComponentType<any>> = 
   completion: CompletionPreview,
   'multiple-choice': MultipleChoicePreview,
   selection: SelectionPreview,
-  'multi-select': MultiSelectPreview
+  'multi-select': MultiSelectPreview,
+  'draggable-selection': DraggableSelectionPreview
 };
 
 interface Props {
   answers: Record<string, string>;
+  focus?: number;
   question: FormBuilderValue;
   questionEndNumber: number;
   questionStartNumber: number;
+  onFocusChange?: (id: number) => void;
   setAnswer: (index: number, result: string) => void;
 }
 
@@ -27,7 +31,9 @@ export const QuestionPreview = ({
   setAnswer,
   question,
   questionEndNumber,
-  questionStartNumber
+  questionStartNumber,
+  focus,
+  onFocusChange
 }: Props) => {
   const Question = questionMap[question.type];
 
@@ -53,6 +59,8 @@ export const QuestionPreview = ({
           answers={answers}
           setAnswer={setAnswer}
           value={question}
+          focus={focus}
+          onFocusChange={onFocusChange}
         />
       </div>
     </div>

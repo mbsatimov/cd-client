@@ -9,8 +9,10 @@ import { getQuestionCount } from './helpers.ts';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   answers: Record<string, string>;
+  focus?: number;
   questions: FormBuilderValue[];
   questionsStartNumber?: number;
+  onFocusChange?: (id: number) => void;
   setAnswer: (index: number, result: string) => void;
 }
 
@@ -19,6 +21,8 @@ export const FormBuilder = ({
   setAnswer,
   className,
   questions,
+  focus,
+  onFocusChange,
   questionsStartNumber = 1,
   ...props
 }: Props) => {
@@ -33,6 +37,8 @@ export const FormBuilder = ({
             key={question.id}
             answers={answers}
             setAnswer={setAnswer}
+            focus={focus}
+            onFocusChange={onFocusChange}
             question={question}
             questionEndNumber={currentQuestionEndNumber}
             questionStartNumber={currentQuestionStartNumber}

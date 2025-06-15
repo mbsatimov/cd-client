@@ -1,1 +1,1 @@
-export * from './Highlightable.tsx';
+export { Highlightable } from './Highlightable';

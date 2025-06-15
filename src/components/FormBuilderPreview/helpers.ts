@@ -11,6 +11,8 @@ export const getQuestionCount = (question: FormBuilderValue) => {
     return question.questions.length;
   } else if (question.type === 'multi-select') {
     return question.limit;
+  } else if (question.type === 'draggable-selection') {
+    return question.content.split('@@').length - 1;
   }
   return 0;
 };

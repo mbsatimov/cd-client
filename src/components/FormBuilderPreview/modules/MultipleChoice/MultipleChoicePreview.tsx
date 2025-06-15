@@ -1,45 +1,60 @@
 import { Radio, RadioGroup } from '@/components/ui';
+import { cn } from '@/lib/utils.ts';
 
 import type { MultipleChoiceQuestionValue } from './types.ts';
 
 interface Props {
   answerOrder: number;
   answers: Record<string, string>;
+  focus?: number;
   value: MultipleChoiceQuestionValue;
+  onFocusChange?: (id: number) => void;
   setAnswer: (index: number, result: string | null) => void;
 }
 
-export const MultipleChoicePreview = ({ value, answerOrder, answers, setAnswer }: Props) => (
-  <div className='space-y-3'>
+export const MultipleChoicePreview = ({
+  value,
+  focus,
+  onFocusChange,
+  answerOrder,
+  answers,
+  setAnswer
+}: Props) => (
+  <div className='space-y-5'>
     {value.questions.map((question) => {
       const order = answerOrder++;
       return (
-        <div key={question.id}>
-          <div className='group/question flex items-center gap-2'>
-            <div className='font-bold'>{order}.</div>
+        <RadioGroup
+          key={question.id}
+          aria-label='Select an option'
+          id={`question-${order}`}
+          value={answers[order] || null}
+          onChange={(value) => {
+            setAnswer(order, value);
+            onFocusChange?.(order);
+          }}
+          onFocus={() => onFocusChange?.(order)}
+        >
+          <div className='flex items-center gap-2'>
+            <div
+              className={cn(
+                'rounded-sm border border-transparent font-bold',
+                focus === order && 'border-primary'
+              )}
+            >
+              {order}.
+            </div>
             <p>{question.question}</p>
           </div>
-          <div className='ml-5 space-y-3 py-3'>
-            {question.options.map(
-              (option) =>
-                option.value && (
-                  <RadioGroup
-                    key={option.id}
-                    aria-label='Select option'
-                    value={answers[order] || ''}
-                    onChange={() => setAnswer(order, option.value)}
-                  >
-                    <div className='flex items-center gap-3'>
-                      <Radio id={option.id} value={option.value}>
-                        <span className='font-semibold'>{option.value}</span>
-                        {option.label}
-                      </Radio>
-                    </div>
-                  </RadioGroup>
-                )
-            )}
+          <div className='ml-5 space-y-3'>
+            {question.options.map((option) => (
+              <Radio key={option.id} className='w-fit' value={option.value}>
+                <span className='font-semibold'>{option.value}</span>
+                {option.label}
+              </Radio>
+            ))}
           </div>
-        </div>
+        </RadioGroup>
       );
     })}
   </div>
