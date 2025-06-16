@@ -17,7 +17,7 @@ export const useBookExamForm = (exam: Exam) => {
   const form = useForm<BookExamFormSchema>({
     resolver: zodResolver(bookExamFormSchema),
     defaultValues: {
-      speakingTimeId: String(exam.speakingTimes[0]?.id)
+      speakingTimeId: exam.speakingTimes[0]?.id ? String(exam.speakingTimes[0].id) : undefined
     }
   });
 
@@ -36,7 +36,7 @@ export const useBookExamForm = (exam: Exam) => {
 
     postRegistrationMutation.mutate({
       data: {
-        isStudent: false,
+        isStudent: authStore.user.student,
         speakingTimeId: +data.speakingTimeId
       },
       config: { params: { examId: exam.id } }

@@ -1,4 +1,8 @@
+import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import * as React from 'react';
+
+import { helpDataMap } from '@/components/FormBuilderPreview/components/help-data.ts';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 
 import type { FormBuilderQuestionTypes, FormBuilderValue } from '../types.ts';
 
@@ -39,11 +43,24 @@ export const QuestionPreview = ({
 
   return (
     <div>
-      <p className='mb-4 text-lg font-bold'>
-        {questionStartNumber < questionEndNumber &&
-          `Questions ${questionStartNumber} - ${questionEndNumber}`}
-        {questionStartNumber === questionEndNumber && `Question ${questionStartNumber}`}
-      </p>
+      <div className='mb-4 flex items-center justify-between'>
+        <p className='text-lg font-bold'>
+          {questionStartNumber < questionEndNumber &&
+            `Questions ${questionStartNumber} - ${questionEndNumber}`}
+          {questionStartNumber === questionEndNumber && `Question ${questionStartNumber}`}
+        </p>
+        <div>
+          <Popover>
+            <PopoverTrigger className='flex items-center gap-1 hover:text-primary'>
+              <QuestionMarkCircledIcon className='size-4' />
+              Help
+            </PopoverTrigger>
+            <PopoverContent align='end' className='w-full max-w-lg'>
+              {helpDataMap[question.type]}
+            </PopoverContent>
+          </Popover>
+        </div>
+      </div>
 
       {question.condition && (
         <p className='mb-3 whitespace-pre-wrap break-words text-base italic'>

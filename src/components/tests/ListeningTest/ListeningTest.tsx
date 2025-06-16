@@ -3,7 +3,7 @@ import React from 'react';
 import { toast } from 'sonner';
 
 import { FormBuilder } from '@/components/FormBuilderPreview';
-import { BaseLayout } from '@/components/layout';
+import { BaseLayout, ThemeSwitch } from '@/components/layout';
 import { Button, Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
 import { useTimer } from '@/hooks';
 import { cn } from '@/lib/utils.ts';
@@ -135,6 +135,7 @@ export const ListeningTest = ({
             />
             <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
           </div>
+          <ThemeSwitch />
           {!hideNextButton &&
             (nextStep ? (
               <MoveToAction type={nextStep} onConfirm={onTestEnd} />

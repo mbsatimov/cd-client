@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'sonner';
 
 import { EditorPreview } from '@/components/editor';
-import { BaseLayout } from '@/components/layout';
+import { BaseLayout, ThemeSwitch } from '@/components/layout';
 import {
   ResizableHandle,
   ResizablePanel,
@@ -59,7 +59,7 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
             </TabsTrigger>
           ))}
         </TabsList>
-        <div className='flex justify-end gap-2'>
+        <div className='flex justify-end gap-4'>
           <div
             className={cn(
               'flex h-9 items-center rounded-md bg-secondary px-3 font-medium sm:text-lg',
@@ -69,6 +69,7 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
           >
             {leftFullTime()}
           </div>
+          <ThemeSwitch />
           {!hideNextButton &&
             (nextStep ? (
               <MoveToAction type={nextStep} onConfirm={onTestEnd} />

@@ -32,16 +32,6 @@ export const DraggableSelectionPreview = ({
 }: Props) => {
   const [activeId, setActiveId] = React.useState<string | null>(null);
 
-  const parseItems = () => {
-    return value.options.map((option, index) => ({
-      ...option,
-      id: index + answerOrder,
-      active: Object.values(answers).includes(option.value)
-    }));
-  };
-
-  const options = parseItems();
-
   const findResultOrder = (v: string) => {
     const count = getQuestionCount(value);
     const start = answerOrder;
@@ -57,28 +47,38 @@ export const DraggableSelectionPreview = ({
     }
   };
 
+  const parseItems = () => {
+    return value.options.map((option, index) => ({
+      ...option,
+      id: index + answerOrder,
+      active: !!findResultOrder(option.value)
+    }));
+  };
+
+  const options = parseItems();
+
   const handleDragEnd = (e: DragEndEvent) => {
-    setActiveId(null);
     const { active, over } = e;
     if (!over) {
-      const overId = findResultOrder(active.data.current?.value);
-      if (!overId) return;
-      setAnswer(overId, '');
-      onFocusChange?.(overId);
+      const prevOverId = active.data.current?.overId;
+      if (!prevOverId) return;
+      setAnswer(prevOverId, '');
       return;
     }
 
-    const overId = String(over.id).split('-')[1];
     const [slug] = String(active.id).split('-');
 
     if (slug === 'drag') {
-      const prevOverId = findResultOrder(active.data.current?.value);
+      const prevOverId = active.data.current?.overId;
       if (!prevOverId) return;
       setAnswer(prevOverId, '');
-      onFocusChange?.(+overId);
     }
+
+    const overId = String(over.id).split('-')[1];
+
     setAnswer(+overId, active.data.current?.value);
-    onFocusChange?.(+overId);
+
+    setActiveId(null);
   };
 
   const onDragStart = (e: DragStartEvent) => {
@@ -129,6 +129,7 @@ export const DraggableSelectionPreview = ({
                         { 'z-10 border !border-primary': activeId === `drag-${order}` }
                       )}
                       id={`drag-${order}`}
+                      overId={order}
                     >
                       {answers[order]}
                     </Draggable>

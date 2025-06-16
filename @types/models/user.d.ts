@@ -13,6 +13,7 @@ interface User {
   lastName: string;
   phoneNumber: string;
   role: UserRole;
+  student: boolean;
 }
 
 type UserResponse = User;

@@ -5,12 +5,13 @@ import React from 'react';
 interface Props extends React.ComponentProps<'div'> {
   children?: React.ReactNode;
   id: string;
+  overId?: string;
 }
 
-export const Draggable = ({ children, id, ...props }: Props) => {
+export const Draggable = ({ children, overId, id, ...props }: Props) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
-    data: { value: children }
+    data: { value: children, overId }
   });
 
   return (

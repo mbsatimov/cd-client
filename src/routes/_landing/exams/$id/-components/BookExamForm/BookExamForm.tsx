@@ -12,6 +12,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormMessage,
   Select,
   SelectContent,
   SelectItem,
@@ -64,6 +65,7 @@ export const BookExamForm = ({ exam }: Props) => {
                       </SelectContent>
                     </Select>
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
               name='speakingTimeId'
@@ -87,7 +89,12 @@ export const BookExamForm = ({ exam }: Props) => {
           </CardHeader>
           <CardContent className='sm:p-5'>
             <div className='flex items-center justify-end'>
-              <Button className='w-full sm:w-fit' type='submit' loading={state.isPending}>
+              <Button
+                className='w-full sm:w-fit'
+                disabled={exam.speakingTimes.length === 0}
+                type='submit'
+                loading={state.isPending}
+              >
                 Book Place
               </Button>
             </div>

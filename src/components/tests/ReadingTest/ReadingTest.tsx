@@ -3,7 +3,7 @@ import React from 'react';
 import { toast } from 'sonner';
 
 import { FormBuilder, getQuestionsCount } from '@/components/FormBuilderPreview';
-import { BaseLayout } from '@/components/layout';
+import { BaseLayout, ThemeSwitch } from '@/components/layout';
 import {
   Button,
   ResizableHandle,
@@ -105,7 +105,8 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
             </TabsTrigger>
           ))}
         </TabsList>
-        <div className='flex justify-end'>
+        <div className='flex justify-end gap-4'>
+          <ThemeSwitch />
           {!hideNextButton &&
             (nextStep ? (
               <MoveToAction type={nextStep} onConfirm={onTestEnd} />
