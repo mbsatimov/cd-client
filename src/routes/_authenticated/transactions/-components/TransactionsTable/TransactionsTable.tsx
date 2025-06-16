@@ -43,8 +43,21 @@ export const TransactionsTable = () => {
         <TableBody className='font-medium text-muted-foreground'>
           {state.transactions?.length ? (
             state.transactions?.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>{index + 1}</TableCell>
+              <TableRow key={index} className={cn('relative', row.isCanceled && 'opacity-50')}>
+                <TableCell>
+                  {row.isCanceled && (
+                    <div className='absolute inset-x-2 inset-y-0 flex items-center'>
+                      <div className='h-[1px] w-full bg-black/30'></div>
+                      <Badge
+                        className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
+                        variant='destructive'
+                      >
+                        Canceled
+                      </Badge>
+                    </div>
+                  )}
+                  {index + 1}
+                </TableCell>
                 <TableCell>{format(row.createdAt, 'dd MMM, yyyy HH:mm')}</TableCell>
                 <TableCell>
                   {row.fundingSource ? (
@@ -55,15 +68,15 @@ export const TransactionsTable = () => {
                 </TableCell>
                 <TableCell>{row.paidFor ? transactionForMap[row.paidFor] : '-'}</TableCell>
                 <TableCell>
-                  {row.isIncome ? (
-                    <div className='flex items-center gap-1'>
-                      <ArrowUpIcon className='size-4' />
-                      Deposit
-                    </div>
-                  ) : (
+                  {row.isExpense ? (
                     <div className='flex items-center gap-1'>
                       <ArrowDownIcon className='size-4' />
                       Exam Fee
+                    </div>
+                  ) : (
+                    <div className='flex items-center gap-1'>
+                      <ArrowUpIcon className='size-4' />
+                      Deposit
                     </div>
                   )}
                 </TableCell>
@@ -71,12 +84,12 @@ export const TransactionsTable = () => {
                   <Badge
                     className={cn(
                       'shadow-none',
-                      row.isIncome
-                        ? 'bg-emerald-500/10 text-emerald-700'
-                        : 'bg-red-500/10 text-red-700'
+                      row.isExpense
+                        ? 'bg-red-500/10 text-red-700'
+                        : 'bg-emerald-500/10 text-emerald-700'
                     )}
                   >
-                    {row.isIncome ? '+' : '-'}
+                    {row.isExpense ? '-' : '+'}
                     {formatPrice(row.amount)}
                   </Badge>
                 </TableCell>

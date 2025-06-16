@@ -5,7 +5,7 @@ interface Transaction {
   createdAt: string;
   fundingSource?: TransactionSource;
   isCanceled: boolean;
-  isIncome: boolean;
+  isExpense: boolean;
   paidFor?: TransactionFor;
 }
 
