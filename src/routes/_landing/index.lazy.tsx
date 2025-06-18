@@ -37,10 +37,10 @@ const HomePage = () => {
         >
           <TabsList className='h-12 w-full'>
             <TabsTrigger className='md:px-6' value='offline-cd'>
-              Offline CD
+              CDI
             </TabsTrigger>
             <TabsTrigger className='md:px-6' value='paper'>
-              Paper based
+              Paper-based
             </TabsTrigger>
             {/*<TabsTrigger className='md:px-6' value='online-cd'>*/}
             {/*  Online CD*/}

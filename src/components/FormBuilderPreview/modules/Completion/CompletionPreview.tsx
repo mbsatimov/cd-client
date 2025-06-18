@@ -35,7 +35,6 @@ export const CompletionPreview = ({
             )}
             id={`question-${order}`}
             spellCheck={false}
-            tabIndex={order}
             value={answers[order] || ''}
             autoComplete='off'
             autoCorrect='off'

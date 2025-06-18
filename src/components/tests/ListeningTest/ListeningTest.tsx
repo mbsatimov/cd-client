@@ -1,10 +1,16 @@
-import { ArrowLeftIcon, ArrowRightIcon, Volume2Icon, VolumeXIcon } from 'lucide-react';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckCheckIcon,
+  Volume2Icon,
+  VolumeXIcon
+} from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
 import { FormBuilder } from '@/components/FormBuilderPreview';
 import { BaseLayout, ThemeSwitch } from '@/components/layout';
-import { Button, Slider, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { Button, Slider, Tabs, TabsContent } from '@/components/ui';
 import { useTimer } from '@/hooks';
 import { cn } from '@/lib/utils.ts';
 import { useExamAnswersStore } from '@/utils/stores';
@@ -28,7 +34,7 @@ export const ListeningTest = ({
   onVolumeChange,
   volume = 1
 }: Props) => {
-  const [currentTab, setCurrentTab] = React.useState('part-1');
+  const [currentTab, setCurrentTab] = React.useState<number>(1);
   const audios = test.parts.map((part) => part.audio.url);
   const [currentAudioIndex, setCurrentAudioIndex] = React.useState(0);
   const audioRef = React.useRef<HTMLAudioElement>(null);
@@ -68,39 +74,64 @@ export const ListeningTest = ({
     question?.focus({ preventScroll: true });
   };
 
+  const getTabFirstQuestion = (tab: number) => {
+    return test.parts
+      .slice(0, tab - 1)
+      .reduce((acc, part) => acc + part.question.numberOfQuestions, 1);
+  };
+
+  const onTabChange = (tab: number) => {
+    setCurrentTab(tab);
+    const firstQuestionId = getTabFirstQuestion(tab);
+    focusToQuestionById(firstQuestionId);
+  };
+
   const onFocusNext = () => {
-    const tab = +currentTab.split('-')[1];
     const currentPartLastNumber = test.parts
-      .slice(0, tab)
+      .slice(0, currentTab)
       .reduce((acc, part) => acc + part.question.numberOfQuestions, 0);
 
     const isLastQuestion =
-      currentPartLastNumber === currentFocusQuestionId && test.parts.length === tab;
+      currentPartLastNumber === currentFocusQuestionId && test.parts.length === currentTab;
 
     if (isLastQuestion) return;
+    console.log(currentPartLastNumber, currentFocusQuestionId);
     if (currentPartLastNumber === currentFocusQuestionId) {
-      setCurrentTab(`part-${tab + 1}`);
+      onTabChange(currentTab + 1);
     }
     focusToQuestionById(currentFocusQuestionId + 1);
   };
 
   const onFocusPrev = () => {
     if (currentFocusQuestionId === 1) return;
-    const tab = +currentTab.split('-')[1];
     const currentPartFirstNumber = test.parts
-      .slice(0, tab - 1)
+      .slice(0, currentTab - 1)
       .reduce((acc, part) => acc + part.question.numberOfQuestions, 1);
 
     if (currentFocusQuestionId === currentPartFirstNumber) {
-      setCurrentTab(`part-${tab - 1}`);
+      setCurrentTab(currentTab - 1);
     }
 
     focusToQuestionById(currentFocusQuestionId - 1);
   };
 
+  const getSolvedPartQuestionsCount = (tab: number) => {
+    const firstQuestionId = getTabFirstQuestion(tab);
+    const lastQuestionId = firstQuestionId + test.parts[tab - 1].question.numberOfQuestions;
+    let count = 0;
+    for (let i = firstQuestionId; i <= lastQuestionId; i++) {
+      if (listening[i]) count++;
+    }
+    return count;
+  };
+
   return (
-    <Tabs className='flex h-screen flex-col' value={currentTab} onValueChange={setCurrentTab}>
-      <header className='grid h-14 grid-cols-2 items-center border-b bg-background px-2 md:grid-cols-3 md:px-4'>
+    <Tabs
+      className='flex h-screen flex-col'
+      value={String(currentTab)}
+      onValueChange={(value) => onTabChange(+value)}
+    >
+      <header className='flex h-14 items-center justify-between border-b bg-background px-2 md:px-4'>
         <div className='flex items-center gap-6'>
           <span className='hidden text-lg font-semibold sm:block'>LISTENING</span>
           <div
@@ -114,13 +145,6 @@ export const ListeningTest = ({
             {leftFullTime()}
           </div>
         </div>
-        <TabsList className='justify-self-start md:justify-self-stretch'>
-          {test.parts.map((part, index) => (
-            <TabsTrigger key={part.id} value={`part-${index + 1}`}>
-              Part {index + 1}
-            </TabsTrigger>
-          ))}
-        </TabsList>
         <div className='flex justify-end gap-4'>
           <div className='flex items-center gap-2'>
             <VolumeXIcon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
@@ -155,7 +179,7 @@ export const ListeningTest = ({
           const currentQuestionStartNumber = questionsOrder;
           questionsOrder += part.question.numberOfQuestions;
           return (
-            <TabsContent key={part.id} tabIndex={undefined} value={`part-${index + 1}`}>
+            <TabsContent key={part.id} tabIndex={undefined} value={String(index + 1)}>
               <FormBuilder
                 answers={listening}
                 setAnswer={setListening}
@@ -168,37 +192,61 @@ export const ListeningTest = ({
           );
         })}
       </BaseLayout>
-      <div className='flex h-14 items-center justify-between border-t px-4'>
-        <div>
-          {test.parts.map((part, index) => (
-            <TabsContent key={part.id} className='flex gap-2' value={`part-${index + 1}`}>
-              {Array.from({ length: part.question.numberOfQuestions }).map((_, i) => {
-                const questionId = index * 10 + i + 1;
-                return (
-                  <div key={questionId} className='space-y-1'>
-                    <Button
-                      size='iconSm'
-                      variant={currentFocusQuestionId === questionId ? 'default' : 'secondary'}
-                      onClick={() => focusToQuestionById(questionId)}
-                    >
-                      {questionId}
-                    </Button>
-                    <div
-                      className={cn('h-1 w-full rounded-sm bg-muted', {
-                        'bg-green-500': !!listening[questionId]
-                      })}
-                    />
-                  </div>
-                );
+      <div className='relative flex h-14 items-center justify-between'>
+        {test.parts.map((part, index) => {
+          const solvedQuestionsCount = getSolvedPartQuestionsCount(index + 1);
+          const isSolved = solvedQuestionsCount === part.question.numberOfQuestions;
+          return index + 1 === currentTab ? (
+            <div
+              key={index}
+              className={cn('flex h-full flex-1 items-center gap-4 text-nowrap border-y-2 p-4', {})}
+            >
+              <span className='font-bold'>Part {index + 1}</span>
+              <div className='flex gap-2'>
+                {Array.from({ length: part.question.numberOfQuestions }).map((_, i) => {
+                  const questionId = index * 10 + i + 1;
+                  return (
+                    <div key={questionId} className='relative space-y-1'>
+                      <div
+                        className={cn('absolute bottom-full h-1 w-full rounded-sm bg-muted', {
+                          'bg-green-500': !!listening[questionId]
+                        })}
+                      />
+                      <Button
+                        size='iconSm'
+                        variant={currentFocusQuestionId === questionId ? 'default' : 'secondary'}
+                        onClick={() => focusToQuestionById(questionId)}
+                      >
+                        {questionId}
+                      </Button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <button
+              key={part.id}
+              className={cn('flex h-full flex-1 items-center gap-3 border-y-2 p-4 hover:bg-muted', {
+                'border-y-2 border-t-green-500': isSolved
               })}
-            </TabsContent>
-          ))}
-        </div>
-        <div className='flex gap-2'>
-          <Button size='iconSm' variant='secondary' onClick={onFocusPrev}>
+              value={`part-${index + 1}`}
+              onClick={() => onTabChange(index + 1)}
+            >
+              {isSolved && <CheckCheckIcon className='size-5 text-green-500' />} Part {index + 1}
+              {!isSolved && (
+                <span className='text-muted-foreground'>
+                  {solvedQuestionsCount} of {part.question.numberOfQuestions}
+                </span>
+              )}
+            </button>
+          );
+        })}
+        <div className='absolute bottom-[calc(100%+0.5rem)] right-2 flex gap-2'>
+          <Button size='iconLg' onClick={onFocusPrev}>
             <ArrowLeftIcon />
           </Button>
-          <Button size='iconSm' variant='secondary' onClick={onFocusNext}>
+          <Button size='iconLg' onClick={onFocusNext}>
             <ArrowRightIcon />
           </Button>
         </div>

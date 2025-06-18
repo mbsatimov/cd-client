@@ -1,16 +1,16 @@
+import { ArrowLeftIcon, ArrowRightIcon, CheckCheckIcon } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
 import { EditorPreview } from '@/components/editor';
 import { BaseLayout, ThemeSwitch } from '@/components/layout';
 import {
+  Button,
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
   Tabs,
   TabsContent,
-  TabsList,
-  TabsTrigger,
   Textarea
 } from '@/components/ui';
 import { useTimer } from '@/hooks';
@@ -27,7 +27,7 @@ interface Props {
 }
 
 export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props) => {
-  const [currentTab, setCurrentTab] = React.useState('part-1');
+  const [currentTab, setCurrentTab] = React.useState(1);
   const { timeLeft, leftFullTime } = useTimer({
     initialTime: 3600,
     autoStart: true,
@@ -48,17 +48,26 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
     return `${count} words`;
   };
 
+  const onFocusPrev = () => {
+    const prevTab = currentTab - 1;
+    if (prevTab === 0) return;
+    setCurrentTab(prevTab);
+  };
+
+  const onFocusNext = () => {
+    const nextTab = currentTab + 1;
+    if (nextTab > test.parts.length) return;
+    setCurrentTab(nextTab);
+  };
+
   return (
-    <Tabs className='flex h-screen flex-col' value={currentTab} onValueChange={setCurrentTab}>
-      <header className='grid h-14 grid-cols-3 items-center border-b bg-background px-2 md:px-4'>
+    <Tabs
+      className='flex h-screen flex-col'
+      value={String(currentTab)}
+      onValueChange={(value) => setCurrentTab(+value)}
+    >
+      <header className='flex h-14 items-center justify-between border-b bg-background px-2 md:px-4'>
         <h1 className='hidden text-lg font-semibold sm:block'>WRITING</h1>
-        <TabsList className='justify-self-stretch'>
-          {test.parts.map((part, index) => (
-            <TabsTrigger key={part.id} value={`part-${index + 1}`}>
-              Part {index + 1}
-            </TabsTrigger>
-          ))}
-        </TabsList>
         <div className='flex justify-end gap-4'>
           <div
             className={cn(
@@ -80,7 +89,7 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
       </header>
       <div className='min-w-0 flex-1 overflow-y-auto'>
         {test.parts.map((part, index) => (
-          <TabsContent key={part.id} className='h-full' value={`part-${index + 1}`}>
+          <TabsContent key={part.id} className='h-full' value={String(index + 1)}>
             <ResizablePanelGroup direction='horizontal'>
               <ResizablePanel style={{ overflowY: 'auto' }}>
                 <BaseLayout className='min-w-80'>
@@ -107,6 +116,40 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
             </ResizablePanelGroup>
           </TabsContent>
         ))}
+      </div>
+
+      <div className='relative flex h-14 items-center justify-between'>
+        {test.parts.map((part, index) => {
+          const isSolved = writing[index + 1];
+          return index + 1 === currentTab ? (
+            <div
+              key={index}
+              className={cn('flex h-full flex-1 items-center gap-4 text-nowrap border-y-2 p-4', {})}
+            >
+              <span className='font-bold'>Part {index + 1}</span>
+            </div>
+          ) : (
+            <button
+              key={part.id}
+              className={cn('flex h-full flex-1 items-center gap-3 border-y-2 p-4 hover:bg-muted', {
+                'border-y-2 border-t-green-500': isSolved
+              })}
+              value={`part-${index + 1}`}
+              onClick={() => setCurrentTab(index + 1)}
+            >
+              {isSolved && <CheckCheckIcon className='size-5 text-green-500' />} Part {index + 1}
+              {!isSolved && <span className='text-muted-foreground'>{isSolved ? 1 : 0} of 1</span>}
+            </button>
+          );
+        })}
+        <div className='absolute bottom-[calc(100%+0.5rem)] right-2 flex gap-2'>
+          <Button size='iconLg' onClick={onFocusPrev}>
+            <ArrowLeftIcon />
+          </Button>
+          <Button size='iconLg' onClick={onFocusNext}>
+            <ArrowRightIcon />
+          </Button>
+        </div>
       </div>
     </Tabs>
   );

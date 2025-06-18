@@ -109,7 +109,6 @@ export const DraggableSelectionPreview = ({
                     }
                   )}
                   id={`question-${order}`}
-                  tabIndex={+order}
                   onFocus={() => onFocusChange?.(+order)}
                 >
                   {answers[order] ? (
