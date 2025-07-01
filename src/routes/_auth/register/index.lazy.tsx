@@ -38,9 +38,8 @@ const RegisterPage = () => {
       <CardHeader className='flex flex-col space-y-2 text-left'>
         <CardTitle>Verify</CardTitle>
         <CardDescription>
-          Enter the verification code sent to telegram bot
-          <br />
-          to verify your account
+          Enter the verification code sent via SMS, or open the Telegram bot below to retrieve your
+          code.
         </CardDescription>
       </CardHeader>
       <CardContent>
