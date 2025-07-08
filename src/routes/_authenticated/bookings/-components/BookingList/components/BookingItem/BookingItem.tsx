@@ -44,9 +44,9 @@ export const BookingItem = ({ registration }: Props) => {
             </CardDescription>
           </div>
           <div className='text-right text-sm'>
-            <div className='text-lg font-semibold'>{format(registration.speakingTime, 'p')}</div>
+            <div className='text-lg font-semibold'>{format(registration.examDateTime, 'p')}</div>
             <div className='text-muted-foreground'>
-              {format(registration.speakingTime, 'dd MMMM, yyyy')}
+              {format(registration.examDateTime, 'dd MMMM, yyyy')}
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@ export const BookingItem = ({ registration }: Props) => {
           <CardTitle className='text-lg'>Speaking Time</CardTitle>
           <div className='text-right text-sm'>
             <div className='font-semibold'>
-              {format(registration.examDateTime, 'dd MMMM, EEE p')}
+              {format(registration.speakingTime, 'dd MMMM, EEE p')}
             </div>
           </div>
         </div>
