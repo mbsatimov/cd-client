@@ -95,7 +95,6 @@ export const ListeningTest = ({
       currentPartLastNumber === currentFocusQuestionId && test.parts.length === currentTab;
 
     if (isLastQuestion) return;
-    console.log(currentPartLastNumber, currentFocusQuestionId);
     if (currentPartLastNumber === currentFocusQuestionId) {
       onTabChange(currentTab + 1);
     }
@@ -130,6 +129,8 @@ export const ListeningTest = ({
       <header className='flex h-14 items-center justify-between border-b bg-background px-2 md:px-4'>
         <div className='flex items-center gap-6'>
           <span className='hidden text-lg font-semibold sm:block'>LISTENING</span>
+        </div>
+        <div className='flex justify-end gap-4'>
           <div
             className={cn(
               'flex h-9 items-center rounded-md bg-secondary px-3 font-medium sm:text-lg',
@@ -140,8 +141,6 @@ export const ListeningTest = ({
           >
             {leftFullTime()}
           </div>
-        </div>
-        <div className='flex justify-end gap-4'>
           <div className='flex items-center gap-2'>
             <VolumeXIcon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
             <Slider

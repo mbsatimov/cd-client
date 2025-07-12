@@ -65,7 +65,6 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
       currentPartLastNumber === currentFocusQuestionId && test.parts.length === currentTab;
 
     if (isLastQuestion) return;
-    console.log(currentPartLastNumber, currentFocusQuestionId);
     if (currentPartLastNumber === currentFocusQuestionId) {
       onTabChange(currentTab + 1);
     }
