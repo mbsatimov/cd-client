@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 
 import { FormBuilder } from '@/components/FormBuilderPreview';
 import { BaseLayout, ThemeSwitch } from '@/components/layout';
-import { Button, Slider, Tabs, TabsContent } from '@/components/ui';
+import { Button, Slider } from '@/components/ui';
 import { useTimer } from '@/hooks';
 import { cn } from '@/lib/utils.ts';
 import { useExamAnswersStore } from '@/utils/stores';
@@ -119,18 +119,14 @@ export const ListeningTest = ({
     const firstQuestionId = getTabFirstQuestion(tab);
     const lastQuestionId = firstQuestionId + test.parts[tab - 1].question.numberOfQuestions;
     let count = 0;
-    for (let i = firstQuestionId; i <= lastQuestionId; i++) {
+    for (let i = firstQuestionId; i < lastQuestionId; i++) {
       if (listening[i]) count++;
     }
     return count;
   };
 
   return (
-    <Tabs
-      className='flex h-screen flex-col'
-      value={String(currentTab)}
-      onValueChange={(value) => onTabChange(+value)}
-    >
+    <div className='flex h-screen flex-col'>
       <header className='flex h-14 items-center justify-between border-b bg-background px-2 md:px-4'>
         <div className='flex items-center gap-6'>
           <span className='hidden text-lg font-semibold sm:block'>LISTENING</span>
@@ -179,7 +175,7 @@ export const ListeningTest = ({
           const currentQuestionStartNumber = questionsOrder;
           questionsOrder += part.question.numberOfQuestions;
           return (
-            <TabsContent key={part.id} tabIndex={undefined} value={String(index + 1)}>
+            <div key={part.id} className={cn('hidden h-full', index + 1 === currentTab && 'block')}>
               <FormBuilder
                 answers={listening}
                 setAnswer={setListening}
@@ -188,7 +184,7 @@ export const ListeningTest = ({
                 questions={part.question.content}
                 questionsStartNumber={currentQuestionStartNumber}
               />
-            </TabsContent>
+            </div>
           );
         })}
       </BaseLayout>
@@ -251,6 +247,6 @@ export const ListeningTest = ({
           </Button>
         </div>
       </div>
-    </Tabs>
+    </div>
   );
 };

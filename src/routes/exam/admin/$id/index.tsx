@@ -59,14 +59,14 @@ const WritingTestPage = () => {
   };
 
   return (
-    <Highlightable>
-      {state.currentStep && ieltsSteps[state.currentStep]}
+    <>
+      <Highlightable>{state.currentStep && ieltsSteps[state.currentStep]}</Highlightable>
       <ResultsDialog
         answers={state.results}
         onOpenChange={functions.setOpenResults}
         open={state.openResults}
       />
-    </Highlightable>
+    </>
   );
 };
 

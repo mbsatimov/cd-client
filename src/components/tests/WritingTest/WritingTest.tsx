@@ -9,8 +9,6 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-  Tabs,
-  TabsContent,
   Textarea
 } from '@/components/ui';
 import { useTimer } from '@/hooks';
@@ -61,11 +59,7 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
   };
 
   return (
-    <Tabs
-      className='flex h-screen flex-col'
-      value={String(currentTab)}
-      onValueChange={(value) => setCurrentTab(+value)}
-    >
+    <div className='flex h-screen flex-col'>
       <header className='flex h-14 items-center justify-between border-b bg-background px-2 md:px-4'>
         <h1 className='hidden text-lg font-semibold sm:block'>WRITING</h1>
         <div className='flex justify-end gap-4'>
@@ -89,7 +83,7 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
       </header>
       <div className='min-w-0 flex-1 overflow-y-auto'>
         {test.parts.map((part, index) => (
-          <TabsContent key={part.id} className='h-full' value={String(index + 1)}>
+          <div key={part.id} className={cn('hidden h-full', index + 1 === currentTab && 'block')}>
             <ResizablePanelGroup direction='horizontal'>
               <ResizablePanel style={{ overflowY: 'auto' }}>
                 <BaseLayout className='min-w-80'>
@@ -114,7 +108,7 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
                 </BaseLayout>
               </ResizablePanel>
             </ResizablePanelGroup>
-          </TabsContent>
+          </div>
         ))}
       </div>
 
@@ -151,6 +145,6 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
           </Button>
         </div>
       </div>
-    </Tabs>
+    </div>
   );
 };

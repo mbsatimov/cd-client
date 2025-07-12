@@ -4,14 +4,7 @@ import { toast } from 'sonner';
 
 import { FormBuilder, getQuestionsCount } from '@/components/FormBuilderPreview';
 import { BaseLayout, ThemeSwitch } from '@/components/layout';
-import {
-  Button,
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-  Tabs,
-  TabsContent
-} from '@/components/ui';
+import { Button, ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui';
 import { useTimer } from '@/hooks';
 import { cn } from '@/lib/utils.ts';
 import { useExamAnswersStore } from '@/utils/stores';
@@ -96,18 +89,14 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
     const firstQuestionId = getTabFirstQuestion(tab);
     const lastQuestionId = firstQuestionId + test.parts[tab - 1].question.numberOfQuestions;
     let count = 0;
-    for (let i = firstQuestionId; i <= lastQuestionId; i++) {
+    for (let i = firstQuestionId; i < lastQuestionId; i++) {
       if (reading[i]) count++;
     }
     return count;
   };
 
   return (
-    <Tabs
-      className='flex h-screen flex-col'
-      value={String(currentTab)}
-      onValueChange={(value) => onTabChange(+value)}
-    >
+    <div className='flex h-screen flex-col'>
       <header className='flex h-14 items-center justify-between border-b bg-background px-2 md:px-4'>
         <div className='flex items-center gap-6'>
           <span className='hidden text-lg font-semibold sm:block'>READING</span>
@@ -137,7 +126,7 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
           const currentQuestionStartNumber = questionsOrder;
           questionsOrder += questionsCount;
           return (
-            <TabsContent key={part.id} className='h-full' value={String(index + 1)}>
+            <div key={part.id} className={cn('hidden h-full', index + 1 === currentTab && 'block')}>
               <ResizablePanelGroup direction='horizontal'>
                 <ResizablePanel style={{ overflowY: 'auto' }}>
                   <BaseLayout className='min-w-80'>
@@ -160,7 +149,7 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
                   </BaseLayout>
                 </ResizablePanel>
               </ResizablePanelGroup>
-            </TabsContent>
+            </div>
           );
         })}
       </div>
@@ -224,6 +213,6 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
           </Button>
         </div>
       </div>
-    </Tabs>
+    </div>
   );
 };
