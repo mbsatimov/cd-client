@@ -68,7 +68,7 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
                   <FormLabel required>Payment type</FormLabel>
                   <FormControl>
                     <RadioGroup
-                      className='grid grid-cols-3 gap-2'
+                      className='grid grid-cols-2 gap-2'
                       value={field.value}
                       onChange={field.onChange}
                     >
@@ -100,18 +100,24 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
                           <img alt='Payme' className='size-full object-contain' src='/payme.png' />
                         </Label>
                       </button>
-                      <button type='button'>
-                        <Radio aria-label='Uzum' className='sr-only' id='uzum' value='UZUM' />
-                        <Label
-                          className={cn(
-                            'flex h-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-2 hover:bg-accent hover:text-accent-foreground',
-                            { 'border-primary bg-muted': field.value === 'UZUM' }
-                          )}
-                          htmlFor='uzum'
-                        >
-                          <img alt='Uzum' className='size-full object-contain' src='/uzum.png' />
-                        </Label>
-                      </button>
+                      {/*<button type='button'>*/}
+                      {/*  <Radio*/}
+                      {/*    isDisabled*/}
+                      {/*    aria-label='Uzum'*/}
+                      {/*    className='sr-only'*/}
+                      {/*    id='uzum'*/}
+                      {/*    value='UZUM'*/}
+                      {/*  />*/}
+                      {/*  <Label*/}
+                      {/*    className={cn(*/}
+                      {/*      'flex h-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-2 hover:bg-accent hover:text-accent-foreground',*/}
+                      {/*      { 'border-primary bg-muted': field.value === 'UZUM' }*/}
+                      {/*    )}*/}
+                      {/*    htmlFor='uzum'*/}
+                      {/*  >*/}
+                      {/*    <img alt='Uzum' className='size-full object-contain' src='/uzum.png' />*/}
+                      {/*  </Label>*/}
+                      {/*</button>*/}
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
