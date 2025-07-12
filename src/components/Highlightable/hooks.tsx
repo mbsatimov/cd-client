@@ -2,9 +2,10 @@ import React from 'react';
 
 export const useHighlightable = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [selection, setSelection] = React.useState<Selection | null>(null);
+  const [selection, setSelection] = React.useState<string | null>(null);
   const [rightClickedMark, setRightClickedMark] = React.useState<HTMLElement | null>(null);
   const [note, setNote] = React.useState<string>(''); // Store note content
+  const [position, setPosition] = React.useState<Record<string, number>>();
   const [popoverPosition, setPopoverPosition] = React.useState<{
     top: number;
     left: number;
@@ -12,15 +13,39 @@ export const useHighlightable = () => {
     maxHeight?: number;
   } | null>(null);
 
-  // Update selection when mouse is released
-  const handleMouseUp = () => {
-    const sel = window.getSelection();
-    if (sel && sel.toString().trim() !== '') {
-      setSelection(sel);
-    } else {
+  function onSelectStart() {
+    setSelection(null);
+  }
+
+  function onSelectEnd() {
+    const activeSelection = document.getSelection();
+    const text = activeSelection?.toString();
+
+    if (!activeSelection || !text) {
       setSelection(null);
+      return;
     }
-  };
+
+    setSelection(text);
+
+    const rect = activeSelection.getRangeAt(0).getBoundingClientRect();
+
+    setPosition({
+      x: rect.left + rect.width / 2 - 80 / 2,
+      y: rect.top + window.scrollY - 30,
+      width: rect.width,
+      height: rect.height
+    });
+  }
+
+  React.useEffect(() => {
+    document.addEventListener('selectstart', onSelectStart);
+    document.addEventListener('mouseup', onSelectEnd);
+    return () => {
+      document.removeEventListener('selectstart', onSelectStart);
+      document.removeEventListener('mouseup', onSelectEnd);
+    };
+  }, []);
 
   // Detect right-click on a <mark> and set popover position
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -102,6 +127,7 @@ export const useHighlightable = () => {
 
   // Improved highlight function that properly handles text selection
   const handleHighlight = () => {
+    const selection = window.getSelection();
     if (!selection || selection.toString().trim() === '') return;
 
     try {
@@ -318,25 +344,13 @@ export const useHighlightable = () => {
     }
   };
 
-  // Attach mouseup event to update selection state
-  React.useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('mouseup', handleMouseUp);
-    }
-    return () => {
-      if (container) {
-        container.removeEventListener('mouseup', handleMouseUp);
-      }
-    };
-  }, []);
-
   return {
     state: {
       containerRef,
       selection,
       rightClickedMark,
       note,
+      position,
       popoverPosition
     },
     functions: {

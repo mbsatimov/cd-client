@@ -21,6 +21,21 @@ export const Highlightable: React.FC<HighlightableProps> = ({ children }) => {
 
   return (
     <>
+      {state.selection && state.position && (
+        <p
+          style={{
+            transform: `translate3d(${state.position.x}px, ${state.position.y}px, 0)`
+          }}
+          className='absolute -top-2 left-0 m-0 h-[30px] rounded bg-background text-foreground shadow-md after:absolute after:left-1/2 after:top-full after:h-0 after:w-0 after:-translate-x-2 after:rotate-180 after:border-x-[6px] after:border-b-[8px] after:border-x-transparent after:border-b-primary'
+        >
+          <Button
+            className='flex h-full w-full items-center justify-between px-3 py-1'
+            onClick={functions.handleHighlight}
+          >
+            Highlight
+          </Button>
+        </p>
+      )}
       <ContextMenu>
         <ContextMenuTrigger asChild>
           <div
@@ -31,26 +46,26 @@ export const Highlightable: React.FC<HighlightableProps> = ({ children }) => {
             {children}
           </div>
         </ContextMenuTrigger>
-        <ContextMenuContent className='w-48'>
-          {state.selection ? (
-            <ContextMenuItem onClick={functions.handleHighlight}>Highlight</ContextMenuItem>
-          ) : state.rightClickedMark ? (
-            <>
-              <ContextMenuItem onClick={(e) => functions.showPopover(e.clientX, e.clientY)}>
-                <NotebookIcon className='mr-2 h-4 w-4' />
-                Notes
-              </ContextMenuItem>
-              <ContextMenuItem onClick={functions.handleClearHighlight}>
-                <DeleteIcon className='mr-2 h-4 w-4' />
-                Clear
-              </ContextMenuItem>
-              <ContextMenuItem onClick={functions.handleClearAllHighlights}>
-                <Trash2Icon className='mr-2 h-4 w-4' />
-                Clear All
-              </ContextMenuItem>
-            </>
-          ) : null}
-        </ContextMenuContent>
+        {!state.selection && (
+          <ContextMenuContent className='w-48'>
+            {state.rightClickedMark ? (
+              <>
+                <ContextMenuItem onClick={(e) => functions.showPopover(e.clientX, e.clientY)}>
+                  <NotebookIcon className='mr-2 h-4 w-4' />
+                  Notes
+                </ContextMenuItem>
+                <ContextMenuItem onClick={functions.handleClearHighlight}>
+                  <DeleteIcon className='mr-2 h-4 w-4' />
+                  Clear
+                </ContextMenuItem>
+                <ContextMenuItem onClick={functions.handleClearAllHighlights}>
+                  <Trash2Icon className='mr-2 h-4 w-4' />
+                  Clear All
+                </ContextMenuItem>
+              </>
+            ) : null}
+          </ContextMenuContent>
+        )}
       </ContextMenu>
       {/* Custom Popover for Notes */}
       {state.popoverPosition && (
