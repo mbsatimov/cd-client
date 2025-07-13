@@ -168,6 +168,7 @@ export const ListeningTest = ({
         src={audios[currentAudioIndex]}
         autoPlay
         onEnded={onAudioPartEnds}
+        onPause={() => audioRef.current?.play()}
       ></audio>
       <BaseLayout className='min-w-0 flex-1 overflow-y-auto'>
         {test.parts.map((part, index) => {
