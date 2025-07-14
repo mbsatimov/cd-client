@@ -16,8 +16,8 @@ import {
   FormMessage,
   Input,
   Label,
-  Radio,
-  RadioGroup
+  RadioGroup,
+  RadioGroupItem
 } from '@/components/ui';
 import { cn } from '@/lib/utils.ts';
 import { postFillBalance } from '@/utils/api/requests/transactions';
@@ -70,10 +70,15 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
                     <RadioGroup
                       className='grid grid-cols-2 gap-2'
                       value={field.value}
-                      onChange={field.onChange}
+                      onValueChange={field.onChange}
                     >
                       <button type='button'>
-                        <Radio aria-label='Click' className='sr-only' id='click' value='CLICK' />
+                        <RadioGroupItem
+                          aria-label='Click'
+                          className='sr-only'
+                          id='click'
+                          value='CLICK'
+                        />
                         <Label
                           className={cn(
                             'flex h-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-2 hover:bg-accent hover:text-accent-foreground',
@@ -89,7 +94,12 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
                         </Label>
                       </button>
                       <button type='button'>
-                        <Radio aria-label='Payme' className='sr-only' id='payme' value='PAYME' />
+                        <RadioGroupItem
+                          aria-label='Payme'
+                          className='sr-only'
+                          id='payme'
+                          value='PAYME'
+                        />
                         <Label
                           className={cn(
                             'flex h-20 flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-2 hover:bg-accent hover:text-accent-foreground',

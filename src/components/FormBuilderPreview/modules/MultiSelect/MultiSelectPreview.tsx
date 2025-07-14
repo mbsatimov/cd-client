@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { Checkbox, CheckboxGroup } from '@/components/ui';
+import { Checkbox, Label } from '@/components/ui';
+import { cn } from '@/lib/utils.ts';
 
 import type { MultiSelectQuestionValue } from './types';
 
@@ -30,28 +31,35 @@ export const MultiSelectPreview = ({
   };
 
   return (
-    <CheckboxGroup
-      aria-label='Select options'
-      className='space-y-3'
-      id={`question-${answerOrder}`}
-      value={values}
-      onChange={handleChange}
-      onFocusChange={() => onFocusChange?.(answerOrder)}
-    >
-      {value.options.map(
-        (option) =>
-          option.value && (
+    <div aria-label='Select options' className='space-y-3'>
+      {value.options.map((option, index) => {
+        const order = answerOrder++;
+        return (
+          <Label
+            key={option.id}
+            className={cn('flex items-center gap-2', {
+              'opacity-50': values.length >= value.limit && !values.includes(option.value)
+            })}
+          >
             <Checkbox
               key={option.id}
-              className='w-fit'
-              isDisabled={values.length >= value.limit && !values.includes(option.value)}
+              checked={values.includes(option.value)}
+              disabled={values.length >= value.limit && !values.includes(option.value)}
+              id={value.limit >= index + 1 ? `question-${order}` : undefined}
               value={option.value}
-            >
-              <span className='font-semibold'>{option.value})</span>
-              {option.label}
-            </Checkbox>
-          )
-      )}
-    </CheckboxGroup>
+              onCheckedChange={(checked) => {
+                if (checked) {
+                  handleChange([...values, option.value]);
+                } else {
+                  handleChange(values.filter((val) => val !== option.value));
+                }
+              }}
+              onFocus={value.limit >= index + 1 ? () => onFocusChange?.(order) : undefined}
+            />
+            <span>{option.label}</span>
+          </Label>
+        );
+      })}
+    </div>
   );
 };

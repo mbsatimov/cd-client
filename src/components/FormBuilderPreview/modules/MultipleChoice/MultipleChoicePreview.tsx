@@ -1,4 +1,4 @@
-import { Radio, RadioGroup } from '@/components/ui';
+import { Label, RadioGroup, RadioGroupItem } from '@/components/ui';
 import { cn } from '@/lib/utils.ts';
 
 import type { MultipleChoiceQuestionValue } from './types.ts';
@@ -28,12 +28,12 @@ export const MultipleChoicePreview = ({
           key={question.id}
           aria-label='Select an option'
           id={`question-${order}`}
-          value={answers[order] || null}
-          onChange={(value) => {
+          value={answers[order]}
+          onFocus={() => onFocusChange?.(order)}
+          onValueChange={(value) => {
             setAnswer(order, value);
             onFocusChange?.(order);
           }}
-          onFocus={() => onFocusChange?.(order)}
         >
           <div className='flex items-center gap-2'>
             <div
@@ -48,10 +48,14 @@ export const MultipleChoicePreview = ({
           </div>
           <div className='ml-5 space-y-3'>
             {question.options.map((option) => (
-              <Radio key={option.id} className='w-fit' value={option.value}>
-                <span className='font-semibold'>{option.value}</span>
-                {option.label}
-              </Radio>
+              <Label key={option.id} className='flex items-center space-x-2'>
+                <RadioGroupItem
+                  key={option.id}
+                  className='w-fit select-text'
+                  value={option.value}
+                />
+                <span>{option.label}</span>
+              </Label>
             ))}
           </div>
         </RadioGroup>

@@ -1,101 +1,26 @@
-import type {
-  CheckboxGroupProps as AriaCheckboxGroupProps,
-  CheckboxProps as AriaCheckboxProps,
-  ValidationResult as AriaValidationResult
-} from 'react-aria-components';
-
-import { Check, Minus } from 'lucide-react';
-import {
-  Checkbox as AriaCheckbox,
-  CheckboxGroup as AriaCheckboxGroup,
-  composeRenderProps,
-  Text
-} from 'react-aria-components';
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import { Check } from 'lucide-react';
+import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { FieldError, Label, labelVariants } from './field';
-
-const CheckboxGroup = AriaCheckboxGroup;
-
-const Checkbox = ({ className, children, ...props }: AriaCheckboxProps) => (
-  <AriaCheckbox
-    className={composeRenderProps(className, (className) =>
-      cn(
-        'group/checkbox flex items-center gap-x-2 first:[&>span]:!relative',
-        /* Disabled */
-        'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70',
-        labelVariants,
-        className
-      )
+const Checkbox = React.forwardRef<
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <CheckboxPrimitive.Root
+    ref={ref}
+    className={cn(
+      'peer h-4 w-4 shrink-0 rounded-[4px] border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
+      className
     )}
     {...props}
   >
-    {composeRenderProps(children, (children, renderProps) => (
-      <>
-        <div
-          className={cn(
-            'flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-foreground text-current ring-offset-background',
-            /* Focus Visible */
-            'group-data-[focus-visible]/checkbox:outline-none group-data-[focus-visible]/checkbox:ring-2 group-data-[focus-visible]/checkbox:ring-ring group-data-[focus-visible]/checkbox:ring-offset-2',
-            /* Selected */
-            'group-data-[indeterminate]/checkbox:bg-foreground group-data-[selected]/checkbox:bg-foreground group-data-[indeterminate]/checkbox:text-background group-data-[selected]/checkbox:text-background',
-            /* Disabled */
-            'group-data-[disabled]/checkbox:cursor-not-allowed group-data-[disabled]/checkbox:opacity-50',
-            /* Invalid */
-            'group-data-[invalid]/checkbox:border-destructive group-data-[invalid]/checkbox:group-data-[selected]/checkbox:bg-destructive group-data-[invalid]/checkbox:group-data-[selected]/checkbox:text-destructive-foreground',
-            /* Resets */
-            'focus:outline-none focus-visible:outline-none'
-          )}
-        >
-          {renderProps.isIndeterminate ? (
-            <Minus className='size-4' />
-          ) : renderProps.isSelected ? (
-            <Check className='size-4' />
-          ) : null}
-        </div>
-        {children}
-      </>
-    ))}
-  </AriaCheckbox>
-);
+    <CheckboxPrimitive.Indicator className={cn('flex items-center justify-center text-current')}>
+      <Check className='h-4 w-4' />
+    </CheckboxPrimitive.Indicator>
+  </CheckboxPrimitive.Root>
+));
+Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
-interface JollyCheckboxGroupProps extends AriaCheckboxGroupProps {
-  description?: string;
-  errorMessage?: ((validation: AriaValidationResult) => string) | string;
-  label?: string;
-}
-
-const JollyCheckboxGroup = ({
-  label,
-  description,
-  errorMessage,
-  className,
-  children,
-  ...props
-}: JollyCheckboxGroupProps) => {
-  return (
-    <CheckboxGroup
-      className={composeRenderProps(className, (className) =>
-        cn('group flex flex-col gap-2', className)
-      )}
-      {...props}
-    >
-      {composeRenderProps(children, (children) => (
-        <>
-          <Label>{label}</Label>
-          {children}
-          {description && (
-            <Text className='text-sm text-muted-foreground' slot='description'>
-              {description}
-            </Text>
-          )}
-          <FieldError>{errorMessage}</FieldError>
-        </>
-      ))}
-    </CheckboxGroup>
-  );
-};
-
-export { Checkbox, CheckboxGroup, JollyCheckboxGroup };
-export type { JollyCheckboxGroupProps };
+export { Checkbox };

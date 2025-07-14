@@ -1,112 +1,36 @@
-import type {
-  RadioGroupProps as AriaRadioGroupProps,
-  RadioProps as AriaRadioProps,
-  ValidationResult as AriaValidationResult
-} from 'react-aria-components';
-
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { Circle } from 'lucide-react';
-import {
-  Radio as AriaRadio,
-  RadioGroup as AriaRadioGroup,
-  composeRenderProps,
-  Text
-} from 'react-aria-components';
+import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { FieldError, Label, labelVariants } from './field';
+const RadioGroup = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
+>(({ className, ...props }, ref) => {
+  return <RadioGroupPrimitive.Root className={cn('grid gap-2', className)} {...props} ref={ref} />;
+});
+RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-const RadioGroup = ({ className, ...props }: AriaRadioGroupProps) => {
+const RadioGroupItem = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
+>(({ className, ...props }, ref) => {
   return (
-    <AriaRadioGroup
-      className={composeRenderProps(className, (className, renderProps) =>
-        cn(
-          'group/radiogroup flex flex-col flex-wrap gap-2',
-          renderProps.orientation === 'horizontal' && 'flex-row items-center',
-          className
-        )
-      )}
-      {...props}
-    />
-  );
-};
-
-const Radio = ({ className, children, ...props }: AriaRadioProps) => {
-  return (
-    <AriaRadio
-      className={composeRenderProps(className, (className) =>
-        cn(
-          'group/radio flex items-center gap-x-2 first:[&>span]:!relative',
-          /* Disabled */
-          'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70',
-          labelVariants,
-          className
-        )
+    <RadioGroupPrimitive.Item
+      ref={ref}
+      className={cn(
+        'aspect-square h-4 w-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+        className
       )}
       {...props}
     >
-      {composeRenderProps(children, (children, renderProps) => (
-        <>
-          <span
-            className={cn(
-              'jolly-Radio flex aspect-square size-4 items-center justify-center rounded-full border border-foreground text-foreground ring-offset-background',
-              /* Focus */
-              'group-data-[focused]/radio:outline-none',
-              /* Focus Visible */
-              'group-data-[focus-visible]/radio:ring-2 group-data-[focus-visible]/radio:ring-ring group-data-[focus-visible]/radio:ring-offset-2',
-              /* Disabled */
-              'group-data-[disabled]/radio:cursor-not-allowed group-data-[disabled]/radio:opacity-50',
-              /* Invalid */
-              'group-data-[invalid]/radio:border-destructive'
-            )}
-          >
-            {renderProps.isSelected && <Circle className='size-2.5 fill-current text-current' />}
-          </span>
-          {children}
-        </>
-      ))}
-    </AriaRadio>
+      <RadioGroupPrimitive.Indicator className='flex items-center justify-center'>
+        <Circle className='h-3.5 w-3.5 fill-primary' />
+      </RadioGroupPrimitive.Indicator>
+    </RadioGroupPrimitive.Item>
   );
-};
+});
+RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 
-interface JollyRadioGroupProps extends AriaRadioGroupProps {
-  description?: string;
-  errorMessage?: ((validation: AriaValidationResult) => string) | string;
-  label?: string;
-}
-
-const JollyRadioGroup = ({
-  label,
-  description,
-  className,
-  errorMessage,
-  children,
-  ...props
-}: JollyRadioGroupProps) => {
-  return (
-    <RadioGroup
-      className={composeRenderProps(className, (className) =>
-        cn('group/radiogroup flex-col items-start', className)
-      )}
-      {...props}
-    >
-      {composeRenderProps(children, (children) => (
-        <>
-          <Label>{label}</Label>
-          <div className='flex flex-col flex-wrap gap-2 group-data-[orientation=horizontal]/radiogroup:flex-row'>
-            {children}
-          </div>
-          {description && (
-            <Text className='text-sm text-muted-foreground' slot='description'>
-              {description}
-            </Text>
-          )}
-          <FieldError>{errorMessage}</FieldError>
-        </>
-      ))}
-    </RadioGroup>
-  );
-};
-
-export { JollyRadioGroup, Radio, RadioGroup };
-export type { JollyRadioGroupProps };
+export { RadioGroup, RadioGroupItem };

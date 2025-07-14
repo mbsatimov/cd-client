@@ -1,6 +1,6 @@
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, DragOverlay } from '@dnd-kit/core';
 import React from 'react';
 
 import { EditorPreview } from '@/components/editor';
@@ -31,6 +31,7 @@ export const DraggableSelectionPreview = ({
   setAnswer
 }: Props) => {
   const [activeId, setActiveId] = React.useState<string | null>(null);
+  const [activeLabel, setActiveLabel] = React.useState<string | null>(null);
 
   const findResultOrder = (v: string) => {
     const count = getQuestionCount(value);
@@ -79,14 +80,17 @@ export const DraggableSelectionPreview = ({
     setAnswer(+overId, active.data.current?.value);
 
     setActiveId(null);
+    setActiveLabel(null);
   };
 
   const onDragStart = (e: DragStartEvent) => {
     setActiveId(String(e.active.id));
+    setActiveLabel(e.active.data.current?.value);
   };
 
   const onDragCancel = () => {
     setActiveId(null);
+    setActiveLabel(null);
   };
 
   return (
@@ -100,7 +104,7 @@ export const DraggableSelectionPreview = ({
                 <Droppable
                   key={order}
                   className={cn(
-                    'z-1 relative inline-flex h-5 min-w-[100px] rounded-[3px] bg-background outline-none',
+                    'z-1 relative inline-flex min-h-5 min-w-[100px] rounded-[3px] bg-background outline-none',
                     {
                       'border-2 border-dashed border-muted-foreground focus:ring focus:ring-primary/30':
                         !answers[order],
@@ -112,19 +116,10 @@ export const DraggableSelectionPreview = ({
                   onFocus={() => onFocusChange?.(+order)}
                 >
                   {answers[order] ? (
-                    <span className='size-full rounded-[3px] border border-primary bg-background px-2 text-sm leading-5 opacity-50'>
-                      {answers[order]}
-                    </span>
-                  ) : (
-                    <span className='flex-1 border border-transparent text-center text-sm leading-4 text-muted-foreground'>
-                      {order}
-                    </span>
-                  )}
-                  {answers[order] && (
                     <Draggable
                       key={order}
                       className={cn(
-                        'absolute inset-0 h-5 rounded-[3px] border border-transparent bg-background px-2 text-sm leading-5 hover:border-primary',
+                        'min-h-5 min-w-[100px] rounded-[3px] border border-transparent bg-background px-2 text-sm leading-5 hover:border-primary',
                         { 'z-10 border !border-primary': activeId === `drag-${order}` }
                       )}
                       id={`drag-${order}`}
@@ -132,6 +127,10 @@ export const DraggableSelectionPreview = ({
                     >
                       {answers[order]}
                     </Draggable>
+                  ) : (
+                    <span className='flex-1 border border-transparent text-center text-sm leading-4 text-muted-foreground'>
+                      {order}
+                    </span>
                   )}
                 </Droppable>
               );
@@ -144,13 +143,12 @@ export const DraggableSelectionPreview = ({
         <div className='mb-4 ml-8 flex flex-col gap-4 rounded-md border border-border bg-muted/30 p-3'>
           {options.map((option) =>
             option.active ? (
-              <span key={option.id} className='h-5 min-w-[100px] border border-transparent' />
+              <span key={option.id} className='min-h-5 min-w-[100px] border border-transparent' />
             ) : (
               <Draggable
                 key={option.id}
                 className={cn(
-                  'relative inline-block w-fit min-w-[100px] rounded-[5px] border border-transparent bg-background object-contain px-2 text-sm leading-5 hover:border-primary',
-                  { 'z-10': activeId === `dragbank-${option.id}` }
+                  'inline-block min-h-5 w-fit min-w-[100px] rounded-[5px] border border-transparent bg-background px-2 text-sm leading-5 hover:border-primary'
                 )}
                 id={`dragbank-${option.id}`}
               >
@@ -160,6 +158,19 @@ export const DraggableSelectionPreview = ({
           )}
         </div>
       </div>
+      <DragOverlay>
+        {activeId ? (
+          <Draggable
+            className={cn(
+              'inline-block min-h-5 min-w-[100px] rounded-[3px] border !border-primary bg-background px-2 text-sm leading-5 hover:border-primary'
+            )}
+            id={activeId}
+            overId={activeId.split('-')[1]}
+          >
+            {activeLabel}
+          </Draggable>
+        ) : null}
+      </DragOverlay>
     </DndContext>
   );
 };
