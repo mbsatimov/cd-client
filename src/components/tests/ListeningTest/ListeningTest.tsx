@@ -36,7 +36,7 @@ export const ListeningTest = ({
 }: Props) => {
   const [currentTab, setCurrentTab] = React.useState<number>(1);
   const audios = test.parts.map((part) => part.audio.url);
-  const [currentAudioIndex, setCurrentAudioIndex] = React.useState(0);
+  const [currentAudioIndex, setCurrentAudioIndex] = React.useState<number | null>(0);
   const audioRef = React.useRef<HTMLAudioElement>(null);
   const { listening, setListening } = useExamAnswersStore();
   const [currentFocusQuestionId, setCurrentFocusQuestionId] = React.useState<number>(1);
@@ -44,6 +44,9 @@ export const ListeningTest = ({
   const { timeLeft, leftFullTime, start, isRunning } = useTimer({
     initialTime: 120,
     autoStart: false,
+    onTimeChange: (timeLeft) => {
+      if (timeLeft === 60) toast.error('You have 1 minute left');
+    },
     onTimerEnd: onTestEnd
   });
 
@@ -56,9 +59,11 @@ export const ListeningTest = ({
   if (!listening) return;
 
   const onAudioPartEnds = () => {
+    if (currentAudioIndex === null) return;
     if (currentAudioIndex === audios.length - 1) {
       toast.info('You have 2 minutes to check your answers');
       start();
+      setCurrentAudioIndex(null);
       return;
     }
     setCurrentAudioIndex(currentAudioIndex + 1);
@@ -134,7 +139,7 @@ export const ListeningTest = ({
           <div
             className={cn(
               'flex h-9 items-center rounded-md bg-secondary px-3 font-medium sm:text-lg',
-              { 'text-yellow-500': timeLeft <= 600 },
+              { 'text-yellow-500': timeLeft <= 120 },
               { 'text-destructive': timeLeft <= 60 },
               { hidden: !isRunning }
             )}
@@ -163,13 +168,15 @@ export const ListeningTest = ({
             ))}
         </div>
       </header>
-      <audio
-        ref={audioRef}
-        src={audios[currentAudioIndex]}
-        autoPlay
-        onEnded={onAudioPartEnds}
-        onPause={() => audioRef.current?.play()}
-      ></audio>
+      {currentAudioIndex !== null && (
+        <audio
+          ref={audioRef}
+          src={audios[currentAudioIndex]}
+          autoPlay
+          onEnded={onAudioPartEnds}
+          onPause={() => audioRef.current?.play()}
+        ></audio>
+      )}
       <BaseLayout className='min-w-0 flex-1 overflow-y-auto'>
         {test.parts.map((part, index) => {
           const currentQuestionStartNumber = questionsOrder;

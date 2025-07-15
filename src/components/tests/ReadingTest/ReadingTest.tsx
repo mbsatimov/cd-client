@@ -25,8 +25,8 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
     initialTime: 3600,
     autoStart: true,
     onTimeChange: (timeLeft: number) => {
-      if (timeLeft === 600) toast.warning('You have 10 minutes left');
-      else if (timeLeft === 300) toast.error('You have 5 minute left');
+      if (timeLeft === 120) toast.warning('You have 2 minutes left');
+      else if (timeLeft === 60) toast.error('You have 1 minute left');
     },
     onTimerEnd: onTestEnd
   });
@@ -104,7 +104,7 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
           <div
             className={cn(
               'flex h-9 items-center rounded-md bg-secondary px-3 font-medium sm:text-lg',
-              { 'text-yellow-500': timeLeft <= 600 },
+              { 'text-yellow-500': timeLeft <= 120 },
               { 'text-destructive': timeLeft <= 60 }
             )}
           >
