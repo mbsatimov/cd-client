@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Checkbox, Label } from '@/components/ui';
 import { cn } from '@/lib/utils.ts';
 
@@ -21,19 +19,20 @@ export const MultiSelectPreview = ({
   answers,
   setAnswer
 }: Props) => {
-  const [values, setValues] = React.useState<string[]>(
-    Array.from({ length: value.limit }, (_, i) => answers[answerOrder + i]).filter(Boolean)
+  const values = Array.from({ length: value.limit }, (_, i) => answers[answerOrder + i]).filter(
+    Boolean
   );
 
   const handleChange = (newValues: string[]) => {
-    setValues(newValues);
-    newValues.forEach((val, index) => setAnswer(answerOrder + index, val));
+    Array.from({ length: value.limit }).forEach((_, index) =>
+      setAnswer(answerOrder + index, newValues[index] || '')
+    );
   };
 
   return (
     <div aria-label='Select options' className='space-y-3'>
       {value.options.map((option, index) => {
-        const order = answerOrder++;
+        const order = answerOrder + index;
         return (
           <Label
             key={option.id}
@@ -48,11 +47,8 @@ export const MultiSelectPreview = ({
               id={value.limit >= index + 1 ? `question-${order}` : undefined}
               value={option.value}
               onCheckedChange={(checked) => {
-                if (checked) {
-                  handleChange([...values, option.value]);
-                } else {
-                  handleChange(values.filter((val) => val !== option.value));
-                }
+                if (checked) handleChange([...values, option.value]);
+                else handleChange(values.filter((v) => v !== option.value));
               }}
               onFocus={value.limit >= index + 1 ? () => onFocusChange?.(order) : undefined}
             />
