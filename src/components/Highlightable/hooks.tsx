@@ -158,14 +158,9 @@ export const useHighlightable = () => {
     const startOffset = range.startOffset;
     const endOffset = range.endOffset;
 
-    // Check if the text is already inside a mark
     const existingMark = textNode.parentElement?.closest('mark');
-    if (existingMark) {
-      // If already highlighted, don't highlight again
-      return;
-    }
+    if (existingMark) return; // prevent nested marks
 
-    // Split the text node and wrap the selected part
     const beforeText = textNode.textContent?.substring(0, startOffset) || '';
     const selectedText = textNode.textContent?.substring(startOffset, endOffset) || '';
     const afterText = textNode.textContent?.substring(endOffset) || '';
@@ -175,25 +170,17 @@ export const useHighlightable = () => {
     const parent = textNode.parentNode;
     if (!parent) return;
 
-    // Create the mark element
     const mark = document.createElement('mark');
     mark.setAttribute('data-note', '');
     mark.textContent = selectedText;
 
-    // Replace the original text node with the new structure
     const fragment = document.createDocumentFragment();
-
-    if (beforeText) {
-      fragment.appendChild(document.createTextNode(beforeText));
-    }
-
+    if (beforeText) fragment.appendChild(document.createTextNode(beforeText));
     fragment.appendChild(mark);
+    if (afterText) fragment.appendChild(document.createTextNode(afterText));
 
-    if (afterText) {
-      fragment.appendChild(document.createTextNode(afterText));
-    }
-
-    parent.replaceChild(fragment, textNode);
+    parent.insertBefore(fragment, textNode);
+    parent.removeChild(textNode);
   };
 
   // Highlight text that spans multiple nodes
@@ -289,18 +276,12 @@ export const useHighlightable = () => {
     mark.textContent = selectedText;
 
     const fragment = document.createDocumentFragment();
-
-    if (beforeText) {
-      fragment.appendChild(document.createTextNode(beforeText));
-    }
-
+    if (beforeText) fragment.appendChild(document.createTextNode(beforeText));
     fragment.appendChild(mark);
+    if (afterText) fragment.appendChild(document.createTextNode(afterText));
 
-    if (afterText) {
-      fragment.appendChild(document.createTextNode(afterText));
-    }
-
-    parent.replaceChild(fragment, textNode);
+    parent.insertBefore(fragment, textNode);
+    parent.removeChild(textNode);
   };
 
   // Remove the specific highlighted text on right-click

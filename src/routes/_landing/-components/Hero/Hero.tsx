@@ -43,9 +43,10 @@ export const Hero = () => {
           initial={{ y: 30, opacity: 0, rotateX: 20 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         >
-          Mock IELTS ZONE is an online platform where you can take realistic IELTS mock exams on
-          computer or paper. Get detailed feedback after each test, track your progress, and prepare
-          confidently for your real IELTS exam.
+          Mock IELTS ZONE is a comprehensive online platform offering realistic IELTS mock exams in
+          both computer-based and paper-based formats. Receive detailed feedback after each test,
+          monitor your progress over time, and prepare with confidence for your official IELTS
+          examination.
         </motion.p>
         <motion.div
           animate={{ y: 0, opacity: 1, rotateX: 0 }}
