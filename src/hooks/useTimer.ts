@@ -28,7 +28,7 @@ export function useTimer({
   const secondsLeft = (timeLeft % 60).toString().padStart(2, '0');
 
   React.useEffect(() => {
-    if (onTimerEnd && timeLeft === 0) onTimerEnd();
+    if (onTimerEnd && timeLeft <= 0) onTimerEnd();
     if (isRunning && timeLeft > 0) {
       timerRef.current = setInterval(() => {
         onTimeChange?.(timeLeft);

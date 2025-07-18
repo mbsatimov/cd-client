@@ -26,7 +26,7 @@ export const Highlightable: React.FC<HighlightableProps> = ({ children }) => {
           style={{
             transform: `translate3d(${state.position.x}px, ${state.position.y}px, 0)`
           }}
-          className='absolute -top-2 left-0 z-10 m-0 h-[30px] rounded bg-background text-foreground shadow-md after:absolute after:left-1/2 after:top-full after:h-0 after:w-0 after:-translate-x-2 after:rotate-180 after:border-x-[6px] after:border-b-[8px] after:border-x-transparent after:border-b-primary'
+          className='absolute -top-2 left-0 z-10 m-0 h-[30px] rounded text-foreground shadow-md after:absolute after:left-1/2 after:top-full after:h-0 after:w-0 after:-translate-x-2 after:rotate-180 after:border-x-[6px] after:border-b-[8px] after:border-x-transparent after:border-b-primary'
         >
           <Button
             className='flex h-full w-full items-center justify-between px-3 py-1'

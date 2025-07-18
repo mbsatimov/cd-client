@@ -95,6 +95,6 @@
   }
 
   mark {
-    @apply !bg-yellow-200;
+    @apply !bg-yellow-200 dark:text-black;
   }
 }

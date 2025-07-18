@@ -281,7 +281,9 @@ export const useHighlightable = () => {
     if (afterText) fragment.appendChild(document.createTextNode(afterText));
 
     parent.insertBefore(fragment, textNode);
-    parent.removeChild(textNode);
+    if (textNode.parentNode === parent) {
+      parent.removeChild(textNode);
+    }
   };
 
   // Remove the specific highlighted text on right-click
