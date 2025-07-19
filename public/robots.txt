@@ -3,5 +3,7 @@ Allow: /
 
 Disallow: /profile
 Disallow: /bookings
+Disallow: /exam/
+Disallow: /placements/
 
 Sitemap: https://mock.ieltszone.uz/sitemap.xml

@@ -3,8 +3,8 @@ import {
   CalendarCheckIcon,
   HistoryIcon,
   LogOutIcon,
-  UserCircleIcon,
-  UserCogIcon
+  NotebookPenIcon,
+  UserCircleIcon
 } from 'lucide-react';
 
 import { PermissionWrapper } from '@/components/PermissionWrapper.tsx';
@@ -75,10 +75,16 @@ export const NavUser = () => {
             </Link>
           </DropdownMenuItem>
           <PermissionWrapper allowedRoles={['ADMIN', 'PLACEMENT_TESTER']}>
+            {/*<DropdownMenuItem asChild>*/}
+            {/*  <Link to='/placements'>*/}
+            {/*    <UserCogIcon />*/}
+            {/*    Placements*/}
+            {/*  </Link>*/}
+            {/*</DropdownMenuItem>*/}
             <DropdownMenuItem asChild>
-              <Link to='/placements'>
-                <UserCogIcon />
-                Placements
+              <Link to='/exam'>
+                <NotebookPenIcon />
+                Take Exam
               </Link>
             </DropdownMenuItem>
           </PermissionWrapper>
