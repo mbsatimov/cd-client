@@ -180,7 +180,9 @@ export const useHighlightable = () => {
     if (afterText) fragment.appendChild(document.createTextNode(afterText));
 
     parent.insertBefore(fragment, textNode);
-    parent.removeChild(textNode);
+    if (textNode.parentNode === parent) {
+      parent.removeChild(textNode);
+    }
   };
 
   // Highlight text that spans multiple nodes
