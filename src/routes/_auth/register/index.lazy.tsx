@@ -11,7 +11,7 @@ const RegisterPage = () => {
 
   if (!otpKey) {
     return (
-      <Card>
+      <Card className='w-full'>
         <Helmet>
           <title>Sign Up | MOCK - IELTS ZONE</title>
         </Helmet>
@@ -31,7 +31,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <Card>
+    <Card className='w-full'>
       <Helmet>
         <title>Verify | MOCK - IELTS ZONE</title>
       </Helmet>

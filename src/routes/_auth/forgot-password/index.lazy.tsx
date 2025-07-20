@@ -11,7 +11,7 @@ const ForgotPasswordPage = () => {
 
   if (!otpKey)
     return (
-      <Card>
+      <Card className='w-full'>
         <Helmet>
           <title>Forgot Password | MOCK - IELTS ZONE</title>
           <meta name='robots' content='noindex, nofollow' />
@@ -27,7 +27,7 @@ const ForgotPasswordPage = () => {
     );
 
   return (
-    <Card>
+    <Card className='w-full'>
       <CardHeader className='flex flex-col space-y-2 text-left'>
         <CardTitle>Verify</CardTitle>
         <CardDescription>

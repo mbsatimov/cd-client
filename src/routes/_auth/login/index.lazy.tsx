@@ -7,7 +7,7 @@ import { LoginForm } from './-components';
 
 const LoginPage = () => {
   return (
-    <Card>
+    <Card className='w-full'>
       <Helmet>
         <title>Login | MOCK - IELTS ZONE</title>
       </Helmet>
