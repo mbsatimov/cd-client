@@ -51,14 +51,13 @@ export function useTimer({
   };
 
   const formatTime = () => {
-    const hours = Math.floor(timeLeft / 3600);
     const minutes = Math.ceil((timeLeft % 3600) / 60);
     const seconds = timeLeft % 60;
-    if (hours === 0 && minutes <= 2) {
+    if (minutes <= 2) {
       const minutes = Math.floor((timeLeft % 3600) / 60);
-      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      return `${minutes}:${String(seconds).padStart(2, '0')} minutes left`;
     }
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    return `${minutes} minutes left`;
   };
 
   return {

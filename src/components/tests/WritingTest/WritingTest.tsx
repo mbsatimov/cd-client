@@ -37,6 +37,8 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
   });
   const { writing, setWriting } = useExamAnswersStore();
 
+  console.log(writing, test);
+
   if (!writing) return;
 
   const getWordsCount = (text: string) => {
