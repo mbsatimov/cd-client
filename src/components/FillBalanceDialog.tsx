@@ -111,8 +111,7 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
                         </Label>
                       </button>
                       {/*<button type='button'>*/}
-                      {/*  <Radio*/}
-                      {/*    isDisabled*/}
+                      {/*  <RadioGroupItem*/}
                       {/*    aria-label='Uzum'*/}
                       {/*    className='sr-only'*/}
                       {/*    id='uzum'*/}

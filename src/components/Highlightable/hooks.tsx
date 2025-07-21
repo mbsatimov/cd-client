@@ -28,14 +28,19 @@ export const useHighlightable = () => {
 
     setSelection(text);
 
-    const rect = activeSelection.getRangeAt(0).getBoundingClientRect();
-
-    setPosition({
-      x: rect.left + rect.width / 2 - 80 / 2,
-      y: rect.top + window.scrollY - 30,
-      width: rect.width,
-      height: rect.height
-    });
+    try {
+      const rect = activeSelection.getRangeAt(0).getBoundingClientRect();
+      // setPosition logic
+      setPosition({
+        x: rect.left + rect.width / 2 - 80 / 2,
+        y: rect.top + window.scrollY - 30,
+        width: rect.width,
+        height: rect.height
+      });
+    } catch (error) {
+      console.error('Error during onSelectEnd:', error);
+      setSelection(null);
+    }
   }
 
   React.useEffect(() => {
@@ -127,28 +132,23 @@ export const useHighlightable = () => {
 
   // Improved highlight function that properly handles text selection
   const handleHighlight = () => {
-    const selection = window.getSelection();
-    if (!selection || selection.toString().trim() === '') return;
-
     try {
+      const selection = window.getSelection();
+      if (!selection || selection.toString().trim() === '') return;
       const range = selection.getRangeAt(0);
-
-      // Handle simple case: selection within a single text node
       if (
         range.startContainer === range.endContainer &&
         range.startContainer.nodeType === Node.TEXT_NODE
       ) {
         highlightSingleTextNode(range);
       } else {
-        // Handle complex case: selection spans multiple nodes
         highlightMultipleNodes(range);
       }
-
-      // Clear selection after highlighting
-      window.getSelection()?.removeAllRanges();
+      selection.removeAllRanges();
       setSelection(null);
     } catch (error) {
-      console.error('Error highlighting selection:', error);
+      console.error('Highlighting failed:', error);
+      setSelection(null);
     }
   };
 
@@ -180,8 +180,12 @@ export const useHighlightable = () => {
     if (afterText) fragment.appendChild(document.createTextNode(afterText));
 
     parent.insertBefore(fragment, textNode);
-    if (textNode.parentNode === parent) {
-      parent.removeChild(textNode);
+    try {
+      if (parent.contains(textNode)) {
+        parent.removeChild(textNode);
+      }
+    } catch (error) {
+      console.error('Failed to remove text node:', error);
     }
   };
 
@@ -283,8 +287,12 @@ export const useHighlightable = () => {
     if (afterText) fragment.appendChild(document.createTextNode(afterText));
 
     parent.insertBefore(fragment, textNode);
-    if (textNode.parentNode === parent) {
-      parent.removeChild(textNode);
+    try {
+      if (parent.contains(textNode)) {
+        parent.removeChild(textNode);
+      }
+    } catch (error) {
+      console.error('Failed to remove text node:', error);
     }
   };
 
