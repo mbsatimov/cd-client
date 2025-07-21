@@ -204,8 +204,14 @@ export const useHighlightable = () => {
     let currentNode = walker.nextNode() as Text;
 
     while (currentNode) {
-      // Skip if already inside a mark
-      if (currentNode.parentElement?.closest('mark')) {
+      const parentElement = currentNode.parentElement;
+
+      // ✅ Skip if node is inside interactive components
+      if (
+        parentElement?.closest(
+          '[role="combobox"], [data-interactive="true"], select, input, textarea, [contenteditable="true"]'
+        )
+      ) {
         currentNode = walker.nextNode() as Text;
         continue;
       }

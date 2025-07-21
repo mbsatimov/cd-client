@@ -47,7 +47,7 @@ export const SelectionPreview = ({
             <Select value={answers[order]} onValueChange={(value) => setAnswer(order, value)}>
               <SelectTrigger
                 className={cn(
-                  'inline-flex h-5 w-fit min-w-[100px] gap-2 rounded-[3px] border-none bg-background px-1 py-0 text-center align-text-top text-sm shadow-none focus:outline-none focus:ring focus:ring-primary/30',
+                  'inline-flex h-5 w-fit min-w-[100px] select-none gap-2 rounded-[3px] border-none bg-background px-1 py-0 text-center align-text-top text-sm shadow-none focus:outline-none focus:ring focus:ring-primary/30',
                   { 'ring ring-primary/30': focus === order }
                 )}
                 id={`question-${order}`}
