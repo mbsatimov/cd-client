@@ -58,6 +58,5 @@ export const stepsMap: Record<IeltsTestType, any> = {
         'The test clock will show you when there are 10 minutes and 5 minutes remaining.'
       ]
     }
-  },
-  speaking: ''
+  }
 };

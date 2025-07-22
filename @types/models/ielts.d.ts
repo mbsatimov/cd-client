@@ -1,1 +1,1 @@
-type IeltsTestType = 'listening' | 'reading' | 'speaking' | 'writing';
+type IeltsTestType = 'listening' | 'reading' | 'writing';

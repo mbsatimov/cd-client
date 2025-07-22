@@ -20,15 +20,16 @@ export const useExamIdPage = () => {
     queryKey: ['mocks', id],
     queryFn: () => getMockByCode({ config: { params: { code: id } } })
   });
+  const exam = getMockByCodeQuery.data.data;
 
   const steps = (['listening', 'reading', 'writing'] as IeltsTestType[]).filter(
-    (step) => getMockByCodeQuery.data.data[step]
+    (step) => exam[step]
   );
 
   const [currentStep, setCurrentStep] = React.useState<IeltsTestType>(steps[0]);
 
   React.useEffect(() => {
-    examAnswersStore.onExamStart(getMockByCodeQuery.data.data);
+    examAnswersStore.onExamStart(exam);
     toggleFullscreen(true);
   }, []);
 
@@ -58,7 +59,7 @@ export const useExamIdPage = () => {
   });
 
   const moveToNextStep = () => {
-    const nextStep = getNextStep(currentStep as IeltsTestType);
+    const nextStep = getNextStep(currentStep);
     if (nextStep) {
       setTestStartConfirmed(false);
       setCurrentStep(nextStep);
@@ -76,7 +77,7 @@ export const useExamIdPage = () => {
 
   return {
     state: {
-      exam: getMockByCodeQuery.data?.data,
+      exam,
       isPending: postResultMutation.isPending,
       steps,
       currentStep,

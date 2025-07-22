@@ -30,8 +30,8 @@ const WritingTestPage = () => {
     );
   }
 
-  const ieltsSteps: Record<IeltsTestType, React.ReactNode | null> = {
-    listening: state.exam?.listening && (
+  const ieltsSteps: Record<IeltsTestType, React.ReactNode> = {
+    listening: (
       <ListeningTest
         nextStep={functions.getNextStep('listening')}
         test={state.exam.listening}
@@ -41,7 +41,7 @@ const WritingTestPage = () => {
         volume={volume}
       />
     ),
-    reading: state.exam?.reading && (
+    reading: (
       <ReadingTest
         nextStep={functions.getNextStep('reading')}
         test={state.exam.reading}
@@ -49,18 +49,17 @@ const WritingTestPage = () => {
         onTestEnd={functions.moveToNextStep}
       />
     ),
-    writing: state.exam?.writing && (
+    writing: (
       <WritingTest
         nextStep={functions.getNextStep('writing')}
         test={state.exam.writing}
         hideNextButton
         onTestEnd={functions.moveToNextStep}
       />
-    ),
-    speaking: state.exam?.speaking && <div>Speaking test</div>
+    )
   };
 
-  return <Highlightable>{state.currentStep && ieltsSteps[state.currentStep]}</Highlightable>;
+  return <Highlightable>{ieltsSteps[state.currentStep]}</Highlightable>;
 };
 
 export const Route = createFileRoute('/exam/$id/')({

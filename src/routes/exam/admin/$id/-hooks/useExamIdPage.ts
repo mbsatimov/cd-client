@@ -48,7 +48,7 @@ export const useExamIdPage = () => {
   });
 
   const moveToNextStep = () => {
-    const nextStep = getNextStep(currentStep as IeltsTestType);
+    const nextStep = getNextStep(currentStep);
     if (nextStep) {
       setTestStartConfirmed(false);
       setCurrentStep(nextStep);
