@@ -1,8 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { format } from 'date-fns';
-import { ArrowUpRight, FileTextIcon, MailOpenIcon, MonitorIcon } from 'lucide-react';
+import { ArrowUpRight, MailOpenIcon, MonitorIcon } from 'lucide-react';
 
-import { Pagination } from '@/components/Pagination.tsx';
 import {
   Badge,
   Button,
@@ -68,38 +67,24 @@ export const ExamList = () => {
                 </CardHeader>
                 <CardContent className='flex p-4'>
                   <div className='grid flex-1 gap-3 md:grid-cols-2'>
-                    {exam.type === 'PAPER' && (
-                      <div className='flex items-center gap-2'>
-                        <MailOpenIcon className='size-5' />
-                        <p className='text-sm'>Results expected in 1 to 3 days</p>
-                      </div>
-                    )}
-                    {exam.type === 'CD' && (
-                      <div className='flex items-center gap-2'>
-                        <MailOpenIcon className='size-5' />
-                        <p className='text-sm'>Results expected in 1 to 2 days</p>
-                      </div>
-                    )}
-                    {exam.type === 'PAPER' && (
-                      <div className='flex items-center gap-2'>
-                        <FileTextIcon className='size-5' />
-                        <p className='text-sm'>IELTS on paper</p>
-                      </div>
-                    )}
-                    {exam.type === 'CD' && (
-                      <div className='flex items-center gap-2'>
-                        <MonitorIcon className='size-5' />
-                        <p className='text-sm'>IELTS on computer</p>
-                      </div>
-                    )}
+                    <div className='flex items-center gap-2'>
+                      <MailOpenIcon className='size-5' />
+                      <p className='text-sm'>Results expected in 1 to 2 days</p>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <MonitorIcon className='size-5' />
+                      <p className='text-sm'>IELTS on computer</p>
+                    </div>
                   </div>
                 </CardContent>
                 <CardFooter className='flex items-end justify-between gap-6 p-4 pt-0'>
                   <div className='flex flex-wrap items-center gap-2'>
                     <div className='flex items-center gap-2 text-sm'>{formatPrice(exam.price)}</div>
-                    <Badge className='bg-yellow-500 hover:bg-yellow-500/80'>
-                      For our students {formatPrice(exam.priceForOurStudents)}
-                    </Badge>
+                    {exam.price !== exam.priceForOurStudents && (
+                      <Badge className='bg-yellow-500 hover:bg-yellow-500/80'>
+                        For our students {formatPrice(exam.priceForOurStudents)}
+                      </Badge>
+                    )}
                   </div>
                   <div className='flex items-end'>
                     <Button asChild>
@@ -116,7 +101,6 @@ export const ExamList = () => {
       ) : (
         <div className='my-10 text-center text-muted-foreground'>No exams found</div>
       )}
-      <Pagination total={state.exams?.total} />
     </div>
   );
 };
