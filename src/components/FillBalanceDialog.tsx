@@ -42,7 +42,7 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
   const postFillBalanceMutation = useMutation({
     mutationFn: postFillBalance,
     onSuccess: ({ data }) => {
-      // window.open(data);
+      window.open(data);
       setUrl(data);
     }
   });
