@@ -65,7 +65,13 @@ export const NavUser = () => {
           <DropdownMenuItem asChild>
             <Link to='/bookings'>
               <CalendarCheckIcon />
-              Bookings
+              My Bookings
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link to='/online'>
+              <NotebookPenIcon />
+              My Online Exams
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>

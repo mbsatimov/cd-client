@@ -8,7 +8,7 @@ export interface ExamAnswersState {
 
 interface ExamAnswersActions {
   onExamEnd: () => void;
-  onExamStart: (exam: Mock) => void;
+  onExamStart: (exam: CDOnlineSolve | Mock) => void;
   resetExamAnswers: () => void;
   setListening: (index: number, result: string) => void;
   setReading: (index: number, result: string) => void;

@@ -1,7 +1,8 @@
 import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router';
-import { CalendarCheckIcon, HistoryIcon, UserCircleIcon } from 'lucide-react';
+import { CalendarCheckIcon, HistoryIcon, NotebookPenIcon, UserCircleIcon } from 'lucide-react';
 
 import { AppFooter, AppHeader, BaseLayout } from '@/components/layout';
+import { Spinner } from '@/components/ui';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -44,7 +45,15 @@ const AuthenticatedLayout = () => {
               to='/bookings'
             >
               <CalendarCheckIcon className='size-4' />
-              Bookings
+              My Bookings
+            </Link>
+            <Link
+              className='flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent'
+              activeProps={{ className: 'bg-accent' }}
+              to='/online'
+            >
+              <NotebookPenIcon className='size-4' />
+              My Online Exams
             </Link>
             <Link
               className='flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent'
@@ -79,5 +88,10 @@ export const Route = createFileRoute('/_authenticated')({
       });
     }
   },
+  pendingComponent: () => (
+    <div className='grid h-svh place-items-center'>
+      <Spinner className='size-10' />
+    </div>
+  ),
   component: AuthenticatedLayout
 });

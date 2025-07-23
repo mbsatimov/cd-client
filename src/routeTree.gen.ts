@@ -19,7 +19,10 @@ import { Route as AuthRouteImport } from './routes/_auth/route'
 import { Route as PlacementsIndexImport } from './routes/placements/index'
 import { Route as ExamIndexImport } from './routes/exam/index'
 import { Route as ExamIdIndexImport } from './routes/exam/$id/index'
+import { Route as AuthenticatedOnlineIndexImport } from './routes/_authenticated/online/index'
+import { Route as ExamOnlineIdIndexImport } from './routes/exam/online/$id/index'
 import { Route as ExamAdminIdIndexImport } from './routes/exam/admin/$id/index'
+import { Route as LandingExamsOnlineIndexImport } from './routes/_landing/exams/online/index'
 import { Route as PlacementsIdTestTakerTakerIdIndexImport } from './routes/placements/$id/test-taker.$takerId/index'
 
 // Create Virtual Routes
@@ -47,11 +50,11 @@ const AuthForgotPasswordIndexLazyImport = createFileRoute(
   '/_auth/forgot-password/',
 )()
 const LandingExamsIdIndexLazyImport = createFileRoute('/_landing/exams/$id/')()
-const AuthenticatedBookingsIdPaperIndexLazyImport = createFileRoute(
-  '/_authenticated/bookings/$id/paper/',
+const AuthenticatedOnlineIdIndexLazyImport = createFileRoute(
+  '/_authenticated/online/$id/',
 )()
-const AuthenticatedBookingsIdCdIndexLazyImport = createFileRoute(
-  '/_authenticated/bookings/$id/cd/',
+const AuthenticatedBookingsIdIndexLazyImport = createFileRoute(
+  '/_authenticated/bookings/$id/',
 )()
 
 // Create/Update Routes
@@ -207,6 +210,12 @@ const ExamIdIndexRoute = ExamIdIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthenticatedOnlineIndexRoute = AuthenticatedOnlineIndexImport.update({
+  id: '/online/',
+  path: '/online/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
 const LandingExamsIdIndexLazyRoute = LandingExamsIdIndexLazyImport.update({
   id: '/exams/$id/',
   path: '/exams/$id/',
@@ -215,33 +224,45 @@ const LandingExamsIdIndexLazyRoute = LandingExamsIdIndexLazyImport.update({
   import('./routes/_landing/exams/$id/index.lazy').then((d) => d.Route),
 )
 
+const AuthenticatedOnlineIdIndexLazyRoute =
+  AuthenticatedOnlineIdIndexLazyImport.update({
+    id: '/online/$id/',
+    path: '/online/$id/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/online/$id/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const AuthenticatedBookingsIdIndexLazyRoute =
+  AuthenticatedBookingsIdIndexLazyImport.update({
+    id: '/bookings/$id/',
+    path: '/bookings/$id/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/bookings/$id/index.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const ExamOnlineIdIndexRoute = ExamOnlineIdIndexImport.update({
+  id: '/exam/online/$id/',
+  path: '/exam/online/$id/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ExamAdminIdIndexRoute = ExamAdminIdIndexImport.update({
   id: '/exam/admin/$id/',
   path: '/exam/admin/$id/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthenticatedBookingsIdPaperIndexLazyRoute =
-  AuthenticatedBookingsIdPaperIndexLazyImport.update({
-    id: '/bookings/$id/paper/',
-    path: '/bookings/$id/paper/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any).lazy(() =>
-    import('./routes/_authenticated/bookings/$id/paper/index.lazy').then(
-      (d) => d.Route,
-    ),
-  )
-
-const AuthenticatedBookingsIdCdIndexLazyRoute =
-  AuthenticatedBookingsIdCdIndexLazyImport.update({
-    id: '/bookings/$id/cd/',
-    path: '/bookings/$id/cd/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any).lazy(() =>
-    import('./routes/_authenticated/bookings/$id/cd/index.lazy').then(
-      (d) => d.Route,
-    ),
-  )
+const LandingExamsOnlineIndexRoute = LandingExamsOnlineIndexImport.update({
+  id: '/exams/online/',
+  path: '/exams/online/',
+  getParentRoute: () => LandingRouteRoute,
+} as any)
 
 const PlacementsIdTestTakerTakerIdIndexRoute =
   PlacementsIdTestTakerTakerIdIndexImport.update({
@@ -324,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingIndexLazyImport
       parentRoute: typeof LandingRouteImport
     }
+    '/_authenticated/online/': {
+      id: '/_authenticated/online/'
+      path: '/online'
+      fullPath: '/online'
+      preLoaderRoute: typeof AuthenticatedOnlineIndexImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/exam/$id/': {
       id: '/exam/$id/'
       path: '/exam/$id'
@@ -394,12 +422,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlacementsIdIndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/_landing/exams/online/': {
+      id: '/_landing/exams/online/'
+      path: '/exams/online'
+      fullPath: '/exams/online'
+      preLoaderRoute: typeof LandingExamsOnlineIndexImport
+      parentRoute: typeof LandingRouteImport
+    }
     '/exam/admin/$id/': {
       id: '/exam/admin/$id/'
       path: '/exam/admin/$id'
       fullPath: '/exam/admin/$id'
       preLoaderRoute: typeof ExamAdminIdIndexImport
       parentRoute: typeof rootRoute
+    }
+    '/exam/online/$id/': {
+      id: '/exam/online/$id/'
+      path: '/exam/online/$id'
+      fullPath: '/exam/online/$id'
+      preLoaderRoute: typeof ExamOnlineIdIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/_authenticated/bookings/$id/': {
+      id: '/_authenticated/bookings/$id/'
+      path: '/bookings/$id'
+      fullPath: '/bookings/$id'
+      preLoaderRoute: typeof AuthenticatedBookingsIdIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/online/$id/': {
+      id: '/_authenticated/online/$id/'
+      path: '/online/$id'
+      fullPath: '/online/$id'
+      preLoaderRoute: typeof AuthenticatedOnlineIdIndexLazyImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_landing/exams/$id/': {
       id: '/_landing/exams/$id/'
@@ -414,20 +470,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/placements/$id/test-taker/$takerId'
       preLoaderRoute: typeof PlacementsIdTestTakerTakerIdIndexImport
       parentRoute: typeof rootRoute
-    }
-    '/_authenticated/bookings/$id/cd/': {
-      id: '/_authenticated/bookings/$id/cd/'
-      path: '/bookings/$id/cd'
-      fullPath: '/bookings/$id/cd'
-      preLoaderRoute: typeof AuthenticatedBookingsIdCdIndexLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/bookings/$id/paper/': {
-      id: '/_authenticated/bookings/$id/paper/'
-      path: '/bookings/$id/paper'
-      fullPath: '/bookings/$id/paper'
-      preLoaderRoute: typeof AuthenticatedBookingsIdPaperIndexLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
     }
   }
 }
@@ -451,22 +493,22 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedOnlineIndexRoute: typeof AuthenticatedOnlineIndexRoute
   AuthenticatedBookingsIndexLazyRoute: typeof AuthenticatedBookingsIndexLazyRoute
   AuthenticatedProfileIndexLazyRoute: typeof AuthenticatedProfileIndexLazyRoute
   AuthenticatedTransactionsIndexLazyRoute: typeof AuthenticatedTransactionsIndexLazyRoute
-  AuthenticatedBookingsIdCdIndexLazyRoute: typeof AuthenticatedBookingsIdCdIndexLazyRoute
-  AuthenticatedBookingsIdPaperIndexLazyRoute: typeof AuthenticatedBookingsIdPaperIndexLazyRoute
+  AuthenticatedBookingsIdIndexLazyRoute: typeof AuthenticatedBookingsIdIndexLazyRoute
+  AuthenticatedOnlineIdIndexLazyRoute: typeof AuthenticatedOnlineIdIndexLazyRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedOnlineIndexRoute: AuthenticatedOnlineIndexRoute,
   AuthenticatedBookingsIndexLazyRoute: AuthenticatedBookingsIndexLazyRoute,
   AuthenticatedProfileIndexLazyRoute: AuthenticatedProfileIndexLazyRoute,
   AuthenticatedTransactionsIndexLazyRoute:
     AuthenticatedTransactionsIndexLazyRoute,
-  AuthenticatedBookingsIdCdIndexLazyRoute:
-    AuthenticatedBookingsIdCdIndexLazyRoute,
-  AuthenticatedBookingsIdPaperIndexLazyRoute:
-    AuthenticatedBookingsIdPaperIndexLazyRoute,
+  AuthenticatedBookingsIdIndexLazyRoute: AuthenticatedBookingsIdIndexLazyRoute,
+  AuthenticatedOnlineIdIndexLazyRoute: AuthenticatedOnlineIdIndexLazyRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -475,12 +517,14 @@ const AuthenticatedRouteRouteWithChildren =
 interface LandingRouteRouteChildren {
   LandingIndexLazyRoute: typeof LandingIndexLazyRoute
   LandingExamsIndexLazyRoute: typeof LandingExamsIndexLazyRoute
+  LandingExamsOnlineIndexRoute: typeof LandingExamsOnlineIndexRoute
   LandingExamsIdIndexLazyRoute: typeof LandingExamsIdIndexLazyRoute
 }
 
 const LandingRouteRouteChildren: LandingRouteRouteChildren = {
   LandingIndexLazyRoute: LandingIndexLazyRoute,
   LandingExamsIndexLazyRoute: LandingExamsIndexLazyRoute,
+  LandingExamsOnlineIndexRoute: LandingExamsOnlineIndexRoute,
   LandingExamsIdIndexLazyRoute: LandingExamsIdIndexLazyRoute,
 }
 
@@ -497,6 +541,7 @@ export interface FileRoutesByFullPath {
   '/exam': typeof ExamIndexRoute
   '/placements': typeof PlacementsIndexRoute
   '/': typeof LandingIndexLazyRoute
+  '/online': typeof AuthenticatedOnlineIndexRoute
   '/exam/$id': typeof ExamIdIndexRoute
   '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
   '/login': typeof AuthLoginIndexLazyRoute
@@ -507,11 +552,13 @@ export interface FileRoutesByFullPath {
   '/exams': typeof LandingExamsIndexLazyRoute
   '/exam/end': typeof ExamEndIndexLazyRoute
   '/placements/$id': typeof PlacementsIdIndexLazyRoute
+  '/exams/online': typeof LandingExamsOnlineIndexRoute
   '/exam/admin/$id': typeof ExamAdminIdIndexRoute
+  '/exam/online/$id': typeof ExamOnlineIdIndexRoute
+  '/bookings/$id': typeof AuthenticatedBookingsIdIndexLazyRoute
+  '/online/$id': typeof AuthenticatedOnlineIdIndexLazyRoute
   '/exams/$id': typeof LandingExamsIdIndexLazyRoute
   '/placements/$id/test-taker/$takerId': typeof PlacementsIdTestTakerTakerIdIndexRoute
-  '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute
-  '/bookings/$id/paper': typeof AuthenticatedBookingsIdPaperIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -523,6 +570,7 @@ export interface FileRoutesByTo {
   '/exam': typeof ExamIndexRoute
   '/placements': typeof PlacementsIndexRoute
   '/': typeof LandingIndexLazyRoute
+  '/online': typeof AuthenticatedOnlineIndexRoute
   '/exam/$id': typeof ExamIdIndexRoute
   '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
   '/login': typeof AuthLoginIndexLazyRoute
@@ -533,11 +581,13 @@ export interface FileRoutesByTo {
   '/exams': typeof LandingExamsIndexLazyRoute
   '/exam/end': typeof ExamEndIndexLazyRoute
   '/placements/$id': typeof PlacementsIdIndexLazyRoute
+  '/exams/online': typeof LandingExamsOnlineIndexRoute
   '/exam/admin/$id': typeof ExamAdminIdIndexRoute
+  '/exam/online/$id': typeof ExamOnlineIdIndexRoute
+  '/bookings/$id': typeof AuthenticatedBookingsIdIndexLazyRoute
+  '/online/$id': typeof AuthenticatedOnlineIdIndexLazyRoute
   '/exams/$id': typeof LandingExamsIdIndexLazyRoute
   '/placements/$id/test-taker/$takerId': typeof PlacementsIdTestTakerTakerIdIndexRoute
-  '/bookings/$id/cd': typeof AuthenticatedBookingsIdCdIndexLazyRoute
-  '/bookings/$id/paper': typeof AuthenticatedBookingsIdPaperIndexLazyRoute
 }
 
 export interface FileRoutesById {
@@ -552,6 +602,7 @@ export interface FileRoutesById {
   '/exam/': typeof ExamIndexRoute
   '/placements/': typeof PlacementsIndexRoute
   '/_landing/': typeof LandingIndexLazyRoute
+  '/_authenticated/online/': typeof AuthenticatedOnlineIndexRoute
   '/exam/$id/': typeof ExamIdIndexRoute
   '/_auth/forgot-password/': typeof AuthForgotPasswordIndexLazyRoute
   '/_auth/login/': typeof AuthLoginIndexLazyRoute
@@ -562,11 +613,13 @@ export interface FileRoutesById {
   '/_landing/exams/': typeof LandingExamsIndexLazyRoute
   '/exam/end/': typeof ExamEndIndexLazyRoute
   '/placements/$id/': typeof PlacementsIdIndexLazyRoute
+  '/_landing/exams/online/': typeof LandingExamsOnlineIndexRoute
   '/exam/admin/$id/': typeof ExamAdminIdIndexRoute
+  '/exam/online/$id/': typeof ExamOnlineIdIndexRoute
+  '/_authenticated/bookings/$id/': typeof AuthenticatedBookingsIdIndexLazyRoute
+  '/_authenticated/online/$id/': typeof AuthenticatedOnlineIdIndexLazyRoute
   '/_landing/exams/$id/': typeof LandingExamsIdIndexLazyRoute
   '/placements/$id/test-taker/$takerId/': typeof PlacementsIdTestTakerTakerIdIndexRoute
-  '/_authenticated/bookings/$id/cd/': typeof AuthenticatedBookingsIdCdIndexLazyRoute
-  '/_authenticated/bookings/$id/paper/': typeof AuthenticatedBookingsIdPaperIndexLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -580,6 +633,7 @@ export interface FileRouteTypes {
     | '/exam'
     | '/placements'
     | '/'
+    | '/online'
     | '/exam/$id'
     | '/forgot-password'
     | '/login'
@@ -590,11 +644,13 @@ export interface FileRouteTypes {
     | '/exams'
     | '/exam/end'
     | '/placements/$id'
+    | '/exams/online'
     | '/exam/admin/$id'
+    | '/exam/online/$id'
+    | '/bookings/$id'
+    | '/online/$id'
     | '/exams/$id'
     | '/placements/$id/test-taker/$takerId'
-    | '/bookings/$id/cd'
-    | '/bookings/$id/paper'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
@@ -605,6 +661,7 @@ export interface FileRouteTypes {
     | '/exam'
     | '/placements'
     | '/'
+    | '/online'
     | '/exam/$id'
     | '/forgot-password'
     | '/login'
@@ -615,11 +672,13 @@ export interface FileRouteTypes {
     | '/exams'
     | '/exam/end'
     | '/placements/$id'
+    | '/exams/online'
     | '/exam/admin/$id'
+    | '/exam/online/$id'
+    | '/bookings/$id'
+    | '/online/$id'
     | '/exams/$id'
     | '/placements/$id/test-taker/$takerId'
-    | '/bookings/$id/cd'
-    | '/bookings/$id/paper'
   id:
     | '__root__'
     | '/_auth'
@@ -632,6 +691,7 @@ export interface FileRouteTypes {
     | '/exam/'
     | '/placements/'
     | '/_landing/'
+    | '/_authenticated/online/'
     | '/exam/$id/'
     | '/_auth/forgot-password/'
     | '/_auth/login/'
@@ -642,11 +702,13 @@ export interface FileRouteTypes {
     | '/_landing/exams/'
     | '/exam/end/'
     | '/placements/$id/'
+    | '/_landing/exams/online/'
     | '/exam/admin/$id/'
+    | '/exam/online/$id/'
+    | '/_authenticated/bookings/$id/'
+    | '/_authenticated/online/$id/'
     | '/_landing/exams/$id/'
     | '/placements/$id/test-taker/$takerId/'
-    | '/_authenticated/bookings/$id/cd/'
-    | '/_authenticated/bookings/$id/paper/'
   fileRoutesById: FileRoutesById
 }
 
@@ -664,6 +726,7 @@ export interface RootRouteChildren {
   ExamEndIndexLazyRoute: typeof ExamEndIndexLazyRoute
   PlacementsIdIndexLazyRoute: typeof PlacementsIdIndexLazyRoute
   ExamAdminIdIndexRoute: typeof ExamAdminIdIndexRoute
+  ExamOnlineIdIndexRoute: typeof ExamOnlineIdIndexRoute
   PlacementsIdTestTakerTakerIdIndexRoute: typeof PlacementsIdTestTakerTakerIdIndexRoute
 }
 
@@ -681,6 +744,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExamEndIndexLazyRoute: ExamEndIndexLazyRoute,
   PlacementsIdIndexLazyRoute: PlacementsIdIndexLazyRoute,
   ExamAdminIdIndexRoute: ExamAdminIdIndexRoute,
+  ExamOnlineIdIndexRoute: ExamOnlineIdIndexRoute,
   PlacementsIdTestTakerTakerIdIndexRoute:
     PlacementsIdTestTakerTakerIdIndexRoute,
 }
@@ -708,6 +772,7 @@ export const routeTree = rootRoute
         "/exam/end/",
         "/placements/$id/",
         "/exam/admin/$id/",
+        "/exam/online/$id/",
         "/placements/$id/test-taker/$takerId/"
       ]
     },
@@ -722,11 +787,12 @@ export const routeTree = rootRoute
     "/_authenticated": {
       "filePath": "_authenticated/route.tsx",
       "children": [
+        "/_authenticated/online/",
         "/_authenticated/bookings/",
         "/_authenticated/profile/",
         "/_authenticated/transactions/",
-        "/_authenticated/bookings/$id/cd/",
-        "/_authenticated/bookings/$id/paper/"
+        "/_authenticated/bookings/$id/",
+        "/_authenticated/online/$id/"
       ]
     },
     "/_landing": {
@@ -734,6 +800,7 @@ export const routeTree = rootRoute
       "children": [
         "/_landing/",
         "/_landing/exams/",
+        "/_landing/exams/online/",
         "/_landing/exams/$id/"
       ]
     },
@@ -758,6 +825,10 @@ export const routeTree = rootRoute
     "/_landing/": {
       "filePath": "_landing/index.lazy.tsx",
       "parent": "/_landing"
+    },
+    "/_authenticated/online/": {
+      "filePath": "_authenticated/online/index.tsx",
+      "parent": "/_authenticated"
     },
     "/exam/$id/": {
       "filePath": "exam/$id/index.tsx"
@@ -796,8 +867,23 @@ export const routeTree = rootRoute
     "/placements/$id/": {
       "filePath": "placements/$id/index.lazy.tsx"
     },
+    "/_landing/exams/online/": {
+      "filePath": "_landing/exams/online/index.tsx",
+      "parent": "/_landing"
+    },
     "/exam/admin/$id/": {
       "filePath": "exam/admin/$id/index.tsx"
+    },
+    "/exam/online/$id/": {
+      "filePath": "exam/online/$id/index.tsx"
+    },
+    "/_authenticated/bookings/$id/": {
+      "filePath": "_authenticated/bookings/$id/index.lazy.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/online/$id/": {
+      "filePath": "_authenticated/online/$id/index.lazy.tsx",
+      "parent": "/_authenticated"
     },
     "/_landing/exams/$id/": {
       "filePath": "_landing/exams/$id/index.lazy.tsx",
@@ -805,14 +891,6 @@ export const routeTree = rootRoute
     },
     "/placements/$id/test-taker/$takerId/": {
       "filePath": "placements/$id/test-taker.$takerId/index.tsx"
-    },
-    "/_authenticated/bookings/$id/cd/": {
-      "filePath": "_authenticated/bookings/$id/cd/index.lazy.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/bookings/$id/paper/": {
-      "filePath": "_authenticated/bookings/$id/paper/index.lazy.tsx",
-      "parent": "/_authenticated"
     }
   }
 }

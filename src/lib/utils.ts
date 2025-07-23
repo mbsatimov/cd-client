@@ -16,13 +16,14 @@ export const formatPhoneNumber = (phoneNumber: string) =>
 export const formatPrice = (price: number) =>
   price.toLocaleString('uz-UZ', { style: 'currency', currency: 'UZS' });
 
-export const calculateIELTSBand = (scores: number[]) => {
+export const calculateIELTSBand = (scores: (number | null | undefined)[]) => {
+  const s = scores.filter((score) => score !== null && score !== undefined);
   if (scores.length === 0) {
     throw new Error('At least one score is required.');
   }
 
-  const total = scores.reduce((sum, score) => sum + score, 0);
-  const average = total / scores.length;
+  const total = s.reduce((sum, score) => sum + score, 0);
+  const average = total / s.length;
 
   // Round to nearest 0.5
   return Math.round(average * 2) / 2;

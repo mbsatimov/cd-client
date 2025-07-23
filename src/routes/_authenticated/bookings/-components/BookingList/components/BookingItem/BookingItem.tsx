@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { format } from 'date-fns';
-import { ArrowUpRight, FileTextIcon, MailOpenIcon, MonitorIcon } from 'lucide-react';
+import { ArrowUpRight, MailOpenIcon, MonitorIcon } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -81,10 +81,7 @@ export const BookingItem = ({ registration }: Props) => {
         {registration.status === 'MARKED' && (
           <div className='flex items-end'>
             <Button asChild size='sm'>
-              <Link
-                params={{ id: String(registration.id) }}
-                to={registration.type === 'CD' ? '/bookings/$id/cd' : '/bookings/$id/paper'}
-              >
+              <Link params={{ id: String(registration.id) }} to='/bookings/$id'>
                 See results
               </Link>
             </Button>
@@ -93,30 +90,14 @@ export const BookingItem = ({ registration }: Props) => {
       </CardContent>
       <CardFooter className='flex items-end justify-between gap-6 p-4 pt-0'>
         <div className='grid flex-1 gap-3 md:grid-cols-2'>
-          {registration.type === 'PAPER' && (
-            <div className='flex items-center gap-2'>
-              <MailOpenIcon className='size-4' />
-              <p className='text-sm'>Results expected in 1 to 3 days</p>
-            </div>
-          )}
-          {registration.type === 'CD' && (
-            <div className='flex items-center gap-2'>
-              <MailOpenIcon className='size-4' />
-              <p className='text-sm'>Results expected in 1 to 2 days</p>
-            </div>
-          )}
-          {registration.type === 'PAPER' && (
-            <div className='flex items-center gap-2'>
-              <FileTextIcon className='size-4' />
-              <p className='text-sm'>IELTS on paper</p>
-            </div>
-          )}
-          {registration.type === 'CD' && (
-            <div className='flex items-center gap-2'>
-              <MonitorIcon className='size-4' />
-              <p className='text-sm'>IELTS on computer</p>
-            </div>
-          )}
+          <div className='flex items-center gap-2'>
+            <MailOpenIcon className='size-4' />
+            <p className='text-sm'>Results expected in 1 to 2 days</p>
+          </div>
+          <div className='flex items-center gap-2'>
+            <MonitorIcon className='size-4' />
+            <p className='text-sm'>IELTS on computer</p>
+          </div>
         </div>
       </CardFooter>
     </Card>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 
+import { BaseLayout } from '@/components/layout';
 import { cn } from '@/lib/utils.ts';
 
 const items = [
@@ -29,7 +30,7 @@ const items = [
 
 export const OfflineCDTab = () => {
   return (
-    <div>
+    <BaseLayout>
       {items.map((item, index) => (
         <div key={item.description} className='py-10 md:py-20'>
           <h3 className='mb-6 mt-4 text-left text-2xl font-extrabold tracking-tight sm:text-4xl md:mb-20 md:text-6xl md:leading-none'>
@@ -58,6 +59,6 @@ export const OfflineCDTab = () => {
           </div>
         </div>
       ))}
-    </div>
+    </BaseLayout>
   );
 };

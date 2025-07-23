@@ -6,11 +6,9 @@ import { BaseLayout } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { BackgroundLines } from '@/components/ui/background-lines.tsx';
 import { useIsMobile } from '@/hooks';
-import { useScrollTo } from '@/hooks/useScrollTo.ts';
 
 export const Hero = () => {
   const isMobile = useIsMobile();
-  const scrollTo = useScrollTo();
 
   return (
     <BackgroundLines className='relative h-[calc(100vh-64px)] !pt-0 pb-10 md:pb-20'>
@@ -57,9 +55,11 @@ export const Hero = () => {
           <Button asChild>
             <Link to='/exams'>Book now</Link>
           </Button>
-          <Button className='group' variant='ghost' onClick={() => scrollTo('features')}>
-            Learn More
-            <MoveRightIcon className='transition group-hover:translate-x-1' />
+          <Button asChild className='group' variant='ghost'>
+            <Link to='/exams/online'>
+              Try online
+              <MoveRightIcon className='transition group-hover:translate-x-1' />
+            </Link>
           </Button>
         </motion.div>
       </BaseLayout>

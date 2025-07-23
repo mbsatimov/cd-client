@@ -8,7 +8,6 @@ import {
   ListeningResultDetails,
   OverallScoresTabs,
   ReadingResultDetails,
-  SpeakingResultDetails,
   WritingResultDetails
 } from './-components';
 import { useBookingIdPage } from './-hooks';
@@ -44,24 +43,25 @@ const ResultsIdCDPage = () => {
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         scores={{
-          listening: state.result.listeningResult.overallScore,
-          reading: state.result.readingResult.overallScore,
-          speaking: state.result.speakingResult.overallScore,
-          writing: state.result.writingResult.overallScore
+          listening: state.result.listeningResult?.overallScore,
+          reading: state.result.readingResult?.overallScore,
+          writing: state.result.writingResult?.overallScore
         }}
+        sections={state.result.sections}
       />
-      {currentTab === 'listening' && (
+      {currentTab === 'listening' && state.result.listeningResult && (
         <ListeningResultDetails listening={state.result.listeningResult} />
       )}
-      {currentTab === 'reading' && <ReadingResultDetails reading={state.result.readingResult} />}
-      {currentTab === 'writing' && <WritingResultDetails writing={state.result.writingResult} />}
-      {currentTab === 'speaking' && (
-        <SpeakingResultDetails speaking={state.result.speakingResult} />
+      {currentTab === 'reading' && state.result.readingResult && (
+        <ReadingResultDetails reading={state.result.readingResult} />
+      )}
+      {currentTab === 'writing' && state.result.writingResult && (
+        <WritingResultDetails writing={state.result.writingResult} />
       )}
     </div>
   );
 };
 
-export const Route = createLazyFileRoute('/_authenticated/bookings/$id/cd/')({
+export const Route = createLazyFileRoute('/_authenticated/online/$id/')({
   component: ResultsIdCDPage
 });

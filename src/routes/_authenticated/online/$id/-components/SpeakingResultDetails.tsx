@@ -1,18 +1,8 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui';
+import { Card, CardContent, CardHeader } from '@/components/ui';
 import { feedbacks } from '@/utils/constants';
 
 interface Props {
-  speaking: PaperResultResponse['speakingResult'];
+  speaking: CDResultResponse['speakingResult'];
 }
 
 export const SpeakingResultDetails = ({ speaking }: Props) => {
@@ -25,42 +15,6 @@ export const SpeakingResultDetails = ({ speaking }: Props) => {
         </p>
       </CardHeader>
       <CardContent className='space-y-4'>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button size='sm'>See exam files</Button>
-          </DialogTrigger>
-          <DialogContent className='w-[400px]'>
-            <DialogHeader>
-              <DialogTitle>Exam files</DialogTitle>
-            </DialogHeader>
-            <ul className='space-y-4'>
-              {speaking.files.map((file) => (
-                <li key={file.id}>
-                  <a
-                    href={file.url}
-                    className='flex items-center gap-2 rounded-md border p-1 transition-colors hover:bg-secondary/50'
-                    rel='noopener noreferrer'
-                    target='_blank'
-                  >
-                    <div className='shrink-0 rounded-sm p-1'>
-                      <img
-                        alt={file.fileName}
-                        className='size-10 rounded-sm bg-muted object-contain'
-                        src='/logo.png'
-                      />
-                    </div>
-                    <div className='flex-1'>
-                      <p className='text-sm font-medium'>{file.fileName}</p>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {speaking.files.length === 0 && (
-              <p className='my-10 text-center text-muted-foreground'>No files found</p>
-            )}
-          </DialogContent>
-        </Dialog>
         <ul className='ml-4 list-outside list-disc space-y-4'>
           <li className='space-y-2'>
             <span className='text-lg font-medium'>

@@ -7,10 +7,6 @@ type ListeningPartsResponse = Pagination<Part<ListeningPartType>>;
 type ListeningPartResponse = ListeningPart;
 
 interface ListeningTest extends Test {
-  part1: ListeningPart | null;
-  part2: ListeningPart | null;
-  part3: ListeningPart | null;
-  part4: ListeningPart | null;
   parts: ListeningPart[];
 }
 type ListeningTestsResponse = Pagination<Test>;

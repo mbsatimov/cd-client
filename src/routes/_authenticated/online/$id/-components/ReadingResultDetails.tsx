@@ -1,5 +1,6 @@
+import { CheckIcon, XIcon } from 'lucide-react';
+
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -10,71 +11,68 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui';
+import { cn } from '@/lib/utils.ts';
 import { feedbacks } from '@/utils/constants';
 
 interface Props {
-  listening: PaperResultResponse['listeningResult'];
+  reading: CDResultResponse['readingResult'];
 }
 
-export const ListeningResultDetails = ({ listening }: Props) => {
-  const correctAnswers = listening.part1 + listening.part2 + listening.part3 + listening.part4;
-
+export const ReadingResultDetails = ({ reading }: Props) => {
   return (
     <>
       <Card>
         <CardHeader className='flex-row flex-wrap gap-6 space-y-0 md:gap-8'>
           <div>
-            <span className='text-muted-foreground'>Listening score: </span>
-            {listening.overallScore?.toFixed(1)}
+            <span className='text-muted-foreground'>Reading score: </span>
+            {reading.overallScore?.toFixed(1)}
           </div>
           <div className='flex items-center gap-2'>
             <span className='size-4 rounded-[5px] bg-green-500' />
             <span className='text-muted-foreground'>Correct answers: </span>
-            {correctAnswers}
+            {reading.correctAnswers}
           </div>
           <div className='flex items-center gap-2'>
             <span className='size-4 rounded-[5px] bg-red-500' />
             <span className='text-muted-foreground'>Incorrect answers: </span>
-            {40 - correctAnswers}
+            {reading.answers.length - reading.correctAnswers}
           </div>
         </CardHeader>
         <CardContent>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button size='sm'>See exam files</Button>
-            </DialogTrigger>
-            <DialogContent className='w-[400px]'>
-              <DialogHeader>
-                <DialogTitle>Exam files</DialogTitle>
-              </DialogHeader>
-              <ul className='space-y-4'>
-                {listening.files.map((file) => (
-                  <li key={file.id}>
-                    <a
-                      href={file.url}
-                      className='flex items-center gap-2 rounded-md border p-1 transition-colors hover:bg-secondary/50'
-                      rel='noopener noreferrer'
-                      target='_blank'
-                    >
-                      <div className='shrink-0 rounded-sm p-1'>
-                        <img
-                          alt={file.fileName}
-                          className='size-10 rounded-sm bg-muted object-contain'
-                          src='/favicon.png'
-                        />
-                      </div>
-                      <div className='flex-1'>
-                        <p className='text-sm font-medium'>{file.fileName}</p>
-                      </div>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              {listening.files.length === 0 && (
-                <p className='my-10 text-center text-muted-foreground'>No files found</p>
-              )}
-            </DialogContent>
-          </Dialog>
+          <div className='grid grid-cols-[repeat(auto-fill,minmax(70px,1fr))] gap-2'>
+            {reading.answers.map(({ userAnswer, correctAnswer, number, isCorrect }) => (
+              <Dialog key={number}>
+                <DialogTrigger className='relative flex items-center justify-center rounded-sm bg-secondary p-3'>
+                  <div
+                    className={cn(
+                      'absolute right-0 top-0 grid size-5 place-content-center rounded-bl-sm rounded-tr-sm',
+                      isCorrect ? 'bg-green-500' : 'bg-red-500'
+                    )}
+                  >
+                    {isCorrect ? (
+                      <CheckIcon className='size-4 text-white' />
+                    ) : (
+                      <XIcon className='size-4 text-white' />
+                    )}
+                  </div>
+                  {number}
+                </DialogTrigger>
+                <DialogContent className='max-w-[400px]'>
+                  <DialogHeader>
+                    <DialogTitle>Question {number}</DialogTitle>
+                  </DialogHeader>
+                  <div className='flex items-center gap-2'>
+                    <span className='text-muted-foreground'>Your answer: </span>
+                    {userAnswer}
+                  </div>
+                  <div className='flex items-center gap-2'>
+                    <span className='text-muted-foreground'>Correct answer: </span>
+                    {correctAnswer.join(' | ')}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            ))}
+          </div>
         </CardContent>
       </Card>
       <Card>
@@ -84,24 +82,24 @@ export const ListeningResultDetails = ({ listening }: Props) => {
             <div className='flex items-center gap-2'>
               <span className='size-4 rounded-[5px] bg-green-500' />
               <span className='text-muted-foreground'>Correct answers: </span>
-              {listening.part1}
+              {reading.part1}
             </div>
             <div className='flex items-center gap-2'>
               <span className='size-4 rounded-[5px] bg-red-500' />
               <span className='text-muted-foreground'>Incorrect answers: </span>
-              {10 - listening.part1}
+              {13 - reading.part1}
             </div>
           </div>
         </CardHeader>
         <CardContent className='space-y-4'>
           <p>
             <span className='text-muted-foreground'>Feedback: </span>
-            {feedbacks.listening.part1[listening.part1].feedback}
+            {feedbacks.reading.part1[reading.part1].feedback}
           </p>
           <p>
             <span className='text-muted-foreground'>Suggestions: </span>
             <ul className='ml-4 list-outside list-disc space-y-2'>
-              {feedbacks.listening.part1[listening.part1].suggestions.map((suggestion) => (
+              {feedbacks.reading.part1[reading.part1].suggestions.map((suggestion) => (
                 <li key={suggestion}>{suggestion}</li>
               ))}
             </ul>
@@ -115,24 +113,24 @@ export const ListeningResultDetails = ({ listening }: Props) => {
             <div className='flex items-center gap-2'>
               <span className='size-4 rounded-[5px] bg-green-500' />
               <span className='text-muted-foreground'>Correct answers: </span>
-              {listening.part2}
+              {reading.part2}
             </div>
             <div className='flex items-center gap-2'>
               <span className='size-4 rounded-[5px] bg-red-500' />
               <span className='text-muted-foreground'>Incorrect answers: </span>
-              {10 - listening.part2}
+              {13 - reading.part2}
             </div>
           </div>
         </CardHeader>
         <CardContent className='space-y-4'>
           <p>
             <span className='text-muted-foreground'>Feedback: </span>
-            {feedbacks.listening.part2[listening.part2].feedback}
+            {feedbacks.reading.part2[reading.part2].feedback}
           </p>
           <p>
             <span className='text-muted-foreground'>Suggestions: </span>
             <ul className='ml-4 list-outside list-disc space-y-2'>
-              {feedbacks.listening.part2[listening.part2].suggestions.map((suggestion) => (
+              {feedbacks.reading.part2[reading.part2].suggestions.map((suggestion) => (
                 <li key={suggestion}>{suggestion}</li>
               ))}
             </ul>
@@ -146,55 +144,24 @@ export const ListeningResultDetails = ({ listening }: Props) => {
             <div className='flex items-center gap-2'>
               <span className='size-4 rounded-[5px] bg-green-500' />
               <span className='text-muted-foreground'>Correct answers: </span>
-              {listening.part3}
+              {reading.part3}
             </div>
             <div className='flex items-center gap-2'>
               <span className='size-4 rounded-[5px] bg-red-500' />
               <span className='text-muted-foreground'>Incorrect answers: </span>
-              {10 - listening.part3}
+              {14 - reading.part3}
             </div>
           </div>
         </CardHeader>
         <CardContent className='space-y-4'>
           <p>
             <span className='text-muted-foreground'>Feedback: </span>
-            {feedbacks.listening.part3[listening.part3].feedback}
+            {feedbacks.reading.part3[reading.part3].feedback}
           </p>
           <p>
             <span className='text-muted-foreground'>Suggestions: </span>
             <ul className='ml-4 list-outside list-disc space-y-2'>
-              {feedbacks.listening.part3[listening.part3].suggestions.map((suggestion) => (
-                <li key={suggestion}>{suggestion}</li>
-              ))}
-            </ul>
-          </p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className='space-y-3'>
-          <CardTitle>Part Four</CardTitle>
-          <div className='flex flex-row flex-wrap gap-6 md:gap-8'>
-            <div className='flex items-center gap-2'>
-              <span className='size-4 rounded-[5px] bg-green-500' />
-              <span className='text-muted-foreground'>Correct answers: </span>
-              {listening.part4}
-            </div>
-            <div className='flex items-center gap-2'>
-              <span className='size-4 rounded-[5px] bg-red-500' />
-              <span className='text-muted-foreground'>Incorrect answers: </span>
-              {10 - listening.part4}
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent className='space-y-4'>
-          <p>
-            <span className='text-muted-foreground'>Feedback: </span>
-            {feedbacks.listening.part4[listening.part4].feedback}
-          </p>
-          <p>
-            <span className='text-muted-foreground'>Suggestions: </span>
-            <ul className='ml-4 list-outside list-disc space-y-2'>
-              {feedbacks.listening.part4[listening.part4].suggestions.map((suggestion) => (
+              {feedbacks.reading.part3[reading.part3].suggestions.map((suggestion) => (
                 <li key={suggestion}>{suggestion}</li>
               ))}
             </ul>

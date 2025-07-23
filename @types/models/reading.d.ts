@@ -11,9 +11,6 @@ type ReadingPartsResponse = Pagination<Part<ReadingPartType>>;
 type ReadingPartResponse = ReadingPart;
 
 interface ReadingTest extends Test {
-  part1: ReadingPart | null;
-  part2: ReadingPart | null;
-  part3: ReadingPart | null;
   parts: ReadingPart[];
 }
 type ReadingTestRequest = TestRequest & {
