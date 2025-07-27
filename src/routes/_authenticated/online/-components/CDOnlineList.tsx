@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { Link } from '@tanstack/react-router';
 import { format } from 'date-fns';
 
 import {
@@ -35,7 +36,11 @@ export const CDOnlineList = () => {
             ))}
           </CardContent>
           <CardFooter className='flex justify-end'>
-            <Button>See details</Button>
+            <Button asChild variant='secondary'>
+              <Link params={{ id: String(exam.id) }} to='/online/$id'>
+                See details
+              </Link>
+            </Button>
           </CardFooter>
         </Card>
       ))}

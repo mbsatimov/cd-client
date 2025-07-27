@@ -2,6 +2,8 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CheckCheckIcon,
+  MinusIcon,
+  PlusIcon,
   Volume2Icon,
   VolumeXIcon
 } from 'lucide-react';
@@ -16,6 +18,9 @@ import { cn } from '@/lib/utils.ts';
 import { useExamAnswersStore } from '@/utils/stores';
 
 import { FinishTestAction, MoveToAction } from '../components';
+const MIN_ZOOM = 0.8; // 80%
+const MAX_ZOOM = 1.2; // 120%
+const ZOOM_STEP = 0.1; // 10% increment/decrement
 
 interface Props {
   hideNextButton?: boolean;
@@ -40,6 +45,19 @@ export const ListeningTest = ({
   const audioRef = React.useRef<HTMLAudioElement>(null);
   const { listening, setListening } = useExamAnswersStore();
   const [currentFocusQuestionId, setCurrentFocusQuestionId] = React.useState<number>(1);
+  const [zoomLevel, setZoomLevel] = React.useState(1.0); // Initial zoom level (100%)
+
+  const zoomIn = React.useCallback(() => {
+    setZoomLevel((prevZoom) => Math.min(prevZoom + ZOOM_STEP, MAX_ZOOM));
+  }, []);
+
+  const zoomOut = React.useCallback(() => {
+    setZoomLevel((prevZoom) => Math.max(prevZoom - ZOOM_STEP, MIN_ZOOM));
+  }, []);
+
+  const resetZoom = React.useCallback(() => {
+    setZoomLevel(1.0);
+  }, []);
 
   const { timeLeft, leftFullTime, start, isRunning } = useTimer({
     initialTime: 120,
@@ -147,6 +165,25 @@ export const ListeningTest = ({
             {leftFullTime()}
           </div>
           <div className='flex items-center gap-2'>
+            <Button
+              disabled={zoomLevel <= MIN_ZOOM}
+              size='icon'
+              variant='outline'
+              onClick={zoomOut}
+            >
+              <MinusIcon className='h-4 w-4' />
+              <span className='sr-only'>Zoom Out</span>
+            </Button>
+            <span className='w-16 text-center text-sm font-medium'>{`${Math.round(zoomLevel * 100)}%`}</span>
+            <Button disabled={zoomLevel >= MAX_ZOOM} size='icon' variant='outline' onClick={zoomIn}>
+              <PlusIcon className='h-4 w-4' />
+              <span className='sr-only'>Zoom In</span>
+            </Button>
+            <Button className='ml-4 bg-transparent' variant='outline' onClick={resetZoom}>
+              Reset Zoom
+            </Button>
+          </div>
+          <div className='flex items-center gap-2'>
             <VolumeXIcon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
             <Slider
               aria-label='Volume slider'
@@ -182,7 +219,16 @@ export const ListeningTest = ({
           const currentQuestionStartNumber = questionsOrder;
           questionsOrder += part.question.numberOfQuestions;
           return (
-            <div key={part.id} className={cn('hidden h-full', index + 1 === currentTab && 'block')}>
+            <div
+              key={part.id}
+              style={{
+                transform: `scale(${zoomLevel})`,
+                transformOrigin: 'top left', // Zoom from the top-left corner
+                width: `${100 / zoomLevel}%`, // Adjust width to prevent content cutoff
+                height: `${100 / zoomLevel}%` // Adjust height to prevent content cutoff
+              }}
+              className={cn('hidden h-full', index + 1 === currentTab && 'block')}
+            >
               <FormBuilder
                 answers={listening}
                 setAnswer={setListening}

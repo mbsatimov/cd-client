@@ -19,10 +19,11 @@ export const formatPrice = (price: number) =>
 export const calculateIELTSBand = (scores: (number | null | undefined)[]) => {
   const s = scores.filter((score) => score !== null && score !== undefined);
   if (scores.length === 0) {
-    throw new Error('At least one score is required.');
+    return 0;
   }
 
   const total = s.reduce((sum, score) => sum + score, 0);
+  if (total === 0) return 0;
   const average = total / s.length;
 
   // Round to nearest 0.5

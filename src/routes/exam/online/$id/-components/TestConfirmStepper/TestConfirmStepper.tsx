@@ -1,4 +1,4 @@
-import { CircleAlertIcon, InfoIcon, Volume2Icon, VolumeXIcon } from 'lucide-react';
+import { Volume2Icon, VolumeXIcon } from 'lucide-react';
 import React from 'react';
 
 import { BaseLayout } from '@/components/layout';
@@ -106,10 +106,6 @@ export const TestConfirmStepper = ({
               <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
             </div>
           </div>
-          <div className='flex items-center gap-1'>
-            <CircleAlertIcon className='size-4 shrink-0 text-destructive' />
-            <p>If you cannot hear the sound clearly, please tell the invigilator.</p>
-          </div>
           <div className='flex items-center justify-center'>
             <Button onClick={onSoundCheckConfirmed}>Continue</Button>
           </div>
@@ -142,12 +138,6 @@ export const TestConfirmStepper = ({
         </div>
       </div>
       <div className='mt-14 flex flex-col items-center space-y-4'>
-        <div className='inline-flex items-center gap-1'>
-          <InfoIcon className='size-4 text-primary' />
-          <p className='font-semibold'>
-            Do not click &quot;Start test&quot; until you are told to do so.
-          </p>
-        </div>
         <Button size='lg' onClick={onConfirm}>
           Start test
         </Button>
