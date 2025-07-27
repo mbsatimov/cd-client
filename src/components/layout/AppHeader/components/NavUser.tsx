@@ -68,12 +68,12 @@ export const NavUser = () => {
               My Bookings
             </Link>
           </DropdownMenuItem>
-          {/*<DropdownMenuItem asChild>*/}
-          {/*  <Link to='/online'>*/}
-          {/*    <NotebookPenIcon />*/}
-          {/*    My Online Exams*/}
-          {/*  </Link>*/}
-          {/*</DropdownMenuItem>*/}
+          <DropdownMenuItem asChild>
+            <Link to='/online'>
+              <NotebookPenIcon />
+              My Online Exams
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link to='/transactions'>
               <HistoryIcon />

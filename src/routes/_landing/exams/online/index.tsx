@@ -31,7 +31,14 @@ const RouteComponent = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <h1 className='mb-6 mt-6 text-3xl font-bold'>CD Online Exams</h1>
+      <h1 className='mb-6 mt-6 text-3xl font-bold'>
+        CD Online Exams <span className='text-yellow-500'>(Beta)</span>
+      </h1>
+      <p className='mb-6 max-w-4xl text-muted-foreground'>
+        Enjoy the flexibility of taking your IELTS CD exam online from anywhere. With a lower cost
+        and convenient access, this option allows you to take the exam at your own pace, without the
+        need for travel. Perfect for those seeking a more affordable and accessible test experience.
+      </p>
       <CDOnlineList />
     </BaseLayout>
   );

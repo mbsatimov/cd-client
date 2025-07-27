@@ -7,6 +7,7 @@ export * from './auth/reset-password';
 export * from './auth/verify';
 export * from './cd-online';
 export * from './cd-online/participation';
+export * from './cd-online/pricing';
 export * from './cd-online/result';
 export * from './exams';
 export * from './exams/{id}';

@@ -89,3 +89,12 @@ type CDOnlineParticipationRequest = CDOnlineType[];
 
 type CDOnlineParticipationListResponse = Pagination<CDOnlineParticipation>;
 type CDOnlineParticipationResponse = CDOnlineParticipation;
+
+interface CDOnlinePricing {
+  id: number;
+  listeningPrice: number;
+  readingPrice: number;
+  writingPrice: number;
+}
+
+type CDOnlinePricingResponse = CDOnlinePricing;

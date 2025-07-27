@@ -1,8 +1,17 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
+import { AlertCircleIcon } from 'lucide-react';
 import React from 'react';
 
 import {
+  Alert,
+  AlertDescription,
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertTitle,
   Button,
   Card,
   CardHeader,
@@ -15,7 +24,7 @@ import {
   DialogTitle
 } from '@/components/ui';
 import { cn } from '@/lib/utils.ts';
-import { postCDOnlineParticipation } from '@/utils/api/requests';
+import { getCDOnlinePricing, postCDOnlineParticipation } from '@/utils/api/requests';
 
 interface Props {
   item: CDOnline;
@@ -30,6 +39,12 @@ export const CDOnlineItem = ({ item }: Props) => {
     'READING',
     'WRITING'
   ]);
+  const getCDOnlinePricingQuery = useSuspenseQuery({
+    queryKey: ['cd-online-prices'],
+    queryFn: () => getCDOnlinePricing()
+  });
+  const pricing = getCDOnlinePricingQuery.data.data;
+
   const postCDOnlineParticipationMutation = useMutation({
     mutationFn: postCDOnlineParticipation,
     onSuccess: ({ data }) => {
@@ -54,6 +69,12 @@ export const CDOnlineItem = ({ item }: Props) => {
     } else {
       setTestTypes([...testTypes, testType]);
     }
+  };
+
+  const priceMap: Record<CDOnlineType, number> = {
+    LISTENING: pricing.listeningPrice,
+    READING: pricing.readingPrice,
+    WRITING: pricing.writingPrice
   };
 
   return (
@@ -91,28 +112,54 @@ export const CDOnlineItem = ({ item }: Props) => {
                 <Checkbox checked={testTypes.includes(testType)} id={testType} />
                 <div className='flex-1 text-start font-medium uppercase'>{testType}</div>
                 <div className='flex items-center gap-2'>
-                  <span className='text-sm font-semibold'>10 000</span>
+                  <span className='text-sm font-semibold'>
+                    {priceMap[testType].toLocaleString()}
+                  </span>
                   <span className='text-sm text-muted-foreground'>som</span>
                 </div>
               </button>
             ))}
           </div>
-          <Button disabled={testTypes.length === 0} onClick={onBuyTest}>
-            BUY TEST
+          <Alert variant='destructive'>
+            <AlertCircleIcon className='size-4' />
+            <AlertTitle>Heads up!</AlertTitle>
+            <AlertDescription>
+              This CD Online exam is currently in test mode. Some features may not work as expected.
+              We appreciate your feedback and patience during this period.
+            </AlertDescription>
+          </Alert>
+          <div className='flex justify-between border-t px-2 pt-4'>
+            <div className='font-semibold'>Total</div>
+            <div className='font-semibold'>
+              {testTypes
+                .map((testType) => priceMap[testType])
+                .reduce((a, b) => a + b, 0)
+                .toLocaleString()}{' '}
+              som
+            </div>
+          </div>
+          <Button
+            disabled={testTypes.length === 0}
+            loading={postCDOnlineParticipationMutation.isPending}
+            onClick={onBuyTest}
+          >
+            BUY TESTS
           </Button>
         </DialogContent>
       </Dialog>
-      <Dialog onOpenChange={setOpenAlert} open={openAlert}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{item.title}</DialogTitle>
-            <DialogDescription>
+      <AlertDialog onOpenChange={setOpenAlert} open={openAlert}>
+        <AlertDialogContent className='max-w-[400px]'>
+          <AlertDialogHeader>
+            <AlertDialogTitle className='text-center'>{item.title}</AlertDialogTitle>
+            <AlertDialogDescription className='text-center'>
               You can start the test now or later when you are ready. The exam will be accessible
               from your profile page.
-            </DialogDescription>
-          </DialogHeader>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
           <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
-            <Button onClick={() => setOpenAlert(false)}>Later</Button>
+            <Button variant='outline' onClick={() => setOpenAlert(false)}>
+              Later
+            </Button>
             {participationId && (
               <Button asChild>
                 <Link params={{ id: participationId }} to='/exam/online/$id'>
@@ -121,8 +168,8 @@ export const CDOnlineItem = ({ item }: Props) => {
               </Button>
             )}
           </div>
-        </DialogContent>
-      </Dialog>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
