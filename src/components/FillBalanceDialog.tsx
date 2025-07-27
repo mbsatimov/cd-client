@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import { SquareArrowOutUpRight } from 'lucide-react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -30,6 +31,7 @@ interface FormValues {
 }
 
 export const FillBalanceDialog = ({ ...props }: Props) => {
+  const [url, setUrl] = React.useState<string | null>(null);
   const form = useForm<FormValues>({
     defaultValues: {
       type: 'CLICK',
@@ -41,6 +43,7 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
     mutationFn: postFillBalance,
     onSuccess: ({ data }) => {
       window.open(data);
+      setUrl(data);
     }
   });
 
@@ -160,9 +163,16 @@ export const FillBalanceDialog = ({ ...props }: Props) => {
               name='amount'
               control={form.control}
             />
-            <Button className='w-full' type='submit' loading={postFillBalanceMutation.isPending}>
-              Fill balance
-            </Button>
+            {!url ? (
+              <Button className='w-full' type='submit' loading={postFillBalanceMutation.isPending}>
+                Fill balance
+              </Button>
+            ) : (
+              <Button className='w-full' variant='secondary' onClick={() => window.open(url)}>
+                Open payment page
+                <SquareArrowOutUpRight />
+              </Button>
+            )}
           </form>
         </Form>
       </DialogContent>
