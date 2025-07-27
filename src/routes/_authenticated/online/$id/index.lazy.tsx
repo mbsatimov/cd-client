@@ -41,7 +41,7 @@ const ResultsIdCDPage = () => {
           <span>Back</span>
         </Button>
       </div>
-      {!result.listeningResult || !result.readingResult || !result.writingResult ? (
+      {!result.listeningResult && !result.readingResult && !result.writingResult ? (
         <div className='mx-auto max-w-2xl'>
           <p className='mb-8 text-5xl font-bold md:mb-10 md:text-6xl'>Attention!</p>
           <p className='mb-6 text-lg font-medium leading-8 md:pb-8 md:text-xl'>

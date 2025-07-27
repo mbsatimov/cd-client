@@ -26,7 +26,7 @@ export const CDOnlineList = () => {
         <Card key={exam.id}>
           <CardHeader>
             <CardTitle>TEST 1</CardTitle>
-            <CardDescription>Reserved on {format(exam.createdAt, 'dd MMMM, EEEE')}</CardDescription>
+            <CardDescription>Reserved on {format(exam.createdAt, 'PPP p')}</CardDescription>
           </CardHeader>
           <CardContent className='grid grid-flow-col gap-3'>
             {exam.sections.map((section) => (
