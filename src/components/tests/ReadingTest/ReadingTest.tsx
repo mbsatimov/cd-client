@@ -125,8 +125,18 @@ export const ReadingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
           const currentQuestionStartNumber = questionsOrder;
           questionsOrder += questionsCount;
           return (
-            <div key={part.id} className={cn('hidden h-full', index + 1 === currentTab && 'block')}>
-              <ResizablePanelGroup direction='horizontal'>
+            <div
+              key={part.id}
+              className={cn('hidden h-full', index + 1 === currentTab && 'flex flex-col')}
+            >
+              <div className='m-4 rounded-md border bg-secondary px-4 py-3'>
+                <h2 className='text-lg font-semibold'>Part {index + 1}</h2>
+                <p>
+                  Read the text and answer questions {currentQuestionStartNumber} -{' '}
+                  {questionsOrder - 1}.
+                </p>
+              </div>
+              <ResizablePanelGroup className='flex-1' direction='horizontal'>
                 <ResizablePanel style={{ overflowY: 'auto' }}>
                   <BaseLayout className='min-w-80'>
                     <EditorPreview>

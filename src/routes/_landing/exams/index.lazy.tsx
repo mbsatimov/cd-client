@@ -30,7 +30,7 @@ const ExamsPage = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <h1 className='mb-6 mt-6 text-3xl font-bold'>Available Exams</h1>
+      <h1 className='my-4 text-2xl font-bold md:my-6 md:text-3xl'>Available Exams</h1>
       <ExamList />
     </BaseLayout>
   );

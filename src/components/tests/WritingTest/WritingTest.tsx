@@ -5,11 +5,11 @@ import { toast } from 'sonner';
 import { EditorPreview } from '@/components/editor';
 import { BaseLayout, ThemeSwitch } from '@/components/layout';
 import {
+  AutoGrowingTextarea,
   Button,
   ResizableHandle,
   ResizablePanel,
-  ResizablePanelGroup,
-  Textarea
+  ResizablePanelGroup
 } from '@/components/ui';
 import { useTimer } from '@/hooks';
 import { cn } from '@/lib/utils';
@@ -42,10 +42,7 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
   if (!writing) return;
 
   const getWordsCount = (text: string) => {
-    const count = text.split(' ').filter(Boolean).length;
-    if (count === 0) return '0 words';
-    else if (count === 1) return `${count} word`;
-    return `${count} words`;
+    return text.split(' ').filter(Boolean).length;
   };
 
   const onFocusPrev = () => {
@@ -85,8 +82,20 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
       </header>
       <div className='min-w-0 flex-1 overflow-y-auto'>
         {test.parts.map((part, index) => (
-          <div key={part.id} className={cn('hidden h-full', index + 1 === currentTab && 'block')}>
-            <ResizablePanelGroup direction='horizontal'>
+          <div
+            key={part.id}
+            className={cn('hidden h-full', index + 1 === currentTab && 'flex flex-col')}
+          >
+            <div className='m-4 rounded-md border bg-secondary px-4 py-3'>
+              <h2 className='text-lg font-semibold'>Part {index + 1}</h2>
+              {index === 0 && (
+                <p>You should spend about 20 minutes on this task. Write at least 150 words.</p>
+              )}
+              {index === 1 && (
+                <p>You should spend about 40 minutes on this task. Write at least 250 words.</p>
+              )}
+            </div>
+            <ResizablePanelGroup className='flex-1' direction='horizontal'>
               <ResizablePanel style={{ overflowY: 'auto' }}>
                 <BaseLayout className='min-w-80'>
                   <EditorPreview>
@@ -97,16 +106,16 @@ export const WritingTest = ({ hideNextButton, nextStep, test, onTestEnd }: Props
               <ResizableHandle withHandle className='w-1' />
               <ResizablePanel style={{ overflowY: 'auto' }}>
                 <BaseLayout className='relative h-full min-w-80'>
-                  <div className='absolute right-6 top-3 rounded-sm bg-background px-1'>
-                    <span>{getWordsCount(writing[index + 1])}</span>
-                  </div>
-                  <Textarea
-                    className='h-full py-6 text-base md:text-lg'
+                  <AutoGrowingTextarea
+                    className='max-h-full min-h-[300px] py-6 text-base md:text-lg'
                     spellCheck={false}
                     value={writing[index + 1]}
                     onChange={(e) => setWriting(index + 1, e.target.value)}
                     placeholder={`Write part ${index + 1} here...`}
                   />
+                  <div className='mt-2 flex justify-end rounded-sm px-1'>
+                    <span>Words: {getWordsCount(writing[index + 1])}</span>
+                  </div>
                 </BaseLayout>
               </ResizablePanel>
             </ResizablePanelGroup>

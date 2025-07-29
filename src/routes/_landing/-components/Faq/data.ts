@@ -7,12 +7,7 @@ export const faqData = [
   {
     question: 'How often do mock exams take place?',
     answer:
-      'Our traditional paper-based IELTS mock exams are held every Sunday, usually in one or two sessions. The morning session is the first to take place, and if there’s high demand, we open an evening session as well. Since seats are limited, we recommend booking in advance.'
-  },
-  {
-    question: 'Do you offer IELTS on Computer (CDI) mock exams?',
-    answer:
-      'Yes, we do! We recently introduced IELTS on Computer mock exams, which are conducted once a week on Sundays. Candidates can register and take the exam at our learning center, where we provide top-quality equipment, materials, and services to ensure a smooth experience.'
+      'CD Mock Exams are held daily at our CD Lab, typically in two or three sessions. The morning session is the first to take place, and if there is high demand, we open an evening session as well. Since seats are limited, we recommend booking in advance.'
   },
   {
     question: 'Are your mock exams similar to the real IELTS exam?',
@@ -27,7 +22,7 @@ export const faqData = [
   {
     question: 'How long does it take to receive results?',
     answer:
-      'For paper-based mock exams, results are announced within 3-4 days. For IELTS on Computer mock exams, results are available within 2-3 days. You will receive notifications via SMS or Telegram, and you can also access your results along with detailed feedback on our platform.'
+      'Usually, the results are available within 1–2 days. You will receive a notification via SMS or Telegram, and you can also access your results along with detailed feedback on our platform.'
   },
   {
     question: 'What are the prices, and do you offer discounts?',

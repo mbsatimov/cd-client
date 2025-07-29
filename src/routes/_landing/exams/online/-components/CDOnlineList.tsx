@@ -12,8 +12,8 @@ export const CDOnlineList = () => {
   });
   const data = getCDOnlineQuery.data.data;
   return (
-    <div className='space-y-4 py-4'>
-      <div className='grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4'>
+    <div className='space-y-4'>
+      <div className='grid grid-cols-2 gap-2 sm:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] sm:gap-4'>
         {data.data.map((exam) => (
           <CDOnlineItem key={exam.id} item={exam} />
         ))}

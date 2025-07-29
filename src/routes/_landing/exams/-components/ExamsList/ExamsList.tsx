@@ -28,7 +28,7 @@ export const ExamList = () => {
     );
   }
   return (
-    <div className='space-y-4 py-4'>
+    <div className='space-y-4'>
       {state.exams?.data.length ? (
         state.exams?.data.map((exam) => (
           <article key={exam.id}>

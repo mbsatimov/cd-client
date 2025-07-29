@@ -1,4 +1,4 @@
-import { Volume2Icon, VolumeXIcon } from 'lucide-react';
+import { Volume1Icon, Volume2Icon } from 'lucide-react';
 import React from 'react';
 
 import { BaseLayout } from '@/components/layout';
@@ -92,18 +92,32 @@ export const TestConfirmStepper = ({
               src='/volumeCheckAudio.mp3'
               onEnded={() => setIsAudioPlaying(false)}
             />
-            <div className='flex items-center gap-2'>
-              <VolumeXIcon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+            <div className='flex items-center gap-1'>
+              <Button
+                disabled={volume <= 0}
+                size='iconSm'
+                variant='ghost'
+                onClick={() => onVolumeChange(volume - 0.1 <= 0 ? 0 : volume - 0.1)}
+              >
+                <Volume1Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+              </Button>
               <Slider
                 aria-label='Volume slider'
                 className='w-20'
-                defaultValue={[volume]}
                 max={1}
                 min={0}
                 step={0.01}
+                value={[volume]}
                 onValueChange={([value]) => onVolumeChange(value)}
               />
-              <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+              <Button
+                disabled={volume >= 1}
+                size='iconSm'
+                variant='ghost'
+                onClick={() => onVolumeChange(volume + 0.1 >= 1 ? 1 : volume + 0.1)}
+              >
+                <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+              </Button>
             </div>
           </div>
           <div className='flex items-center justify-center'>

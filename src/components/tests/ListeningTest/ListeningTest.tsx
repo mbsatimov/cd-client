@@ -2,8 +2,8 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CheckCheckIcon,
-  Volume2Icon,
-  VolumeXIcon
+  Volume1Icon,
+  Volume2Icon
 } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
@@ -146,18 +146,32 @@ export const ListeningTest = ({
           >
             {leftFullTime()}
           </div>
-          <div className='flex items-center gap-2'>
-            <VolumeXIcon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+          <div className='flex items-center gap-1'>
+            <Button
+              disabled={volume <= 0}
+              size='iconSm'
+              variant='ghost'
+              onClick={() => onVolumeChange(volume - 0.1 <= 0 ? 0 : volume - 0.1)}
+            >
+              <Volume1Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+            </Button>
             <Slider
               aria-label='Volume slider'
               className='w-20'
-              defaultValue={[volume]}
               max={1}
               min={0}
               step={0.01}
+              value={[volume]}
               onValueChange={([value]) => onVolumeChange(value)}
             />
-            <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+            <Button
+              disabled={volume >= 1}
+              size='iconSm'
+              variant='ghost'
+              onClick={() => onVolumeChange(volume + 0.1 >= 1 ? 1 : volume + 0.1)}
+            >
+              <Volume2Icon aria-hidden='true' className='shrink-0 opacity-60' size={16} />
+            </Button>
           </div>
           <ThemeSwitch />
           {!hideNextButton &&
@@ -183,6 +197,12 @@ export const ListeningTest = ({
           questionsOrder += part.question.numberOfQuestions;
           return (
             <div key={part.id} className={cn('hidden h-full', index + 1 === currentTab && 'block')}>
+              <div className='mb-4 rounded-md border bg-secondary px-4 py-3'>
+                <h2 className='text-lg font-semibold'>Part {index + 1}</h2>
+                <p>
+                  Listen and answer questions {currentQuestionStartNumber} - {questionsOrder - 1}.
+                </p>
+              </div>
               <FormBuilder
                 answers={listening}
                 setAnswer={setListening}

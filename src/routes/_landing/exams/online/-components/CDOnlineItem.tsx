@@ -90,7 +90,9 @@ export const CDOnlineItem = ({ item }: Props) => {
           src='/landing/exams/ielts-paper-bg.png'
         />
         <CardHeader>
-          <CardTitle className='text-center text-5xl'>{item.title}</CardTitle>
+          <CardTitle className='text-center text-2xl sm:text-3xl md:text-5xl'>
+            {item.title}
+          </CardTitle>
         </CardHeader>
       </Card>
       <Dialog onOpenChange={setOpenForm} open={openForm}>
