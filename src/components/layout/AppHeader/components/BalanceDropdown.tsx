@@ -13,8 +13,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui';
+import { useAuth } from '@/hooks/useAuth';
 import { formatPrice } from '@/lib/utils.ts';
-import { useAuth } from '@/utils/stores';
 
 export const BalanceDropdown = () => {
   const { user } = useAuth();

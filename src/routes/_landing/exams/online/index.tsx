@@ -1,4 +1,3 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -12,17 +11,14 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb.tsx';
-import { getCDOnlineAll, getMe } from '@/utils/api/requests';
+import { useAuth } from '@/hooks/useAuth.ts';
+import { getCDOnlineAll } from '@/utils/api/requests';
 
 import { CDOnlineList } from './-components/CDOnlineList.tsx';
 import { CoinPricesDialog } from './-components/CoinPricesDialog.tsx';
 
 const RouteComponent = () => {
-  const getMeQuery = useSuspenseQuery({
-    queryKey: ['me'],
-    queryFn: () => getMe()
-  });
-  const user = getMeQuery.data.data;
+  const { user } = useAuth();
   const [openPricesDialog, setOpenPricesDialog] = React.useState(false);
   return (
     <BaseLayout>

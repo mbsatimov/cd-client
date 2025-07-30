@@ -23,8 +23,9 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui';
+import { useAuth } from '@/hooks/useAuth.ts';
 import { cn } from '@/lib/utils.ts';
-import { getCDOnlinePricing, getMe, postCDOnlineParticipation } from '@/utils/api/requests';
+import { getCDOnlinePricing, postCDOnlineParticipation } from '@/utils/api/requests';
 
 import { CoinPricesDialog } from './CoinPricesDialog.tsx';
 
@@ -42,11 +43,7 @@ export const CDOnlineItem = ({ item }: Props) => {
     'WRITING'
   ]);
   const [openCoinPricesDialog, setOpenCoinPricesDialog] = React.useState(false);
-  const getMeQuery = useSuspenseQuery({
-    queryKey: ['me'],
-    queryFn: () => getMe()
-  });
-  const user = getMeQuery.data.data;
+  const { user } = useAuth();
   const getCDOnlinePricingQuery = useSuspenseQuery({
     queryKey: ['cd-online-prices'],
     queryFn: () => getCDOnlinePricing()

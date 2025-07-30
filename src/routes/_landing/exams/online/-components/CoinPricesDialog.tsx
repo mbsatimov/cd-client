@@ -19,8 +19,9 @@ import {
   Input,
   Label
 } from '@/components/ui';
+import { useAuth } from '@/hooks/useAuth.ts';
 import { cn, formatPrice } from '@/lib/utils.ts';
-import { getCDOnlinePricing, getMe, postBuyCoins } from '@/utils/api/requests';
+import { getCDOnlinePricing, postBuyCoins } from '@/utils/api/requests';
 
 interface Props {
   open: boolean;
@@ -33,12 +34,7 @@ export const CoinPricesDialog = ({ open, onOpenChange }: Props) => {
     queryFn: () => getCDOnlinePricing()
   });
 
-  const getMeQuery = useSuspenseQuery({
-    queryKey: ['me'],
-    queryFn: () => getMe()
-  });
-
-  const user = getMeQuery.data.data;
+  const { user } = useAuth();
   const pricing = getCDOnlinePricingQuery.data.data;
 
   const [openFillBalanceDialog, setOpenFillBalanceDialog] = React.useState(false);
