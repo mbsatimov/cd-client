@@ -17,5 +17,6 @@ export * from './placements';
 export * from './placements/{id}';
 export * from './registrations';
 export * from './results';
+export * from './users/buy-coins';
 export * from './users/me';
 export * from './users/transactions';

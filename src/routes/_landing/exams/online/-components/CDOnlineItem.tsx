@@ -24,7 +24,9 @@ import {
   DialogTitle
 } from '@/components/ui';
 import { cn } from '@/lib/utils.ts';
-import { getCDOnlinePricing, postCDOnlineParticipation } from '@/utils/api/requests';
+import { getCDOnlinePricing, getMe, postCDOnlineParticipation } from '@/utils/api/requests';
+
+import { CoinPricesDialog } from './CoinPricesDialog.tsx';
 
 interface Props {
   item: CDOnline;
@@ -39,6 +41,12 @@ export const CDOnlineItem = ({ item }: Props) => {
     'READING',
     'WRITING'
   ]);
+  const [openCoinPricesDialog, setOpenCoinPricesDialog] = React.useState(false);
+  const getMeQuery = useSuspenseQuery({
+    queryKey: ['me'],
+    queryFn: () => getMe()
+  });
+  const user = getMeQuery.data.data;
   const getCDOnlinePricingQuery = useSuspenseQuery({
     queryKey: ['cd-online-prices'],
     queryFn: () => getCDOnlinePricing()
@@ -77,6 +85,8 @@ export const CDOnlineItem = ({ item }: Props) => {
     WRITING: pricing.writingPrice
   };
 
+  const totalPrice = testTypes.map((testType) => priceMap[testType]).reduce((a, b) => a + b, 0);
+
   return (
     <>
       <Card
@@ -96,7 +106,7 @@ export const CDOnlineItem = ({ item }: Props) => {
         </CardHeader>
       </Card>
       <Dialog onOpenChange={setOpenForm} open={openForm}>
-        <DialogContent>
+        <DialogContent className='max-h-svh overflow-y-auto'>
           <DialogHeader>
             <DialogTitle>{item.title}</DialogTitle>
             <DialogDescription>Choose the test types you want to take.</DialogDescription>
@@ -117,31 +127,36 @@ export const CDOnlineItem = ({ item }: Props) => {
                   <span className='text-sm font-semibold'>
                     {priceMap[testType].toLocaleString()}
                   </span>
-                  <span className='text-sm text-muted-foreground'>som</span>
+                  <img alt='coin' className='size-4' height={16} src='/coin.png' width={16} />
                 </div>
               </button>
             ))}
           </div>
-          <Alert variant='destructive'>
-            <AlertCircleIcon className='size-4' />
-            <AlertTitle>Heads up!</AlertTitle>
-            <AlertDescription>
-              This CD Online exam is currently in test mode. Some features may not work as expected.
-              We appreciate your feedback and patience during this period.
-            </AlertDescription>
-          </Alert>
           <div className='flex justify-between border-t px-2 pt-4'>
             <div className='font-semibold'>Total</div>
-            <div className='font-semibold'>
-              {testTypes
-                .map((testType) => priceMap[testType])
-                .reduce((a, b) => a + b, 0)
-                .toLocaleString()}{' '}
-              som
+            <div className='flex items-center gap-2 font-semibold'>
+              <span>{totalPrice.toLocaleString()} </span>
+              <img alt='coin' className='size-4' height={16} src='/coin.png' width={16} />
             </div>
           </div>
+          {user.coins < totalPrice && (
+            <>
+              <Alert variant='destructive'>
+                <AlertCircleIcon className='size-4' />
+                <AlertTitle>Oops!</AlertTitle>
+                <AlertDescription>
+                  You do not have enough coins to purchase these tests. Please buy more coins to
+                  participate in the CD Online exam.
+                </AlertDescription>
+              </Alert>
+              <Button size='sm' variant='outline' onClick={() => setOpenCoinPricesDialog(true)}>
+                Buy coins
+              </Button>
+            </>
+          )}
+          <CoinPricesDialog onOpenChange={setOpenCoinPricesDialog} open={openCoinPricesDialog} />
           <Button
-            disabled={testTypes.length === 0}
+            disabled={testTypes.length === 0 || user?.coins < totalPrice}
             loading={postCDOnlineParticipationMutation.isPending}
             onClick={onBuyTest}
           >

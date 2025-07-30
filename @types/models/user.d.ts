@@ -8,6 +8,7 @@ type UserRole =
 
 interface User {
   balance: number;
+  coins: number;
   firstName: string;
   id: number;
   lastName: string;

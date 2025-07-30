@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react';
+import { ArrowDownIcon, ArrowRightIcon, ArrowUpIcon } from 'lucide-react';
 
 import {
   Badge,
@@ -80,7 +80,7 @@ export const TransactionsTable = () => {
                     </div>
                   )}
                 </TableCell>
-                <TableCell>
+                <TableCell className='flex items-center gap-2'>
                   <Badge
                     className={cn(
                       'shadow-none',
@@ -90,8 +90,24 @@ export const TransactionsTable = () => {
                     )}
                   >
                     {row.isExpense ? '-' : '+'}
-                    {formatPrice(row.amount)}
+                    {row.paidFor === 'CD_ONLINE' || row.paidFor === 'COIN_SHARE' ? (
+                      <span className='flex items-center gap-1'>
+                        {row.amount}
+                        <img alt='coin' className='inline-block size-4' src='/coin.png' />
+                      </span>
+                    ) : (
+                      formatPrice(row.amount)
+                    )}
                   </Badge>
+                  {row.paidFor === 'COIN_EXCHANGE' && (
+                    <>
+                      <ArrowRightIcon className='size-4' />
+                      <Badge className={cn('gap-1 bg-emerald-500/10 text-emerald-700 shadow-none')}>
+                        +{row.numberOfPurchasedCoins}
+                        <img alt='coin' className='inline-block size-3' src='/coin.png' />
+                      </Badge>
+                    </>
+                  )}
                 </TableCell>
               </TableRow>
             ))

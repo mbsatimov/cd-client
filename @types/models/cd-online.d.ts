@@ -91,9 +91,13 @@ type CDOnlineParticipationListResponse = Pagination<CDOnlineParticipation>;
 type CDOnlineParticipationResponse = CDOnlineParticipation;
 
 interface CDOnlinePricing {
-  id: number;
+  fiftyCoinsExchangeRate: number;
   listeningPrice: number;
+  oneCoinExchangeRate: number;
+  oneHundredCoinsExchangeRate: number;
   readingPrice: number;
+  tenCoinsExchangeRate: number;
+  twoHundredCoinsExchangeRate: number;
   writingPrice: number;
 }
 

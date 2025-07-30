@@ -23,19 +23,21 @@ import {
 import { cn } from '@/lib/utils.ts';
 import { postFillBalance } from '@/utils/api/requests/transactions';
 
-interface Props extends React.ComponentProps<typeof Dialog> {}
+interface Props extends React.ComponentProps<typeof Dialog> {
+  defaultAmount?: string;
+}
 
 interface FormValues {
   amount: string;
   type: TransactionSource;
 }
 
-export const FillBalanceDialog = ({ ...props }: Props) => {
+export const FillBalanceDialog = ({ defaultAmount, ...props }: Props) => {
   const [url, setUrl] = React.useState<string | null>(null);
   const form = useForm<FormValues>({
     defaultValues: {
       type: 'CLICK',
-      amount: ''
+      amount: defaultAmount || ''
     }
   });
 

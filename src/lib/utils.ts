@@ -13,8 +13,7 @@ export const cn = (...inputs: ClassValue[]) => {
 export const formatPhoneNumber = (phoneNumber: string) =>
   phoneNumber.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '$1 ($2) $3 $4 $5');
 
-export const formatPrice = (price: number) =>
-  price.toLocaleString('uz-UZ', { style: 'currency', currency: 'UZS' });
+export const formatPrice = (price: number) => `UZS ${price.toLocaleString()}`;
 
 export const calculateIELTSBand = (scores: (number | null | undefined)[]) => {
   const s = scores.filter((score) => score !== null && score !== undefined);
