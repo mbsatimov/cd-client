@@ -46,7 +46,7 @@ export const OverallScoresTabs = ({ sections, scores, currentTab, setCurrentTab 
               <CardHeader className='space-y-1 p-1.5 sm:p-3 md:space-y-4 md:p-5'>
                 <CardTitle className='text-xs sm:text-sm md:text-base'>{item.title}</CardTitle>
                 <p className='text-center text-xl font-extrabold sm:text-3xl md:text-5xl'>
-                  {item.getScore(scores) || '-'}
+                  {item.getScore(scores) ?? '-'}
                 </p>
               </CardHeader>
             </Card>

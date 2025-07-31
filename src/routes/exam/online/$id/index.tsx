@@ -1,18 +1,34 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import React from 'react';
 
 import { Highlightable } from '@/components/Highlightable';
 import { ListeningTest, ReadingTest, WritingTest } from '@/components/tests';
-import { Spinner } from '@/components/ui';
+import { Button, Spinner } from '@/components/ui';
 import { useFullscreen } from '@/hooks';
 
 import { TestConfirmStepper } from './-components';
 import { useExamIdPage } from './-hooks';
 
 const WritingTestPage = () => {
+  const { id } = Route.useParams();
   const { state, functions } = useExamIdPage();
   const [volume, setVolume] = React.useState(0.75);
   const { toggleFullscreen } = useFullscreen();
+
+  if (state.steps.length === 0) {
+    return (
+      <div className='flex h-svh flex-col items-center justify-center'>
+        <p className='mb-4 text-lg font-medium md:pb-6 md:text-xl'>
+          The test is already completed.
+        </p>
+        <Button asChild>
+          <Link params={{ id }} to='/online/$id'>
+            See results
+          </Link>
+        </Button>
+      </div>
+    );
+  }
 
   if (!state.testStartConfirmed) {
     return (
