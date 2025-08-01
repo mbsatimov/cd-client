@@ -33,6 +33,7 @@ const queryCache = new QueryCache({
       postRefresh({ config: { headers: { Authorization: undefined } } })
         .then(({ data }) => {
           useAuthStore.getState().auth.setAccessToken(data.token);
+          queryClient.invalidateQueries();
         })
         .catch((err) => {
           if (err.response?.status === 401) {
