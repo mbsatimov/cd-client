@@ -40,9 +40,9 @@ export const ListeningTest = ({
   const audioRef = React.useRef<HTMLAudioElement>(null);
   const { listening, setListening } = useExamAnswersStore();
   const [currentFocusQuestionId, setCurrentFocusQuestionId] = React.useState<number>(1);
+  const [audioDurations, setaudioDurations] = React.useState<number[]>([]);
 
-  const { timeLeft, leftFullTime, start, isRunning } = useTimer({
-    initialTime: 120,
+  const { timeLeft, leftFullTime, start, isRunning, setTimeLeft } = useTimer({
     autoStart: false,
     onTimeChange: (timeLeft) => {
       if (timeLeft === 60) toast.error('You have 1 minute left');
@@ -56,16 +56,50 @@ export const ListeningTest = ({
     }
   }, [volume]);
 
+  React.useEffect(() => {
+    const loadDurations = async () => {
+      const durations = await Promise.all(
+        audios.map((src) => {
+          return new Promise<number>((resolve) => {
+            const audio = new Audio();
+            audio.src = src;
+            audio.addEventListener('loadedmetadata', () => {
+              resolve(audio.duration);
+            });
+          });
+        })
+      );
+      setaudioDurations(durations);
+    };
+
+    loadDurations();
+  }, []);
+
   if (!listening) return;
+
+  const onAudioTimeUpdate = () => {
+    if (audioRef.current) {
+      const elapsed =
+        audioDurations.slice(0, currentAudioIndex ?? 0).reduce((sum, d) => sum + d, 0) +
+        audioRef.current.currentTime;
+
+      const remaining = Math.ceil(totalDuration - elapsed);
+      if (!isRunning) setTimeLeft(remaining); // Manually update until timer starts
+    }
+  };
+
+  const totalDuration = audioDurations.reduce((sum, d) => sum + d, 0);
 
   const onAudioPartEnds = () => {
     if (currentAudioIndex === null) return;
+
     if (currentAudioIndex === audios.length - 1) {
       toast.info('You have 2 minutes to check your answers');
-      start();
       setCurrentAudioIndex(null);
+      start(120); // Start 2-minute timer
       return;
     }
+
     setCurrentAudioIndex(currentAudioIndex + 1);
     audioRef.current?.play();
   };
@@ -136,12 +170,15 @@ export const ListeningTest = ({
           <span className='hidden text-lg font-semibold sm:block'>LISTENING</span>
         </div>
         <div className='flex justify-end gap-4'>
+          {audioDurations.length === audios.length && currentAudioIndex !== null && (
+            <div className='text-sm font-medium text-muted-foreground'></div>
+          )}
           <div
             className={cn(
               'flex h-9 items-center rounded-md bg-secondary px-3 font-medium sm:text-lg',
               { 'text-yellow-500': timeLeft <= 120 },
               { 'text-destructive': timeLeft <= 60 },
-              { hidden: !isRunning }
+              { hidden: audioDurations.length !== audios.length }
             )}
           >
             {leftFullTime()}
@@ -189,7 +226,8 @@ export const ListeningTest = ({
           autoPlay
           onEnded={onAudioPartEnds}
           onPause={() => audioRef.current?.play()}
-        ></audio>
+          onTimeUpdate={onAudioTimeUpdate}
+        />
       )}
       <BaseLayout className='min-w-0 flex-1 overflow-y-auto'>
         {test.parts.map((part, index) => {

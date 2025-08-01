@@ -28,7 +28,7 @@ export function useTimer({
   const secondsLeft = (timeLeft % 60).toString().padStart(2, '0');
 
   React.useEffect(() => {
-    if (onTimerEnd && timeLeft <= 0) onTimerEnd();
+    if (onTimerEnd && isRunning && timeLeft <= 0) onTimerEnd();
     if (isRunning && timeLeft > 0) {
       timerRef.current = setInterval(() => {
         onTimeChange?.(timeLeft);
@@ -43,7 +43,10 @@ export function useTimer({
     };
   }, [isRunning, interval, timeLeft]);
 
-  const start = () => setIsRunning(true);
+  const start = (timeLeft = initialTime) => {
+    setIsRunning(true);
+    setTimeLeft(timeLeft);
+  };
   const pause = () => setIsRunning(false);
   const reset = () => {
     setIsRunning(false);
@@ -66,6 +69,7 @@ export function useTimer({
     minutesLeft,
     secondsLeft,
     isRunning,
+    setTimeLeft,
     start,
     pause,
     reset,

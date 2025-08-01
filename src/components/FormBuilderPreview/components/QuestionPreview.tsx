@@ -1,6 +1,7 @@
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import * as React from 'react';
 
+import { EditorPreview } from '@/components/editor';
 import { helpDataMap } from '@/components/FormBuilderPreview/components/help-data.ts';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 
@@ -63,9 +64,9 @@ export const QuestionPreview = ({
       </div>
 
       {question.condition && (
-        <p className='mb-3 whitespace-pre-wrap break-words text-base italic'>
-          {question.condition}
-        </p>
+        <EditorPreview>
+          <div className='mb-3' dangerouslySetInnerHTML={{ __html: question.condition }} />
+        </EditorPreview>
       )}
       <div className='rounded-md bg-secondary px-4 py-6'>
         {question.title && (
