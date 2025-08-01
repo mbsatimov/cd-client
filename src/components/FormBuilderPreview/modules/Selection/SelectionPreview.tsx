@@ -27,16 +27,19 @@ export const SelectionPreview = ({
 }: Props) => (
   <>
     {value.showOptions && (
-      <div className='mb-10 grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-1 rounded-md border bg-muted p-2'>
-        {value.options.map(
-          (option) =>
-            option.value && (
-              <React.Fragment key={option.id}>
-                <span className='mr-3 font-semibold'>{option.value}</span>
-                <span>{option.label}</span>
-              </React.Fragment>
-            )
-        )}
+      <div className='mb-10 w-fit rounded-md border bg-muted px-4 py-3'>
+        {value.optionsTitle && <div className='mb-2 font-semibold'>{value.optionsTitle}</div>}
+        <div className='grid grid-cols-[auto_1fr] items-center gap-x-3'>
+          {value.options.map(
+            (option) =>
+              option.value && (
+                <React.Fragment key={option.id}>
+                  <span className='font-semibold'>{option.value}</span>
+                  <span className='text-sm'>{option.label}</span>
+                </React.Fragment>
+              )
+          )}
+        </div>
       </div>
     )}
     <EditorPreview>

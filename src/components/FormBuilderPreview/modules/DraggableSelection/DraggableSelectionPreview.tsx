@@ -141,6 +141,7 @@ export const DraggableSelectionPreview = ({
         </EditorPreview>
 
         <div className='mb-4 ml-8 flex flex-col gap-4 rounded-md border border-border bg-muted/30 p-3'>
+          {value.optionsTitle && <div className='font-semibold'>{value.optionsTitle}</div>}
           {options.map((option) =>
             option.active ? (
               <span key={option.id} className='min-h-5 min-w-[100px] border border-transparent' />

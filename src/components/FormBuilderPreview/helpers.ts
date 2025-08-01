@@ -13,6 +13,8 @@ export const getQuestionCount = (question: FormBuilderValue) => {
     return question.limit;
   } else if (question.type === 'draggable-selection') {
     return question.content.split('@@').length - 1;
+  } else if (question.type === 'matching-features') {
+    return question.content.length;
   }
   return 0;
 };

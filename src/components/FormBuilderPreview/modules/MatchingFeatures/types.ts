@@ -1,12 +1,14 @@
-export interface DraggableSelectionQuestionValue {
+export interface MatchingFeaturesQuestionValue {
   condition: string | null;
-  content: string;
+  content: string[];
   id: string;
   optionsTitle?: string | null;
+  showOptions: boolean;
   title: string | null;
-  type: 'draggable-selection';
+  type: 'matching-features';
   options: {
     id: string;
     value: string;
+    label: string;
   }[];
 }

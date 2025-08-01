@@ -9,6 +9,7 @@ import type { FormBuilderQuestionTypes, FormBuilderValue } from '../types.ts';
 
 import { CompletionPreview } from '../modules/Completion';
 import { DraggableSelectionPreview } from '../modules/DraggableSelection';
+import { MatchingFeaturesPreview } from '../modules/MatchingFeatures';
 import { MultipleChoicePreview } from '../modules/MultipleChoice';
 import { MultiSelectPreview } from '../modules/MultiSelect';
 import { SelectionPreview } from '../modules/Selection';
@@ -18,7 +19,8 @@ const questionMap: Record<FormBuilderQuestionTypes, React.ComponentType<any>> = 
   'multiple-choice': MultipleChoicePreview,
   selection: SelectionPreview,
   'multi-select': MultiSelectPreview,
-  'draggable-selection': DraggableSelectionPreview
+  'draggable-selection': DraggableSelectionPreview,
+  'matching-features': MatchingFeaturesPreview
 };
 
 interface Props {

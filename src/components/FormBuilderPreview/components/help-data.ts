@@ -9,5 +9,7 @@ export const helpDataMap: Record<FormBuilderQuestionTypes, string> = {
   'multi-select':
     'Use TAB to navigate between the checkbox elements. Option can be selected by pressing enter or space. Your answer is saved continuously.',
   'draggable-selection':
-    'Use TAB to navigate between the draggable elements. The active element can be moved between open gaps using the arrow keys. Your answer is saved continuously.'
+    'Use TAB to navigate between the draggable elements. The active element can be moved between open gaps using the arrow keys. Your answer is saved continuously.',
+  'matching-features':
+    'Use TAB to navigate between items. Option can be selected by pressing enter or space. Your answer is saved continuously.'
 };
