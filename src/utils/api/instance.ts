@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { postRefresh } from '@/utils/api/requests';
 import { useAuthStore } from '@/utils/stores';
 
 const api = axios.create({
@@ -14,5 +15,28 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+api.interceptors.response.use(
+  (config) => config,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && error.config && !originalRequest._isRetry) {
+      originalRequest._isRetry = true;
+
+      try {
+        const response = await postRefresh();
+        useAuthStore.getState().auth.setAccessToken(response.data.token);
+        return api.request(originalRequest);
+      } catch {
+        if (location.pathname !== '/login') location.href = '/login';
+      }
+    }
+
+    if (error?.response?.data) throw error.response.data;
+
+    throw error;
+  }
+);
 
 export { api };
