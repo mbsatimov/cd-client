@@ -33,8 +33,6 @@ api.interceptors.response.use(
       }
     }
 
-    if (error?.response?.data) throw error.response.data;
-
     throw error;
   }
 );
