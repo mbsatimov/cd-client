@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
-import { CalendarCheckIcon, MoveRightIcon } from 'lucide-react';
+import { LaptopMinimalCheckIcon, MonitorCheckIcon } from 'lucide-react';
 
 import { BaseLayout } from '@/components/layout';
 import { Button } from '@/components/ui';
@@ -47,20 +47,20 @@ export const Hero = () => {
         </motion.p>
         <motion.div
           animate={{ y: 0, opacity: 1, rotateX: 0 }}
-          className='mx-auto mb-10 mt-8 flex flex-col items-center gap-3 md:mb-20'
+          className='mx-auto mb-10 mt-8 grid grid-cols-2 items-center gap-3 md:mb-20'
           initial={{ y: 40, opacity: 0, rotateX: 20 }}
           transition={{ duration: 0.3, delay: 0.4 }}
         >
-          <Button asChild size='lg'>
+          <Button asChild>
             <Link to='/exams'>
-              <CalendarCheckIcon />
-              Book now
+              <MonitorCheckIcon />
+              CD Offline
             </Link>
           </Button>
-          <Button asChild className='group' size='sm' variant='ghost'>
+          <Button asChild className='group' variant='secondary'>
             <Link to='/exams/online'>
-              Try cd online (beta)
-              <MoveRightIcon className='transition group-hover:translate-x-1' />
+              <LaptopMinimalCheckIcon />
+              CD Online
             </Link>
           </Button>
         </motion.div>

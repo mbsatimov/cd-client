@@ -104,7 +104,7 @@ export const ExamCards = () => {
         </CardContent>
         <CardFooter className='gap-4 px-5 pb-4 md:px-8'>
           <Button asChild>
-            <Link to='/exams/online'>Buy now</Link>
+            <Link to='/exams/online'>Try now</Link>
           </Button>
         </CardFooter>
       </Card>

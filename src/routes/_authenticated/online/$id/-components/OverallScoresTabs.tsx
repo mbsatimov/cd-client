@@ -1,4 +1,10 @@
 import { Card, CardHeader, CardTitle } from '@/components/ui';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip.tsx';
 import { calculateIELTSBand, cn } from '@/lib/utils.ts';
 
 const items: Record<CDOnlineType, any> = {
@@ -32,7 +38,7 @@ interface Props {
 
 export const OverallScoresTabs = ({ sections, scores, currentTab, setCurrentTab }: Props) => {
   return (
-    <div className='grid grid-cols-5 gap-1 sm:gap-4'>
+    <div className='grid grid-cols-4 gap-1 sm:gap-4'>
       {sections.map((section) => {
         const item = items[section];
         return (
@@ -42,25 +48,43 @@ export const OverallScoresTabs = ({ sections, scores, currentTab, setCurrentTab 
             disabled={!item.getScore(scores)}
             onClick={() => setCurrentTab(item.value)}
           >
-            <Card className={cn('transition-colors', currentTab === item.value && 'bg-muted')}>
+            <Card
+              className={cn('h-full transition-colors', currentTab === item.value && 'bg-muted')}
+            >
               <CardHeader className='space-y-1 p-1.5 sm:p-3 md:space-y-4 md:p-5'>
                 <CardTitle className='text-xs sm:text-sm md:text-base'>{item.title}</CardTitle>
-                <p className='text-center text-xl font-extrabold sm:text-3xl md:text-5xl'>
-                  {item.getScore(scores) ?? '-'}
+                <p
+                  className={cn('text-center text-xl font-extrabold sm:text-3xl md:text-5xl', {
+                    'text-sm sm:text-lg md:text-xl': !item.getScore(scores)
+                  })}
+                >
+                  {item.getScore(scores) ?? (
+                    <TooltipProvider>
+                      <Tooltip delayDuration={0}>
+                        <TooltipTrigger>Checking...</TooltipTrigger>
+                        <TooltipContent>
+                          Your results are being analyzed. Please come back later after a few
+                          minutes.
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )}
                 </p>
               </CardHeader>
             </Card>
           </button>
         );
       })}
-      <Card className='bg-yellow-500/10'>
-        <CardHeader className='space-y-1 p-1.5 sm:p-3 md:space-y-4 md:p-5'>
-          <CardTitle className='text-center text-xs sm:text-sm md:text-base'>Overall</CardTitle>
-          <p className='text-center text-xl font-extrabold sm:text-3xl md:text-5xl'>
-            {calculateIELTSBand([scores.writing, scores.reading, scores.listening]).toFixed(1)}
-          </p>
-        </CardHeader>
-      </Card>
+      {sections.length > 1 && (
+        <Card className='bg-yellow-500/10'>
+          <CardHeader className='space-y-1 p-1.5 sm:p-3 md:space-y-4 md:p-5'>
+            <CardTitle className='text-center text-xs sm:text-sm md:text-base'>Overall</CardTitle>
+            <p className='text-center text-xl font-extrabold sm:text-3xl md:text-5xl'>
+              {calculateIELTSBand([scores.writing, scores.reading, scores.listening]).toFixed(1)}
+            </p>
+          </CardHeader>
+        </Card>
+      )}
     </div>
   );
 };

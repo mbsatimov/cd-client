@@ -52,6 +52,10 @@ const ResultsIdCDPage = () => {
 
           <ul className='list-inside list-disc space-y-2 md:text-lg'>
             <li>Make sure you have stable internet connection.</li>
+            <li>
+              You can only take the exam from a laptop or desktop computer — mobile devices are not
+              supported.
+            </li>
             <li>Test your speakers. You should be able to hear the audio clearly.</li>
             <li>Enter the code given to you.</li>
             <li>Click &quot;Start Exam&quot; button once you are ready.</li>
