@@ -43,7 +43,7 @@ export const AppHeader = () => {
           <img alt='IELTS ZONE' className='h-6 dark:hidden sm:h-8' src='/logo.png' />
           <img alt='IELTS ZONE' className='hidden h-6 dark:inline sm:h-8' src='/logo-dark.png' />
         </Link>
-        <div className='flex items-center justify-end gap-2'>
+        <div className='flex items-center justify-end sm:gap-2'>
           {user && <BalanceDropdown />}
           <ThemeSwitch />
           {user ? (

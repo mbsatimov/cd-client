@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { toast } from 'sonner';
 
+import { TooltipProvider } from '@/components/ui/tooltip.tsx';
 import { ThemeProvider } from '@/utils/context';
 
 import { routeTree } from './routeTree.gen';
@@ -54,7 +55,9 @@ if (!rootElement.innerHTML) {
         <QueryClientProvider client={queryClient}>
           <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
             <NuqsAdapter>
-              <RouterProvider router={router} />
+              <TooltipProvider>
+                <RouterProvider router={router} />
+              </TooltipProvider>
             </NuqsAdapter>
           </ThemeProvider>
         </QueryClientProvider>

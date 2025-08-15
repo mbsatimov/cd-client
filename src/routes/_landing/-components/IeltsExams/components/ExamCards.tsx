@@ -98,8 +98,8 @@ export const ExamCards = () => {
           <CardDescription>
             Enjoy the flexibility of taking your IELTS CD exam online from anywhere. With a lower
             cost and convenient access, this option allows you to take the exam at your own pace,
-            without the need for travel. Perfect for those seeking a more affordable and accessible
-            test experience.
+            right from the comfort of your home. Perfect for those seeking a more affordable and
+            accessible test experience.
           </CardDescription>
         </CardContent>
         <CardFooter className='gap-4 px-5 pb-4 md:px-8'>

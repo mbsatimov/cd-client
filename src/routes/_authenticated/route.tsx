@@ -3,14 +3,6 @@ import { CalendarCheckIcon, HistoryIcon, NotebookPenIcon, UserCircleIcon } from 
 
 import { AppFooter, AppHeader, BaseLayout } from '@/components/layout';
 import { Spinner } from '@/components/ui';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from '@/components/ui/breadcrumb.tsx';
 import { useAuthStore } from '@/utils/stores';
 
 const AuthenticatedLayout = () => {
@@ -18,17 +10,6 @@ const AuthenticatedLayout = () => {
     <div className='flex min-h-svh flex-col'>
       <AppHeader />
       <BaseLayout className='flex-1 space-y-6'>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href='/'>Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Account</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
         <div className='w-full gap-6 lg:flex'>
           <aside className='-ml-3 hidden w-[220px] flex-col gap-1 lg:flex'>
             <Link

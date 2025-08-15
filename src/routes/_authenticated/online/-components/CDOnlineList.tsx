@@ -20,6 +20,17 @@ export const CDOnlineList = () => {
   });
   const data = getCDOnlineQuery.data.data;
 
+  if (data.data.length === 0) {
+    return (
+      <div className='grid place-items-center gap-4 py-10 text-muted-foreground'>
+        <p>You have not reserved any cd online exams</p>
+        <Button asChild>
+          <Link to='/exams/online'>Try cd online</Link>
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className='grid grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-4'>
       {data.data.map((exam) => (
