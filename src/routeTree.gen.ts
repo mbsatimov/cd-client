@@ -20,6 +20,7 @@ import { Route as PlacementsIndexImport } from './routes/placements/index'
 import { Route as ExamIndexImport } from './routes/exam/index'
 import { Route as ExamIdIndexImport } from './routes/exam/$id/index'
 import { Route as AuthenticatedOnlineIndexImport } from './routes/_authenticated/online/index'
+import { Route as AuthenticatedBookingsIndexImport } from './routes/_authenticated/bookings/index'
 import { Route as ExamOnlineIdIndexImport } from './routes/exam/online/$id/index'
 import { Route as ExamAdminIdIndexImport } from './routes/exam/admin/$id/index'
 import { Route as LandingExamsOnlineIndexImport } from './routes/_landing/exams/online/index'
@@ -40,9 +41,6 @@ const AuthenticatedTransactionsIndexLazyImport = createFileRoute(
 )()
 const AuthenticatedProfileIndexLazyImport = createFileRoute(
   '/_authenticated/profile/',
-)()
-const AuthenticatedBookingsIndexLazyImport = createFileRoute(
-  '/_authenticated/bookings/',
 )()
 const AuthRegisterIndexLazyImport = createFileRoute('/_auth/register/')()
 const AuthLoginIndexLazyImport = createFileRoute('/_auth/login/')()
@@ -170,15 +168,6 @@ const AuthenticatedProfileIndexLazyRoute =
     import('./routes/_authenticated/profile/index.lazy').then((d) => d.Route),
   )
 
-const AuthenticatedBookingsIndexLazyRoute =
-  AuthenticatedBookingsIndexLazyImport.update({
-    id: '/bookings/',
-    path: '/bookings/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any).lazy(() =>
-    import('./routes/_authenticated/bookings/index.lazy').then((d) => d.Route),
-  )
-
 const AuthRegisterIndexLazyRoute = AuthRegisterIndexLazyImport.update({
   id: '/register/',
   path: '/register/',
@@ -215,6 +204,14 @@ const AuthenticatedOnlineIndexRoute = AuthenticatedOnlineIndexImport.update({
   path: '/online/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+
+const AuthenticatedBookingsIndexRoute = AuthenticatedBookingsIndexImport.update(
+  {
+    id: '/bookings/',
+    path: '/bookings/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any,
+)
 
 const LandingExamsIdIndexLazyRoute = LandingExamsIdIndexLazyImport.update({
   id: '/exams/$id/',
@@ -345,6 +342,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingIndexLazyImport
       parentRoute: typeof LandingRouteImport
     }
+    '/_authenticated/bookings/': {
+      id: '/_authenticated/bookings/'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof AuthenticatedBookingsIndexImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
     '/_authenticated/online/': {
       id: '/_authenticated/online/'
       path: '/online'
@@ -379,13 +383,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/register'
       preLoaderRoute: typeof AuthRegisterIndexLazyImport
       parentRoute: typeof AuthRouteImport
-    }
-    '/_authenticated/bookings/': {
-      id: '/_authenticated/bookings/'
-      path: '/bookings'
-      fullPath: '/bookings'
-      preLoaderRoute: typeof AuthenticatedBookingsIndexLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
     }
     '/_authenticated/profile/': {
       id: '/_authenticated/profile/'
@@ -493,8 +490,8 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBookingsIndexRoute: typeof AuthenticatedBookingsIndexRoute
   AuthenticatedOnlineIndexRoute: typeof AuthenticatedOnlineIndexRoute
-  AuthenticatedBookingsIndexLazyRoute: typeof AuthenticatedBookingsIndexLazyRoute
   AuthenticatedProfileIndexLazyRoute: typeof AuthenticatedProfileIndexLazyRoute
   AuthenticatedTransactionsIndexLazyRoute: typeof AuthenticatedTransactionsIndexLazyRoute
   AuthenticatedBookingsIdIndexLazyRoute: typeof AuthenticatedBookingsIdIndexLazyRoute
@@ -502,8 +499,8 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBookingsIndexRoute: AuthenticatedBookingsIndexRoute,
   AuthenticatedOnlineIndexRoute: AuthenticatedOnlineIndexRoute,
-  AuthenticatedBookingsIndexLazyRoute: AuthenticatedBookingsIndexLazyRoute,
   AuthenticatedProfileIndexLazyRoute: AuthenticatedProfileIndexLazyRoute,
   AuthenticatedTransactionsIndexLazyRoute:
     AuthenticatedTransactionsIndexLazyRoute,
@@ -541,12 +538,12 @@ export interface FileRoutesByFullPath {
   '/exam': typeof ExamIndexRoute
   '/placements': typeof PlacementsIndexRoute
   '/': typeof LandingIndexLazyRoute
+  '/bookings': typeof AuthenticatedBookingsIndexRoute
   '/online': typeof AuthenticatedOnlineIndexRoute
   '/exam/$id': typeof ExamIdIndexRoute
   '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
   '/login': typeof AuthLoginIndexLazyRoute
   '/register': typeof AuthRegisterIndexLazyRoute
-  '/bookings': typeof AuthenticatedBookingsIndexLazyRoute
   '/profile': typeof AuthenticatedProfileIndexLazyRoute
   '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute
   '/exams': typeof LandingExamsIndexLazyRoute
@@ -570,12 +567,12 @@ export interface FileRoutesByTo {
   '/exam': typeof ExamIndexRoute
   '/placements': typeof PlacementsIndexRoute
   '/': typeof LandingIndexLazyRoute
+  '/bookings': typeof AuthenticatedBookingsIndexRoute
   '/online': typeof AuthenticatedOnlineIndexRoute
   '/exam/$id': typeof ExamIdIndexRoute
   '/forgot-password': typeof AuthForgotPasswordIndexLazyRoute
   '/login': typeof AuthLoginIndexLazyRoute
   '/register': typeof AuthRegisterIndexLazyRoute
-  '/bookings': typeof AuthenticatedBookingsIndexLazyRoute
   '/profile': typeof AuthenticatedProfileIndexLazyRoute
   '/transactions': typeof AuthenticatedTransactionsIndexLazyRoute
   '/exams': typeof LandingExamsIndexLazyRoute
@@ -602,12 +599,12 @@ export interface FileRoutesById {
   '/exam/': typeof ExamIndexRoute
   '/placements/': typeof PlacementsIndexRoute
   '/_landing/': typeof LandingIndexLazyRoute
+  '/_authenticated/bookings/': typeof AuthenticatedBookingsIndexRoute
   '/_authenticated/online/': typeof AuthenticatedOnlineIndexRoute
   '/exam/$id/': typeof ExamIdIndexRoute
   '/_auth/forgot-password/': typeof AuthForgotPasswordIndexLazyRoute
   '/_auth/login/': typeof AuthLoginIndexLazyRoute
   '/_auth/register/': typeof AuthRegisterIndexLazyRoute
-  '/_authenticated/bookings/': typeof AuthenticatedBookingsIndexLazyRoute
   '/_authenticated/profile/': typeof AuthenticatedProfileIndexLazyRoute
   '/_authenticated/transactions/': typeof AuthenticatedTransactionsIndexLazyRoute
   '/_landing/exams/': typeof LandingExamsIndexLazyRoute
@@ -633,12 +630,12 @@ export interface FileRouteTypes {
     | '/exam'
     | '/placements'
     | '/'
+    | '/bookings'
     | '/online'
     | '/exam/$id'
     | '/forgot-password'
     | '/login'
     | '/register'
-    | '/bookings'
     | '/profile'
     | '/transactions'
     | '/exams'
@@ -661,12 +658,12 @@ export interface FileRouteTypes {
     | '/exam'
     | '/placements'
     | '/'
+    | '/bookings'
     | '/online'
     | '/exam/$id'
     | '/forgot-password'
     | '/login'
     | '/register'
-    | '/bookings'
     | '/profile'
     | '/transactions'
     | '/exams'
@@ -691,12 +688,12 @@ export interface FileRouteTypes {
     | '/exam/'
     | '/placements/'
     | '/_landing/'
+    | '/_authenticated/bookings/'
     | '/_authenticated/online/'
     | '/exam/$id/'
     | '/_auth/forgot-password/'
     | '/_auth/login/'
     | '/_auth/register/'
-    | '/_authenticated/bookings/'
     | '/_authenticated/profile/'
     | '/_authenticated/transactions/'
     | '/_landing/exams/'
@@ -787,8 +784,8 @@ export const routeTree = rootRoute
     "/_authenticated": {
       "filePath": "_authenticated/route.tsx",
       "children": [
-        "/_authenticated/online/",
         "/_authenticated/bookings/",
+        "/_authenticated/online/",
         "/_authenticated/profile/",
         "/_authenticated/transactions/",
         "/_authenticated/bookings/$id/",
@@ -826,6 +823,10 @@ export const routeTree = rootRoute
       "filePath": "_landing/index.lazy.tsx",
       "parent": "/_landing"
     },
+    "/_authenticated/bookings/": {
+      "filePath": "_authenticated/bookings/index.tsx",
+      "parent": "/_authenticated"
+    },
     "/_authenticated/online/": {
       "filePath": "_authenticated/online/index.tsx",
       "parent": "/_authenticated"
@@ -844,10 +845,6 @@ export const routeTree = rootRoute
     "/_auth/register/": {
       "filePath": "_auth/register/index.lazy.tsx",
       "parent": "/_auth"
-    },
-    "/_authenticated/bookings/": {
-      "filePath": "_authenticated/bookings/index.lazy.tsx",
-      "parent": "/_authenticated"
     },
     "/_authenticated/profile/": {
       "filePath": "_authenticated/profile/index.lazy.tsx",
