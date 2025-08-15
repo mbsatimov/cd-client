@@ -10,7 +10,7 @@ export const useBookingList = () => {
 
   return {
     state: {
-      registrations: getRegistrationsQuery.data?.data,
+      registrations: getRegistrationsQuery.data.data,
       isLoading: getRegistrationsQuery.isLoading
     }
   };
