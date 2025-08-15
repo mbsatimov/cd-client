@@ -19,7 +19,11 @@ export const BookingList = () => {
     );
   }
 
-  return state.registrations.map((registration) => (
-    <BookingItem key={`${registration.id}${registration.type}`} registration={registration} />
-  ));
+  return (
+    <div className='space-y-4'>
+      {state.registrations.map((registration) => (
+        <BookingItem key={`${registration.id}${registration.type}`} registration={registration} />
+      ))}
+    </div>
+  );
 };
