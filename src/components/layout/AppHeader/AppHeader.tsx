@@ -1,5 +1,5 @@
 import { Link, useRouter } from '@tanstack/react-router';
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll } from 'motion/react';
 import React from 'react';
 
 import { Button } from '@/components/ui';

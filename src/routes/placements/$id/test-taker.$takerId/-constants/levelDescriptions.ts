@@ -6,32 +6,6 @@ interface LevelDescription {
 }
 
 const levelDescriptions: Record<PlacementQuestionLevel, LevelDescription> = {
-  BEGINNER: {
-    title: 'Beginner',
-    description:
-      "You're at the very beginning of your learning journey. This is an exciting time to build your foundation!",
-    skills: [
-      'Basic vocabulary and simple phrases',
-      'Elementary concepts and structures',
-      'Simple interactions on familiar topics'
-    ],
-    nextSteps:
-      'Focus on building core vocabulary and understanding basic concepts. Regular practice with fundamentals will help you progress quickly.'
-  },
-
-  ELEMENTARY: {
-    title: 'Elementary',
-    description:
-      "You've grasped the basics and are ready to expand your knowledge with more structured learning.",
-    skills: [
-      'Simple everyday expressions and basic phrases',
-      'Basic interaction when the other person speaks slowly',
-      'Ability to ask and answer simple questions'
-    ],
-    nextSteps:
-      'Work on expanding your vocabulary and practicing basic conversations. Focus on building confidence with the fundamentals.'
-  },
-
   A1: {
     title: 'A1 - Breakthrough',
     description:
@@ -57,20 +31,6 @@ const levelDescriptions: Record<PlacementQuestionLevel, LevelDescription> = {
     nextSteps:
       'Work on more complex sentence structures and expand your vocabulary in specific topics. Practice describing past experiences and future plans.'
   },
-
-  PRE_INTERMEDIATE: {
-    title: 'Pre-Intermediate',
-    description:
-      "You've built a solid foundation and are beginning to express yourself with more confidence and flexibility.",
-    skills: [
-      'Handle short social exchanges with reasonable accuracy',
-      'Express opinions on familiar topics',
-      'Understand the main points of clear standard input on familiar matters'
-    ],
-    nextSteps:
-      'Focus on more complex grammar structures and expanding your vocabulary. Practice expressing opinions and engaging in longer conversations.'
-  },
-
   B1: {
     title: 'B1 - Threshold',
     description:
@@ -83,20 +43,6 @@ const levelDescriptions: Record<PlacementQuestionLevel, LevelDescription> = {
     nextSteps:
       'Work on expressing yourself more fluently and spontaneously. Focus on more complex topics and practice giving detailed explanations.'
   },
-
-  INTERMEDIATE: {
-    title: 'Intermediate',
-    description:
-      'You can communicate effectively in most situations and have a good grasp of the main concepts.',
-    skills: [
-      'Express yourself with reasonable fluency on familiar topics',
-      'Handle most situations likely to arise in daily life',
-      'Produce connected text on topics of personal interest'
-    ],
-    nextSteps:
-      'Focus on nuance and precision in your expression. Work on more complex structures and specialized vocabulary in your areas of interest.'
-  },
-
   B2: {
     title: 'B2 - Vantage',
     description:
@@ -109,20 +55,6 @@ const levelDescriptions: Record<PlacementQuestionLevel, LevelDescription> = {
     nextSteps:
       'Work on precision and nuance in your expression. Focus on understanding implicit meaning and cultural references.'
   },
-
-  ADVANCED: {
-    title: 'Advanced',
-    description:
-      'You have a high level of proficiency and can handle complex situations with confidence and accuracy.',
-    skills: [
-      'Express ideas fluently and spontaneously without obvious searching for expressions',
-      'Use language flexibly and effectively for social, academic and professional purposes',
-      'Understand a wide range of demanding, longer texts'
-    ],
-    nextSteps:
-      'Focus on mastering subtle nuances and cultural references. Work on specialized vocabulary in your field and refine your stylistic expression.'
-  },
-
   C1: {
     title: 'C1 - Effective Operational Proficiency',
     description:

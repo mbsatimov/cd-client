@@ -1,23 +1,14 @@
-type PlacementQuestionLevel =
-  | 'A1'
-  | 'A2'
-  | 'ADVANCED'
-  | 'B1'
-  | 'B2'
-  | 'BEGINNER'
-  | 'C1'
-  | 'C2'
-  | 'ELEMENTARY'
-  | 'INTERMEDIATE'
-  | 'PRE_INTERMEDIATE';
+type PlacementQuestionLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
 
 interface PlacementQuestion {
+  [];
   answers: Record<string, string[]>;
   createdAt: string;
   description: string | null;
   id: number;
   level: PlacementQuestionLevel;
   passingScore: number;
+  skipQuestionAnswers: Record<string, string[]>;
   title: string;
   updatedAt: string | null;
   question: {
@@ -25,18 +16,16 @@ interface PlacementQuestion {
     content: any | any[];
     numberOfQuestions: number;
   };
-}
-
-interface PlacementQuestionRequest {
-  answers: Record<string, string[]>;
-  description: string | null;
-  level: PlacementQuestionLevel;
-  passingScore: number;
-  title: string;
-  question: {
+  skipQuestion: {
+    id: number;
     content: any | any[];
     numberOfQuestions: number;
   };
+  speakingQuestions: {
+    question: string;
+    satisfactoryAnswer: string;
+    unsatisfactoryAnswer: string;
+  }[];
 }
 
 type PlacementTestsResponse = Pagination<PlacementTest>;
@@ -45,15 +34,6 @@ type PlacementTestResponse = PlacementTest;
 interface PlacementTest extends Test {
   questions: PlacementQuestion[];
 }
-
-interface PlacementTestRequest {
-  description: string | null;
-  questionIds: number[];
-  title: string;
-}
-
-type PlacementQuestionsResponse = Pagination<PlacementQuestion>;
-type PlacementQuestionResponse = PlacementQuestion;
 
 interface PlacementTestTakerRequest {
   fullName: string;

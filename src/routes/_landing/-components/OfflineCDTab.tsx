@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 import { BaseLayout } from '@/components/layout';
 import { cn } from '@/lib/utils.ts';
