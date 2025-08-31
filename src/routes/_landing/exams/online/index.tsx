@@ -1,9 +1,10 @@
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { BaseLayout } from '@/components/layout';
+import { Button } from '@/components/ui';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -38,6 +39,14 @@ const RouteComponent = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+      {!user && (
+        <div className='mt-6 flex items-center justify-between rounded-md border border-yellow-500 bg-yellow-500/10 px-4 py-2 text-yellow-500'>
+          <p className='mb-0 text-sm'>Get your first 10 zone coins for FREE - sign up NOW!</p>
+          <Button asChild size='sm' variant='outline'>
+            <Link to='/register'>Sign Up</Link>
+          </Button>
+        </div>
+      )}
       <div className='my-4 flex items-start justify-between md:my-6'>
         <h1 className='flex items-center gap-2 text-xl font-bold sm:text-2xl md:text-3xl'>
           CD Online Exams

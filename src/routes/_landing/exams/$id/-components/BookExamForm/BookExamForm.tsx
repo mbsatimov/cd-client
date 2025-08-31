@@ -46,7 +46,8 @@ export const BookExamForm = ({ exam }: Props) => {
       <form onSubmit={form.handleSubmit(functions.onSubmit)}>
         <h2 className='text-xl font-bold sm:text-2xl'>Confirm your Speaking test</h2>
         <p className='mb-2 text-muted-foreground'>
-          Select continue to reserve, or select a new time.
+          Select continue to reserve, or select a new time. Your speaking test will be held at the
+          same venue. You will take it either before or after your main test.
         </p>
         <Card className='flex flex-col justify-between sm:flex-row sm:items-center'>
           <CardHeader>
