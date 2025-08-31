@@ -2,7 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 
 import { FormBuilder } from '@/components/FormBuilderPreview';
 import { BaseLayout } from '@/components/layout';
-import { Button } from '@/components/ui';
+import { Badge, Button } from '@/components/ui';
 import { getPlacementTestsById } from '@/utils/api/requests';
 
 import { PlacementResults } from './-components/PlacementResults';
@@ -41,11 +41,6 @@ const RouteComponent = () => {
         <div className='space-y-8'>
           {state.questionResults ? (
             <PlacementResults
-              studentLevel={
-                state.isCompleted && state.questionResults.isPassed
-                  ? state.currentQuestion.level
-                  : state.questions[state.questionIndex - 1]?.level
-              }
               currentLevel={state.currentQuestion.level}
               currentStep={state.currentStep}
               isPassed={state.questionResults.isPassed}
@@ -55,6 +50,17 @@ const RouteComponent = () => {
               passingScore={state.questionResults.passingScore}
               totalSteps={state.questions.length}
             />
+          ) : state.openSkipQuestion ? (
+            <div className='rounded-lg border bg-white p-4 shadow-sm dark:bg-slate-900'>
+              <h1 className='mb-4 flex items-center gap-2 text-xl font-semibold'>
+                {state.currentQuestion.title} <Badge variant='success'>Skip Question</Badge>
+              </h1>
+              <FormBuilder
+                answers={state.answers}
+                setAnswer={functions.onAnswerChange}
+                questions={state.currentQuestion.skipQuestion.content}
+              />
+            </div>
           ) : (
             <div className='rounded-lg border bg-white p-4 shadow-sm dark:bg-slate-900'>
               <h1 className='mb-4 text-xl font-semibold'>{state.currentQuestion.title}</h1>

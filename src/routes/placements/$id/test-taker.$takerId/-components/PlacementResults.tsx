@@ -31,7 +31,6 @@ interface Props {
   numberOfCorrectAnswers: number;
   numberOfQuestions: number;
   passingScore: number;
-  studentLevel: PlacementQuestionLevel;
   totalSteps: number;
   onContinue?: () => void;
 }
@@ -42,7 +41,6 @@ export const PlacementResults = ({
   numberOfCorrectAnswers,
   numberOfQuestions,
   passingScore,
-  studentLevel,
   currentStep,
   totalSteps,
   onContinue
@@ -53,7 +51,7 @@ export const PlacementResults = ({
   const passingPercentage = Math.round((passingScore / numberOfQuestions) * 100);
 
   // Determine student level based on performance and progress
-  const studentLevelInfo = getLevelDescription(studentLevel);
+  const studentLevelInfo = getLevelDescription(currentLevel);
 
   // Simulate progress animation
   useState(() => {

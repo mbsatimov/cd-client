@@ -13,6 +13,7 @@ import { MatchingFeaturesPreview } from '../modules/MatchingFeatures';
 import { MultipleChoicePreview } from '../modules/MultipleChoice';
 import { MultiSelectPreview } from '../modules/MultiSelect';
 import { SelectionPreview } from '../modules/Selection';
+import { SentenceReorderingPreview } from '../modules/SentenceReordering';
 
 const questionMap: Record<FormBuilderQuestionTypes, React.ComponentType<any>> = {
   completion: CompletionPreview,
@@ -20,7 +21,8 @@ const questionMap: Record<FormBuilderQuestionTypes, React.ComponentType<any>> = 
   selection: SelectionPreview,
   'multi-select': MultiSelectPreview,
   'draggable-selection': DraggableSelectionPreview,
-  'matching-features': MatchingFeaturesPreview
+  'matching-features': MatchingFeaturesPreview,
+  'sentence-reordering': SentenceReorderingPreview
 };
 
 interface Props {

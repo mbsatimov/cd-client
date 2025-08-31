@@ -15,6 +15,8 @@ export const getQuestionCount = (question: FormBuilderValue) => {
     return question.content.split('@@').length - 1;
   } else if (question.type === 'matching-features') {
     return question.content.length;
+  } else if (question.type === 'sentence-reordering') {
+    return 1;
   }
   return 0;
 };
