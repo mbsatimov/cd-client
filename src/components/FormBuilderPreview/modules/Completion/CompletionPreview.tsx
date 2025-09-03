@@ -30,9 +30,12 @@ export const CompletionPreview = ({
           <input
             key={order}
             className={cn(
-              'h-5 max-w-[100px] rounded-[3px] bg-background px-1 text-center text-sm outline-none ring-primary/30 focus-visible:ring',
+              'h-5 min-w-[100px] rounded-[3px] bg-background px-1 text-center font-mono text-sm outline-none ring-primary/30 focus-visible:ring',
               focus === order && 'ring-2'
             )}
+            style={{
+              width: `${Math.max((answers[order]?.length || 0) + 1, 2)}ch`
+            }}
             id={`question-${order}`}
             spellCheck={false}
             value={answers[order] || ''}
