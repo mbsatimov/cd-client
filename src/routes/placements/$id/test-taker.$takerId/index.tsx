@@ -20,6 +20,10 @@ const RouteComponent = () => {
           </div>
         </div>
 
+        <div>
+          <img alt='logo' className='h-8' src='/logo.png' />
+        </div>
+
         {state.questionResults ? (
           state.isCompleted || !state.questionResults.isPassed ? (
             <Button asChild variant='outline'>
