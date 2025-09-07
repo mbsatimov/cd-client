@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import { create } from 'zustand';
 
-const ACCESS_TOKEN = 'thisisjustarandomstring';
+export const ACCESS_TOKEN = 'thisisjustarandomstring';
 
 interface AuthState {
   auth: {

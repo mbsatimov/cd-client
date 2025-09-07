@@ -14,8 +14,8 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb.tsx';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover.tsx';
-import { useAuth } from '@/hooks/useAuth.ts';
 import { getCDOnlineAll } from '@/utils/api/requests';
+import { useAuth } from '@/utils/stores';
 
 import { CDOnlineList } from './-components/CDOnlineList.tsx';
 import { CoinPricesDialog } from './-components/CoinPricesDialog.tsx';
@@ -60,18 +60,20 @@ const RouteComponent = () => {
             </PopoverContent>
           </Popover>
         </h1>
-        <div className='flex items-center gap-2'>
-          <button
-            className='flex items-center gap-2 text-nowrap'
-            type='button'
-            onClick={() => setOpenPricesDialog(true)}
-          >
-            <img alt='coin' className='size-6 sm:size-8' height={32} src='/coin.png' width={32} />
-            <span className='text-lg sm:text-xl'>
-              {user?.coins === 1 ? '1 Coin' : `${user?.coins} Coins`}
-            </span>
-          </button>
-        </div>
+        {user && (
+          <div className='flex items-center gap-2'>
+            <button
+              className='flex items-center gap-2 text-nowrap'
+              type='button'
+              onClick={() => setOpenPricesDialog(true)}
+            >
+              <img alt='coin' className='size-6 sm:size-8' height={32} src='/coin.png' width={32} />
+              <span className='text-lg sm:text-xl'>
+                {user.coins === 1 ? '1 Coin' : `${user.coins} Coins`}
+              </span>
+            </button>
+          </div>
+        )}
         <CoinPricesDialog onOpenChange={setOpenPricesDialog} open={openPricesDialog} />
       </div>
       <p className='mb-4 max-w-4xl text-sm text-muted-foreground md:mb-6 md:text-base'>

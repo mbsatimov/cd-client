@@ -19,9 +19,9 @@ import {
   Input,
   Label
 } from '@/components/ui';
-import { useAuth } from '@/hooks/useAuth.ts';
 import { cn, formatPrice } from '@/lib/utils.ts';
 import { getCDOnlinePricing, postBuyCoins } from '@/utils/api/requests';
+import { useAuth } from '@/utils/stores';
 
 interface Props {
   open: boolean;
@@ -77,6 +77,7 @@ export const CoinPricesDialog = ({ open, onOpenChange }: Props) => {
   const { totalPrice } = calculateCoinPriceBreakdown(coinCount);
 
   const onBuyCoins = () => {
+    if (!user) return;
     if (user.balance < totalPrice) {
       toast.error('Insufficient balance. Please add funds to your account.');
       setOpenFillBalanceDialog(true);
@@ -85,7 +86,7 @@ export const CoinPricesDialog = ({ open, onOpenChange }: Props) => {
     postBuyCoinsMutation.mutate({ config: { params: { amount: totalPrice } } });
   };
 
-  const hasEnoughBalance = user.balance >= totalPrice;
+  const hasEnoughBalance = (user?.balance ?? 0) >= totalPrice;
 
   return (
     <Dialog onOpenChange={onOpenChange} open={open}>
@@ -99,15 +100,17 @@ export const CoinPricesDialog = ({ open, onOpenChange }: Props) => {
 
         <div className='space-y-4 md:space-y-6 md:py-2'>
           {/* Current Balance */}
-          <Card className='bg-muted/50 p-4'>
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center gap-2'>
-                <Wallet className='h-4 w-4 text-muted-foreground' />
-                <span className='text-sm font-medium'>Current Balance</span>
+          {user && (
+            <Card className='bg-muted/50 p-4'>
+              <div className='flex items-center justify-between'>
+                <div className='flex items-center gap-2'>
+                  <Wallet className='h-4 w-4 text-muted-foreground' />
+                  <span className='text-sm font-medium'>Current Balance</span>
+                </div>
+                <span className='font-semibold'>{formatPrice(user.balance)}</span>
               </div>
-              <span className='font-semibold'>{formatPrice(user.balance)}</span>
-            </div>
-          </Card>
+            </Card>
+          )}
           <div className='grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2'>
             {values.reverse().map((price) => (
               <Card
@@ -163,19 +166,21 @@ export const CoinPricesDialog = ({ open, onOpenChange }: Props) => {
           </div>
 
           {/* Total Price Display */}
-          <Card
-            className={`border-2 p-4 ${hasEnoughBalance ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20' : 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/20'}`}
-          >
-            <div className='space-y-1 text-center'>
-              <p className='text-sm text-muted-foreground'>Total Cost</p>
-              <p className='text-2xl font-bold'>{formatPrice(totalPrice)}</p>
-              {!hasEnoughBalance && (
-                <p className='text-sm text-red-600 dark:text-red-400'>
-                  Need {formatPrice(totalPrice - user.balance)} more
-                </p>
-              )}
-            </div>
-          </Card>
+          {user && (
+            <Card
+              className={`border-2 p-4 ${hasEnoughBalance ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20' : 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/20'}`}
+            >
+              <div className='space-y-1 text-center'>
+                <p className='text-sm text-muted-foreground'>Total Cost</p>
+                <p className='text-2xl font-bold'>{formatPrice(totalPrice)}</p>
+                {!hasEnoughBalance && (
+                  <p className='text-sm text-red-600 dark:text-red-400'>
+                    Need {formatPrice(totalPrice - user.balance)} more
+                  </p>
+                )}
+              </div>
+            </Card>
+          )}
         </div>
 
         <DialogFooter className='gap-2'>
@@ -204,12 +209,14 @@ export const CoinPricesDialog = ({ open, onOpenChange }: Props) => {
           )}
         </DialogFooter>
 
-        <FillBalanceDialog
-          key={totalPrice}
-          defaultAmount={String(Math.max(1000, totalPrice - user.balance))}
-          onOpenChange={setOpenFillBalanceDialog}
-          open={openFillBalanceDialog}
-        />
+        {user && (
+          <FillBalanceDialog
+            key={totalPrice}
+            defaultAmount={String(Math.max(1000, totalPrice - user.balance))}
+            onOpenChange={setOpenFillBalanceDialog}
+            open={openFillBalanceDialog}
+          />
+        )}
       </DialogContent>
     </Dialog>
   );

@@ -23,9 +23,9 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui';
-import { useAuth } from '@/hooks/useAuth.ts';
 import { cn } from '@/lib/utils.ts';
 import { getCDOnlinePricing, postCDOnlineParticipation } from '@/utils/api/requests';
+import { useAuth } from '@/utils/stores';
 
 import { CoinPricesDialog } from './CoinPricesDialog.tsx';
 
@@ -136,7 +136,7 @@ export const CDOnlineItem = ({ item }: Props) => {
               <img alt='coin' className='size-4' height={16} src='/coin.png' width={16} />
             </div>
           </div>
-          {user.coins < totalPrice && (
+          {user && user?.coins < totalPrice && (
             <>
               <Alert variant='destructive'>
                 <AlertCircleIcon className='size-4' />
@@ -152,13 +152,19 @@ export const CDOnlineItem = ({ item }: Props) => {
             </>
           )}
           <CoinPricesDialog onOpenChange={setOpenCoinPricesDialog} open={openCoinPricesDialog} />
-          <Button
-            disabled={testTypes.length === 0 || user?.coins < totalPrice}
-            loading={postCDOnlineParticipationMutation.isPending}
-            onClick={onBuyTest}
-          >
-            BUY TESTS
-          </Button>
+          {user ? (
+            <Button
+              disabled={testTypes.length === 0 || user?.coins < totalPrice}
+              loading={postCDOnlineParticipationMutation.isPending}
+              onClick={onBuyTest}
+            >
+              BUY TESTS
+            </Button>
+          ) : (
+            <Button asChild>
+              <Link to='/register'>Sign Up</Link>
+            </Button>
+          )}
         </DialogContent>
       </Dialog>
       <AlertDialog onOpenChange={setOpenAlert} open={openAlert}>
