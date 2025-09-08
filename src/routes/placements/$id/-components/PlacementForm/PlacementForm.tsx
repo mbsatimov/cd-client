@@ -1,15 +1,7 @@
 import type { HTMLAttributes } from 'react';
 
 import { Button, Input } from '@/components/ui';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form';
-import { PhoneInput } from '@/components/ui/phone-input.tsx';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 
 import { usePlacementForm } from './hooks';
@@ -26,27 +18,19 @@ export const PlacementForm = ({ className, ...props }: Props) => {
             <FormField
               render={({ field }) => (
                 <FormItem className='space-y-1'>
-                  <FormLabel>Full name</FormLabel>
                   <FormControl>
-                    <Input autoComplete='off' placeholder='Enter full name' {...field} />
+                    <Input
+                      type='number'
+                      autoComplete='off'
+                      inputMode='numeric'
+                      placeholder='Enter id'
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
-              name='fullName'
-              control={form.control}
-            />
-            <FormField
-              render={({ field }) => (
-                <FormItem className='space-y-1'>
-                  <FormLabel>Phone number</FormLabel>
-                  <FormControl>
-                    <PhoneInput autoComplete='off' placeholder='+998 XX XXX XX XX' {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-              name='phoneNumber'
+              name='leadId'
               control={form.control}
             />
             <Button className='mt-2' type='submit' loading={state.isPending}>

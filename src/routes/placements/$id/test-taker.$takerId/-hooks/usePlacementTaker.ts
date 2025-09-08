@@ -1,5 +1,3 @@
-'use client';
-
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 import React, { useState } from 'react';
