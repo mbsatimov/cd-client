@@ -149,9 +149,9 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
                       <li>
                         <Link
                           className='text-sm leading-6 text-muted-foreground hover:text-foreground'
-                          to='/placements'
+                          to='/placement'
                         >
-                          Placements
+                          Placement Exam
                         </Link>
                       </li>
                     </PermissionWrapper>

@@ -83,7 +83,7 @@ export const NavUser = () => {
           </DropdownMenuItem>
           <PermissionWrapper allowedRoles={['ADMIN', 'PLACEMENT_TESTER']}>
             <DropdownMenuItem asChild>
-              <Link to='/placements'>
+              <Link to='/placement'>
                 <UserCogIcon />
                 Take Placement Exam
               </Link>

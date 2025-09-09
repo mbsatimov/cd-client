@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { Award, BookOpen, CheckCircle, GraduationCap, XCircle } from 'lucide-react';
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button.tsx';
 import {
   Card,
   CardContent,
@@ -10,7 +10,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '@/components/ui/card';
+} from '@/components/ui/card.tsx';
 import {
   Dialog,
   DialogContent,
@@ -18,11 +18,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle
-} from '@/components/ui/dialog';
-import { Progress } from '@/components/ui/progress';
-import { cn } from '@/lib/utils';
+} from '@/components/ui/dialog.tsx';
+import { Progress } from '@/components/ui/progress.tsx';
+import { cn } from '@/lib/utils.ts';
 
-import { getLevelDescription } from '../-constants/levelDescriptions';
+import { getLevelDescription } from '../-constants/levelDescriptions.ts';
 
 interface Props {
   currentLevel: PlacementQuestionLevel;
@@ -190,7 +190,7 @@ export const PlacementResults = ({
                 Show My Level
               </Button>
               <Button asChild className='flex-1' variant='secondary'>
-                <Link to='/placements'>End Assessment</Link>
+                <Link to='/placement'>Back Home</Link>
               </Button>
             </>
           ) : (
@@ -248,7 +248,7 @@ export const PlacementResults = ({
 
           <DialogFooter>
             <Button asChild className='w-full'>
-              <Link to='/placements'>Back to Assessments</Link>
+              <Link to='/placement'>Back Home</Link>
             </Button>
           </DialogFooter>
         </DialogContent>

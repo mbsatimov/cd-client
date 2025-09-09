@@ -92,6 +92,5 @@ const defaultDescription: LevelDescription = {
 };
 
 export const getLevelDescription = (level: PlacementQuestionLevel): LevelDescription => {
-  console.log(level);
   return levelDescriptions[level] || defaultDescription;
 };

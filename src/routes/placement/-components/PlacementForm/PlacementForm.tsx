@@ -1,8 +1,8 @@
 import type { HTMLAttributes } from 'react';
 
 import { Button, Input } from '@/components/ui';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { cn } from '@/lib/utils';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form.tsx';
+import { cn } from '@/lib/utils.ts';
 
 import { usePlacementForm } from './hooks';
 
@@ -33,7 +33,12 @@ export const PlacementForm = ({ className, ...props }: Props) => {
               name='leadId'
               control={form.control}
             />
-            <Button className='mt-2' type='submit' loading={state.isPending}>
+            <Button
+              className='mt-2'
+              disabled={!form.formState.isDirty}
+              type='submit'
+              loading={state.isPending}
+            >
               Start test
             </Button>
           </div>

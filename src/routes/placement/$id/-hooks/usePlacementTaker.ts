@@ -3,16 +3,15 @@ import { useParams } from '@tanstack/react-router';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
 
-import { getPlacementTestsById, postPlacementTestResult } from '@/utils/api/requests';
+import { getPlacementTestByLeadId, postPlacementTestResult } from '@/utils/api/requests';
 
 export const usePlacementTaker = () => {
-  const { id, takerId } = useParams({ from: '/placements/$id/test-taker/$takerId/' });
+  const { id } = useParams({ from: '/placement/$id/' });
   const { data } = useSuspenseQuery({
     queryKey: ['placement', id],
-    queryFn: () => getPlacementTestsById({ id })
+    queryFn: () => getPlacementTestByLeadId({ id })
   });
 
-  const [answers, setAnswers] = useState<Record<number, string>>({});
   const [questionResults, setQuestionResults] = React.useState<PlacementQuestionResults | null>(
     null
   );
@@ -25,9 +24,30 @@ export const usePlacementTaker = () => {
     currentQuestion.skipQuestion.content.length > 0
   );
 
+  const [answers, setAnswers] = useState<Record<number, string>>(
+    Object.fromEntries(
+      [
+        ...Array.from({
+          length:
+            currentQuestion.skipQuestion.content.length > 0
+              ? currentQuestion.skipQuestion.numberOfQuestions
+              : currentQuestion.question.numberOfQuestions
+        })
+      ].map((_, i) => [i + 1, ''])
+    )
+  );
+
   const onSkipSkipQuestion = () => {
     setOpenSkipQuestion(false);
-    setAnswers({});
+    setAnswers(
+      Object.fromEntries(
+        [
+          ...Array.from({
+            length: currentQuestion.question.numberOfQuestions
+          })
+        ].map((_, i) => [i + 1, ''])
+      )
+    );
   };
 
   const onAnswerChange = (index: number, result: string) => {
@@ -54,7 +74,7 @@ export const usePlacementTaker = () => {
 
   const onSubmitQuestion = () => {
     postPlacementTestResultMutation.mutate({
-      id: takerId,
+      id,
       data: answers,
       config: {
         params: { questionId: currentQuestion.id, skipQuestion: openSkipQuestion }
@@ -65,8 +85,20 @@ export const usePlacementTaker = () => {
   const onNextQuestion = () => {
     if (isCompleted) return;
     setQuestionIndex((prevIndex) => prevIndex + 1);
-    setOpenSkipQuestion(questions[questionIndex + 1].skipQuestion.content.length > 0);
-    setAnswers({});
+    const nextQuestion = questions[questionIndex + 1];
+    setOpenSkipQuestion(nextQuestion.skipQuestion.content.length > 0);
+    setAnswers(
+      Object.fromEntries(
+        [
+          ...Array.from({
+            length:
+              nextQuestion.skipQuestion.content.length > 0
+                ? nextQuestion.skipQuestion.numberOfQuestions
+                : nextQuestion.question.numberOfQuestions
+          })
+        ].map((_, i) => [i + 1, ''])
+      )
+    );
     setQuestionResults(null);
   };
 

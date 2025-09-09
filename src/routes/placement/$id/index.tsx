@@ -3,7 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { FormBuilder } from '@/components/FormBuilderPreview';
 import { BaseLayout } from '@/components/layout';
 import { Badge, Button } from '@/components/ui';
-import { getPlacementTestsById } from '@/utils/api/requests';
+import { getPlacementTestByLeadId } from '@/utils/api/requests';
 
 import { PlacementResults } from './-components/PlacementResults';
 import { usePlacementTaker } from './-hooks/usePlacementTaker';
@@ -27,7 +27,7 @@ const RouteComponent = () => {
         {state.questionResults ? (
           state.isCompleted || !state.questionResults.isPassed ? (
             <Button asChild variant='outline'>
-              <Link to='/placements'>Back to Assessments</Link>
+              <Link to='/placement'>Back Home</Link>
             </Button>
           ) : (
             <Button className='bg-green-600 hover:bg-green-700' onClick={functions.onNextQuestion}>
@@ -81,11 +81,11 @@ const RouteComponent = () => {
   );
 };
 
-export const Route = createFileRoute('/placements/$id/test-taker/$takerId/')({
+export const Route = createFileRoute('/placement/$id/')({
   component: RouteComponent,
   loader: ({ context: { queryClient }, params: { id } }) =>
     queryClient.prefetchQuery({
       queryKey: ['placement', id],
-      queryFn: () => getPlacementTestsById({ id })
+      queryFn: () => getPlacementTestByLeadId({ id })
     })
 });

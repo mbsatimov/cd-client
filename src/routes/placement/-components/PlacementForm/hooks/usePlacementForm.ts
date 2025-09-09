@@ -1,14 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { useParams, useRouter } from '@tanstack/react-router';
+import { useRouter } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 
-import { getPlacementTestByLeadId } from '@/utils/api/requests';
+import { postPlacementTestTakerByLeadId } from '@/utils/api/requests';
 
 import { placementFormSchema, type PlacementFormSchema } from '../constants';
 
 export const usePlacementForm = () => {
-  const { id } = useParams({ from: '/placements/$id/' });
   const form = useForm<PlacementFormSchema>({
     resolver: zodResolver(placementFormSchema),
     defaultValues: {
@@ -18,17 +17,16 @@ export const usePlacementForm = () => {
 
   const router = useRouter();
   const postPlacementTestTakerMutation = useMutation({
-    mutationFn: getPlacementTestByLeadId,
-    onSuccess: ({ data }) => {
+    mutationFn: postPlacementTestTakerByLeadId,
+    onSuccess: () =>
       router.navigate({
-        to: '/placements/$id/test-taker/$takerId',
-        params: { id, takerId: String(data) }
-      });
-    }
+        to: '/placement/$id',
+        params: { id: form.watch().leadId }
+      })
   });
 
   const onSubmit = (data: PlacementFormSchema) => {
-    postPlacementTestTakerMutation.mutate({ id: data.leadId });
+    postPlacementTestTakerMutation.mutate({ config: { params: { leadId: data.leadId } } });
   };
 
   return {
