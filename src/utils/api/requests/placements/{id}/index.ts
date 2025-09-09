@@ -4,4 +4,4 @@ export const getPlacementTestsById = ({ id, config }: RequestConfig & { id: numb
   api.get<PlacementTestResponse>(`placement-test/${id}`, config);
 
 export const getPlacementTestByLeadId = ({ id, config }: RequestConfig & { id: number | string }) =>
-  api.get<PlacementTestResponse>(`placement-test-by-lead-id/${id}`, config);
+  api.get<number>(`placement-test-by-lead-id/${id}`, config);

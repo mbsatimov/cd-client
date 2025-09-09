@@ -22,7 +22,7 @@ export const usePlacementForm = () => {
     onSuccess: ({ data }) => {
       router.navigate({
         to: '/placements/$id/test-taker/$takerId',
-        params: { id, takerId: String(data.id) }
+        params: { id, takerId: String(data) }
       });
     }
   });
