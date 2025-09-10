@@ -43,6 +43,18 @@ const levelDescriptions: Record<PlacementQuestionLevel, LevelDescription> = {
     nextSteps:
       'Work on expressing yourself more fluently and spontaneously. Focus on more complex topics and practice giving detailed explanations.'
   },
+  'B1+': {
+    title: 'B1+ - Threshold',
+    description:
+      'You can deal with most situations likely to arise while traveling in an area where the language is spoken.',
+    skills: [
+      'Connect phrases to describe experiences, events, dreams, and ambitions',
+      'Briefly give reasons and explanations for opinions and plans',
+      'Understand the main points of clear standard input on familiar matters'
+    ],
+    nextSteps:
+      'Work on expressing yourself more fluently and spontaneously. Focus on more complex topics and practice giving detailed explanations.'
+  },
   B2: {
     title: 'B2 - Vantage',
     description:
