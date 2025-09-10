@@ -43,7 +43,7 @@ const levelDescriptions: Record<PlacementQuestionLevel, LevelDescription> = {
     nextSteps:
       'Work on expressing yourself more fluently and spontaneously. Focus on more complex topics and practice giving detailed explanations.'
   },
-  'B1+': {
+  B1_PLUS: {
     title: 'B1+ - Threshold',
     description:
       'You can deal with most situations likely to arise while traveling in an area where the language is spoken.',
