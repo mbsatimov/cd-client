@@ -219,7 +219,7 @@ export const PlacementResults = ({
               <Award className='h-12 w-12 text-primary' />
             </div>
             <h3 className='text-center text-2xl font-bold'>{studentLevelInfo.title}</h3>
-            <p className='mt-2 text-center text-muted-foreground'>{studentLevelInfo.description}</p>
+            <p className='mt-2 text-center text-muted-foreground'>{studentLevelInfo.achieved}</p>
 
             <div className='mt-6 w-full space-y-4'>
               {studentLevelInfo.skills.length !== 0 && (

@@ -1,108 +1,122 @@
-interface LevelDescription {
-  description: string;
+interface LevelFeedback {
+  achieved: string;
+  focus: string;
   nextSteps: string;
   skills: string[];
   title: string;
 }
 
-const levelDescriptions: Record<PlacementQuestionLevel, LevelDescription> = {
+const levelFeedbacks: Record<PlacementQuestionLevel, LevelFeedback> = {
   A1: {
     title: 'A1 - Breakthrough',
-    description:
-      'You can understand and use familiar everyday expressions and very basic phrases aimed at satisfying concrete needs.',
+    achieved:
+      "You've started building a foundation in the language. You can handle simple greetings and everyday phrases.",
+    focus:
+      'You may struggle with forming sentences beyond basic needs or understanding native speakers at normal speed.',
     skills: [
       'Introduce yourself and others',
       'Ask and answer questions about personal details',
-      'Interact in a simple way if the other person speaks slowly and clearly'
+      'Handle very simple conversations if spoken clearly and slowly'
     ],
     nextSteps:
-      'Practice basic conversations and expand your vocabulary. Focus on simple grammatical structures and everyday phrases.'
+      'Practice short conversations daily. Focus on expanding everyday vocabulary and using simple grammar patterns with confidence.'
   },
 
   A2: {
     title: 'A2 - Waystage',
-    description:
-      'You can understand sentences and frequently used expressions related to areas of most immediate relevance.',
+    achieved: "You're able to communicate in familiar areas and manage simple, routine exchanges.",
+    focus:
+      'You may find it difficult to describe experiences in detail or follow conversations on unfamiliar topics.',
     skills: [
       'Communicate in simple and routine tasks',
-      'Describe in simple terms aspects of your background and environment',
-      'Express immediate needs and handle simple exchanges in familiar areas'
+      'Describe basic aspects of your background, environment, and needs',
+      'Handle simple exchanges in familiar contexts'
     ],
     nextSteps:
-      'Work on more complex sentence structures and expand your vocabulary in specific topics. Practice describing past experiences and future plans.'
+      'Expand vocabulary in specific topics (work, travel, hobbies). Start practicing past and future tenses in short conversations.'
   },
+
   B1: {
     title: 'B1 - Threshold',
-    description:
-      'You can deal with most situations likely to arise while traveling in an area where the language is spoken.',
+    achieved: 'You can manage most travel situations and express yourself in familiar topics.',
+    focus: 'You may lack fluency when discussing abstract topics or explaining complex ideas.',
     skills: [
       'Connect phrases to describe experiences, events, dreams, and ambitions',
-      'Briefly give reasons and explanations for opinions and plans',
-      'Understand the main points of clear standard input on familiar matters'
+      'Give short reasons and explanations for opinions and plans',
+      'Understand the main points of clear standard speech or text on familiar matters'
     ],
     nextSteps:
-      'Work on expressing yourself more fluently and spontaneously. Focus on more complex topics and practice giving detailed explanations.'
+      'Work on expressing opinions in more detail. Practice speaking for longer without stopping to search for words.'
   },
+
   B1_PLUS: {
-    title: 'B1+ - Threshold',
-    description:
-      'You can deal with most situations likely to arise while traveling in an area where the language is spoken.',
+    title: 'B1+ - Threshold Plus',
+    achieved: 'You’re stronger than B1, handling most situations with more confidence and fluency.',
+    focus:
+      'You might still struggle with nuance and fully spontaneous discussions on abstract themes.',
     skills: [
-      'Connect phrases to describe experiences, events, dreams, and ambitions',
-      'Briefly give reasons and explanations for opinions and plans',
-      'Understand the main points of clear standard input on familiar matters'
+      'Describe experiences and opinions in detail',
+      'Understand conversations on both familiar and some less familiar topics',
+      'Link ideas more smoothly in speech and writing'
     ],
     nextSteps:
-      'Work on expressing yourself more fluently and spontaneously. Focus on more complex topics and practice giving detailed explanations.'
+      'Push towards fluency by discussing broader topics (news, culture, work). Focus on complex sentence structures.'
   },
+
   B2: {
     title: 'B2 - Vantage',
-    description:
-      'You can interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party.',
+    achieved:
+      'You can communicate fluently and understand both concrete and abstract topics quite well.',
+    focus:
+      'You may still need to work on nuance, idioms, and maintaining precision in complex discussions.',
     skills: [
-      'Understand the main ideas of complex text on both concrete and abstract topics',
-      'Produce clear, detailed text on a wide range of subjects',
-      'Explain a viewpoint on a topical issue giving advantages and disadvantages'
+      'Understand the main ideas of complex texts',
+      'Produce clear, detailed speech and writing',
+      'Discuss viewpoints with supporting arguments'
     ],
     nextSteps:
-      'Work on precision and nuance in your expression. Focus on understanding implicit meaning and cultural references.'
+      'Practice debating, writing essays, or joining group discussions. Focus on using idiomatic expressions naturally.'
   },
+
   C1: {
     title: 'C1 - Effective Operational Proficiency',
-    description:
-      'You can express yourself fluently and spontaneously without much obvious searching for expressions.',
+    achieved:
+      'You can speak and write fluently with little effort, handling academic, professional, and social situations easily.',
+    focus:
+      'You may still need to refine style, tone, and cultural nuances, especially in very advanced or specialized contexts.',
     skills: [
-      'Understand a wide range of demanding, longer texts, and recognize implicit meaning',
-      'Use language flexibly and effectively for social, academic and professional purposes',
-      'Produce clear, well-structured, detailed text on complex subjects'
+      'Understand demanding texts and implicit meanings',
+      'Use language flexibly for academic and professional purposes',
+      'Produce detailed, well-structured, coherent text on complex issues'
     ],
     nextSteps:
-      'Focus on mastering idiomatic expressions and cultural nuances. Work on specialized vocabulary and refining your style for different contexts.'
+      'Refine your style and accuracy. Practice using idioms, cultural references, and specialized vocabulary in different contexts.'
   },
 
   C2: {
     title: 'C2 - Mastery',
-    description:
-      'You can express yourself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in more complex situations.',
+    achieved:
+      'You can understand and produce language at a near-native level, handling subtle shades of meaning.',
+    focus:
+      'At this level, progress is about refining nuance, style, and keeping skills sharp across contexts.',
     skills: [
-      'Understand with ease virtually everything heard or read',
-      'Summarize information from different spoken and written sources',
-      'Express yourself spontaneously, very fluently and precisely'
+      'Understand virtually everything you read or hear with ease',
+      'Summarize information from diverse sources precisely',
+      'Express yourself fluently, very precisely, and with subtle control'
     ],
     nextSteps:
-      'Continue refining your mastery of subtle nuances and cultural references. Focus on specialized domains and maintaining your high level of proficiency.'
+      'Stay challenged: read advanced literature, engage in high-level debates, and explore specialized areas (science, law, arts).'
   }
 };
 
-// Default description for fallback
-const defaultDescription: LevelDescription = {
+const defaultFeedback: LevelFeedback = {
   title: 'Starter',
-  description: "You're just starting to learn the language.",
+  achieved: "You're just beginning your language journey.",
+  focus: 'You need to build basic vocabulary and grammar awareness.',
   skills: [],
-  nextSteps:
-    'Work on basic vocabulary and grammar structures. Practice speaking in your own language.'
+  nextSteps: 'Start with basic greetings, numbers, and simple sentences.'
 };
 
-export const getLevelDescription = (level: PlacementQuestionLevel): LevelDescription => {
-  return levelDescriptions[level] || defaultDescription;
+export const getLevelDescription = (level: PlacementQuestionLevel): LevelFeedback => {
+  return levelFeedbacks[level] || defaultFeedback;
 };
