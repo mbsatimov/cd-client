@@ -19,13 +19,7 @@ export const PlacementForm = ({ className, ...props }: Props) => {
               render={({ field }) => (
                 <FormItem className='space-y-1'>
                   <FormControl>
-                    <Input
-                      type='number'
-                      autoComplete='off'
-                      inputMode='numeric'
-                      placeholder='Enter id'
-                      {...field}
-                    />
+                    <Input autoComplete='off' placeholder='Enter id' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

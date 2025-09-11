@@ -14,8 +14,8 @@ const RouteComponent = () => {
       </div>
       <Card className='w-full max-w-sm'>
         <CardHeader className='flex flex-col space-y-2 text-left'>
-          <CardTitle>Start Placement</CardTitle>
-          <CardDescription>Enter your details to participate in the test</CardDescription>
+          <CardTitle>Placement Test</CardTitle>
+          <CardDescription>Enter your ID number to start the test</CardDescription>
         </CardHeader>
         <CardContent>
           <PlacementForm />
