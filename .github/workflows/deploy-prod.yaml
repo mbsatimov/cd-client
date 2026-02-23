@@ -45,8 +45,4 @@ jobs:
           USER: ${{ secrets.VPS_USER }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          # Create target dir on remote (scp fails if parent path doesn't exist)
-          ssh -i private_key $USER@$HOST "mkdir -p /home/$USER/frontend/cd-client/dist-new"
-          # Atomic deploy: upload to temp dir first, then swap (avoids serving index.html before assets exist)
-          scp -i private_key -r dist/ $USER@$HOST:/home/$USER/frontend/cd-client/dist-new/
-          ssh -i private_key $USER@$HOST "cd /home/$USER/frontend/cd-client && rm -rf dist && mv dist-new dist"
+          scp -i private_key -r dist $USER@$HOST:/home/$USER/frontend/cd-client/
