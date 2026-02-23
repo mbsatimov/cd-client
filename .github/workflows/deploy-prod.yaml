@@ -8,41 +8,41 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
+    strategy:
+      matrix:
+        node-version: [22]
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
 
-      - name: Deploy to Production Server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          HOST: ${{ secrets.VPS_HOST }}
-          USERNAME: ${{ secrets.VPS_USER }}
-          # Optional: set PNPM_CMD secret (e.g. /home/user/.nvm/versions/node/v22.20.0/bin/pnpm) to use a specific pnpm path
-          PNPM_CMD: ${{ secrets.PNPM_CMD || 'npx pnpm' }}
+      - name: Build Frontend
+        run: pnpm build
+
+      - name: check folder
+        run: ls
+
+      - name: Add Known Hosts
         run: |
-          echo "${SSH_PRIVATE_KEY}" > ssh_key
-          chmod 600 ssh_key
           mkdir -p ~/.ssh
-          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
 
-          # Sync source to server (exclude build artifacts and deps)
-          rsync -avz --delete \
-            --exclude='node_modules' \
-            --exclude='dist' \
-            --exclude='.env' \
-            --exclude='.env.*' \
-            --exclude='.git' \
-            -e "ssh -i ssh_key" \
-            ./ $USERNAME@$HOST:/home/$USERNAME/frontend/cd-client-repo/
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-          # Build on server and deploy dist to web root (preserves nginx config)
-          # PNPM_CMD defaults to npx pnpm (works when pnpm not in PATH). Set PNPM_CMD secret for custom path (e.g. /home/user/.nvm/versions/node/v22/bin/pnpm).
-          ssh -i ssh_key $USERNAME@$HOST "set -e && mkdir -p /home/$USERNAME/frontend/cd-client-repo /home/$USERNAME/frontend/cd-client && cd /home/$USERNAME/frontend/cd-client-repo && $PNPM_CMD install && $PNPM_CMD build && rm -rf /home/$USERNAME/frontend/cd-client/* && cp -r dist/* /home/$USERNAME/frontend/cd-client/ && echo 'Frontend deployed successfully'"
+      - name: Upload Build to VPS
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.VPS_HOST }}
+          USER: ${{ secrets.VPS_USER }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          scp -i private_key -r dist/ $USER@$HOST:/home/$USER/frontend/cd-client/
