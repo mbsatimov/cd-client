@@ -29,12 +29,10 @@ jobs:
       - name: Build Frontend
         run: pnpm build
 
-      - name: check folder
-        run: ls
-
       - name: Add Known Hosts
         run: |
           mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
       - name: Upload Build to VPS
@@ -43,8 +41,10 @@ jobs:
           HOST: ${{ secrets.VPS_HOST }}
           USER: ${{ secrets.VPS_USER }}
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          scp -i private_key -r dist $USER@$HOST:/home/$USER/frontend/cd-client/
+          printf '%s\n' "$PRIVATE_KEY" | tr -d '\r' > private_key
+          chmod 600 private_key
+          scp -i private_key -o StrictHostKeyChecking=accept-new -r dist $USER@$HOST:/home/$USER/frontend/cd-client/
+          rm -f private_key
 
       # - name: Restart Nginx
       #   env:
