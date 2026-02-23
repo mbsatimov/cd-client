@@ -29,11 +29,11 @@ export const TestConfirmStepper = ({
   volume,
   onVolumeChange
 }: Props) => {
+  const { toggleFullscreen } = useFullscreen();
   const currentStepIndex = steps.findIndex((item) => item === currentStep);
   const [isSoundCheckConfirmed, setIsSoundCheckConfirmed] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
   const [isAudioPlaying, setIsAudioPlaying] = React.useState(false);
-  const { toggleFullscreen } = useFullscreen();
 
   React.useEffect(() => {
     if (audioRef.current) {
