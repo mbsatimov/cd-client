@@ -8,41 +8,38 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
-      - name: Install dependencies
-        run: pnpm install
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Build Frontend
-        run: pnpm build
-
-      - name: check folder
-        run: ls
-
-      - name: Add Known Hosts
-        run: |
-          mkdir -p ~/.ssh
-
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Upload Build to VPS
+      - name: Deploy to Production Server
         env:
-          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           HOST: ${{ secrets.VPS_HOST }}
-          USER: ${{ secrets.VPS_USER }}
+          USERNAME: ${{ secrets.VPS_USER }}
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          scp -i private_key -r dist/ $USER@$HOST:/home/$USER/frontend/cd-client/
+          echo "${SSH_PRIVATE_KEY}" > ssh_key
+          chmod 600 ssh_key
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+
+          # Sync source to server (exclude build artifacts and deps)
+          rsync -avz --delete \
+            --exclude='node_modules' \
+            --exclude='dist' \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='.git' \
+            -e "ssh -i ssh_key" \
+            ./ $USERNAME@$HOST:/home/$USERNAME/frontend/cd-client-repo/
+
+          # Build on server and deploy dist to web root (preserves nginx config)
+          ssh -i ssh_key $USERNAME@$HOST "set -e && mkdir -p /home/$USERNAME/frontend/cd-client-repo /home/$USERNAME/frontend/cd-client && cd /home/$USERNAME/frontend/cd-client-repo && pnpm install && pnpm build && rm -rf /home/$USERNAME/frontend/cd-client/* && cp -r dist/* /home/$USERNAME/frontend/cd-client/ && echo 'Frontend deployed successfully'"
