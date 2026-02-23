@@ -25,6 +25,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           HOST: ${{ secrets.VPS_HOST }}
           USERNAME: ${{ secrets.VPS_USER }}
+          # Optional: set PNPM_CMD secret (e.g. /home/user/.nvm/versions/node/v22.20.0/bin/pnpm) to use a specific pnpm path
+          PNPM_CMD: ${{ secrets.PNPM_CMD || 'npx pnpm' }}
         run: |
           echo "${SSH_PRIVATE_KEY}" > ssh_key
           chmod 600 ssh_key
@@ -42,4 +44,5 @@ jobs:
             ./ $USERNAME@$HOST:/home/$USERNAME/frontend/cd-client-repo/
 
           # Build on server and deploy dist to web root (preserves nginx config)
-          ssh -i ssh_key $USERNAME@$HOST "set -e && mkdir -p /home/$USERNAME/frontend/cd-client-repo /home/$USERNAME/frontend/cd-client && cd /home/$USERNAME/frontend/cd-client-repo && pnpm install && pnpm build && rm -rf /home/$USERNAME/frontend/cd-client/* && cp -r dist/* /home/$USERNAME/frontend/cd-client/ && echo 'Frontend deployed successfully'"
+          # PNPM_CMD defaults to npx pnpm (works when pnpm not in PATH). Set PNPM_CMD secret for custom path (e.g. /home/user/.nvm/versions/node/v22/bin/pnpm).
+          ssh -i ssh_key $USERNAME@$HOST "set -e && mkdir -p /home/$USERNAME/frontend/cd-client-repo /home/$USERNAME/frontend/cd-client && cd /home/$USERNAME/frontend/cd-client-repo && $PNPM_CMD install && $PNPM_CMD build && rm -rf /home/$USERNAME/frontend/cd-client/* && cp -r dist/* /home/$USERNAME/frontend/cd-client/ && echo 'Frontend deployed successfully'"
