@@ -45,4 +45,4 @@ jobs:
           USER: ${{ secrets.VPS_USER }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          scp -i private_key -r dist/ $USER@$HOST:/home/$USER/frontend/cd-client/
+          scp -i private_key -r dist $USER@$HOST:/home/$USER/frontend/cd-client/
