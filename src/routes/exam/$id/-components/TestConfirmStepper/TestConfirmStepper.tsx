@@ -33,18 +33,7 @@ export const TestConfirmStepper = ({
   const [isSoundCheckConfirmed, setIsSoundCheckConfirmed] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
   const [isAudioPlaying, setIsAudioPlaying] = React.useState(false);
-  const [playVideo, setPlayVideo] = React.useState(false);
   const { toggleFullscreen } = useFullscreen();
-
-  React.useEffect(() => {
-    if (currentStep === 'listening') {
-      if (isSoundCheckConfirmed) {
-        setPlayVideo(true);
-      }
-    } else {
-      setPlayVideo(true);
-    }
-  }, [isSoundCheckConfirmed]);
 
   React.useEffect(() => {
     if (audioRef.current) {
@@ -59,24 +48,10 @@ export const TestConfirmStepper = ({
     }
   };
 
-  const onVideoEnded = () => {
-    setPlayVideo(false);
-  };
-
   const onSoundCheckConfirmed = () => {
     toggleFullscreen(true);
     setIsSoundCheckConfirmed(true);
   };
-
-  if (playVideo) {
-    return (
-      <div className='fixed inset-0 z-50 flex'>
-        <video className='size-full object-contain' autoPlay onEnded={onVideoEnded}>
-          <source src={`/videos/${currentStep}.mp4`} type='video/mp4' />
-        </video>
-      </div>
-    );
-  }
 
   if (!isSoundCheckConfirmed && currentStep === 'listening')
     return (
