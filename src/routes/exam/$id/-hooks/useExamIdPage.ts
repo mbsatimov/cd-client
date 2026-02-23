@@ -14,7 +14,6 @@ export const useExamIdPage = () => {
   const { toggleFullscreen } = useFullscreen();
   const router = useRouter();
   const [testStartConfirmed, setTestStartConfirmed] = React.useState(false);
-  const [countdown, setCountdown] = React.useState(3);
 
   const getMockByCodeQuery = useSuspenseQuery({
     queryKey: ['mocks', id],
@@ -40,21 +39,11 @@ export const useExamIdPage = () => {
 
   const postResultMutation = useMutation({
     mutationFn: postMockResults,
+    retry: 5,
+    retryDelay: 3000,
     onSuccess: () => {
       toggleFullscreen(false);
       router.navigate({ to: '/exam/end', replace: true });
-    },
-    onError: () => {
-      if (countdown <= 0) return;
-      setCountdown(countdown - 1);
-      postResultMutation.mutate({
-        data: {
-          listening: examAnswersStore.listening,
-          reading: examAnswersStore.reading,
-          writing: examAnswersStore.writing
-        },
-        config: { params: { code: id } }
-      });
     }
   });
 
