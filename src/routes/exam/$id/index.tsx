@@ -3,7 +3,16 @@ import React from 'react';
 
 import { Highlightable } from '@/components/Highlightable';
 import { ListeningTest, ReadingTest, WritingTest } from '@/components/tests';
-import { Spinner } from '@/components/ui';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  Button,
+  Spinner
+} from '@/components/ui';
 import { useFullscreen } from '@/hooks';
 import { getMockByCode } from '@/utils/api/requests';
 
@@ -59,7 +68,33 @@ const WritingTestPage = () => {
     )
   };
 
-  return <Highlightable>{ieltsSteps[state.currentStep]}</Highlightable>;
+  return (
+    <>
+      <Highlightable>{ieltsSteps[state.currentStep]}</Highlightable>
+      {!state.showSaveFailedDialog && state.isPending && (
+        <div className='fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-background/50 backdrop-blur-sm'>
+          <Spinner className='size-8' />
+          <p className='text-lg font-medium'>Saving your test…</p>
+        </div>
+      )}
+      <AlertDialog open={state.showSaveFailedDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Automatic Saving Failed</AlertDialogTitle>
+            <AlertDialogDescription>
+              We could not save automatically. Please, try to save manually by clicking the button
+              below.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <Button disabled={state.isPending} onClick={functions.retrySave}>
+              {state.isPending ? 'Saving…' : 'Try Again'}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
 };
 
 export const Route = createFileRoute('/exam/$id/')({

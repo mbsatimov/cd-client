@@ -37,15 +37,31 @@ export const useExamIdPage = () => {
     return currentIndex !== -1 && currentIndex < steps.length - 1 ? steps[currentIndex + 1] : null;
   };
 
+  const [showSaveFailedDialog, setShowSaveFailedDialog] = React.useState(false);
+
   const postResultMutation = useMutation({
     mutationFn: postMockResults,
-    retry: 5,
+    retry: 4,
     retryDelay: 3000,
     onSuccess: () => {
       toggleFullscreen(false);
       router.navigate({ to: '/exam/end', replace: true });
+    },
+    onError: () => {
+      setShowSaveFailedDialog(true);
     }
   });
+
+  const retrySave = () => {
+    postResultMutation.mutate({
+      data: {
+        listening: examAnswersStore.listening,
+        reading: examAnswersStore.reading,
+        writing: examAnswersStore.writing
+      },
+      config: { params: { code: id } }
+    });
+  };
 
   const moveToNextStep = () => {
     const nextStep = getNextStep(currentStep);
@@ -70,12 +86,14 @@ export const useExamIdPage = () => {
       isPending: postResultMutation.isPending,
       steps,
       currentStep,
-      testStartConfirmed
+      testStartConfirmed,
+      showSaveFailedDialog
     },
     functions: {
       getNextStep,
       moveToNextStep,
-      setTestStartConfirmed
+      setTestStartConfirmed,
+      retrySave
     }
   };
 };
