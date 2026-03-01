@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import React from 'react';
+import { toast } from 'sonner';
 
 import { Highlightable } from '@/components/Highlightable';
 import { ListeningTest, ReadingTest, WritingTest } from '@/components/tests';
@@ -44,7 +45,6 @@ const WritingTestPage = () => {
       <ListeningTest
         nextStep={functions.getNextStep('listening')}
         test={state.exam.listening}
-        hideNextButton
         onTestEnd={functions.moveToNextStep}
         onVolumeChange={setVolume}
         volume={volume}
@@ -54,7 +54,6 @@ const WritingTestPage = () => {
       <ReadingTest
         nextStep={functions.getNextStep('reading')}
         test={state.exam.reading}
-        hideNextButton
         onTestEnd={functions.moveToNextStep}
       />
     ),
@@ -62,7 +61,6 @@ const WritingTestPage = () => {
       <WritingTest
         nextStep={functions.getNextStep('writing')}
         test={state.exam.writing}
-        hideNextButton
         onTestEnd={functions.moveToNextStep}
       />
     )
@@ -87,7 +85,16 @@ const WritingTestPage = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <Button disabled={state.isPending} onClick={functions.retrySave}>
+            <Button
+              disabled={state.isPending}
+              onClick={() =>
+                functions.retrySave(undefined, {
+                  onError: () => {
+                    toast.error('Failed to save the test. Please try again.');
+                  }
+                })
+              }
+            >
               {state.isPending ? 'Saving…' : 'Try Again'}
             </Button>
           </AlertDialogFooter>

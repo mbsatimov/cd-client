@@ -1,15 +1,16 @@
 import { CircleAlertIcon } from 'lucide-react';
 
 import {
-  Button,
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  Button
 } from '@/components/ui';
 
 interface Props {
@@ -18,11 +19,11 @@ interface Props {
 
 export const FinishTestAction = ({ onConfirm }: Props) => {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
         <Button variant='destructive'>Finish</Button>
-      </DialogTrigger>
-      <DialogContent className='max-w-[400px]'>
+      </AlertDialogTrigger>
+      <AlertDialogContent className='max-w-[400px]'>
         <div className='flex flex-col items-center gap-2'>
           <div
             aria-hidden='true'
@@ -30,24 +31,26 @@ export const FinishTestAction = ({ onConfirm }: Props) => {
           >
             <CircleAlertIcon className='opacity-80' size={16} strokeWidth={2} />
           </div>
-          <DialogHeader>
-            <DialogTitle className='sm:text-center'>Finish Test</DialogTitle>
-            <DialogDescription className='sm:text-center'>
+          <AlertDialogHeader>
+            <AlertDialogTitle className='sm:text-center'>Finish Test</AlertDialogTitle>
+            <AlertDialogDescription className='sm:text-center'>
               You still have time to finish the test. Are you sure you want to finish the test?
-            </DialogDescription>
-          </DialogHeader>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
         </div>
-        <DialogFooter className='gap-2'>
-          <DialogClose asChild>
+        <AlertDialogFooter className='gap-2'>
+          <AlertDialogCancel asChild>
             <Button className='flex-1' type='button' variant='outline'>
               Cancel
             </Button>
-          </DialogClose>
-          <Button className='flex-1' type='button' variant='destructive' onClick={onConfirm}>
-            Finish
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+          </AlertDialogCancel>
+          <AlertDialogAction asChild>
+            <Button className='flex-1' type='button' variant='destructive' onClick={onConfirm}>
+              Finish
+            </Button>
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };

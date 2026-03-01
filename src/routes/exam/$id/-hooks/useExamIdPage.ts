@@ -40,28 +40,28 @@ export const useExamIdPage = () => {
   const [showSaveFailedDialog, setShowSaveFailedDialog] = React.useState(false);
 
   const postResultMutation = useMutation({
-    mutationFn: postMockResults,
-    retry: 4,
+    mutationFn: () =>
+      postMockResults({
+        data: {
+          listening: examAnswersStore.listening,
+          reading: examAnswersStore.reading,
+          writing: examAnswersStore.writing
+        },
+        config: { params: { code: id } }
+      }),
+    retry: (val) => {
+      if (val >= 4) {
+        setShowSaveFailedDialog(true);
+        return false;
+      }
+      return true;
+    },
     retryDelay: 3000,
     onSuccess: () => {
       toggleFullscreen(false);
       router.navigate({ to: '/exam/end', replace: true });
-    },
-    onError: () => {
-      setShowSaveFailedDialog(true);
     }
   });
-
-  const retrySave = () => {
-    postResultMutation.mutate({
-      data: {
-        listening: examAnswersStore.listening,
-        reading: examAnswersStore.reading,
-        writing: examAnswersStore.writing
-      },
-      config: { params: { code: id } }
-    });
-  };
 
   const moveToNextStep = () => {
     const nextStep = getNextStep(currentStep);
@@ -69,14 +69,7 @@ export const useExamIdPage = () => {
       setTestStartConfirmed(false);
       setCurrentStep(nextStep);
     } else {
-      postResultMutation.mutate({
-        data: {
-          listening: examAnswersStore.listening,
-          reading: examAnswersStore.reading,
-          writing: examAnswersStore.writing
-        },
-        config: { params: { code: id } }
-      });
+      postResultMutation.mutate();
     }
   };
 
@@ -93,7 +86,7 @@ export const useExamIdPage = () => {
       getNextStep,
       moveToNextStep,
       setTestStartConfirmed,
-      retrySave
+      retrySave: postResultMutation.mutate
     }
   };
 };

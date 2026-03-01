@@ -75,6 +75,24 @@ export const ListeningTest = ({
     loadDurations();
   }, []);
 
+  React.useEffect(() => {
+    const images = document.querySelectorAll('img');
+
+    images.forEach((img) => {
+      img.onerror = () => {
+        const retries = Number(img.dataset.retries || 0);
+        if (retries >= 10) return;
+
+        img.dataset.retries = String(retries + 1);
+
+        setTimeout(() => {
+          const baseSrc = img.src.split('?')[0];
+          img.src = `${baseSrc}?retry=${Date.now()}`;
+        }, 2000); // ⏳ 2 seconds delay
+      };
+    });
+  }, [test.parts, currentTab]);
+
   if (!listening) return;
 
   const onAudioTimeUpdate = () => {
